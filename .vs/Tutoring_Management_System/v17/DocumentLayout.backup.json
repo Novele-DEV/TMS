@@ -1,0 +1,44 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ailto\\OneDrive\\Documents\\Courses\\Second Year CS\\Informations Systems 2\\IS2B\\Tutoring_Management_System\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{76544564-3B8F-4D37-AA16-5071F7C8974D}|TutoringManagementSystem\\TutoringManagementSystem.csproj|c:\\users\\ailto\\onedrive\\documents\\courses\\second year cs\\informations systems 2\\is2b\\tutoring_management_system\\tutoringmanagementsystem\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{76544564-3B8F-4D37-AA16-5071F7C8974D}|TutoringManagementSystem\\TutoringManagementSystem.csproj|solutionrelative:tutoringmanagementsystem\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\ailto\\OneDrive\\Documents\\Courses\\Second Year CS\\Informations Systems 2\\IS2B\\Tutoring_Management_System\\TutoringManagementSystem\\Form1.cs",
+              "RelativeDocumentMoniker": "TutoringManagementSystem\\Form1.cs",
+              "ToolTip": "C:\\Users\\ailto\\OneDrive\\Documents\\Courses\\Second Year CS\\Informations Systems 2\\IS2B\\Tutoring_Management_System\\TutoringManagementSystem\\Form1.cs [Design]",
+              "RelativeToolTip": "TutoringManagementSystem\\Form1.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-20T13:31:33.303Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
