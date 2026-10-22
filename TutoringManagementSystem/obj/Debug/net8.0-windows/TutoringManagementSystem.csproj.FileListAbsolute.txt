@@ -1,0 +1,17 @@
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.exe
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.deps.json
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.runtimeconfig.json
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.dll
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.pdb
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.Form1.resources
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.csproj.GenerateResource.cache
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.AssemblyInfoInputs.cache
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.AssemblyInfo.cs
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.sourcelink.json
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.dll
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\refint\TutoringManagementSystem.dll
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.pdb
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.genruntimeconfig.cache
+C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\ref\TutoringManagementSystem.dll
