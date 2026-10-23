@@ -7,8 +7,109 @@
   "targets": {
     ".NETCoreApp,Version=v8.0": {
       "TutoringManagementSystem/1.0.0": {
+        "dependencies": {
+          "System.Data.OleDb": "10.0.13"
+        },
         "runtime": {
           "TutoringManagementSystem.dll": {}
+        }
+      },
+      "System.Configuration.ConfigurationManager/10.0.13": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "10.0.13",
+          "System.Security.Cryptography.ProtectedData": "10.0.13"
+        },
+        "runtime": {
+          "lib/net8.0/System.Configuration.ConfigurationManager.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1326.50504"
+          }
+        }
+      },
+      "System.Data.OleDb/10.0.13": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "10.0.13",
+          "System.Diagnostics.PerformanceCounter": "10.0.13"
+        },
+        "runtime": {
+          "lib/net8.0/System.Data.OleDb.dll": {
+            "assemblyVersion": "10.0.0.13",
+            "fileVersion": "10.0.1326.50504"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Data.OleDb.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.13",
+            "fileVersion": "10.0.1326.50504"
+          }
+        }
+      },
+      "System.Diagnostics.EventLog/10.0.13": {
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1326.50504"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.Messages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win/lib/net8.0/System.Diagnostics.EventLog.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1326.50504"
+          }
+        }
+      },
+      "System.Diagnostics.PerformanceCounter/10.0.13": {
+        "dependencies": {
+          "System.Configuration.ConfigurationManager": "10.0.13",
+          "System.Threading.AccessControl": "10.0.13"
+        },
+        "runtime": {
+          "lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1326.50504"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Diagnostics.PerformanceCounter.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1326.50504"
+          }
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/10.0.13": {
+        "runtime": {
+          "lib/net8.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1326.50504"
+          }
+        }
+      },
+      "System.Threading.AccessControl/10.0.13": {
+        "runtime": {
+          "lib/net8.0/System.Threading.AccessControl.dll": {
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1326.50504"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net8.0/System.Threading.AccessControl.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "10.0.0.0",
+            "fileVersion": "10.0.1326.50504"
+          }
         }
       }
     }
@@ -18,6 +119,48 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "System.Configuration.ConfigurationManager/10.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BkkGt1IDGMaNkSWJR+hEN3V/UMvyoYKW0rG7rlhKQwS2Ghn+9dt98aV7syIMK+ChumTk+IbDF4k0QXqVs9Zudg==",
+      "path": "system.configuration.configurationmanager/10.0.13",
+      "hashPath": "system.configuration.configurationmanager.10.0.13.nupkg.sha512"
+    },
+    "System.Data.OleDb/10.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-egfyZB9/6dVa6jlVR2zXMETNR5woDg8EIClKDZQl125e7nlGLLJNWgCwA4br0UdKw0DjtEU+4r0stAZySQIWxA==",
+      "path": "system.data.oledb/10.0.13",
+      "hashPath": "system.data.oledb.10.0.13.nupkg.sha512"
+    },
+    "System.Diagnostics.EventLog/10.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-DkNjtQyPR5Ud/zHnWHdsOuKbFRL9nIC92Q76z0NmHVDoQm40toLtsGFTIWq7toBoVa6fo/DInL3PLxY3Asixyw==",
+      "path": "system.diagnostics.eventlog/10.0.13",
+      "hashPath": "system.diagnostics.eventlog.10.0.13.nupkg.sha512"
+    },
+    "System.Diagnostics.PerformanceCounter/10.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K2t0EVIUB5g+gc+hZ7x9DWyGLvuTsfD/tbPJBbLaIGuW2OQl+ivm1MKIlqYrMWxX9TK+LqMDVuE0LcOCOFmueQ==",
+      "path": "system.diagnostics.performancecounter/10.0.13",
+      "hashPath": "system.diagnostics.performancecounter.10.0.13.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/10.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aUSmC6cPjFLSE0rDTsmkR3wvUOnscqewebOaaELEToh12sNmoltZqT3f0C81mJ1zhxKjWco25soHTvYwsXCsUw==",
+      "path": "system.security.cryptography.protecteddata/10.0.13",
+      "hashPath": "system.security.cryptography.protecteddata.10.0.13.nupkg.sha512"
+    },
+    "System.Threading.AccessControl/10.0.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ByvVE6lX05XPAAUdKdDzhqeHgt7PgjsXzppQ+HSPLgweSKEOvJ48kuZcyq81E5FvuyBg3VohyniGvDAw8HPsWw==",
+      "path": "system.threading.accesscontrol/10.0.13",
+      "hashPath": "system.threading.accesscontrol.10.0.13.nupkg.sha512"
     }
   }
 }

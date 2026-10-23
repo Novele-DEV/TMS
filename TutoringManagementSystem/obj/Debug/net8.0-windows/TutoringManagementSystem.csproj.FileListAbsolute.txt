@@ -15,3 +15,33 @@ C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\D
 C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.pdb
 C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.genruntimeconfig.cache
 C:\Users\ayabu\OneDrive\Documents\TUTORING SYSTEM\TutoringManagementSystem\obj\Debug\net8.0-windows\ref\TutoringManagementSystem.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.exe
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.deps.json
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.runtimeconfig.json
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\TutoringManagementSystem.pdb
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.Form1.resources
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.csproj.GenerateResource.cache
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.AssemblyInfoInputs.cache
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.AssemblyInfo.cs
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.sourcelink.json
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\refint\TutoringManagementSystem.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.pdb
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.genruntimeconfig.cache
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\ref\TutoringManagementSystem.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\System.Configuration.ConfigurationManager.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\System.Data.OleDb.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\System.Diagnostics.EventLog.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\System.Diagnostics.PerformanceCounter.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\System.Security.Cryptography.ProtectedData.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\System.Threading.AccessControl.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Data.OleDb.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.Messages.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Diagnostics.PerformanceCounter.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Threading.AccessControl.dll
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\TutoringManagementSystem.csproj.AssemblyReference.cache
+C:\Users\ailto\OneDrive\Documents\Courses\Second Year CS\Informations Systems 2\IS2B\Tutoring_Management_System\TutoringManagementSystem\obj\Debug\net8.0-windows\Tutoring.BDB76B77.Up2Date
