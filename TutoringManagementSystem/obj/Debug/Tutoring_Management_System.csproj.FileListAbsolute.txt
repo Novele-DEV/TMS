@@ -1,0 +1,13 @@
+C:\Users\tumel\source\repos\Tutoring_Management_System\bin\Debug\ByteBetter_Tutoring.accdb
+C:\Users\tumel\source\repos\Tutoring_Management_System\bin\Debug\Tutoring_Management_System.exe.config
+C:\Users\tumel\source\repos\Tutoring_Management_System\bin\Debug\Tutoring_Management_System.exe
+C:\Users\tumel\source\repos\Tutoring_Management_System\bin\Debug\Tutoring_Management_System.pdb
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.csproj.AssemblyReference.cache
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.TutorDetails.resources
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.Form1.resources
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.frmManageTutor.resources
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.Properties.Resources.resources
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.csproj.GenerateResource.cache
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.csproj.CoreCompileInputs.cache
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.exe
+C:\Users\tumel\source\repos\Tutoring_Management_System\obj\Debug\Tutoring_Management_System.pdb
