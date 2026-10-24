@@ -1,4 +1,5 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -7,10 +8,18 @@
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <NoWarn>$(NoWarn);SYSLIB0051</NoWarn>
+    <Platforms>AnyCPU;ARM32</Platforms>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="System.Data.OleDb" Version="10.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ByteBetter_Tutoring.accdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

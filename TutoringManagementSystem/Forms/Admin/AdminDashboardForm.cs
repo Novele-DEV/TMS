@@ -33,5 +33,13 @@ namespace Tutoring_Management_System
             if (answer == DialogResult.Yes)
                 this.Close();
         }
+
+        private void btnBookTutorial_Click(object sender, EventArgs e)
+        {
+            using (var form = new TutoringManagementSystem.SessionBookingForm())
+            {
+                form.ShowDialog(this);
+            }
+        }
     }
 }
