@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TutoringManagementSystem;
 
 namespace Tutoring_Management_System
 {
@@ -41,5 +42,15 @@ namespace Tutoring_Management_System
                 form.ShowDialog(this);
             }
         }
+
+
+        private void btnGetReport_Click(object sender, EventArgs e)
+        {
+            using (var form = new frmReports())
+            {
+                form.ShowDialog(this);
+            }
+        }
+
     }
 }

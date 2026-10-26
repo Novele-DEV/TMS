@@ -28,101 +28,108 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.byteBetter_TutoringDataSet = new Tutoring_Management_System.ByteBetter_TutoringDataSet();
-            this.btnManageTutor = new System.Windows.Forms.Button();
-            this.btnGetReport = new System.Windows.Forms.Button();
-            this.btnBookTutorial = new System.Windows.Forms.Button();
-            this.btnLogOut = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.byteBetter_TutoringDataSet)).BeginInit();
-            this.SuspendLayout();
-            //
+            components = new System.ComponentModel.Container();
+            bindingSource1 = new BindingSource(components);
+            byteBetter_TutoringDataSet = new ByteBetter_TutoringDataSet();
+            btnManageTutor = new Button();
+            btnGetReport = new Button();
+            btnBookTutorial = new Button();
+            btnLogOut = new Button();
+            label1 = new Label();
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)byteBetter_TutoringDataSet).BeginInit();
+            SuspendLayout();
+            // 
             // bindingSource1
-            //
-            this.bindingSource1.DataSource = this.byteBetter_TutoringDataSet;
-            this.bindingSource1.Position = 0;
-            //
+            // 
+            bindingSource1.DataSource = byteBetter_TutoringDataSet;
+            bindingSource1.Position = 0;
+            // 
             // byteBetter_TutoringDataSet
-            //
-            this.byteBetter_TutoringDataSet.DataSetName = "ByteBetter_TutoringDataSet";
-            this.byteBetter_TutoringDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            //
+            // 
+            byteBetter_TutoringDataSet.DataSetName = "ByteBetter_TutoringDataSet";
+            byteBetter_TutoringDataSet.Namespace = "http://tempuri.org/ByteBetter_TutoringDataSet.xsd";
+            byteBetter_TutoringDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // btnManageTutor
-            //
-            this.btnManageTutor.BackColor = System.Drawing.SystemColors.Highlight;
-            this.btnManageTutor.Location = new System.Drawing.Point(35, 204);
-            this.btnManageTutor.Name = "btnManageTutor";
-            this.btnManageTutor.Size = new System.Drawing.Size(146, 66);
-            this.btnManageTutor.TabIndex = 0;
-            this.btnManageTutor.Text = "Manage_Tutors";
-            this.btnManageTutor.UseVisualStyleBackColor = false;
-            this.btnManageTutor.Click += new System.EventHandler(this.button1_Click);
-            //
+            // 
+            btnManageTutor.BackColor = SystemColors.Highlight;
+            btnManageTutor.Location = new Point(35, 255);
+            btnManageTutor.Margin = new Padding(3, 4, 3, 4);
+            btnManageTutor.Name = "btnManageTutor";
+            btnManageTutor.Size = new Size(146, 82);
+            btnManageTutor.TabIndex = 0;
+            btnManageTutor.Text = "Manage_Tutors";
+            btnManageTutor.UseVisualStyleBackColor = false;
+            btnManageTutor.Click += button1_Click;
+            // 
             // btnGetReport
-            //
-            this.btnGetReport.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnGetReport.Location = new System.Drawing.Point(225, 204);
-            this.btnGetReport.Name = "btnGetReport";
-            this.btnGetReport.Size = new System.Drawing.Size(139, 66);
-            this.btnGetReport.TabIndex = 1;
-            this.btnGetReport.Text = "Get_Report";
-            this.btnGetReport.UseVisualStyleBackColor = false;
-            //
+            // 
+            btnGetReport.BackColor = SystemColors.HotTrack;
+            btnGetReport.Location = new Point(225, 255);
+            btnGetReport.Margin = new Padding(3, 4, 3, 4);
+            btnGetReport.Name = "btnGetReport";
+            btnGetReport.Size = new Size(139, 82);
+            btnGetReport.TabIndex = 1;
+            btnGetReport.Text = "Get_Report";
+            btnGetReport.UseVisualStyleBackColor = false;
+            btnGetReport.Click += btnGetReport_Click;
+            // 
             // btnBookTutorial
-            //
-            this.btnBookTutorial.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnBookTutorial.Location = new System.Drawing.Point(415, 204);
-            this.btnBookTutorial.Name = "btnBookTutorial";
-            this.btnBookTutorial.Size = new System.Drawing.Size(146, 66);
-            this.btnBookTutorial.TabIndex = 2;
-            this.btnBookTutorial.Text = "Book Tutorial";
-            this.btnBookTutorial.UseVisualStyleBackColor = false;
-            this.btnBookTutorial.Click += new System.EventHandler(this.btnBookTutorial_Click);
-            //
+            // 
+            btnBookTutorial.BackColor = SystemColors.HotTrack;
+            btnBookTutorial.Location = new Point(415, 255);
+            btnBookTutorial.Margin = new Padding(3, 4, 3, 4);
+            btnBookTutorial.Name = "btnBookTutorial";
+            btnBookTutorial.Size = new Size(146, 82);
+            btnBookTutorial.TabIndex = 2;
+            btnBookTutorial.Text = "Book Tutorial";
+            btnBookTutorial.UseVisualStyleBackColor = false;
+            btnBookTutorial.Click += btnBookTutorial_Click;
+            // 
             // btnLogOut
-            //
-            this.btnLogOut.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.btnLogOut.Location = new System.Drawing.Point(605, 204);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(146, 66);
-            this.btnLogOut.TabIndex = 3;
-            this.btnLogOut.Text = "Logout";
-            this.btnLogOut.UseVisualStyleBackColor = false;
-            this.btnLogOut.Click += new System.EventHandler(this.button3_Click);
-            //
+            // 
+            btnLogOut.BackColor = SystemColors.HotTrack;
+            btnLogOut.Location = new Point(605, 255);
+            btnLogOut.Margin = new Padding(3, 4, 3, 4);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(146, 82);
+            btnLogOut.TabIndex = 3;
+            btnLogOut.Text = "Logout";
+            btnLogOut.UseVisualStyleBackColor = false;
+            btnLogOut.Click += button3_Click;
+            // 
             // label1
-            //
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(190, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(416, 39);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Administrator Dashboard";
-            //
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = SystemColors.Highlight;
+            label1.Font = new Font("Microsoft Sans Serif", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ButtonHighlight;
+            label1.Location = new Point(190, 61);
+            label1.Name = "label1";
+            label1.Size = new Size(416, 39);
+            label1.TabIndex = 3;
+            label1.Text = "Administrator Dashboard";
+            // 
             // AdminDashboardForm
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.btnLogOut);
-            this.Controls.Add(this.btnBookTutorial);
-            this.Controls.Add(this.btnGetReport);
-            this.Controls.Add(this.btnManageTutor);
-            this.Name = "AdminDashboardForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AdminDashboard";
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.byteBetter_TutoringDataSet)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
+            ClientSize = new Size(800, 562);
+            Controls.Add(label1);
+            Controls.Add(btnLogOut);
+            Controls.Add(btnBookTutorial);
+            Controls.Add(btnGetReport);
+            Controls.Add(btnManageTutor);
+            Margin = new Padding(3, 4, 3, 4);
+            Name = "AdminDashboardForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "AdminDashboard";
+            ((System.ComponentModel.ISupportInitialize)bindingSource1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)byteBetter_TutoringDataSet).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
