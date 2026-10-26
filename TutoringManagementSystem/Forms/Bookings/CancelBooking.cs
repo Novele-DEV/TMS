@@ -18,22 +18,25 @@ namespace TutoringManagementSystem
         private const string RuleNoticeText = "Bookings cannot be changed or cancelled less than 48 hours before the session.";
         private const string LoadingMessage = "Loading your bookings...";
         private const string SaveErrorMessage = "An unexpected error has occured. Please try again.";
+        private const string DatabaseUnavailableMessage =
+            "The tutoring database could not be opened. Close Microsoft Access and try again.";
         private readonly DataSet bookingData = new DataSet("BookingData");
         private readonly int StudentId; // the student is already logged in
-        private string connectionString;
+        private string connectionString = string.Empty;
         private bool connected;
         private bool loaded;
         private bool loading; // true while the code fills the controls
-        private bool busy; // prevents competing actions 
+        private bool busy; // prevents competing actions
         private int selectedSessionId; // 0 = no booking selected
         private int selectedRequestId;
         private DateTime selectedStart; // start of the selected booking
-        private string selectedTutorName;
+        private string selectedTutorName = string.Empty;
 
 
         public frmCancelBooking(int StudentId)
         {
             InitializeComponent();
+            Tutoring_Management_System.AppTheme.Register(this);
             this.StudentId = StudentId;
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
@@ -75,8 +78,9 @@ namespace TutoringManagementSystem
                 string path = new OleDbConnectionStringBuilder(connectionString).DataSource;
                 if (!File.Exists(path))
                 {
-                    ShowError("Database file not found");
-                    MessageBox.Show("The database file is missing from " + Application.StartupPath);
+                    ShowError(DatabaseUnavailableMessage);
+                    MessageBox.Show(DatabaseUnavailableMessage, "Database Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 using (var connection = new OleDbConnection(connectionString))
@@ -88,8 +92,17 @@ namespace TutoringManagementSystem
             catch (OleDbException ex)
             {
                 Debug.WriteLine(ex);
-                ShowError("Connection failed");
-                MessageBox.Show("Check the ACE provider and database access.");
+                ShowError(DatabaseUnavailableMessage);
+                MessageBox.Show(DatabaseUnavailableMessage, "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (InvalidOperationException ex)
+            {
+                Debug.WriteLine(ex);
+                ShowError(DatabaseUnavailableMessage);
+                MessageBox.Show(DatabaseUnavailableMessage, "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -141,19 +154,27 @@ namespace TutoringManagementSystem
                     "WHERE s.[Student_ID] = ? AND s.[Session_Status] = 'Scheduled' " +
                     "ORDER BY s.[Session_Date], s.[Session_StartTime]", connection))
                 {
-                    adapter.SelectCommand.Parameters.Add("@student", OleDbType.Integer).Value = StudentId;
+                    OleDbCommand? selectCommand = adapter.SelectCommand;
+                    if (selectCommand == null)
+                        throw new InvalidOperationException("The booking query could not be prepared.");
+
+                    selectCommand.Parameters.Add("@student", OleDbType.Integer).Value = StudentId;
                     connection.Open();
                     adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                     adapter.Fill(fresh, "Bookings");
                 }
 
+                DataTable? bookings = fresh.Tables["Bookings"];
+                if (bookings == null)
+                    throw new InvalidOperationException("The booking list could not be loaded.");
+
                 // replace the displayed data only after the retrieval has succeeded.
-                loading = true; 
+                loading = true;
                 try
                 {
                     bookingSource.DataSource = null;
                     if (bookingData.Tables.Contains("Bookings")) bookingData.Tables.Remove("Bookings");
-                    bookingData.Tables.Add(fresh.Tables["Bookings"].Copy());
+                    bookingData.Tables.Add(bookings.Copy());
                     bookingSource.DataSource = bookingData;
                     bookingSource.DataMember = "Bookings";
                     dgvBookings.DataSource = bookingSource;
@@ -182,7 +203,7 @@ namespace TutoringManagementSystem
             dgvBookings.Columns["Session_Date"].DefaultCellStyle.Format = "dd MMM yyyy";
             dgvBookings.Columns["Session_StartTime"].DefaultCellStyle.Format = "HH:mm";
         }
-        
+
         private void ShowColumn(string name, string header)
         {
             dgvBookings.Columns[name].Visible = true;
@@ -214,7 +235,7 @@ namespace TutoringManagementSystem
             }
             selectedSessionId = Convert.ToInt32(row["Session_ID"]);
             selectedRequestId = Convert.ToInt32(row["Request_ID"]);
-            selectedTutorName = Convert.ToString(row["TutorName"]);
+            selectedTutorName = Convert.ToString(row["TutorName"]) ?? string.Empty;
             selectedStart = ((DateTime)row["Session_Date"]).Date +
                             ((DateTime)row["Session_StartTime"]).TimeOfDay;
             lblSelected.Text = "Selected: booking with " + selectedTutorName + " on " +

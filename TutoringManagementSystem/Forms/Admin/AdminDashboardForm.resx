@@ -123,4 +123,10 @@
   <metadata name="byteBetter_TutoringDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>181, 17</value>
   </metadata>
+  <data name="LogoLight" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\Images\ByteBetter_Logo_Light.jpg;System.Drawing.Bitmap, System.Drawing.Common</value>
+  </data>
+  <data name="LogoDark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\..\Resources\Images\ByteBetter_Logo.jpg;System.Drawing.Bitmap, System.Drawing.Common</value>
+  </data>
 </root>

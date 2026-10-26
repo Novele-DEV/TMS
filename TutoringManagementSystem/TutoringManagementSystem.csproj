@@ -4,6 +4,7 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
+    <PlatformTarget>x64</PlatformTarget>
     <UseWindowsForms>true</UseWindowsForms>
 <RootNamespace>Tutoring_Management_System</RootNamespace>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>

@@ -16,10 +16,13 @@ namespace Tutoring_Management_System
         public TutorDetailsForm(string? tutorId)
         {
             InitializeComponent();
+            AppTheme.Register(this);
             _tutorId = tutorId;
         }
 
         private readonly string? _tutorId;
+        private string _originalEmail = string.Empty;
+        private string _originalPhone = string.Empty;
 
         private bool IsEditMode
         {
@@ -50,9 +53,18 @@ namespace Tutoring_Management_System
             {
                 // 1. Shared validation helper: required fields, email, phone, average, duplicate email
                 Dictionary<string, string> problems = TutorValidator.Validate(
-                    txtFirstName.Text, txtLastName.Text, txtEmail.Text, txtPhone.Text,
-                    txtAverage.Text, cboPreference.Text,
+                    txtFirstName.Text ?? string.Empty, txtLastName.Text ?? string.Empty,
+                    txtEmail.Text ?? string.Empty, txtPhone.Text ?? string.Empty,
+                    txtAverage.Text ?? string.Empty, cboPreference.Text ?? string.Empty,
                     IsEditMode ? _tutorId : null);
+
+                if (IsEditMode &&
+                    TutorRepository.PhoneExists(
+                        TutorValidator.NormalisePhone(txtPhone.Text ?? string.Empty),
+                        _tutorId))
+                {
+                    problems["phone"] = "A tutor with this phone number already exists.";
+                }
 
                 if (problems.Count > 0)
                 {
@@ -61,23 +73,35 @@ namespace Tutoring_Management_System
                     return;
                 }
 
+                string email = (txtEmail.Text ?? string.Empty).Trim();
+                string phone = TutorValidator.NormalisePhone(txtPhone.Text ?? string.Empty);
+                if (IsEditMode &&
+                    (!string.Equals(email, _originalEmail, StringComparison.OrdinalIgnoreCase) ||
+                     !string.Equals(phone, _originalPhone, StringComparison.Ordinal)))
+                {
+                    SetStatus(
+                        "The database currently rejects email or phone changes. No changes were saved; please contact the database owner.",
+                        true);
+                    return;
+                }
+
                 // 2. Build the record
                 double average;
-                TutorValidator.TryParseAverage(txtAverage.Text, out average);
+                TutorValidator.TryParseAverage(txtAverage.Text ?? string.Empty, out average);
 
                 var tutor = new TutorInfo
                 {
                     Id = _tutorId ?? string.Empty,
-                    FirstName = txtFirstName.Text.Trim(),
-                    LastName = txtLastName.Text.Trim(),
-                    Email = txtEmail.Text.Trim(),
-                    Phone = TutorValidator.NormalisePhone(txtPhone.Text),
+                    FirstName = (txtFirstName.Text ?? string.Empty).Trim(),
+                    LastName = (txtLastName.Text ?? string.Empty).Trim(),
+                    Email = email,
+                    Phone = phone,
                     AcademicAverage = average,
-                    PreferredMode = cboPreference.Text
+                    PreferredMode = cboPreference.Text ?? string.Empty
                 };
 
                 int rows;
-                string savedId = _tutorId ?? string.Empty;
+                string? savedId = _tutorId;
                 if (IsEditMode)
                     rows = TutorRepository.Update(tutor);
                 else
@@ -87,6 +111,12 @@ namespace Tutoring_Management_System
                 if (rows == 0)
                 {
                     SetStatus("The tutor could not be saved and nothing was changed. Please try again.", true);
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(savedId))
+                {
+                    SetStatus("The tutor was saved but its ID could not be returned.", true);
                     return;
                 }
 
@@ -140,9 +170,16 @@ namespace Tutoring_Management_System
                 txtLastName.Text = tutor.LastName;
                 txtEmail.Text = tutor.Email;
                 txtPhone.Text = tutor.Phone;
+                _originalEmail = tutor.Email;
+                _originalPhone = TutorValidator.NormalisePhone(tutor.Phone);
                 txtAverage.Text = tutor.AcademicAverage.HasValue ? tutor.AcademicAverage.Value.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture) : "";
 
-                // If the saved preference is not one of the list items, add it so the value is not lost
+                if (IsEditMode)
+                {
+                    cboPreference.Items.Clear();
+                    cboPreference.Items.AddRange(new object[] { "In-person", "Virtual", "Both" });
+                }
+
                 if (!string.IsNullOrEmpty(tutor.PreferredMode) && cboPreference.FindStringExact(tutor.PreferredMode) < 0)
                 {
                     cboPreference.Items.Add(tutor.PreferredMode);
@@ -171,13 +208,18 @@ namespace Tutoring_Management_System
 
         private void ShowErrors(Dictionary<string, string> problems)
         {
-            string message;
-            if (problems.TryGetValue("first", out message)) errors.SetError(txtFirstName, message);
-            if (problems.TryGetValue("last", out message)) errors.SetError(txtLastName, message);
-            if (problems.TryGetValue("email", out message)) errors.SetError(txtEmail, message);
-            if (problems.TryGetValue("phone", out message)) errors.SetError(txtPhone, message);
-            if (problems.TryGetValue("average", out message)) errors.SetError(txtAverage, message);
-            if (problems.TryGetValue("preference", out message)) errors.SetError(cboPreference, message);
+            if (problems.TryGetValue("first", out string? message) && message != null)
+                errors.SetError(txtFirstName, message);
+            if (problems.TryGetValue("last", out message) && message != null)
+                errors.SetError(txtLastName, message);
+            if (problems.TryGetValue("email", out message) && message != null)
+                errors.SetError(txtEmail, message);
+            if (problems.TryGetValue("phone", out message) && message != null)
+                errors.SetError(txtPhone, message);
+            if (problems.TryGetValue("average", out message) && message != null)
+                errors.SetError(txtAverage, message);
+            if (problems.TryGetValue("preference", out message) && message != null)
+                errors.SetError(cboPreference, message);
         }
 
         private void ClearFeedback()

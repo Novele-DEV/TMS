@@ -16,21 +16,40 @@ namespace Tutoring_Management_System
         public TutorManagementForm()
         {
             InitializeComponent();
+            AppTheme.Register(this);
+            tutorDataGridView.CellDoubleClick += tutorDataGridView_CellDoubleClick;
+            tutorDataGridView.KeyDown += tutorDataGridView_KeyDown;
         }
 
         private void tutorBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
             this.tutorBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.byteBetter_TutoringDataSet);
-
+            try
+            {
+                this.tableAdapterManager.UpdateAll(this.byteBetter_TutoringDataSet);
+            }
+            catch (OleDbException)
+            {
+                MessageBox.Show(
+                    "The tutoring database could not be opened. Close Microsoft Access and try again.",
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show(
+                    "The tutor changes could not be saved. Please try again.",
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void TutorManagementForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'byteBetter_TutoringDataSet.Tutor' table. You can move, or remove it, as needed.
-            this.tutorTableAdapter.Fill(this.byteBetter_TutoringDataSet.Tutor);
-            
+            LoadTutors(string.Empty);
         }
 
         //The edit button before changing it to btnEdit
@@ -47,9 +66,41 @@ namespace Tutoring_Management_System
         private void tutorDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
+                tutorDataGridView.Rows[e.RowIndex].Selected = true;
+        }
+
+        private void tutorDataGridView_CellDoubleClick(object? sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= tutorDataGridView.Rows.Count)
+                return;
+
+            DataRowView? row = tutorDataGridView.Rows[e.RowIndex].DataBoundItem as DataRowView;
+            if (row == null)
             {
-                EditSelectedTutor();
+                MessageBox.Show("Select a tutor in the list first.", "No tutor selected",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
             }
+
+            string? tutorId = Convert.ToString(row["Tutor_ID"]);
+            if (string.IsNullOrWhiteSpace(tutorId))
+            {
+                MessageBox.Show("The selected tutor could not be identified.", "Tutor Not Found",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            OpenTutorDetails(tutorId);
+        }
+
+        private void tutorDataGridView_KeyDown(object? sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            e.Handled = true;
+            e.SuppressKeyPress = true;
+            EditSelectedTutor();
         }
 
         private void LoadTutors(string selectTutorId)
@@ -57,12 +108,19 @@ namespace Tutoring_Management_System
             try
             {
                 this.tutorTableAdapter.Fill(this.byteBetter_TutoringDataSet.Tutor);
+                tutorDataGridView.ClearSelection();
                 if (!string.IsNullOrEmpty(selectTutorId))
                 {
                     int index = this.tutorBindingSource.Find("Tutor_ID", selectTutorId);
                     if (index >= 0)
                     {
                         this.tutorBindingSource.Position = index;
+                        if (index < tutorDataGridView.Rows.Count)
+                        {
+                            tutorDataGridView.Rows[index].Selected = true;
+                            if (tutorDataGridView.Rows[index].Cells.Count > 0)
+                                tutorDataGridView.CurrentCell = tutorDataGridView.Rows[index].Cells[0];
+                        }
                     }
                 }
                 btnEdit.Enabled = this.tutorBindingSource.Count > 0;
@@ -80,14 +138,28 @@ namespace Tutoring_Management_System
 
         private void EditSelectedTutor()
         {
-            DataRowView row = this.tutorBindingSource.Current as DataRowView;
+            DataRowView? row = null;
+            if (tutorDataGridView.SelectedRows.Count > 0)
+                row = tutorDataGridView.SelectedRows[0].DataBoundItem as DataRowView;
+            else if (tutorDataGridView.SelectedCells.Count > 0)
+                row = tutorDataGridView.SelectedCells[0].OwningRow.DataBoundItem as DataRowView;
+
             if (row == null)
             {
                 MessageBox.Show("Select a tutor in the list first.", "No tutor selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            OpenTutorDetails(Convert.ToString(row["Tutor_ID"]));
+
+            string? tutorId = Convert.ToString(row["Tutor_ID"]);
+            if (string.IsNullOrWhiteSpace(tutorId))
+            {
+                MessageBox.Show("The selected tutor could not be identified.", "Tutor Not Found",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            OpenTutorDetails(tutorId);
         }
 
         private void OpenTutorDetails(string? tutorId)

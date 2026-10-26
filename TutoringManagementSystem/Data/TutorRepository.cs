@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TutoringManagementSystem;
 
 namespace Tutoring_Management_System
 {
@@ -13,7 +14,7 @@ namespace Tutoring_Management_System
     {
         private static OleDbConnection NewConnection()
         {
-            return new OleDbConnection(Properties.Settings.Default.ByteBetter_TutoringConnectionString);
+            return DatabaseHelper.GetConnection();
         }
 
         public static TutorInfo? GetById(string tutorId)
@@ -53,6 +54,20 @@ namespace Tutoring_Management_System
             using (var cmd = new OleDbCommand(sql, con))
             {
                 cmd.Parameters.Add("@email", OleDbType.VarWChar, 100).Value = email;
+                cmd.Parameters.Add("@excludeId", OleDbType.VarWChar, 8).Value = excludeTutorId ?? "";
+                con.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+            }
+        }
+
+        public static bool PhoneExists(string phone, string? excludeTutorId)
+        {
+            const string sql = "SELECT COUNT(*) FROM Tutor WHERE Tutor_Phone = ? AND Tutor_ID <> ?";
+
+            using (var con = NewConnection())
+            using (var cmd = new OleDbCommand(sql, con))
+            {
+                cmd.Parameters.Add("@phone", OleDbType.VarWChar, 12).Value = phone;
                 cmd.Parameters.Add("@excludeId", OleDbType.VarWChar, 8).Value = excludeTutorId ?? "";
                 con.Open();
                 return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
@@ -103,8 +118,17 @@ namespace Tutoring_Management_System
         // Updates an existing tutor. Returns rows updated (0 = unsuccessful update).
         public static int Update(TutorInfo t)
         {
-            const string sql =
+            const string updateAll =
                 "UPDATE Tutor SET Tutor_FName = ?, Tutor_LName = ?, Tutor_Email = ?, Tutor_Phone = ?, " +
+                "Tutor_AcademicAverage = ?, Tutor_PreferredMode = ? WHERE Tutor_ID = ?";
+            const string updateEmail =
+                "UPDATE Tutor SET Tutor_FName = ?, Tutor_LName = ?, Tutor_Email = ?, " +
+                "Tutor_AcademicAverage = ?, Tutor_PreferredMode = ? WHERE Tutor_ID = ?";
+            const string updatePhone =
+                "UPDATE Tutor SET Tutor_FName = ?, Tutor_LName = ?, Tutor_Phone = ?, " +
+                "Tutor_AcademicAverage = ?, Tutor_PreferredMode = ? WHERE Tutor_ID = ?";
+            const string updateNeither =
+                "UPDATE Tutor SET Tutor_FName = ?, Tutor_LName = ?, " +
                 "Tutor_AcademicAverage = ?, Tutor_PreferredMode = ? WHERE Tutor_ID = ?";
 
             using (var con = NewConnection())
@@ -112,13 +136,54 @@ namespace Tutoring_Management_System
                 con.Open();
                 using (var tx = con.BeginTransaction())
                 {
+                    string? currentEmail;
+                    string? currentPhone;
+                    bool tutorFound;
+                    using (var lookup = new OleDbCommand(
+                        "SELECT Tutor_Email, Tutor_Phone FROM Tutor WHERE Tutor_ID = ?", con, tx))
+                    {
+                        lookup.Parameters.Add("@id", OleDbType.VarWChar, 8).Value = t.Id;
+                        using (var reader = lookup.ExecuteReader())
+                        {
+                            tutorFound = reader.Read();
+                            if (tutorFound)
+                            {
+                                currentEmail = reader.IsDBNull(0) ? null : reader.GetString(0);
+                                currentPhone = reader.IsDBNull(1) ? null : reader.GetString(1);
+                            }
+                            else
+                            {
+                                currentEmail = null;
+                                currentPhone = null;
+                            }
+                        }
+                    }
+
+                    if (!tutorFound)
+                    {
+                        tx.Rollback();
+                        return 0;
+                    }
+
+                    bool emailChanged = !string.Equals(
+                        currentEmail, t.Email, StringComparison.OrdinalIgnoreCase);
+                    bool phoneChanged = !string.Equals(currentPhone, t.Phone, StringComparison.Ordinal);
+                    string sql = (emailChanged, phoneChanged) switch
+                    {
+                        (true, true) => updateAll,
+                        (true, false) => updateEmail,
+                        (false, true) => updatePhone,
+                        _ => updateNeither
+                    };
                     int rows;
                     using (var cmd = new OleDbCommand(sql, con, tx))
                     {
                         cmd.Parameters.Add("@fname", OleDbType.VarWChar, 50).Value = t.FirstName;
                         cmd.Parameters.Add("@lname", OleDbType.VarWChar, 50).Value = t.LastName;
-                        cmd.Parameters.Add("@email", OleDbType.VarWChar, 100).Value = t.Email;
-                        cmd.Parameters.Add("@phone", OleDbType.VarWChar, 12).Value = t.Phone;
+                        if (emailChanged)
+                            cmd.Parameters.Add("@email", OleDbType.VarWChar, 100).Value = t.Email;
+                        if (phoneChanged)
+                            cmd.Parameters.Add("@phone", OleDbType.VarWChar, 12).Value = t.Phone;
                         cmd.Parameters.Add("@avg", OleDbType.Double).Value = AverageValue(t.AcademicAverage);
                         cmd.Parameters.Add("@mode", OleDbType.VarWChar, 20).Value = t.PreferredMode;
                         cmd.Parameters.Add("@id", OleDbType.VarWChar, 8).Value = t.Id;

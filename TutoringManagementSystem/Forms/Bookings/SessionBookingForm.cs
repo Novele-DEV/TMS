@@ -9,6 +9,7 @@ namespace TutoringManagementSystem
         public SessionBookingForm()
         {
             InitializeComponent();
+            Tutoring_Management_System.AppTheme.Register(this);
         }
 
         private void SessionBookingForm_Load(object sender, EventArgs e)
@@ -33,9 +34,9 @@ namespace TutoringManagementSystem
 
                         while (reader.Read())
                         {
-                            string tutorID = reader["Tutor_ID"].ToString();
-                            string firstName = reader["Tutor_FName"].ToString();
-                            string lastName = reader["Tutor_LName"].ToString();
+                            string tutorID = Convert.ToString(reader["Tutor_ID"]) ?? string.Empty;
+                            string firstName = Convert.ToString(reader["Tutor_FName"]) ?? string.Empty;
+                            string lastName = Convert.ToString(reader["Tutor_LName"]) ?? string.Empty;
 
                             cmbTutor.Items.Add(
                                 tutorID + " - " + firstName + " " + lastName);
@@ -45,9 +46,13 @@ namespace TutoringManagementSystem
 
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.ToString(), "Tutor Loading Error");
+                MessageBox.Show(
+                    "The tutoring database could not be opened. Close Microsoft Access and try again.",
+                    "Tutor Loading Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -62,13 +67,12 @@ namespace TutoringManagementSystem
             }
 
             // 2. Check that a tutor has been selected
-            if (cmbTutor.SelectedItem == null)
+            if (cmbTutor.SelectedItem is not string selectedTutor)
             {
                 MessageBox.Show("Please select a tutor.");
                 return;
             }
 
-            string selectedTutor = cmbTutor.SelectedItem.ToString();
             string tutorID = selectedTutor.Split(
                 new string[] { " - " },
                 StringSplitOptions.None)[0];
@@ -106,7 +110,7 @@ namespace TutoringManagementSystem
                 return;
             }
 
-            string mode = cmbMode.SelectedItem.ToString();
+            string mode = cmbMode.SelectedItem.ToString() ?? string.Empty;
             try
             {
                 using (var connection = DatabaseHelper.GetConnection())
@@ -190,9 +194,13 @@ namespace TutoringManagementSystem
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.ToString(), "Booking Error");
+                MessageBox.Show(
+                    "The tutoring database could not be opened. Close Microsoft Access and try again.",
+                    "Booking Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 

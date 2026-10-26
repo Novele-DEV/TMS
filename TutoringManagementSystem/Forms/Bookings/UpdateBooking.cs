@@ -18,11 +18,13 @@ namespace TutoringManagementSystem
             "No tutors are available for that time. Please choose another date or time.";
         private const string SaveErrorMessage =
             "Something went wrong and your changes were not saved. Please try again.";
+        private const string DatabaseUnavailableMessage =
+            "The tutoring database could not be opened. Close Microsoft Access and try again.";
 
         private readonly DataSet bookingData = new DataSet("BookingData");
         private readonly BindingSource bookingSource = new BindingSource();
         private readonly int studentId;      // the logged-in student; the menu passes this in
-        private string connectionString;
+        private string connectionString = string.Empty;
         private bool connected;
         private bool loaded;
         private bool loading;                // true while the code fills the controls
@@ -30,8 +32,8 @@ namespace TutoringManagementSystem
         private int selectedSessionId;       // 0 = no booking selected
         private int selectedRequestId;
         private DateTime selectedStart;      // start of the EXISTING booking (48-hour rule)
-        private string selectedCourse;
-        private string currentTutorId;
+        private string selectedCourse = string.Empty;
+        private string currentTutorId = string.Empty;
 
         public frmUpdateBooking() : this(0)
         {
@@ -40,6 +42,7 @@ namespace TutoringManagementSystem
         public frmUpdateBooking(int studentId)
         {
             InitializeComponent();
+            Tutoring_Management_System.AppTheme.Register(this);
             this.studentId = studentId;
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
@@ -66,7 +69,7 @@ namespace TutoringManagementSystem
             UpdateControls();
         }
 
-       
+
 
         private void byteBetterTutoringDataSetBindingSource_CurrentChanged(object sender, EventArgs e)
         {
@@ -78,7 +81,7 @@ namespace TutoringManagementSystem
             UpdateControls();
         }
 
-      
+
         // Connect and load
 
         private void frmUpdateBooking_Load(object sender, EventArgs e)
@@ -104,8 +107,9 @@ namespace TutoringManagementSystem
                 string path = new OleDbConnectionStringBuilder(connectionString).DataSource;
                 if (!File.Exists(path))
                 {
-                    ShowError("Database file not found.");
-                    MessageBox.Show("The database file is missing from " + Application.StartupPath);
+                    ShowError(DatabaseUnavailableMessage);
+                    MessageBox.Show(DatabaseUnavailableMessage, "Database Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 using (var connection = new OleDbConnection(connectionString))
@@ -117,8 +121,17 @@ namespace TutoringManagementSystem
             catch (OleDbException ex)
             {
                 Debug.WriteLine(ex);
-                ShowError("Connection failed.");
-                MessageBox.Show("Check the ACE provider and database access.");
+                ShowError(DatabaseUnavailableMessage);
+                MessageBox.Show(DatabaseUnavailableMessage, "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (InvalidOperationException ex)
+            {
+                Debug.WriteLine(ex);
+                ShowError(DatabaseUnavailableMessage);
+                MessageBox.Show(DatabaseUnavailableMessage, "Database Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -170,11 +183,19 @@ namespace TutoringManagementSystem
                     "WHERE s.[Student_ID] = ? AND s.[Session_Status] = 'Scheduled' " +
                     "ORDER BY s.[Session_Date], s.[Session_StartTime]", connection))
                 {
-                    adapter.SelectCommand.Parameters.Add("@student", OleDbType.Integer).Value = studentId;
+                    OleDbCommand? selectCommand = adapter.SelectCommand;
+                    if (selectCommand == null)
+                        throw new InvalidOperationException("The booking query could not be prepared.");
+
+                    selectCommand.Parameters.Add("@student", OleDbType.Integer).Value = studentId;
                     connection.Open();
                     adapter.MissingSchemaAction = MissingSchemaAction.AddWithKey;
                     adapter.Fill(fresh, "Bookings");
                 }
+
+                DataTable? bookings = fresh.Tables["Bookings"];
+                if (bookings == null)
+                    throw new InvalidOperationException("The booking list could not be loaded.");
 
                 // Replace the displayed data only after the retrieval has succeeded.
                 loading = true;
@@ -182,7 +203,7 @@ namespace TutoringManagementSystem
                 {
                     bookingSource.DataSource = null;
                     if (bookingData.Tables.Contains("Bookings")) bookingData.Tables.Remove("Bookings");
-                    bookingData.Tables.Add(fresh.Tables["Bookings"].Copy());
+                    bookingData.Tables.Add(bookings.Copy());
                     bookingSource.DataSource = bookingData;
                     bookingSource.DataMember = "Bookings";
                     dgvBookings.DataSource = bookingSource;
@@ -223,7 +244,7 @@ namespace TutoringManagementSystem
             dgvBookings.Columns[name].HeaderText = header;
         }
 
-       
+
         // The selected booking and the availability display
         private void bookingSource_PositionChanged(object sender, EventArgs e)
         {
@@ -250,8 +271,8 @@ namespace TutoringManagementSystem
             }
             selectedSessionId = Convert.ToInt32(row["Session_ID"]);
             selectedRequestId = Convert.ToInt32(row["Request_ID"]);
-            currentTutorId = Convert.ToString(row["Tutor_ID"]);
-            selectedCourse = Convert.ToString(row["Course_Code"]);
+            currentTutorId = Convert.ToString(row["Tutor_ID"]) ?? string.Empty;
+            selectedCourse = Convert.ToString(row["Course_Code"]) ?? string.Empty;
             DateTime date = ((DateTime)row["Session_Date"]).Date;
             TimeSpan time = ((DateTime)row["Session_StartTime"]).TimeOfDay;
             selectedStart = date + time;
@@ -282,7 +303,13 @@ namespace TutoringManagementSystem
             cboTutor.DataSource = null;
             try
             {
-                TimeSpan slot = TimeSpan.Parse((string)cboTimeSlot.SelectedItem);
+                if (cboTimeSlot.SelectedItem is not string selectedSlot ||
+                    !TimeSpan.TryParse(selectedSlot, out TimeSpan slot))
+                {
+                    errorProvider.SetError(cboTimeSlot, "Please select a valid time slot.");
+                    return;
+                }
+
                 DataTable tutors = TutorAvailability.GetAvailableTutors(
                     dtpSessionDate.Value.Date, slot, selectedCourse, selectedSessionId);
                 cboTutor.DisplayMember = "TutorName";
@@ -295,10 +322,10 @@ namespace TutoringManagementSystem
                 }
                 else
                 {
-                    // force a deliberate choice unless the current tutor is availabile 
+                    // force a deliberate choice unless the current tutor is availabile
                     ShowNeutral("");
-                    cboTutor.SelectedIndex = -1;               
-                    cboTutor.SelectedValue = currentTutorId;    
+                    cboTutor.SelectedIndex = -1;
+                    cboTutor.SelectedValue = currentTutorId;
                 }
             }
             catch (OleDbException ex)
@@ -311,7 +338,7 @@ namespace TutoringManagementSystem
         }
 
         // Control availability: never writes to the database
-   
+
         private void UpdateControls()
         {
             bool ready = connected && loaded && !busy;
@@ -323,7 +350,7 @@ namespace TutoringManagementSystem
         }
 
         // Saving the data
-        
+
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!loaded || busy || !ValidateBooking()) return;
@@ -372,7 +399,8 @@ namespace TutoringManagementSystem
                 return false;
             }
             bool valid = true;
-            if (cboTimeSlot.SelectedIndex < 0)
+            if (cboTimeSlot.SelectedItem is not string selectedSlot ||
+                !TimeSpan.TryParse(selectedSlot, out TimeSpan slot))
             {
                 errorProvider.SetError(cboTimeSlot, "Please select a time slot.");
                 valid = false;
@@ -380,7 +408,6 @@ namespace TutoringManagementSystem
             else
             {
                 // The NEW date and time must be in the future.
-                TimeSpan slot = TimeSpan.Parse((string)cboTimeSlot.SelectedItem);
                 string futureMessage = BookingRules.ValidateBooking(dtpSessionDate.Value.Date + slot);
                 if (futureMessage.Length > 0)
                 {
@@ -410,8 +437,17 @@ namespace TutoringManagementSystem
             }
 
             DateTime date = dtpSessionDate.Value.Date;
-            TimeSpan slot = TimeSpan.Parse((string)cboTimeSlot.SelectedItem);
-            string tutorId = Convert.ToString(cboTutor.SelectedValue);
+            if (cboTimeSlot.SelectedItem is not string selectedSlot ||
+                !TimeSpan.TryParse(selectedSlot, out TimeSpan slot))
+            {
+                ShowError("Please select a valid time slot.");
+                return;
+            }
+            if (cboTutor.SelectedValue is not string tutorId)
+            {
+                ShowError("Please select a tutor.");
+                return;
+            }
 
             // 2. Re-check availability just before saving as the list may be out of date.
             DataTable free = TutorAvailability.GetAvailableTutors(
@@ -477,7 +513,7 @@ namespace TutoringManagementSystem
                         connection, transaction))
                     {
                         // Positional order MUST match the SQL question marks.
-                        cmd.Parameters.Add("@tutor", OleDbType.VarWChar, 16).Value = tutorId;
+                        cmd.Parameters.Add("@tutor", OleDbType.VarWChar, 8).Value = tutorId;
                         cmd.Parameters.Add("@date", OleDbType.Date).Value = date.Date;
                         cmd.Parameters.Add("@start", OleDbType.Date).Value = TutorAvailability.TimeToDb(slot);
                         cmd.Parameters.Add("@end", OleDbType.Date).Value = TutorAvailability.TimeToDb(end);
@@ -489,7 +525,7 @@ namespace TutoringManagementSystem
                         "UPDATE [TutoringRequest] SET [Tutor_ID] = ? WHERE [Request_ID] = ?",
                         connection, transaction))
                     {
-                        cmd.Parameters.Add("@tutor", OleDbType.VarWChar, 16).Value = tutorId;
+                        cmd.Parameters.Add("@tutor", OleDbType.VarWChar, 8).Value = tutorId;
                         cmd.Parameters.Add("@request", OleDbType.Integer).Value = selectedRequestId;
                         cmd.ExecuteNonQuery();
                     }

@@ -49,6 +49,8 @@ namespace TutoringManagementSystem
         public frmReports()
         {
             InitializeComponent();
+            Tutoring_Management_System.AppTheme.Register(this);
+            Tutoring_Management_System.AppTheme.Register(printPreviewDialog);
 
             Text = "ByteBetter Tutoring - Reports";
             StartPosition = FormStartPosition.CenterScreen;
@@ -715,7 +717,14 @@ namespace TutoringManagementSystem
      object? sender,
      PrintPageEventArgs e)
         {
-            Graphics g = e.Graphics;
+            Graphics? graphics = e.Graphics;
+            if (graphics == null)
+            {
+                e.HasMorePages = false;
+                return;
+            }
+
+            Graphics g = graphics;
             Rectangle bounds = e.MarginBounds;
 
             using Font titleFont = new("Segoe UI", 15, FontStyle.Bold);

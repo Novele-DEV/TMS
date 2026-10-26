@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Globalization;
 using System.IO;
+using TutoringManagementSystem;
 
 namespace UpdateBookings
 {
@@ -17,9 +18,9 @@ namespace UpdateBookings
 
             var sql = @"
 SELECT t.Tutor_ID, t.Tutor_FName & ' ' & t.Tutor_LName AS TutorName
-FROM Tutors AS t
+FROM Tutor AS t
 WHERE EXISTS (
-    SELECT * FROM TutorAvailabilty AS ta
+    SELECT * FROM TutorAvailability AS ta
     WHERE ta.Tutor_ID = t.Tutor_ID AND ta.Avail_Day = ?
         AND ta.Avail_StartTime <= ? AND ta.Avail_EndTime >= ?)
 ";
@@ -38,20 +39,17 @@ WHERE EXISTS (
         AND s.Session_Status <> 'Cancelled' AND s.Session_ID <> ?)
 ORDER BY t.Tutor_FName, t.Tutor_LName";
 
-            string databasePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ByteBetter_Tutoring.accdb");
-            string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + databasePath + ";Persist Security Info=False;";
-
-            using (var cn = new OleDbConnection(connectionString))
+            using (var cn = DatabaseHelper.GetConnection())
             using (var da = new OleDbDataAdapter(sql, cn))
             {
                 OleDbCommand? selectCommand = da.SelectCommand ?? throw new InvalidOperationException("The data adapter did not create a SelectCommand.");
                 OleDbParameterCollection p = selectCommand.Parameters;
-                p.Add("@day", OleDbType.VarWChar, 20).Value = date.ToString("dddd", CultureInfo.InvariantCulture);
+                p.Add("@day", OleDbType.VarWChar, 10).Value = date.ToString("dddd", CultureInfo.InvariantCulture);
                 p.Add("@AvailStart", OleDbType.Date).Value = TimeToDb(start);
                 p.Add("@AvailEnd", OleDbType.Date).Value = TimeToDb(end);
                 if (filterByCourse)
                 {
-                    p.Add("@Course", OleDbType.VarWChar, 18).Value = courseCode;
+                    p.Add("@Course", OleDbType.VarWChar, 9).Value = courseCode;
                 }
 
                 p.Add("@sessionDate", OleDbType.Date).Value = date.Date;
