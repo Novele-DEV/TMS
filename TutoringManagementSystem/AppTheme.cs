@@ -21,6 +21,7 @@ namespace Tutoring_Management_System
         private static readonly Color DisabledDarkBackground = Color.FromArgb(58, 58, 58);
         private static readonly Color DisabledDarkText = Color.FromArgb(189, 189, 189);
         private static readonly Color ControlBorder = Color.FromArgb(118, 118, 118);
+        private static readonly Color DisabledDarkBorder = Color.FromArgb(138, 138, 138);
 
         public static bool IsDarkMode { get; private set; }
 
@@ -181,7 +182,9 @@ namespace Tutoring_Management_System
             button.UseVisualStyleBackColor = false;
             button.BackColor = background;
             button.ForeColor = text;
-            button.FlatAppearance.BorderColor = ControlBorder;
+            button.FlatAppearance.BorderColor = IsDarkMode
+                ? DisabledDarkBorder
+                : ControlBorder;
             button.FlatAppearance.BorderSize = 1;
             button.FlatAppearance.MouseOverBackColor = background;
             button.FlatAppearance.MouseDownBackColor = background;
