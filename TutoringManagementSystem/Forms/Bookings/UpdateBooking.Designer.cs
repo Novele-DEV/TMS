@@ -30,13 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             this.lblRule = new System.Windows.Forms.Label();
-            this.byteBetter_TutoringDataSet = new TutoringManagementSystem.ByteBetter_TutoringDataSet();
+            this.byteBetter_TutoringDataSet = new Tutoring_Management_System.ByteBetter_TutoringDataSet();
             this.byteBetterTutoringDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.courseBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.courseTableAdapter = new TutoringManagementSystem.ByteBetter_TutoringDataSetTableAdapters.CourseTableAdapter();
+            this.courseTableAdapter = new Tutoring_Management_System.ByteBetter_TutoringDataSetTableAdapters.CourseTableAdapter();
             this.tutorBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tutorTableAdapter = new TutoringManagementSystem.ByteBetter_TutoringDataSetTableAdapters.TutorTableAdapter();
+            this.tutorTableAdapter = new Tutoring_Management_System.ByteBetter_TutoringDataSetTableAdapters.TutorTableAdapter();
             this.dgvBookings = new System.Windows.Forms.DataGridView();
             this.GroupBox = new System.Windows.Forms.GroupBox();
             this.lblDate = new System.Windows.Forms.Label();
@@ -281,12 +281,12 @@
 
         private System.Windows.Forms.Label lblRule;
         private System.Windows.Forms.BindingSource byteBetterTutoringDataSetBindingSource;
-        private ByteBetter_TutoringDataSet byteBetter_TutoringDataSet;
+        private Tutoring_Management_System.ByteBetter_TutoringDataSet byteBetter_TutoringDataSet;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.BindingSource courseBindingSource;
-        private ByteBetter_TutoringDataSetTableAdapters.CourseTableAdapter courseTableAdapter;
+        private Tutoring_Management_System.ByteBetter_TutoringDataSetTableAdapters.CourseTableAdapter courseTableAdapter;
         private System.Windows.Forms.BindingSource tutorBindingSource;
-        private ByteBetter_TutoringDataSetTableAdapters.TutorTableAdapter tutorTableAdapter;
+        private Tutoring_Management_System.ByteBetter_TutoringDataSetTableAdapters.TutorTableAdapter tutorTableAdapter;
         private System.Windows.Forms.DataGridView dgvBookings;
         private System.Windows.Forms.GroupBox GroupBox;
         private System.Windows.Forms.Label lblDate;

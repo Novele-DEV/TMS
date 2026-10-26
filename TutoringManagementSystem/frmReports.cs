@@ -1,11 +1,6 @@
-﻿using System;
-using System.Data;
-using System.Drawing;
+﻿using System.Data;
 using System.Drawing.Printing;
 using System.Globalization;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
 
 namespace TutoringManagementSystem
 {
@@ -165,7 +160,7 @@ namespace TutoringManagementSystem
             dgvReport.SelectionMode =
                 DataGridViewSelectionMode.FullRowSelect;
             dgvReport.AutoSizeColumnsMode =
-                DataGridViewAutoSizeColumnsMode.DisplayedCells;
+    DataGridViewAutoSizeColumnsMode.None;
             dgvReport.AutoSizeRowsMode =
                 DataGridViewAutoSizeRowsMode.AllCells;
             dgvReport.BackgroundColor = Color.White;
@@ -185,7 +180,19 @@ namespace TutoringManagementSystem
                 DataGridViewTriState.True;
             dgvReport.AlternatingRowsDefaultCellStyle.BackColor =
                 Color.FromArgb(240, 245, 250);
+            dgvReport.Dock = DockStyle.None;
+            dgvReport.Anchor = AnchorStyles.Top
+                | AnchorStyles.Bottom
+                | AnchorStyles.Left
+                | AnchorStyles.Right;
+
+            dgvReport.AutoSize = false;
+            dgvReport.AutoSizeColumnsMode =
+                DataGridViewAutoSizeColumnsMode.None;
+
             dgvReport.ScrollBars = ScrollBars.Both;
+            dgvReport.Width = ClientSize.Width - 40;
+            dgvReport.Height = ClientSize.Height - 210;
             dgvReport.DataError += (_, e) => e.ThrowException = false;
 
             Controls.AddRange(new Control[]
@@ -479,7 +486,9 @@ namespace TutoringManagementSystem
             {
                 column.MinimumWidth = 90;
                 column.AutoSizeMode =
-                    DataGridViewAutoSizeColumnMode.AllCells;
+      DataGridViewAutoSizeColumnMode.None;
+
+                column.Width = 150;
                 column.HeaderCell.Style.WrapMode =
                     DataGridViewTriState.True;
             }
@@ -496,9 +505,6 @@ namespace TutoringManagementSystem
                 dgvReport.Columns["CompletionRate"]!
                     .DefaultCellStyle.Format = "0.0\\%";
             }
-
-            dgvReport.AutoResizeColumns(
-                DataGridViewAutoSizeColumnsMode.AllCells);
         }
 
         private void SetHeader(string columnName, string headerText)
