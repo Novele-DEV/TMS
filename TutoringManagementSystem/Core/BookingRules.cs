@@ -5,7 +5,7 @@ namespace TutoringManagementSystem
 {
     public static class BookingRules
     { 
-        public const string ChangeOrCancellationRuleMessage = "Changes and cancellations must be made at least 48 hours before the tutorial."
+        public const string ChangeOrCancellationRuleMessage = "Changes and cancellations must be made at least 48 hours before the tutorial.";
             
         // Checks whether a tutorial is in the future.
         public static bool IsFutureSession(DateTime sessionDateTime)
