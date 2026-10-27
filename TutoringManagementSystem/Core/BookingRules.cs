@@ -4,7 +4,9 @@ using System;
 namespace TutoringManagementSystem
 {
     public static class BookingRules
-    {
+    { 
+        public const string ChangeOrCancellationRuleMessage = "Changes and cancellations must be made at least 48 hours before the tutorial."
+            
         // Checks whether a tutorial is in the future.
         public static bool IsFutureSession(DateTime sessionDateTime)
         {
@@ -14,8 +16,7 @@ namespace TutoringManagementSystem
         // Checks whether at least 48 hours remain.
         public static bool IsAtLeast48HoursAway(DateTime sessionDateTime)
         {
-            return sessionDateTime - DateTime.Now
-                   >= TimeSpan.FromHours(48);
+            return sessionDateTime >= DateTime.Now.AddHours(48);
         }
 
         // Validates a new booking.
@@ -35,8 +36,7 @@ namespace TutoringManagementSystem
         {
             if (!IsAtLeast48HoursAway(sessionDateTime))
             {
-                return "Changes and cancellations must be made " +
-                       "at least 48 hours before the tutorial.";
+                return ChangeOrCancellationRuleMessage;
             }
 
             return string.Empty;
