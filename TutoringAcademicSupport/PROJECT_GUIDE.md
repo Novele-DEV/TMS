@@ -7,31 +7,40 @@ This project is organised by the task the user wants to complete, rather than by
 ```text
 TutoringAcademicSupport/
   Program.cs
-  Entry/
-    LoginForm.cs
+  LogIn/
+    LoginForm.Designer.cs
   Student/
-    StudentForm.cs
+    StudentForm.Designer.cs
     BookSession/
+      BookSessionForm.Designer.cs
     UpdateBooking/
+      UpdateBookingForm.Designer.cs
     CancelBooking/
+      CancelBookingForm.Designer.cs
     ViewTutorAvailability/
+      ViewTutorAvailabilityForm.Designer.cs
   Admin/
-    AdminForm.cs
+    AdminForm.Designer.cs
     AddTutor/
+      AddTutorForm.Designer.cs
     EditTutor/
+      EditTutorForm.Designer.cs
     Reports/
       AgedSubmittedTutoringRequests/
+        AgedSubmittedTutoringRequestsForm.Designer.cs
       TutorWorkloadAndCompletionRates/
+        TutorWorkloadAndCompletionRatesForm.Designer.cs
       CourseSupportDemandAndTutorCoverage/
+        CourseSupportDemandAndTutorCoverageForm.Designer.cs
   Common/
     Database/
   AccessDatabase/
 ```
 
 - **Program.cs**: application startup. It is currently empty; startup behavior has not been implemented.
-- **Entry/LoginForm.cs**: the single sign-in screen used by both students and administrators.
-- **Student/StudentForm.cs**: the student landing form shown after a student signs in.
-- **Admin/AdminForm.cs**: the administrator landing form shown after an administrator signs in.
+- **LogIn/LoginForm.Designer.cs**: the single sign-in form used by both students and administrators.
+- **Student/StudentForm.Designer.cs**: the student landing form shown after a student signs in.
+- **Admin/AdminForm.Designer.cs**: the administrator landing form shown after an administrator signs in.
 - After successful sign-in, route the user to the matching landing form. Do not create separate student and administrator login forms.
 - **Student/**: student booking and tutor-availability tasks.
 - **Admin/**: tutor maintenance and the three agreed report tasks.
@@ -42,7 +51,7 @@ TutoringAcademicSupport/
 
 The filenames describe the responsibilities:
 
-- `...Form.cs`: displays the task and gathers user input.
+- `...Form.Designer.cs`: reserved for the form's designer-related declarations and layout.
 - `...Request.cs`: carries the inputs needed to perform the task.
 - `...Validator.cs`: checks whether the request is acceptable before it is handled.
 - `...Handler.cs`: coordinates the task.
@@ -60,7 +69,7 @@ When implementation begins, a slice will generally follow this flow:
 4. The handler returns a result.
 5. The form presents the outcome to the user.
 
-This describes the intended responsibilities; the current `.cs` files are empty placeholders and do not yet implement this flow.
+This describes the intended responsibilities; the current `.cs` files are empty placeholders and do not yet implement this flow. Form files currently use the `.Designer.cs` suffix as requested.
 
 ## Keeping slices separate
 
