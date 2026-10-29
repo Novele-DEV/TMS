@@ -1,216 +1,300 @@
 ﻿using System;
+using System.Data;
 using System.Data.OleDb;
-using System.IO;
+using System.Diagnostics;
+using System.Globalization;
 using System.Windows.Forms;
-using TutoringAcademicSupport.Common;
-using TutoringAcademicSupport.Common.Database;
+using TutoringAcademicSupport.Student.CancelBooking;
 
 namespace TutoringAcademicSupport.Student.BookSession
 {
     public partial class BookSessionForm : Form
     {
+        private const string StartMessage = "Enter your student ID to see the requests you can book a session for.";
+        private const string DatabaseErrorMessage = "The database could not be reached. Please try again.";
+
+        private bool loading; // true while the code fills the controls, so their change events are ignored
+
         public BookSessionForm()
         {
             InitializeComponent();
-            Load += BookSessionForm_Load;
         }
-
-
 
         private void BookSessionForm_Load(object? sender, EventArgs e)
         {
-            cmbMode.SelectedIndex = 0;
-            dtpSessionDate.MinDate = DateTime.Today;
+            loading = true;
+            try
+            {
+                lblRules.Text = CancelBookingValidator.RuleNotice;
 
-            LoadTutors();
+                cmbMode.Items.Clear();
+                cmbMode.Items.AddRange(BookSessionValidator.Modes);
+                cmbMode.SelectedIndex = 0;
+
+                dtpSessionDate.MinDate = DateTime.Today;
+                ResetPickers();
+            }
+            finally
+            {
+                loading = false;
+            }
+
+            UpdateControls();
+            ShowNeutral(StartMessage);
         }
 
-        private void LoadTutors()
+        // The pickers start at the current moment. The student chooses the real session date and times.
+        private void ResetPickers()
+        {
+            DateTime now = DateTime.Now;
+            dtpSessionDate.Value = DateTime.Today;
+            dtpStartTime.Value = now;
+            dtpEndTime.Value = now;
+        }
+
+        private void txtStudentID_Leave(object? sender, EventArgs e)
+        {
+            LoadRequests();
+        }
+
+        // The date, the times and the chosen request decide which tutors are available.
+        private void AvailabilityInputs_Changed(object? sender, EventArgs e)
+        {
+            RefreshTutors();
+        }
+
+        private bool TryReadStudentId(out int studentId)
+        {
+            return int.TryParse(txtStudentID.Text.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out studentId)
+                && studentId > 0;
+        }
+
+        // Fills the request list with the requests this student can book a session for.
+        private void LoadRequests()
+        {
+            if (loading) return;
+
+            loading = true;
+            try
+            {
+                cmbRequest.Items.Clear();
+            }
+            finally
+            {
+                loading = false;
+            }
+
+            if (txtStudentID.Text.Trim().Length > 0)
+            {
+                if (!TryReadStudentId(out int studentId))
+                {
+                    ShowError("Please enter a valid student ID (numbers only).");
+                }
+                else
+                {
+                    FillRequests(studentId);
+                }
+            }
+
+            RefreshTutors();
+        }
+
+        private void FillRequests(int studentId)
         {
             try
             {
-                using (OleDbConnection connection =
-                       DatabaseConnection.GetConnection())
+                DataTable requests = BookSessionHandler.GetBookableRequests(studentId);
+
+                loading = true;
+                try
                 {
-                    connection.Open();
-
-                    string query =
-                        "SELECT [Tutor_ID], [Tutor_FName], [Tutor_LName] FROM [Tutor]";
-
-                    using (OleDbCommand command =
-                           new OleDbCommand(query, connection))
-                    using (OleDbDataReader reader = command.ExecuteReader())
+                    foreach (DataRow row in requests.Rows)
                     {
-                        cmbTutor.Items.Clear();
-
-                        while (reader.Read())
-                        {
-                            string id = reader["Tutor_ID"].ToString() ?? "";
-                            string firstName = reader["Tutor_FName"].ToString() ?? "";
-                            string lastName = reader["Tutor_LName"].ToString() ?? "";
-
-                            cmbTutor.Items.Add(
-                                new TutorItem(id, firstName + " " + lastName));
-                        }
+                        cmbRequest.Items.Add(new RequestItem(
+                            Convert.ToInt32(row["Request_ID"]),
+                            Convert.ToString(row["Course_Code"]) ?? string.Empty,
+                            Convert.ToString(row["Course_Name"]) ?? string.Empty,
+                            Convert.ToString(row["Request_SupportType"]) ?? string.Empty));
                     }
+
+                    if (cmbRequest.Items.Count > 0) cmbRequest.SelectedIndex = 0;
+                }
+                finally
+                {
+                    loading = false;
                 }
 
-                if (cmbTutor.Items.Count > 0)
-                    cmbTutor.SelectedIndex = 0;
+                if (cmbRequest.Items.Count == 0)
+                {
+                    ShowError("There are no tutoring requests ready to book for this student ID. " +
+                              "A request has to be verified or matched with a tutor first.");
+                }
                 else
-                    lblMessage.Text = "No tutors are available.";
+                {
+                    ShowNeutral("Choose the date and times to see which tutors are available.");
+                }
             }
-            catch (Exception ex)
+            catch (OleDbException ex)
             {
+                Debug.WriteLine(ex);
+                ShowError(DatabaseErrorMessage);
+            }
+        }
+
+        // Lists only the tutors who are verified for the request's course and free at the chosen time.
+        // When nobody is available the student is told so, and booking is not possible.
+        private void RefreshTutors()
+        {
+            if (loading) return;
+
+            cmbTutor.Items.Clear();
+
+            if (cmbRequest.SelectedItem is RequestItem request)
+            {
+                DateTime date = dtpSessionDate.Value.Date;
+                DateTime start = BookSessionValidator.Combine(date, dtpStartTime.Value);
+                DateTime end = BookSessionValidator.Combine(date, dtpEndTime.Value);
+
+                if (end <= start)
+                {
+                    ShowNeutral("Choose an end time after the start time to see which tutors are available.");
+                }
+                else
+                {
+                    FillTutors(request, date, start, end);
+                }
+            }
+
+            UpdateControls();
+        }
+
+        private void FillTutors(RequestItem request, DateTime date, DateTime start, DateTime end)
+        {
+            try
+            {
+                DataTable tutors = BookSessionHandler.GetAvailableTutors(request.CourseCode, date, start, end);
+
+                foreach (DataRow row in tutors.Rows)
+                {
+                    cmbTutor.Items.Add(new TutorItem(
+                        Convert.ToString(row["Tutor_ID"]) ?? string.Empty,
+                        Convert.ToString(row["TutorName"]) ?? string.Empty));
+                }
+
+                string when = $"{request.CourseCode} on {date:dddd dd MMM yyyy} from {start:HH:mm} to {end:HH:mm}";
+                if (cmbTutor.Items.Count > 0)
+                {
+                    cmbTutor.SelectedIndex = 0;
+                    ShowNeutral($"{cmbTutor.Items.Count} tutor(s) available for {when}.");
+                }
+                else
+                {
+                    ShowError($"No tutor is available for {when}. Please choose a different day or time.");
+                }
+            }
+            catch (OleDbException ex)
+            {
+                Debug.WriteLine(ex);
+                ShowError(DatabaseErrorMessage);
+            }
+        }
+
+        // A session can only be booked once a request and an available tutor are selected.
+        private void UpdateControls()
+        {
+            btnBookTutorial.Enabled = cmbRequest.SelectedItem is RequestItem && cmbTutor.SelectedItem is TutorItem;
+        }
+
+        private void btnBookTutorial_Click(object? sender, EventArgs e)
+        {
+            // The form only passes on what was entered. The validator and the handler decide whether it is acceptable.
+            int.TryParse(txtStudentID.Text.Trim(), NumberStyles.None, CultureInfo.InvariantCulture, out int studentId);
+
+            var request = new BookSessionRequest
+            {
+                StudentId = studentId,
+                RequestId = (cmbRequest.SelectedItem as RequestItem)?.Id ?? 0,
+                TutorId = (cmbTutor.SelectedItem as TutorItem)?.Id ?? string.Empty,
+                SessionDate = dtpSessionDate.Value.Date,
+                StartTime = dtpStartTime.Value,
+                EndTime = dtpEndTime.Value,
+                ModeOfDelivery = cmbMode.SelectedItem as string ?? string.Empty
+            };
+
+            try
+            {
+                BookSessionResult result = BookSessionHandler.Handle(request);
+
+                if (result.Success)
+                {
+                    // The booked request is no longer open, so the lists are loaded again before the result is shown.
+                    LoadRequests();
+                    ShowSuccess(result.Message);
+                    MessageBox.Show(result.Message, "Session booked", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    ShowError(result.Message);
+                }
+            }
+            catch (OleDbException ex)
+            {
+                Debug.WriteLine(ex);
+                ShowError("The session could not be booked.");
                 MessageBox.Show(
-                    "Could not load tutors. Check the database connection.\n\n" + ex.Message,
-                    "Database Error",
+                    "Could not book the session. Please check the database and try again.",
+                    "Booking Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-        }
-
-        private void btnBookTutorial_Click(object sender, EventArgs e)
-        {
-            if (!int.TryParse(txtStudentID.Text.Trim(), out int studentId))
+            catch (InvalidOperationException ex)
             {
-                MessageBox.Show("Please enter a valid Student ID.");
-                return;
-            }
-
-            if (cmbTutor.SelectedItem is not TutorItem tutor)
-            {
-                MessageBox.Show("Please select a tutor.");
-                return;
-            }
-
-            DateTime sessionDate = dtpSessionDate.Value.Date;
-            DateTime startTime = dtpStartTime.Value;
-            DateTime endTime = dtpEndTime.Value;
-
-            DateTime start = sessionDate.Add(startTime.TimeOfDay);
-            DateTime end = sessionDate.Add(endTime.TimeOfDay);
-
-            if (start <= DateTime.Now)
-            {
-                MessageBox.Show("Please select a future session date and time.");
-                return;
-            }
-
-            if (end <= start)
-            {
-                MessageBox.Show("The end time must be after the start time.");
-                return;
-            }
-
-            if (cmbMode.SelectedItem == null)
-            {
-                MessageBox.Show("Please select a session mode.");
-                return;
-            }
-
-            try
-            {
-                using (OleDbConnection connection = DatabaseConnection.GetConnection())
-                {
-                    connection.Open();
-                    string dayName = sessionDate.DayOfWeek.ToString();
-
-                    const string availabilityQuery =
-                        "SELECT COUNT(*) FROM [TutorAvailability] " +
-                        "WHERE [Tutor_ID] = ? AND [Avail_Day] = ? " +
-                        "AND [Avail_StartTime] <= ? AND [Avail_EndTime] >= ?";
-
-                    using (OleDbCommand availabilityCommand =
-                           new OleDbCommand(availabilityQuery, connection))
-                    {
-                        availabilityCommand.Parameters.AddWithValue("@tutorId", tutor.Id);
-                        availabilityCommand.Parameters.AddWithValue("@day", dayName);
-                        availabilityCommand.Parameters.AddWithValue("@start", start.TimeOfDay);
-                        availabilityCommand.Parameters.AddWithValue("@end", end.TimeOfDay);
-
-                        int available = Convert.ToInt32(
-                            availabilityCommand.ExecuteScalar());
-
-                        if (available == 0)
-                        {
-                            MessageBox.Show(
-                                "The selected tutor is not available for this day and time. Please choose another slot.");
-                            return;
-                        }
-                    }
-
-                    const string overlapQuery =
-                        "SELECT COUNT(*) FROM [TutoringSession] " +
-                        "WHERE [Tutor_ID] = ? AND [Session_Status] <> ? " +
-                        "AND [Session_Date] = ? " +
-                        "AND [Session_StartTime] < ? AND [Session_EndTime] > ?";
-
-                    using (OleDbCommand overlapCommand =
-                           new OleDbCommand(overlapQuery, connection))
-                    {
-                        overlapCommand.Parameters.AddWithValue("@tutorId", tutor.Id);
-                        overlapCommand.Parameters.AddWithValue("@status", "Cancelled");
-                        overlapCommand.Parameters.AddWithValue("@date", sessionDate);
-                        overlapCommand.Parameters.AddWithValue("@end", end.TimeOfDay);
-                        overlapCommand.Parameters.AddWithValue("@start", start.TimeOfDay);
-
-                        int conflicts = Convert.ToInt32(overlapCommand.ExecuteScalar());
-
-                        if (conflicts > 0)
-                        {
-                            MessageBox.Show(
-                                "This tutor already has a booking during that time. Please choose another time.");
-                            return;
-                        }
-                    }
-
-                    const string insertQuery =
-                        "INSERT INTO [TutoringSession] " +
-                        "([Student_ID], [Tutor_ID], [Session_StartTime], " +
-                        "[Session_EndTime], [Session_Date], [Session_ModeOfDelivery], [Session_Status]) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-                    using (OleDbCommand insertCommand =
-                           new OleDbCommand(insertQuery, connection))
-                    {
-                        insertCommand.Parameters.AddWithValue("@studentId", studentId);
-                        insertCommand.Parameters.AddWithValue("@tutorId", tutor.Id);
-                        insertCommand.Parameters.AddWithValue("@startTime", start.TimeOfDay);
-                        insertCommand.Parameters.AddWithValue("@endTime", end.TimeOfDay);
-                        insertCommand.Parameters.AddWithValue("@sessionDate", sessionDate);
-                        insertCommand.Parameters.AddWithValue("@mode", cmbMode.SelectedItem.ToString());
-                        insertCommand.Parameters.AddWithValue("@status", "Scheduled");
-
-                        insertCommand.ExecuteNonQuery();
-                    }
-                }
-
-                lblMessage.Text = "Session booked successfully!";
-                MessageBox.Show("Your tutorial session has been booked.");
-            }
-            catch (Exception ex)
-            {
+                Debug.WriteLine(ex);
+                ShowError("The session could not be booked.");
                 MessageBox.Show(
-                    "Could not book the session. Please check the database and try again.\n\n" + ex.Message,
+                    "Please close this page and open it again before retrying.",
                     "Booking Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnClear_Click(object? sender, EventArgs e)
         {
-            txtStudentID.Clear();
+            loading = true;
+            try
+            {
+                txtStudentID.Clear();
+                cmbRequest.Items.Clear();
+                cmbTutor.Items.Clear();
+                cmbMode.SelectedIndex = 0;
+                ResetPickers();
+            }
+            finally
+            {
+                loading = false;
+            }
 
-            if (cmbTutor.Items.Count > 0)
-                cmbTutor.SelectedIndex = 0;
+            UpdateControls();
+            ShowNeutral(StartMessage);
+        }
 
-            dtpSessionDate.Value = DateTime.Today;
-            dtpStartTime.Value = DateTime.Today.AddHours(9);
-            dtpEndTime.Value = DateTime.Today.AddHours(10);
-            cmbMode.SelectedIndex = 0;
-            lblMessage.Text = "";
+        private void ShowError(string text)
+        {
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblMessage.Text = text;
+        }
+
+        private void ShowSuccess(string text)
+        {
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
+            lblMessage.Text = text;
+        }
+
+        private void ShowNeutral(string text)
+        {
+            lblMessage.ForeColor = SystemColors.ControlText;
+            lblMessage.Text = text;
         }
 
         private sealed class TutorItem
@@ -230,9 +314,26 @@ namespace TutoringAcademicSupport.Student.BookSession
             }
         }
 
-        private void BookSessionForm_Load_1(object sender, EventArgs e)
+        private sealed class RequestItem
         {
+            private readonly string courseName;
+            private readonly string supportType;
 
+            public int Id { get; }
+            public string CourseCode { get; }
+
+            public RequestItem(int id, string courseCode, string courseName, string supportType)
+            {
+                Id = id;
+                CourseCode = courseCode;
+                this.courseName = courseName;
+                this.supportType = supportType;
+            }
+
+            public override string ToString()
+            {
+                return $"#{Id} - {CourseCode} {courseName} ({supportType})";
+            }
         }
     }
 }

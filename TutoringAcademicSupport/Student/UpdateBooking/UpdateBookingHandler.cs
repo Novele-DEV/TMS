@@ -4,11 +4,13 @@ using System.Data;
 using System.Data.OleDb;
 using TutoringAcademicSupport.Common;
 using TutoringAcademicSupport.Common.Database;
+using TutoringAcademicSupport.Student.CancelBooking;
 
 namespace TutoringAcademicSupport.Student.UpdateBooking
 {
     public class UpdateBookingHandler
     {
+        private const string ScheduledStatus = "Scheduled";
 
         private static DateTime TimeToDb(DateTime time)
         {
@@ -51,13 +53,13 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
 
                     // Find the original session and verify ownership.
                     DateTime originalStart;
+                    string originalStatus;
 
                     string findSql = @"
-                        SELECT [Session_Date], [Session_StartTime]
+                        SELECT [Session_Date], [Session_StartTime], [Session_Status]
                         FROM [TutoringSession]
                         WHERE [Session_ID] = ?
-                          AND [Student_ID] = ?
-                          AND [Session_Status] <> ?";
+                          AND [Student_ID] = ?";
 
                     using (OleDbCommand command =
                            new OleDbCommand(findSql, connection))
@@ -66,8 +68,6 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
                             .Value = request.SessionId;
                         command.Parameters.Add("?", OleDbType.Integer)
                             .Value = request.StudentId;
-                        command.Parameters.Add("?", OleDbType.VarWChar)
-                            .Value = "Cancelled";
 
                         using (OleDbDataReader reader = command.ExecuteReader())
                         {
@@ -88,16 +88,34 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
 
                             originalStart = sessionDate.Date
                                 .Add(sessionTime.TimeOfDay);
+
+                            originalStatus =
+                                Convert.ToString(reader["Session_Status"]) ?? string.Empty;
                         }
                     }
 
-                    // Changes must be made at least 48 hours beforehand.
-                    if (originalStart - DateTime.Now < TimeSpan.FromHours(48))
+                    // Only a booking that is still scheduled can be changed.
+                    if (!string.Equals(originalStatus, ScheduledStatus,
+                            StringComparison.OrdinalIgnoreCase))
                     {
                         return new UpdateBookingResult
                         {
                             Success = false,
-                            Message = "Changes must be made at least 48 hours before the tutorial."
+                            Message = "This session is " + originalStatus.ToLowerInvariant() +
+                                      " and can no longer be changed."
+                        };
+                    }
+
+                    // Changes must be made far enough ahead. The notice period is defined once, in CancelBookingValidator.
+                    if (originalStart - DateTime.Now <
+                        TimeSpan.FromHours(CancelBookingValidator.MinimumNoticeHours))
+                    {
+                        return new UpdateBookingResult
+                        {
+                            Success = false,
+                            Message = "Changes must be made at least " +
+                                      CancelBookingValidator.MinimumNoticeHours +
+                                      " hours before the tutorial."
                         };
                     }
 
@@ -117,10 +135,12 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
                             .Value = request.TutorId;
                         command.Parameters.Add("?", OleDbType.VarWChar)
                             .Value = request.SessionDate.DayOfWeek.ToString();
-                        command.Parameters.Add("?", OleDbType.Date)
-                            .Value = TimeToDb(request.EndTime);
+                        // The availability window must contain the whole session:
+                        // Avail_StartTime <= session start AND Avail_EndTime >= session end.
                         command.Parameters.Add("?", OleDbType.Date)
                             .Value = TimeToDb(request.StartTime);
+                        command.Parameters.Add("?", OleDbType.Date)
+                            .Value = TimeToDb(request.EndTime);
 
                         int available = Convert.ToInt32(command.ExecuteScalar());
 
@@ -183,7 +203,7 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
                             [Session_ModeOfDelivery] = ?
                         WHERE [Session_ID] = ?
                           AND [Student_ID] = ?
-                          AND [Session_Status] <> ?";
+                          AND [Session_Status] = ?";
 
                     using (OleDbCommand command =
                            new OleDbCommand(updateSql, connection))
@@ -203,7 +223,7 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
                         command.Parameters.Add("?", OleDbType.Integer)
                             .Value = request.StudentId;
                         command.Parameters.Add("?", OleDbType.VarWChar)
-                            .Value = "Cancelled";
+                            .Value = ScheduledStatus;
 
                         int rowsUpdated = command.ExecuteNonQuery();
 
