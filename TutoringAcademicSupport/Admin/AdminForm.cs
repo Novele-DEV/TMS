@@ -1,44 +1,165 @@
 ﻿using System;
 using System.Data;
+using System.Data.OleDb;
+using System.Diagnostics;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Admin.AddTutor;
 using TutoringAcademicSupport.Admin.EditTutor;
 using TutoringAcademicSupport.Admin.Reports;
 using TutoringAcademicSupport.Common.Database;
-using TutoringAcademicSupport.LogIn;
 
 namespace TutoringAcademicSupport.Admin
 {
     public partial class AdminForm : Form
     {
-        public AdminForm()
+        // friendly headings for the Tutor table columns, instead of the database column names
+        private static readonly Dictionary<string, string> ColumnHeadings = new()
+        {
+            ["Tutor_ID"] = "Tutor ID",
+            ["Tutor_FName"] = "First name",
+            ["Tutor_LName"] = "Last name",
+            ["Tutor_Email"] = "Email",
+            ["Tutor_Phone"] = "Phone",
+            ["Tutor_AcademicAverage"] = "Academic average",
+            ["Tutor_PreferredMode"] = "Preferred mode"
+        };
+
+        // the columns the search box looks in
+        private static readonly string[] SearchColumns = { "Tutor_ID", "Tutor_FName", "Tutor_LName", "Tutor_Email" };
+
+        private bool tutorsLoaded; // false when the tutor list could not be read from the database
+
+        public AdminForm() : this(string.Empty)
+        {
+        }
+
+        public AdminForm(string adminName)
         {
             InitializeComponent();
 
+            lblWelcome.Text = string.IsNullOrWhiteSpace(adminName) ? "Welcome" : $"Welcome, {adminName}";
 
             tutorDataGridView.AutoGenerateColumns = true;
             tutorDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             tutorDataGridView.MultiSelect = false;
             tutorDataGridView.ReadOnly = true;
+            tutorDataGridView.AllowUserToAddRows = false;
+            tutorDataGridView.AllowUserToDeleteRows = false;
+            tutorDataGridView.RowHeadersVisible = false;
+            tutorDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tutorDataGridView.BackgroundColor = SystemColors.Window;
             tutorDataGridView.DataSource = tutorBindingSource;
+            tutorDataGridView.DataBindingComplete += (_, _) => ApplyColumnHeadings();
+
+            UpdateEditButton();
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
         {// This method is called when the AdminForm is loaded.
          // It attempts to load the tutor records from the database and bind them to the DataGridView.
+            LoadTutorList();
+        }
+
+        // Loads the tutors into the grid. A failure clears the grid and says so,
+        // so it never looks like there are simply no tutors.
+        private bool LoadTutorList()
+        {
             try
             {
                 DatabaseConnection.LoadTutors(tutorBindingSource);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is OleDbException or InvalidOperationException or FileNotFoundException)
             {
-                MessageBox.Show(
-                    ex.ToString(),
-                    "Database Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                Debug.WriteLine(ex);
+                tutorsLoaded = false;
+                tutorBindingSource.DataSource = null;
+                UpdateCount();
+                UpdateEditButton();
+                ShowError("The tutor list could not be loaded from the database. Please try again later.");
+                return false;
             }
+
+            tutorsLoaded = true;
+            ApplySearch();
+            return true;
+        }
+
+        private void ApplyColumnHeadings()
+        {
+            foreach (DataGridViewColumn column in tutorDataGridView.Columns)
+            {
+                if (ColumnHeadings.TryGetValue(column.DataPropertyName, out string? heading))
+                {
+                    column.HeaderText = heading;
+                }
+
+                // email addresses are the longest values, so that column gets more room
+                column.FillWeight = column.DataPropertyName == "Tutor_Email" ? 220 : 100;
+            }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            ApplySearch();
+        }
+
+        // Shows only the tutors whose ID, name or email contains the search text.
+        private void ApplySearch()
+        {
+            if (!tutorsLoaded || tutorBindingSource.DataSource is not DataTable tutors) return;
+
+            string text = txtSearch.Text.Trim();
+            string escaped = EscapeLikeValue(text);
+
+            tutorBindingSource.Filter = text.Length == 0
+                ? null
+                : string.Join(" OR ", SearchColumns
+                    .Where(tutors.Columns.Contains)
+                    .Select(column => $"Convert([{column}], 'System.String') LIKE '%{escaped}%'"));
+
+            UpdateCount();
+            UpdateEditButton();
+        }
+
+        // Search text is placed inside a filter expression, so quotes and wildcard characters are escaped.
+        private static string EscapeLikeValue(string value)
+        {
+            StringBuilder escaped = new();
+            foreach (char c in value)
+            {
+                if (c is '*' or '%' or '[' or ']') escaped.Append('[').Append(c).Append(']');
+                else if (c == '\'') escaped.Append("''");
+                else escaped.Append(c);
+            }
+
+            return escaped.ToString();
+        }
+
+        private void UpdateCount()
+        {
+            if (!tutorsLoaded || tutorBindingSource.DataSource is not DataTable tutors)
+            {
+                lblCount.Text = string.Empty;
+                return;
+            }
+
+            int shown = tutorBindingSource.Count;
+            lblCount.Text = shown == 0 && txtSearch.Text.Trim().Length > 0
+                ? $"No tutors match \"{txtSearch.Text.Trim()}\"."
+                : $"Showing {shown} of {tutors.Rows.Count} tutors";
+        }
+
+        private void tutorDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            UpdateEditButton();
+        }
+
+        // Edit is only available when a tutor is selected.
+        private void UpdateEditButton()
+        {
+            btnEdit.Enabled = tutorsLoaded && tutorDataGridView.SelectedRows.Count > 0;
         }
 
         private void btnAddTutor_Click(object sender, EventArgs e)
@@ -46,11 +167,35 @@ namespace TutoringAcademicSupport.Admin
             using AddTutorForm addTutorForm = new();
             addTutorForm.ShowDialog(this);
 
-            DatabaseConnection.LoadTutors(tutorBindingSource);
+            if (!LoadTutorList()) return;
+
+            if (addTutorForm.AddedCount == 1)
+            {
+                SelectTutor(addTutorForm.LastAddedTutorId);
+                ShowSuccess($"Tutor {addTutorForm.LastAddedTutorId} was added. ✓");
+            }
+            else if (addTutorForm.AddedCount > 1)
+            {
+                SelectTutor(addTutorForm.LastAddedTutorId);
+                ShowSuccess($"{addTutorForm.AddedCount} tutors were added (latest: {addTutorForm.LastAddedTutorId}). ✓");
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
-        { 
+        {
+            EditSelectedTutor();
+        }
+
+        private void tutorDataGridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        { // double-clicking a tutor row opens it for editing, the same as Edit Selected
+            if (e.RowIndex >= 0)
+            {
+                EditSelectedTutor();
+            }
+        }
+
+        private void EditSelectedTutor()
+        {
             if (tutorDataGridView.SelectedRows.Count == 0)
             {
                 MessageBox.Show(
@@ -76,24 +221,33 @@ namespace TutoringAcademicSupport.Admin
             string tutorId = Convert.ToString(selectedRow["Tutor_ID"]) ?? string.Empty;
 
             using EditTutorForm editTutorForm = new(tutorId);
-            editTutorForm.ShowDialog(this);
+            DialogResult result = editTutorForm.ShowDialog(this);
 
-            DatabaseConnection.LoadTutors(tutorBindingSource);
+            if (!LoadTutorList()) return;
+
+            SelectTutor(tutorId);
+            if (result == DialogResult.OK)
+            {
+                ShowSuccess($"Tutor {tutorId} was updated. ✓");
+            }
         }
 
-        private void btnReturn_Click(object sender, EventArgs e)
-        { // this button takes the user back to the MainMenuForm when clicked.
-            MainMenuForm? mainMenu = Application
-                .OpenForms
-                .OfType<MainMenuForm>()
-                .FirstOrDefault();
-
-            if (mainMenu != null)
+        // Selects a tutor's row after the list is reloaded, so the admin keeps their place.
+        private void SelectTutor(string tutorId)
+        {
+            foreach (DataGridViewRow row in tutorDataGridView.Rows)
             {
-                mainMenu.Show();
-                mainMenu.Activate();
+                if (row.DataBoundItem is DataRowView view && Convert.ToString(view["Tutor_ID"]) == tutorId)
+                {
+                    tutorDataGridView.CurrentCell = row.Cells.Cast<DataGridViewCell>().First(c => c.Visible);
+                    row.Selected = true;
+                    return;
+                }
             }
+        }
 
+        private void btnLogOut_Click(object sender, EventArgs e)
+        { // closing the dashboard returns to the log in form, which shows "You have been logged out."
             Close();
         }
 
@@ -102,6 +256,18 @@ namespace TutoringAcademicSupport.Admin
          // It opens the ReportGenerationForm as a modal dialog.
             using ReportGenerationForm reportForm = new();
             reportForm.ShowDialog(this);
+        }
+
+        private void ShowSuccess(string text)
+        {
+            lblStatus.ForeColor = ColorTranslator.FromHtml("#2E7D32");
+            lblStatus.Text = text;
+        }
+
+        private void ShowError(string text)
+        {
+            lblStatus.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblStatus.Text = text;
         }
     }
 }

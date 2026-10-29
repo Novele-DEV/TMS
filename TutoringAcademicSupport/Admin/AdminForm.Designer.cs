@@ -29,96 +29,160 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            label1 = new Label();
+            lblWelcome = new Label();
+            lblSearch = new Label();
+            txtSearch = new TextBox();
+            lblCount = new Label();
             tutorDataGridView = new DataGridView();
             tutorBindingSource = new BindingSource(components);
+            lblStatus = new Label();
             btnAddTutor = new Button();
             btnEdit = new Button();
-            btnReturn = new Button();
-            label1 = new Label();
             btnGenerateReports = new Button();
+            btnLogOut = new Button();
             ((System.ComponentModel.ISupportInitialize)tutorDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tutorBindingSource).BeginInit();
             SuspendLayout();
-            // 
-            // tutorDataGridView
-            // 
-            tutorDataGridView.AutoGenerateColumns = false;
-            tutorDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tutorDataGridView.DataSource = tutorBindingSource;
-            tutorDataGridView.Location = new Point(138, 93);
-            tutorDataGridView.Name = "tutorDataGridView";
-            tutorDataGridView.RowHeadersWidth = 51;
-            tutorDataGridView.Size = new Size(503, 219);
-            tutorDataGridView.TabIndex = 1;
-            // 
-            // btnAddTutor
-            // 
-            btnAddTutor.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            btnAddTutor.Location = new Point(30, 359);
-            btnAddTutor.Name = "btnAddTutor";
-            btnAddTutor.Size = new Size(198, 54);
-            btnAddTutor.TabIndex = 2;
-            btnAddTutor.Text = "Add Tutor";
-            btnAddTutor.UseVisualStyleBackColor = true;
-            btnAddTutor.Click += btnAddTutor_Click;
-            // 
-            // btnEdit
-            // 
-            btnEdit.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            btnEdit.Location = new Point(274, 358);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(205, 55);
-            btnEdit.TabIndex = 3;
-            btnEdit.Text = "Edit Selected";
-            btnEdit.UseVisualStyleBackColor = true;
-            btnEdit.Click += btnEdit_Click;
-            // 
-            // btnReturn
-            // 
-            btnReturn.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            btnReturn.Location = new Point(274, 469);
-            btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(186, 50);
-            btnReturn.TabIndex = 4;
-            btnReturn.Text = "Return";
-            btnReturn.UseVisualStyleBackColor = true;
-            btnReturn.Click += btnReturn_Click;
-            // 
+            //
             // label1
-            // 
+            //
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.HotTrack;
-            label1.Location = new Point(247, 29);
+            label1.Location = new Point(24, 15);
             label1.Name = "label1";
             label1.Size = new Size(273, 41);
-            label1.TabIndex = 5;
+            label1.TabIndex = 0;
             label1.Text = "Admin Dashboard";
-            // 
+            //
+            // lblWelcome
+            //
+            lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Segoe UI", 11F);
+            lblWelcome.Location = new Point(28, 60);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(80, 25);
+            lblWelcome.TabIndex = 1;
+            lblWelcome.Text = "Welcome";
+            //
+            // lblSearch
+            //
+            lblSearch.AutoSize = true;
+            lblSearch.Location = new Point(28, 103);
+            lblSearch.Name = "lblSearch";
+            lblSearch.Size = new Size(105, 20);
+            lblSearch.TabIndex = 2;
+            lblSearch.Text = "&Search tutors:";
+            //
+            // txtSearch
+            //
+            txtSearch.Location = new Point(140, 99);
+            txtSearch.Name = "txtSearch";
+            txtSearch.PlaceholderText = "Name, tutor ID or email";
+            txtSearch.Size = new Size(320, 27);
+            txtSearch.TabIndex = 3;
+            txtSearch.TextChanged += txtSearch_TextChanged;
+            //
+            // lblCount
+            //
+            lblCount.AutoSize = true;
+            lblCount.ForeColor = SystemColors.GrayText;
+            lblCount.Location = new Point(480, 103);
+            lblCount.Name = "lblCount";
+            lblCount.Size = new Size(0, 20);
+            lblCount.TabIndex = 4;
+            //
+            // tutorDataGridView
+            //
+            tutorDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tutorDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tutorDataGridView.DataSource = tutorBindingSource;
+            tutorDataGridView.Location = new Point(28, 138);
+            tutorDataGridView.Name = "tutorDataGridView";
+            tutorDataGridView.RowHeadersWidth = 51;
+            tutorDataGridView.Size = new Size(944, 392);
+            tutorDataGridView.TabIndex = 5;
+            tutorDataGridView.CellDoubleClick += tutorDataGridView_CellDoubleClick;
+            tutorDataGridView.SelectionChanged += tutorDataGridView_SelectionChanged;
+            //
+            // lblStatus
+            //
+            lblStatus.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lblStatus.AutoSize = true;
+            lblStatus.Location = new Point(28, 540);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(0, 20);
+            lblStatus.TabIndex = 6;
+            //
+            // btnAddTutor
+            //
+            btnAddTutor.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnAddTutor.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnAddTutor.Location = new Point(28, 572);
+            btnAddTutor.Name = "btnAddTutor";
+            btnAddTutor.Size = new Size(170, 48);
+            btnAddTutor.TabIndex = 7;
+            btnAddTutor.Text = "&Add Tutor";
+            btnAddTutor.UseVisualStyleBackColor = true;
+            btnAddTutor.Click += btnAddTutor_Click;
+            //
+            // btnEdit
+            //
+            btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnEdit.Location = new Point(210, 572);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(170, 48);
+            btnEdit.TabIndex = 8;
+            btnEdit.Text = "&Edit Selected";
+            btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
+            //
             // btnGenerateReports
-            // 
-            btnGenerateReports.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
-            btnGenerateReports.Location = new Point(530, 358);
+            //
+            btnGenerateReports.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnGenerateReports.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnGenerateReports.Location = new Point(392, 572);
             btnGenerateReports.Name = "btnGenerateReports";
-            btnGenerateReports.Size = new Size(258, 55);
-            btnGenerateReports.TabIndex = 6;
-            btnGenerateReports.Text = "Generate Reports";
+            btnGenerateReports.Size = new Size(210, 48);
+            btnGenerateReports.TabIndex = 9;
+            btnGenerateReports.Text = "&Generate Reports";
             btnGenerateReports.UseVisualStyleBackColor = true;
             btnGenerateReports.Click += btnGenerateReports_Click;
-            // 
+            //
+            // btnLogOut
+            //
+            btnLogOut.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnLogOut.Location = new Point(802, 572);
+            btnLogOut.Name = "btnLogOut";
+            btnLogOut.Size = new Size(170, 48);
+            btnLogOut.TabIndex = 10;
+            btnLogOut.Text = "&Log Out";
+            btnLogOut.UseVisualStyleBackColor = true;
+            btnLogOut.Click += btnLogOut_Click;
+            //
             // AdminForm
-            // 
+            //
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 602);
+            ClientSize = new Size(1000, 640);
+            Controls.Add(btnLogOut);
             Controls.Add(btnGenerateReports);
-            Controls.Add(label1);
-            Controls.Add(btnReturn);
             Controls.Add(btnEdit);
             Controls.Add(btnAddTutor);
+            Controls.Add(lblStatus);
             Controls.Add(tutorDataGridView);
+            Controls.Add(lblCount);
+            Controls.Add(txtSearch);
+            Controls.Add(lblSearch);
+            Controls.Add(lblWelcome);
+            Controls.Add(label1);
+            MinimumSize = new Size(820, 520);
             Name = "AdminForm";
-            Text = "AdminForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Admin Dashboard";
             Load += AdminForm_Load;
             ((System.ComponentModel.ISupportInitialize)tutorDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)tutorBindingSource).EndInit();
@@ -128,12 +192,17 @@
 
         #endregion
 
+        private Label label1;
+        private Label lblWelcome;
+        private Label lblSearch;
+        private TextBox txtSearch;
+        private Label lblCount;
         private DataGridView tutorDataGridView;
         private BindingSource tutorBindingSource;
+        private Label lblStatus;
         private Button btnAddTutor;
         private Button btnEdit;
-        private Button btnReturn;
-        private Label label1;
         private Button btnGenerateReports;
+        private Button btnLogOut;
     }
 }

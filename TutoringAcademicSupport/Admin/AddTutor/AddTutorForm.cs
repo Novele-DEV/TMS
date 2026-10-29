@@ -9,6 +9,11 @@ namespace TutoringAcademicSupport.Admin.AddTutor;
 
 public partial class AddTutorForm : Form
 {
+    // How many tutors were added while the form was open, and the latest new ID,
+    // so the dashboard can confirm what happened.
+    public int AddedCount { get; private set; }
+    public string LastAddedTutorId { get; private set; } = string.Empty;
+
     public AddTutorForm()
     {
         InitializeComponent();
@@ -43,6 +48,9 @@ public partial class AddTutorForm : Form
                 MessageBox.Show(result.Message, "Tutor Not Added", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            AddedCount++;
+            LastAddedTutorId = result.TutorId;
 
             MessageBox.Show(result.Message, "Tutor Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
             ClearButton_Click(sender, e);

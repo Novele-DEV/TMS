@@ -67,6 +67,8 @@ namespace TutoringAcademicSupport.Admin.EditTutor
             {
                 adminForm.Show();
             }
+
+            Close();
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -118,7 +120,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
                 }
 
                 MessageBox.Show(result.Message, "Tutor Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Close();
+                DialogResult = DialogResult.OK; // closes the form and tells the dashboard the save worked
             }
             catch (Exception ex) when (ex is OleDbException or InvalidOperationException or FileNotFoundException)
             {
