@@ -16,5 +16,32 @@ namespace TutoringAcademicSupport.LogIn
         {
             InitializeComponent();
         }
+
+        private void OpenLoginForm(string role)
+        {
+            Hide();
+
+            using (var loginForm = new LoginForm(role))
+            {
+                loginForm.ShowDialog(this);
+            }
+
+            Show();
+        }
+
+        private void btnStudent_Click(object sender, EventArgs e)
+        {
+            OpenLoginForm("Student");
+        }
+
+        private void btnTutor_Click(object sender, EventArgs e)
+        {
+            OpenLoginForm("Tutor");
+        }
+
+        private void btnAdministrator_Click(object sender, EventArgs e)
+        {
+            OpenLoginForm("Administrator");
+        }
     }
 }

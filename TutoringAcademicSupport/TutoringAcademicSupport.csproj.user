@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="Admin\AddTutor\AddTutorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\AdminForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\EditTutor\EditTutorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Reports\AgedSubmittedTutoringRequests\AgedSubmittedTutoringRequestsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Reports\CourseSupportDemandAndTutorCoverage\CourseSupportAndTutorCoverageForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Reports\ReportGenerationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Reports\TutorWorkloadAndCompletionRates\TutorWorkloadAndCompletionRatesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LogIn\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="LogIn\MainMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Student\BookSession\BookSessionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Student\CancelBooking\CancelBookingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Student\CreateStudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Student\StudentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Student\UpdateBooking\UpdateBookingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Student\ViewTutorAvailability\ViewTutorAvailabilityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Tutor\UpdateAvailabilityForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
