@@ -2,7 +2,7 @@ using System.Data;
 using System.Data.OleDb;
 using TutoringAcademicSupport.Common.Database;
 
-namespace TutoringAcademicSupport.Tutor;
+namespace TutoringAcademicSupport.Tutor.UpdateAvailability;
 
 public static class UpdateTutorAvailabilityHandler
 {

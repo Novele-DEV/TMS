@@ -6,10 +6,10 @@ using TutoringAcademicSupport.Admin.AddTutor;
 using TutoringAcademicSupport.Admin.EditTutor;
 using TutoringAcademicSupport.Admin.Reports;
 using TutoringAcademicSupport.Common.Database;
-using TutoringAcademicSupport.LogIn;
-using TutoringAcademicSupport.Tutor;
+using TutoringAcademicSupport.EntryPoint.MainMenu;
+using TutoringAcademicSupport.Tutor.UpdateAvailability;
 
-namespace TutoringAcademicSupport.Admin
+namespace TutoringAcademicSupport.Admin.Dashboard
 {
     public partial class AdminForm : Form
     {

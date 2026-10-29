@@ -1,8 +1,9 @@
 ﻿using System.Data.OleDb;
 using System.Globalization;
+using TutoringAcademicSupport.Common.Authentication;
 using TutoringAcademicSupport.Common.Database;
 
-namespace TutoringAcademicSupport.LogIn
+namespace TutoringAcademicSupport.EntryPoint.Login
 {
     public static class LoginHandler
     {

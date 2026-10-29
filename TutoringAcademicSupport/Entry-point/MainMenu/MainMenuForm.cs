@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TutoringAcademicSupport.EntryPoint.Login;
 
-namespace TutoringAcademicSupport.LogIn
+namespace TutoringAcademicSupport.EntryPoint.MainMenu
 {
     public partial class MainMenuForm : Form
     {

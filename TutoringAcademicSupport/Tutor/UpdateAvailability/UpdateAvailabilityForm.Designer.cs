@@ -1,6 +1,6 @@
-﻿namespace TutoringAcademicSupport.Student
+namespace TutoringAcademicSupport.Tutor.UpdateAvailability
 {
-    partial class StudentForm
+    partial class UpdateAvailabilityForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "StudentForm";
+            this.Text = "UpdateAvailabilityForm";
         }
 
         #endregion

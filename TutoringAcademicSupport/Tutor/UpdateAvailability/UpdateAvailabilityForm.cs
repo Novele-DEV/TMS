@@ -1,9 +1,8 @@
 ﻿using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
-using TutoringAcademicSupport.Tutor;
 
-namespace TutoringAcademicSupport.Tutor
+namespace TutoringAcademicSupport.Tutor.UpdateAvailability
 {
     public partial class UpdateAvailabilityForm : Form
     {

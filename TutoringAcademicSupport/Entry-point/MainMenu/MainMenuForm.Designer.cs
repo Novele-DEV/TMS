@@ -1,4 +1,4 @@
-﻿namespace TutoringAcademicSupport.LogIn
+namespace TutoringAcademicSupport.EntryPoint.MainMenu
 {
     partial class MainMenuForm
     {

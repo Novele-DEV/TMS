@@ -1,6 +1,6 @@
 using System;
 using System.Windows.Forms;
-using TutoringAcademicSupport.LogIn;
+using TutoringAcademicSupport.EntryPoint.MainMenu;
 
 namespace TutoringAcademicSupport
 {
