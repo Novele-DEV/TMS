@@ -1,4 +1,4 @@
-﻿namespace TutoringAcademicSupport.Admin
+namespace TutoringAcademicSupport.Admin.Dashboard
 {
     partial class AdminForm
     {
@@ -36,6 +36,7 @@
             btnReturn = new Button();
             label1 = new Label();
             btnGenerateReports = new Button();
+            btnUpdateAvailability = new Button();
             ((System.ComponentModel.ISupportInitialize)tutorDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tutorBindingSource).BeginInit();
             SuspendLayout();
@@ -105,6 +106,17 @@
             btnGenerateReports.Text = "Generate Reports";
             btnGenerateReports.UseVisualStyleBackColor = true;
             btnGenerateReports.Click += btnGenerateReports_Click;
+            //
+            // btnUpdateAvailability
+            //
+            btnUpdateAvailability.Font = new Font("Segoe UI", 16.2F, FontStyle.Bold);
+            btnUpdateAvailability.Location = new Point(530, 430);
+            btnUpdateAvailability.Name = "btnUpdateAvailability";
+            btnUpdateAvailability.Size = new Size(258, 55);
+            btnUpdateAvailability.TabIndex = 7;
+            btnUpdateAvailability.Text = "Tutor Availability";
+            btnUpdateAvailability.UseVisualStyleBackColor = true;
+            btnUpdateAvailability.Click += btnUpdateAvailability_Click;
             // 
             // AdminForm
             // 
@@ -112,6 +124,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 602);
             Controls.Add(btnGenerateReports);
+            Controls.Add(btnUpdateAvailability);
             Controls.Add(label1);
             Controls.Add(btnReturn);
             Controls.Add(btnEdit);
@@ -135,5 +148,6 @@
         private Button btnReturn;
         private Label label1;
         private Button btnGenerateReports;
+        private Button btnUpdateAvailability;
     }
 }

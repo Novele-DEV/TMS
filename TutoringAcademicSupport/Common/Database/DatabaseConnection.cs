@@ -43,7 +43,7 @@ namespace TutoringAcademicSupport.Common.Database
             tutorBindingSource.DataSource = tutorTable;
         }
 
-        public static DataTable LoadTutor(int tutorId)
+        public static DataTable LoadTutor(string tutorId)
         {
             const string query = """
         SELECT
@@ -62,7 +62,7 @@ namespace TutoringAcademicSupport.Common.Database
             using OleDbCommand command = new(query, connection);
             using OleDbDataAdapter adapter = new(command);
 
-            command.Parameters.Add("@Tutor_ID", OleDbType.Integer).Value = tutorId;
+            command.Parameters.Add("@Tutor_ID", OleDbType.VarWChar, 8).Value = tutorId;
 
             DataTable tutorTable = new();
 

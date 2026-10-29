@@ -1,98 +1,62 @@
 # Project Structure Guide
 
-This project is organised by the task the user wants to complete, rather than by technical layer. Each task folder is a **slice**: keep the code for that task together.
+The project is organised around user tasks rather than technical layers. Each feature slice keeps its form, request, validator, handler, and result together where those parts apply.
 
-## Folders
+## Structure
 
 ```text
 TutoringAcademicSupport/
   Program.cs
-  LogIn/
-    LoginForm.Designer.cs
+  Entry-point/
+    MainMenu/
+    Login/
   Student/
-    StudentForm.Designer.cs
+    Dashboard/
+    CreateStudent/
     BookSession/
-      BookSessionForm.Designer.cs
     UpdateBooking/
-      UpdateBookingForm.Designer.cs
     CancelBooking/
-      CancelBookingForm.Designer.cs
     ViewTutorAvailability/
-      ViewTutorAvailabilityForm.Designer.cs
   Admin/
-    AdminForm.Designer.cs
+    Dashboard/
     AddTutor/
-      AddTutorForm.Designer.cs
     EditTutor/
-      EditTutorForm.Designer.cs
     Reports/
       AgedSubmittedTutoringRequests/
-        AgedSubmittedTutoringRequestsForm.Designer.cs
-      TutorWorkloadAndCompletionRates/
-        TutorWorkloadAndCompletionRatesForm.Designer.cs
       CourseSupportDemandAndTutorCoverage/
-        CourseSupportDemandAndTutorCoverageForm.Designer.cs
+      TutorWorkloadAndCompletionRates/
+      shared report presentation and export code
+  Tutor/
+    UpdateAvailability/
   Common/
+    Authentication/
     Database/
-  AccessDatabase/
 ```
 
-- **Program.cs**: application startup. It is currently empty; startup behavior has not been implemented.
-- **LogIn/LoginForm.Designer.cs**: the single sign-in form used by both students and administrators.
-- **Student/StudentForm.Designer.cs**: the student landing form shown after a student signs in.
-- **Admin/AdminForm.Designer.cs**: the administrator landing form shown after an administrator signs in.
-- After successful sign-in, route the user to the matching landing form. Do not create separate student and administrator login forms.
-- **Student/**: student booking and tutor-availability tasks.
-- **Admin/**: tutor maintenance and the three agreed report tasks.
-- **Common/**: code used by multiple slices. Put shared database access here only when more than one slice needs it. Avoid adding general-purpose helpers without a concrete shared use.
-- **AccessDatabase/**: location for the Access database file when you move it into the project. The folder is currently empty.
+`Entry-point/` contains the role-selection menu and the shared login flow. Student registration is its own slice under `Student/CreateStudent/`, and each landing form belongs to its role's `Dashboard/` slice. Tutor availability maintenance is grouped in `Tutor/UpdateAvailability/`.
 
-## Files inside a slice
+The three report tasks are separate slices. Report generation, preview, export, and presentation helpers remain together under `Admin/Reports/` because they support multiple report slices.
 
-The filenames describe the responsibilities:
+## Slice responsibilities
 
-- `...Form.Designer.cs`: reserved for the form's designer-related declarations and layout.
-- `...Request.cs`: carries the inputs needed to perform the task.
-- `...Validator.cs`: checks whether the request is acceptable before it is handled.
-- `...Handler.cs`: coordinates the task.
-- `...Result.cs`: carries the outcome back to the form.
+- `...Form.cs`, its designer, and its resource file implement the task's user interface.
+- `...Request.cs` carries the task inputs.
+- `...Validator.cs` validates those inputs.
+- `...Handler.cs` coordinates the operation.
+- `...Result.cs` carries the outcome to the form.
 
-For example, `Student/BookSession/` holds the files related to booking a session. Keep changes for that task in this folder instead of creating a project-wide Forms, Handlers, or Validators folder.
+Not every feature needs all five parts. Keep the form and the parts it does need in the same feature folder.
 
-## Typical interaction
+## Shared code
 
-When implementation begins, a slice will generally follow this flow:
+- `Common/Authentication/` contains authentication helpers used by more than one slice.
+- `Common/Database/` contains shared database connection and schema support.
+- Keep other code local to its feature unless multiple slices genuinely need it. Avoid adding generic service or repository layers without a concrete shared use.
 
-1. The form collects input and creates its request.
-2. The validator checks the request.
-3. The handler carries out the task, using shared database access if needed.
-4. The handler returns a result.
-5. The form presents the outcome to the user.
+## Flow
 
-This describes the intended responsibilities; the current `.cs` files are empty placeholders and do not yet implement this flow. Form files currently use the `.Designer.cs` suffix as requested.
+`Program.cs` starts the main menu. The user selects a role and signs in through the shared login feature; a successful login opens the matching role dashboard. Student registration is launched from the student login flow.
 
-## Keeping slices separate
+Keep cross-feature calls limited to application workflows and shared capabilities. A feature should not duplicate another feature's implementation.
 
-- Keep a feature's request, result, validator, handler, and form in its own folder.
-- Do not make one feature call another feature's handler or form. If multiple features need the same capability, put only that shared capability in `Common/`.
-- Keep database access in `Common/Database/` only if it is genuinely shared; do not add a generic repository or service layer.
-- Do not create a second helper or shared class when an existing slice or shared component already serves that purpose.
-- Name new files after their responsibility and place them in the matching slice.
-
-## Reports and database
-
-The report folders correspond to:
-
-- **Aged Submitted Tutoring Requests**: requests aged seven or more days.
-- **Tutor Workload and Completion Rates**.
-- **Course Support Demand and Tutor Coverage**.
-
-## Sign-in flow
-
-Use one login form for both user groups. After sign-in, show either `StudentForm` or `AdminForm` according to the user's role. Keep each side's feature screens in its corresponding `Student/` or `Admin/` folders.
-
-The Access file is not currently in `AccessDatabase/`. Move it there when ready; the project does not currently link or copy it automatically. Database connection and report behavior have not been implemented.
-
-## Current project status
-
-All C# source files are empty placeholders. The project configuration targets Windows Forms on .NET 8 and includes the `System.Data.OleDb` package, but no application screens or behavior have been implemented. Add code to a slice only when starting that feature.
+The application targets .NET 8 Windows Forms and uses `System.Data.OleDb` for Access database access.

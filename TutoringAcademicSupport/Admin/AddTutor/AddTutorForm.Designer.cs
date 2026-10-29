@@ -196,7 +196,7 @@ partial class AddTutorForm
         // cmbPreferredMode
         // 
         cmbPreferredMode.DropDownStyle = ComboBoxStyle.DropDownList;
-        cmbPreferredMode.Items.AddRange(new object[] { "Online", "In-person", "Both" });
+        cmbPreferredMode.Items.AddRange(new object[] { "Virtual", "In-person", "Both" });
         cmbPreferredMode.Location = new Point(310, 420);
         cmbPreferredMode.Name = "cmbPreferredMode";
         cmbPreferredMode.Size = new Size(165, 28);

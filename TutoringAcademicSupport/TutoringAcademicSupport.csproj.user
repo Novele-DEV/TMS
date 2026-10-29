@@ -5,7 +5,7 @@
     <Compile Update="Admin\AddTutor\AddTutorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Admin\AdminForm.cs">
+    <Compile Update="Admin\Dashboard\AdminForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Admin\EditTutor\EditTutorForm.cs">
@@ -17,16 +17,25 @@
     <Compile Update="Admin\Reports\CourseSupportDemandAndTutorCoverage\CourseSupportAndTutorCoverageForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Admin\Reports\ReportChartPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Admin\Reports\ReportGenerationForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Reports\ReportPreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Reports\ReportPrintDocument.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Update="Admin\Reports\TutorWorkloadAndCompletionRates\TutorWorkloadAndCompletionRatesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="LogIn\LoginForm.cs">
+    <Compile Update="Entry-point\Login\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="LogIn\MainMenuForm.cs">
+    <Compile Update="Entry-point\MainMenu\MainMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Student\BookSession\BookSessionForm.cs">
@@ -35,10 +44,10 @@
     <Compile Update="Student\CancelBooking\CancelBookingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Student\CreateStudentForm.cs">
+    <Compile Update="Student\CreateStudent\CreateStudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Student\StudentForm.cs">
+    <Compile Update="Student\Dashboard\StudentForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Student\UpdateBooking\UpdateBookingForm.cs">
@@ -47,7 +56,7 @@
     <Compile Update="Student\ViewTutorAvailability\ViewTutorAvailabilityForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Tutor\UpdateAvailabilityForm.cs">
+    <Compile Update="Tutor\UpdateAvailability\UpdateAvailabilityForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
