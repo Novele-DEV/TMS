@@ -8,7 +8,8 @@ namespace TutoringAcademicSupport.Admin.EditTutor
     {
         public static EditTutorResult Handle(EditTutorRequest request)
         {
-            using OleDbConnection connection = DatabaseConnection.CreateConnection();
+            using OleDbConnection connection = DatabaseConnection.GetConnection();
+            connection.Open();
 
             // Email and phone are unique in the Tutor table, so check them against
             // every other tutor first to give a clear message instead of a database error.

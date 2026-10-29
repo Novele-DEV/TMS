@@ -15,20 +15,11 @@ namespace TutoringAcademicSupport.Common.Database
             "ByteBetter_Tutoring.accdb");
 
         private static readonly string ConnectionString =
-            $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={DatabasePath};";
+            $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={DatabasePath};Persist Security Info=False;";
 
-        // Opens a connection for handlers that run their own queries.
-        public static OleDbConnection CreateConnection()
+        public static OleDbConnection GetConnection()
         {
-            if (!File.Exists(DatabasePath))
-            {
-                throw new FileNotFoundException(
-                    $"The database file was not found at:{Environment.NewLine}{DatabasePath}");
-            }
-
-            OleDbConnection connection = new(ConnectionString);
-            connection.Open();
-            return connection;
+            return new OleDbConnection(ConnectionString);
         }
 
         public static void LoadTutors(BindingSource tutorBindingSource)
@@ -51,8 +42,8 @@ namespace TutoringAcademicSupport.Common.Database
 
             tutorBindingSource.DataSource = tutorTable;
         }
-    
-public static DataTable LoadTutor(string tutorId)
+
+        public static DataTable LoadTutor(string tutorId)
         {
             const string query = """
         SELECT
@@ -80,6 +71,5 @@ public static DataTable LoadTutor(string tutorId)
 
             return tutorTable;
         }
-
     }
 }

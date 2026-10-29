@@ -10,7 +10,8 @@ public static class AddTutorHandler
 
     public static AddTutorResult Handle(AddTutorRequest request)
     {
-        using OleDbConnection connection = DatabaseConnection.CreateConnection();
+        using OleDbConnection connection = DatabaseConnection.GetConnection();
+        connection.Open();
 
         // Email and phone are unique in the Tutor table, so check them first
         // to give a clear message instead of a database error.
