@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.OleDb;
 using TutoringAcademicSupport.Common;
+using TutoringAcademicSupport.Common.Database;
 
 namespace TutoringAcademicSupport.Student.UpdateBooking
 {
@@ -44,8 +45,7 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
 
             try
             {
-                using (OleDbConnection connection =
-                       DatabaseConnection.GetConnection())
+                using (OleDbConnection connection =  DatabaseConnection.GetConnection())
                 {
                     connection.Open();
 

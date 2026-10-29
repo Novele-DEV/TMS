@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Common;
+using TutoringAcademicSupport.Common.Database;
 
 namespace TutoringAcademicSupport.Student.UpdateBooking
 {
@@ -201,6 +202,11 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
 
         }
         private void UpdateBookingForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UpdateBookingForm_Load_1(object sender, EventArgs e)
         {
 
         }
