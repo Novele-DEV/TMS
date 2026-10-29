@@ -125,6 +125,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             btnExit.TabIndex = 11;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // btnLogIn
             // 
