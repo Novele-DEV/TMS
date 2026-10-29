@@ -4,8 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using BCrypt.Net;
 
-namespace TutoringAcademicSupport.LogIn
-{
+namespace TutoringAcademicSupport.Common.Authentication;
+
     public static class PasswordService
     {
         public static string HashPassword(string password)
@@ -18,4 +18,3 @@ namespace TutoringAcademicSupport.LogIn
             return BCrypt.Net.BCrypt.EnhancedVerify(providedPassword,hashPassword);
         }
     }
-}

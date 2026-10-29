@@ -1,4 +1,4 @@
-﻿namespace TutoringAcademicSupport.Student
+namespace TutoringAcademicSupport.Student.Dashboard
 {
     partial class StudentForm
     {

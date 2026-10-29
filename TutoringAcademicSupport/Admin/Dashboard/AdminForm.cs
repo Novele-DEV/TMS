@@ -9,8 +9,9 @@ using TutoringAcademicSupport.Admin.AddTutor;
 using TutoringAcademicSupport.Admin.EditTutor;
 using TutoringAcademicSupport.Admin.Reports;
 using TutoringAcademicSupport.Common.Database;
+using TutoringAcademicSupport.Tutor.UpdateAvailability;
 
-namespace TutoringAcademicSupport.Admin
+namespace TutoringAcademicSupport.Admin.Dashboard
 {
     public partial class AdminForm : Form
     {
@@ -53,7 +54,7 @@ namespace TutoringAcademicSupport.Admin
             tutorDataGridView.DataSource = tutorBindingSource;
             tutorDataGridView.DataBindingComplete += (_, _) => ApplyColumnHeadings();
 
-            UpdateEditButton();
+            UpdateSelectionButtons();
         }
 
         private void AdminForm_Load(object sender, EventArgs e)
@@ -76,7 +77,7 @@ namespace TutoringAcademicSupport.Admin
                 tutorsLoaded = false;
                 tutorBindingSource.DataSource = null;
                 UpdateCount();
-                UpdateEditButton();
+                UpdateSelectionButtons();
                 ShowError("The tutor list could not be loaded from the database. Please try again later.");
                 return false;
             }
@@ -120,7 +121,7 @@ namespace TutoringAcademicSupport.Admin
                     .Select(column => $"Convert([{column}], 'System.String') LIKE '%{escaped}%'"));
 
             UpdateCount();
-            UpdateEditButton();
+            UpdateSelectionButtons();
         }
 
         // Search text is placed inside a filter expression, so quotes and wildcard characters are escaped.
@@ -153,13 +154,15 @@ namespace TutoringAcademicSupport.Admin
 
         private void tutorDataGridView_SelectionChanged(object sender, EventArgs e)
         {
-            UpdateEditButton();
+            UpdateSelectionButtons();
         }
 
-        // Edit is only available when a tutor is selected.
-        private void UpdateEditButton()
+        // Edit and Tutor Availability work on the selected tutor, so they are only available when one is selected.
+        private void UpdateSelectionButtons()
         {
-            btnEdit.Enabled = tutorsLoaded && tutorDataGridView.SelectedRows.Count > 0;
+            bool tutorSelected = tutorsLoaded && tutorDataGridView.SelectedRows.Count > 0;
+            btnEdit.Enabled = tutorSelected;
+            btnUpdateAvailability.Enabled = tutorSelected;
         }
 
         private void btnAddTutor_Click(object sender, EventArgs e)
@@ -196,29 +199,8 @@ namespace TutoringAcademicSupport.Admin
 
         private void EditSelectedTutor()
         {
-            if (tutorDataGridView.SelectedRows.Count == 0)
-            {
-                MessageBox.Show(
-                    "Please select a tutor record first.",
-                    "No Tutor Selected",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-
-                return;
-            }
-
-            if (tutorDataGridView.SelectedRows[0].DataBoundItem is not DataRowView selectedRow)
-            {// This checks if the selected row is a valid DataRowView. If not, it shows an error message and returns.
-                MessageBox.Show(
-                    "The selected row is not a valid tutor record.",
-                    "Selection Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-
-                return;
-            }
-
-            string tutorId = Convert.ToString(selectedRow["Tutor_ID"]) ?? string.Empty;
+            string? tutorId = SelectedTutorId();
+            if (tutorId is null) return;
 
             using EditTutorForm editTutorForm = new(tutorId);
             DialogResult result = editTutorForm.ShowDialog(this);
@@ -230,6 +212,43 @@ namespace TutoringAcademicSupport.Admin
             {
                 ShowSuccess($"Tutor {tutorId} was updated. ✓");
             }
+        }
+
+        private void btnUpdateAvailability_Click(object sender, EventArgs e)
+        {
+            string? tutorId = SelectedTutorId();
+            if (tutorId is null) return;
+
+            using UpdateAvailabilityForm form = new(tutorId);
+            form.ShowDialog(this);
+        }
+
+        // The Tutor_ID of the selected row, or null (after telling the admin why) when there is none.
+        private string? SelectedTutorId()
+        {
+            if (tutorDataGridView.SelectedRows.Count == 0)
+            {
+                MessageBox.Show(
+                    "Please select a tutor record first.",
+                    "No Tutor Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return null;
+            }
+
+            if (tutorDataGridView.SelectedRows[0].DataBoundItem is not DataRowView selectedRow)
+            {// This checks if the selected row is a valid DataRowView. If not, it shows an error message and returns.
+                MessageBox.Show(
+                    "The selected row is not a valid tutor record.",
+                    "Selection Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return null;
+            }
+
+            return Convert.ToString(selectedRow["Tutor_ID"]) ?? string.Empty;
         }
 
         // Selects a tutor's row after the list is reloaded, so the admin keeps their place.

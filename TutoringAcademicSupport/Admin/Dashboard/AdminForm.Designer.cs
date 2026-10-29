@@ -1,4 +1,4 @@
-﻿namespace TutoringAcademicSupport.Admin
+namespace TutoringAcademicSupport.Admin.Dashboard
 {
     partial class AdminForm
     {
@@ -39,6 +39,7 @@
             lblStatus = new Label();
             btnAddTutor = new Button();
             btnEdit = new Button();
+            btnUpdateAvailability = new Button();
             btnGenerateReports = new Button();
             btnLogOut = new Button();
             ((System.ComponentModel.ISupportInitialize)tutorDataGridView).BeginInit();
@@ -121,7 +122,7 @@
             btnAddTutor.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAddTutor.Location = new Point(28, 572);
             btnAddTutor.Name = "btnAddTutor";
-            btnAddTutor.Size = new Size(170, 48);
+            btnAddTutor.Size = new Size(160, 48);
             btnAddTutor.TabIndex = 7;
             btnAddTutor.Text = "&Add Tutor";
             btnAddTutor.UseVisualStyleBackColor = true;
@@ -131,22 +132,34 @@
             //
             btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnEdit.Location = new Point(210, 572);
+            btnEdit.Location = new Point(198, 572);
             btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(170, 48);
+            btnEdit.Size = new Size(160, 48);
             btnEdit.TabIndex = 8;
             btnEdit.Text = "&Edit Selected";
             btnEdit.UseVisualStyleBackColor = true;
             btnEdit.Click += btnEdit_Click;
             //
+            // btnUpdateAvailability
+            //
+            btnUpdateAvailability.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnUpdateAvailability.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnUpdateAvailability.Location = new Point(368, 572);
+            btnUpdateAvailability.Name = "btnUpdateAvailability";
+            btnUpdateAvailability.Size = new Size(200, 48);
+            btnUpdateAvailability.TabIndex = 9;
+            btnUpdateAvailability.Text = "Tutor A&vailability";
+            btnUpdateAvailability.UseVisualStyleBackColor = true;
+            btnUpdateAvailability.Click += btnUpdateAvailability_Click;
+            //
             // btnGenerateReports
             //
             btnGenerateReports.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnGenerateReports.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnGenerateReports.Location = new Point(392, 572);
+            btnGenerateReports.Location = new Point(578, 572);
             btnGenerateReports.Name = "btnGenerateReports";
-            btnGenerateReports.Size = new Size(210, 48);
-            btnGenerateReports.TabIndex = 9;
+            btnGenerateReports.Size = new Size(200, 48);
+            btnGenerateReports.TabIndex = 10;
             btnGenerateReports.Text = "&Generate Reports";
             btnGenerateReports.UseVisualStyleBackColor = true;
             btnGenerateReports.Click += btnGenerateReports_Click;
@@ -155,10 +168,10 @@
             //
             btnLogOut.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnLogOut.Location = new Point(802, 572);
+            btnLogOut.Location = new Point(812, 572);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(170, 48);
-            btnLogOut.TabIndex = 10;
+            btnLogOut.Size = new Size(160, 48);
+            btnLogOut.TabIndex = 11;
             btnLogOut.Text = "&Log Out";
             btnLogOut.UseVisualStyleBackColor = true;
             btnLogOut.Click += btnLogOut_Click;
@@ -170,6 +183,7 @@
             ClientSize = new Size(1000, 640);
             Controls.Add(btnLogOut);
             Controls.Add(btnGenerateReports);
+            Controls.Add(btnUpdateAvailability);
             Controls.Add(btnEdit);
             Controls.Add(btnAddTutor);
             Controls.Add(lblStatus);
@@ -179,7 +193,7 @@
             Controls.Add(lblSearch);
             Controls.Add(lblWelcome);
             Controls.Add(label1);
-            MinimumSize = new Size(820, 520);
+            MinimumSize = new Size(1018, 520);
             Name = "AdminForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Admin Dashboard";
@@ -202,6 +216,7 @@
         private Label lblStatus;
         private Button btnAddTutor;
         private Button btnEdit;
+        private Button btnUpdateAvailability;
         private Button btnGenerateReports;
         private Button btnLogOut;
     }
