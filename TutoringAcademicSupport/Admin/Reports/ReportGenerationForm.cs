@@ -1,22 +1,38 @@
-﻿using System.Data;
-using System.Drawing.Printing;
-using System.Globalization;
+﻿using TutoringAcademicSupport.Admin.Reports.AgedSubmittedTutoringRequests;
+using TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCoverage;
+using TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates;
 
 namespace TutoringAcademicSupport.Admin.Reports
 {
+    // Lets the administrator choose one of the three agreed reports.
     public partial class ReportGenerationForm : Form
     {
-       
-           
-        private readonly BindingSource bindingSource = new();
-
-        // Keep the remaining existing fields and methods here unchanged.
-
         public ReportGenerationForm()
         {
             InitializeComponent();
+        }
 
-            // Keep the remaining existing constructor code here unchanged.
+        private void btnAgedRequests_Click(object sender, EventArgs e)
+        { // report 5.1
+            using AgedSubmittedTutoringRequestsForm reportForm = new();
+            reportForm.ShowDialog(this);
+        }
+
+        private void btnTutorWorkload_Click(object sender, EventArgs e)
+        { // report 5.2
+            using TutorWorkloadAndCompletionRatesForm reportForm = new();
+            reportForm.ShowDialog(this);
+        }
+
+        private void btnCourseDemand_Click(object sender, EventArgs e)
+        { // report 5.3
+            using CourseSupportAndTutorCoverageForm reportForm = new();
+            reportForm.ShowDialog(this);
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

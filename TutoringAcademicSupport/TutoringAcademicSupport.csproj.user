@@ -17,8 +17,17 @@
     <Compile Update="Admin\Reports\CourseSupportDemandAndTutorCoverage\CourseSupportAndTutorCoverageForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Admin\Reports\ReportChartPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="Admin\Reports\ReportGenerationForm.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Reports\ReportPreviewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Admin\Reports\ReportPrintDocument.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Update="Admin\Reports\TutorWorkloadAndCompletionRates\TutorWorkloadAndCompletionRatesForm.cs">
       <SubType>Form</SubType>
