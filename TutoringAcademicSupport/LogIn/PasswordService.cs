@@ -10,7 +10,7 @@ namespace TutoringAcademicSupport.LogIn
     {
         public static string HashPassword(string password)
         {
-            return BCrypt.Net.Bcrypt.EnhancedHashPassword(password,workfactor: 11);
+            return BCrypt.Net.BCrypt.EnhancedHashPassword(password, workFactor: 11);
         }
 
         public static bool VerifyPassword(string hashPassword, string providedPassword)

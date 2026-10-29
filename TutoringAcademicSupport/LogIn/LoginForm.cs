@@ -3,25 +3,38 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Admin;
+using TutoringAcademicSupport.Student;
 
 namespace TutoringAcademicSupport.LogIn
 {
+    
     public partial class LoginForm : Form
     {
-        private bool busy; // prevents competing actions 
-        public LoginForm()
+        
+        private bool busy; //prevents competing actions
+        private readonly string selectedRole;
+
+        public LoginForm(string role)
         {
             InitializeComponent();
+
+            selectedRole = role; //this variable is used to display the role in the form
+                                 //and to determine which landing page to open after a successful login.
+
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-            lblIntro.Text = "Enter your ID and password to continue.";
-            txtPassword.MaxLength = 64; // this length matches the database column size
+            lblIntro.Text = $"Enter your {selectedRole.ToLower()} ID and password.";
+            txtPassword.MaxLength = 64; // this matches the database column size
             txtUserID.MaxLength = 16; // the admin ID is the longest with 16 characters
             txtPassword.UseSystemPasswordChar = true;
-            UpdateControls();    
+
+            UpdateControls();
         }
 
-
+        public LoginForm() : this("Student") // default role is Student
+        {
+        }
         private void UpdateControls()
         {
             txtUserID.Enabled = txtPassword.Enabled = !busy;
@@ -63,7 +76,11 @@ namespace TutoringAcademicSupport.LogIn
             {
                 Debug.WriteLine(ex);
                 ShowError("Database operation failed");
-                MessageBox.Show("An unexpected error has occured while logging in. Please try again.", MessageBoxButtons.OK, );
+                MessageBox.Show(
+    "An unexpected error has occurred while logging in. Please try again.",
+    "Login Error",
+    MessageBoxButtons.OK,
+    MessageBoxIcon.Error);
             }
             catch (InvalidOperationException ex)
             {
@@ -112,12 +129,12 @@ namespace TutoringAcademicSupport.LogIn
         {
             if (result.Role == "Administrator")
             {
-                using (var landing = new AdminForm(result.UserId, result.FirstName))
+                using (var landing = new AdminForm())
                     landing.ShowDialog(this);
             }
             else
             {
-                using (var landing = new StudentForm(result.UserId, result.FirstName))
+                using (var landing = new StudentForm())
                     landing.ShowDialog(this);
             }
             txtUserID.Clear();
@@ -133,10 +150,10 @@ namespace TutoringAcademicSupport.LogIn
             using (var form = new CreateStudentForm())
             {
                 form.ShowDialog(this);
-                if (form.CreatedStudentId.HasValue)
+                if (form.CreatedStudentID.HasValue)
                 {
                     // simply fill in the log in details
-                    txtUserID.Text = form.CreatedStudentId.Value.ToString();
+                    txtUserID.Text = form.CreatedStudentID.Value.ToString();
                     txtPassword.Text = form.CreatedEmail;
                     ShowSuccess("Student account created successfully. \u2713");
                 }
@@ -178,5 +195,6 @@ namespace TutoringAcademicSupport.LogIn
         {
 
         }
+       
     }
 }

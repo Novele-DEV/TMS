@@ -94,18 +94,18 @@ namespace TutoringAcademicSupport.Student
             try
             {
                 // the form first builds the request from the controls
-                var request new = CreateStudentRequest
-                    {
-                        StudentId = int.Parse(txtStudentId.Text.Trim()),
-                        FirstName = txtFirstName.Text.Trim(),
-                        LastName = txtLastName.Text.Trim(),
-                        DateOfBirth = dtpDoB.Value.Date,
-                        Email = txtEmail.Text.Trim(),
-                        Phone = txtPhone.Text.Trim(),
-                        Faculty = (string)cboFaculty_SelectedIndexChanged().SelectedItem!,
-                        Programme = (string)cboProgramme.SelectedItem!
-                        Password = txtPassword.Text
-                    };
+                var request = new CreateStudentRequest
+                {
+                    StudentId = int.Parse(txtStudentID.Text.Trim()),
+                    FirstName = txtFirstName.Text.Trim(),
+                    LastName = txtLastName.Text.Trim(),
+                    DateOfBirth = dtpDoB.Value.Date,
+                    Email = txtEmail.Text.Trim(),
+                    Phone = txtPhone.Text.Trim(),
+                    Faculty = (string)cboFaculty.SelectedItem!,
+                    Programme = (string)cboProgramme.SelectedItem!,
+                    Password = txtPassword.Text
+                };
 
                 // then, the validator will check the request before the handler does any work.
                 string problem = CreateStudentValidator.Validate(request);
