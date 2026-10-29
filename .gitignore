@@ -4,3 +4,6 @@ bin/
 **/bin/
 obj/
 **/obj/
+
+# Access creates this lock file while a database is open
+*.laccdb
