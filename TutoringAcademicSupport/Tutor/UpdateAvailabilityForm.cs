@@ -8,11 +8,7 @@ namespace TutoringAcademicSupport.Tutor
     public partial class UpdateAvailabilityForm : Form
     {
         private readonly TextBox txtTutorId = new();
-        private readonly ComboBox cboDay = new();
-        private readonly DateTimePicker dtpStartTime = new();
-        private readonly DateTimePicker dtpEndTime = new();
         private readonly DataGridView availabilityGrid = new();
-        private readonly Label lblMessage = new();
         private int? selectedAvailabilityId;
 
         public UpdateAvailabilityForm(string tutorId = "")
@@ -34,22 +30,14 @@ namespace TutoringAcademicSupport.Tutor
             btnLoad.Click += (_, _) => LoadAvailability();
             Controls.Add(btnLoad);
 
-            Controls.Add(new Label { Text = "Day", AutoSize = true, Location = new Point(20, 65) });
-            cboDay.DropDownStyle = ComboBoxStyle.DropDownList;
-            cboDay.Items.AddRange(Enum.GetNames<DayOfWeek>());
-            cboDay.SelectedIndex = 0;
-            cboDay.Location = new Point(100, 60);
-            cboDay.Size = new Size(140, 27);
-            Controls.Add(cboDay);
+            cmbAvailDay.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbAvailDay.Items.AddRange(Enum.GetNames<DayOfWeek>());
+            cmbAvailDay.SelectedIndex = 0;
 
-            Controls.Add(new Label { Text = "Start", AutoSize = true, Location = new Point(270, 65) });
             ConfigureTimePicker(dtpStartTime, new Point(320, 60));
-            Controls.Add(dtpStartTime);
 
-            Controls.Add(new Label { Text = "End", AutoSize = true, Location = new Point(500, 65) });
             ConfigureTimePicker(dtpEndTime, new Point(545, 60));
             dtpEndTime.Value = DateTime.Today.AddHours(10);
-            Controls.Add(dtpEndTime);
 
             availabilityGrid.Location = new Point(20, 110);
             availabilityGrid.Size = new Size(750, 350);
@@ -76,7 +64,6 @@ namespace TutoringAcademicSupport.Tutor
 
             lblMessage.Location = new Point(20, 525);
             lblMessage.Size = new Size(750, 30);
-            Controls.Add(lblMessage);
 
             if (!string.IsNullOrWhiteSpace(tutorId))
             {
@@ -141,7 +128,7 @@ namespace TutoringAcademicSupport.Tutor
             {
                 TutorId = txtTutorId.Text.Trim(),
                 AvailabilityId = selectedAvailabilityId,
-                Day = cboDay.Text,
+                Day = cmbAvailDay.Text,
                 StartTime = dtpStartTime.Value,
                 EndTime = dtpEndTime.Value
             };
@@ -212,7 +199,7 @@ namespace TutoringAcademicSupport.Tutor
             }
 
             selectedAvailabilityId = Convert.ToInt32(selectedRow["Avail_ID"]);
-            cboDay.SelectedItem = Convert.ToString(selectedRow["Avail_Day"]);
+            cmbAvailDay.SelectedItem = Convert.ToString(selectedRow["Avail_Day"]);
             dtpStartTime.Value = DateTime.Today.Add(Convert.ToDateTime(selectedRow["Avail_StartTime"]).TimeOfDay);
             dtpEndTime.Value = DateTime.Today.Add(Convert.ToDateTime(selectedRow["Avail_EndTime"]).TimeOfDay);
         }
@@ -221,9 +208,9 @@ namespace TutoringAcademicSupport.Tutor
         {
             selectedAvailabilityId = null;
             availabilityGrid.ClearSelection();
-            if (cboDay.Items.Count > 0)
+            if (cmbAvailDay.Items.Count > 0)
             {
-                cboDay.SelectedIndex = 0;
+                cmbAvailDay.SelectedIndex = 0;
             }
 
             dtpStartTime.Value = DateTime.Today.AddHours(9);
@@ -246,6 +233,37 @@ namespace TutoringAcademicSupport.Tutor
         {
             lblMessage.ForeColor = SystemColors.ControlText;
             lblMessage.Text = message;
+        }
+
+        private void UpdateAvailabilityForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            ViewAvailabilityForm? viewAvailabilityForm = Owner as ViewAvailabilityForm
+                ?? Application.OpenForms.OfType<ViewAvailabilityForm>().FirstOrDefault();
+
+            if (viewAvailabilityForm != null)
+            {
+                viewAvailabilityForm.Show();
+                viewAvailabilityForm.Activate();
+            }
+
+            Close();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearSelection();
+            cmbAvailDay.SelectedIndex = -1;
+            ShowNeutral("Availability fields cleared.");
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            SaveAvailability();
         }
     }
 }
