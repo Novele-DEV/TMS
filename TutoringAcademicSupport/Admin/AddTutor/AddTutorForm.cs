@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using TutoringAcademicSupport.Admin;
 
+
 namespace TutoringAcademicSupport.Admin.AddTutor;
 
 public partial class AddTutorForm : Form
@@ -17,7 +18,7 @@ public partial class AddTutorForm : Form
 
     private void AddTutorButton_Click(object? sender, EventArgs e)
     { //Code for adding to database
-    
+
     }
 
     private void ClearButton_Click(object? sender, EventArgs e)
@@ -40,5 +41,15 @@ public partial class AddTutorForm : Form
         }
 
         Close();
+    }
+
+    private void btnReturn_Click(object sender, EventArgs e)
+    { // takes the user back to the AdminForm when the "Return" button is clicked.
+        if (Owner is AdminForm adminForm)
+        {
+            adminForm.Show();
+        }
+        Close();
+
     }
 }

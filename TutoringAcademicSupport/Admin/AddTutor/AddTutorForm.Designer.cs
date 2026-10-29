@@ -213,6 +213,7 @@ partial class AddTutorForm
         btnReturn.TabIndex = 15;
         btnReturn.Text = "Return";
         btnReturn.UseVisualStyleBackColor = false;
+        btnReturn.Click += btnReturn_Click;
         // 
         // btnClear
         // 
