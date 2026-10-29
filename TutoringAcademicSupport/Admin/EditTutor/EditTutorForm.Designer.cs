@@ -91,7 +91,7 @@
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(190, 90);
             btnAdd.TabIndex = 20;
-            btnAdd.Text = "Add Tutor";
+            btnAdd.Text = "Save Changes";
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 

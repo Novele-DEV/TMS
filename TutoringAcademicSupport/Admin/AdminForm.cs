@@ -73,7 +73,7 @@ namespace TutoringAcademicSupport.Admin
                 return;
             }
 
-            int tutorId = Convert.ToInt32(selectedRow["Tutor_ID"]);
+            string tutorId = Convert.ToString(selectedRow["Tutor_ID"]) ?? string.Empty;
 
             using EditTutorForm editTutorForm = new(tutorId);
             editTutorForm.ShowDialog(this);

@@ -136,6 +136,7 @@
             btnLogIn.TabIndex = 12;
             btnLogIn.Text = "Log In";
             btnLogIn.UseVisualStyleBackColor = false;
+            btnLogIn.Click += btnLogIn_Click;
             // 
             // errorProvider
             // 

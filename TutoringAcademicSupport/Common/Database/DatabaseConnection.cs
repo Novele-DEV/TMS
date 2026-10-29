@@ -17,6 +17,20 @@ namespace TutoringAcademicSupport.Common.Database
         private static readonly string ConnectionString =
             $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={DatabasePath};";
 
+        // Opens a connection for handlers that run their own queries.
+        public static OleDbConnection CreateConnection()
+        {
+            if (!File.Exists(DatabasePath))
+            {
+                throw new FileNotFoundException(
+                    $"The database file was not found at:{Environment.NewLine}{DatabasePath}");
+            }
+
+            OleDbConnection connection = new(ConnectionString);
+            connection.Open();
+            return connection;
+        }
+
         public static void LoadTutors(BindingSource tutorBindingSource)
         {
             if (!File.Exists(DatabasePath))
@@ -38,7 +52,7 @@ namespace TutoringAcademicSupport.Common.Database
             tutorBindingSource.DataSource = tutorTable;
         }
     
-public static DataTable LoadTutor(int tutorId)
+public static DataTable LoadTutor(string tutorId)
         {
             const string query = """
         SELECT
@@ -57,7 +71,7 @@ public static DataTable LoadTutor(int tutorId)
             using OleDbCommand command = new(query, connection);
             using OleDbDataAdapter adapter = new(command);
 
-            command.Parameters.Add("@Tutor_ID", OleDbType.Integer).Value = tutorId;
+            command.Parameters.Add("@Tutor_ID", OleDbType.VarWChar, 8).Value = tutorId;
 
             DataTable tutorTable = new();
 
