@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using TutoringAcademicSupport.Student.ViewTutorAvailability;
 
-namespace TutoringAcademicSupport.Student
+namespace TutoringAcademicSupport.Student.Dashboard
 {
     public partial class StudentForm : Form
     {

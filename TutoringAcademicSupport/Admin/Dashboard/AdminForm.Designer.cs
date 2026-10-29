@@ -1,4 +1,4 @@
-﻿namespace TutoringAcademicSupport.Admin
+namespace TutoringAcademicSupport.Admin.Dashboard
 {
     partial class AdminForm
     {

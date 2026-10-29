@@ -1,4 +1,4 @@
-﻿namespace TutoringAcademicSupport.Tutor
+namespace TutoringAcademicSupport.Tutor.UpdateAvailability
 {
     partial class UpdateAvailabilityForm
     {

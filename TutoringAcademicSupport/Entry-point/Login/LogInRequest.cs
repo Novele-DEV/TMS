@@ -1,4 +1,4 @@
-﻿namespace TutoringAcademicSupport.LogIn
+namespace TutoringAcademicSupport.EntryPoint.Login
 {
     public sealed class LoginRequest
     {
