@@ -103,7 +103,8 @@
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(480, 36);
             lblMessage.TabIndex = 9;
-            lblMessage.Text = "Message";
+            lblMessage.Text = "You are loggin in as";
+            lblMessage.Click += lblMessage_Click;
             // 
             // LnkCreateStudent
             // 

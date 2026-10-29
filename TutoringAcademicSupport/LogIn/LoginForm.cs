@@ -8,10 +8,10 @@ using TutoringAcademicSupport.Student;
 
 namespace TutoringAcademicSupport.LogIn
 {
-    
+
     public partial class LoginForm : Form
     {
-        
+
         private bool busy; //prevents competing actions
         private readonly string selectedRole;
 
@@ -25,6 +25,8 @@ namespace TutoringAcademicSupport.LogIn
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             lblIntro.Text = $"Enter your {selectedRole.ToLower()} ID and password.";
+            lblMessage.Text = $"You are logging in as a {selectedRole.ToLower()}.";
+            lblUserID.Text = $"Enter your {selectedRole.ToLower()} ID:";
             txtPassword.MaxLength = 64; // this matches the database column size
             txtUserID.MaxLength = 16; // the admin ID is the longest with 16 characters
             txtPassword.UseSystemPasswordChar = true;
@@ -44,8 +46,8 @@ namespace TutoringAcademicSupport.LogIn
         }
 
         // this method calls for logging into the account 
-        private void btnLogIn_Click (object sender, EventArgs e)
-        { 
+        private void btnLogIn_Click(object sender, EventArgs e)
+        {
             if (busy || !CheckRequired()) return;
             busy = true;
             UpdateControls();
@@ -86,7 +88,7 @@ namespace TutoringAcademicSupport.LogIn
             {
                 Debug.WriteLine(ex);
                 ShowError("Operation could not be completed.");
-                MessageBox.Show("Please close this page and open it again before retrying.");    
+                MessageBox.Show("Please close this page and open it again before retrying.");
             }
             finally
             {
@@ -105,7 +107,7 @@ namespace TutoringAcademicSupport.LogIn
         {
             errorProvider.Clear();
             bool valid = true;
-    
+
             if (txtUserID.Text.Trim().Length == 0)
             {
                 errorProvider.SetError(txtUserID, "Please fill in your student number or administrator ID.");
@@ -182,7 +184,7 @@ namespace TutoringAcademicSupport.LogIn
             lblMessage.ForeColor = SystemColors.ControlText;
             lblMessage.Text = text;
         }
-        
+
 
 
 
@@ -195,6 +197,10 @@ namespace TutoringAcademicSupport.LogIn
         {
 
         }
-       
+
+        private void lblMessage_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
