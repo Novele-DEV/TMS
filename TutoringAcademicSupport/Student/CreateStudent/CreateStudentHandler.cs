@@ -14,7 +14,6 @@ public static class CreateStudentHandler
             return new CreateStudentResult { Message = validationMessage };
         }
 
-        DatabaseConnection.EnsureStudentPasswordSchema();
         string passwordHash = PasswordService.HashPassword(request.Password);
 
         using OleDbConnection connection = DatabaseConnection.GetConnection();

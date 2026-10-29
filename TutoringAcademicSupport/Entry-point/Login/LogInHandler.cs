@@ -30,7 +30,6 @@ namespace TutoringAcademicSupport.EntryPoint.Login
                 return InvalidCredentials();
             }
 
-            DatabaseConnection.EnsureStudentPasswordSchema();
             const string query = """
                 SELECT [Student_FName], [Student_Password]
                 FROM [Student]
