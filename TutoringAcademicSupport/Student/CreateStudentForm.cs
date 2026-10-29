@@ -28,12 +28,13 @@ namespace TutoringAcademicSupport.Student
 
         // this is read by the login form so it can fill in the login details after a successful account creation
         public int? CreatedStudentID { get; private set; }
-        public string CreatedEmail { get; private set; }
+        public string CreatedPassword { get; private set; } = string.Empty;
+
         public CreateStudentForm()
         {
+            InitializeComponent();
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
-            InitializeComponent();
 
             // these limits follow the data dictionary from Milestone 1
             txtStudentID.MaxLength = 7; // 7 digit number
@@ -52,7 +53,7 @@ namespace TutoringAcademicSupport.Student
 
             txtPassword.MaxLength = 64;
             txtConfirmPassword.MaxLength = 64;
-            txtPassword.UseSystemPasswordChar = true; // the password text box will only include dots, with the handler hashing it with PasswordService.HashPassword.
+            txtPassword.UseSystemPasswordChar = true;
             txtConfirmPassword.UseSystemPasswordChar = true;
 
             cboProgramme.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -104,7 +105,8 @@ namespace TutoringAcademicSupport.Student
                     Phone = txtPhone.Text.Trim(),
                     Faculty = (string)cboFaculty.SelectedItem!,
                     Programme = (string)cboProgramme.SelectedItem!,
-                    Password = txtPassword.Text
+                    Password = txtPassword.Text,
+                    ConfirmPassword = txtConfirmPassword.Text
                 };
 
                 // then, the validator will check the request before the handler does any work.
@@ -121,8 +123,8 @@ namespace TutoringAcademicSupport.Student
                     {
                         created = true;
                         CreatedStudentID = request.StudentId;
-                        CreatedEmail = request.Email;
-                        ShowSuccess("Account created successfully. \u2713");
+                        CreatedPassword = request.Password;
+                        ShowSuccess("Account created successfully. You can now log in.");
                     }
                     else
                     {
@@ -146,9 +148,12 @@ namespace TutoringAcademicSupport.Student
             }
             finally
             {
-                // the password and confirm password text boxes are cleared out.
-                txtPassword.Clear();
-                txtConfirmPassword.Clear();
+                if (!created)
+                {
+                    txtPassword.Clear();
+                    txtConfirmPassword.Clear();
+                }
+
                 busy = false;
                 UpdateControls();
             }
@@ -178,17 +183,19 @@ namespace TutoringAcademicSupport.Student
             if (txtEmail.Text.Trim().Length == 0)
                 valid = Fail(txtEmail, "Please enter the email address.");
 
+            if (txtPassword.Text.Length == 0)
+                valid = Fail(txtPassword, "Please enter a password.");
+            else if (txtPassword.Text.Length > 64)
+                valid = Fail(txtPassword, "Password must be 64 characters or fewer.");
+            else if (txtConfirmPassword.Text != txtPassword.Text)
+                valid = Fail(txtConfirmPassword, "The passwords do not match.");
+
             // matches the stored format, for example + 27821234567.
             string phone = txtPhone.Text.Trim();
             if (phone.Length == 0)
                 valid = Fail(txtPhone, "Please enter the phone number.");
             else if (!Regex.IsMatch(phone, @"^\+27\d{9}$"))
                 valid = Fail(txtPhone, "Use the format +27821234567.");
-
-            if (txtPassword.Text.Length == 0)
-                valid = Fail(txtPassword, "Please enter a password.");
-            else if (txtConfirmPassword.Text != txtPassword.Text)
-                valid = Fail(txtConfirmPassword, "The passwords do not match.");
 
             if (cboFaculty.SelectedIndex < 0)
                 valid = Fail(cboFaculty, "Please select a faculty.");

@@ -7,6 +7,7 @@ using TutoringAcademicSupport.Admin.EditTutor;
 using TutoringAcademicSupport.Admin.Reports;
 using TutoringAcademicSupport.Common.Database;
 using TutoringAcademicSupport.LogIn;
+using TutoringAcademicSupport.Tutor;
 
 namespace TutoringAcademicSupport.Admin
 {
@@ -102,6 +103,24 @@ namespace TutoringAcademicSupport.Admin
          // It opens the ReportGenerationForm as a modal dialog.
             using ReportGenerationForm reportForm = new();
             reportForm.ShowDialog(this);
+        }
+
+        private void btnUpdateAvailability_Click(object sender, EventArgs e)
+        {
+            if (tutorDataGridView.SelectedRows.Count == 0 ||
+                tutorDataGridView.SelectedRows[0].DataBoundItem is not DataRowView selectedRow)
+            {
+                MessageBox.Show(
+                    "Please select a tutor record first.",
+                    "No Tutor Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+                return;
+            }
+
+            string tutorId = Convert.ToString(selectedRow["Tutor_ID"]) ?? string.Empty;
+            using UpdateAvailabilityForm form = new(tutorId);
+            form.ShowDialog(this);
         }
     }
 }

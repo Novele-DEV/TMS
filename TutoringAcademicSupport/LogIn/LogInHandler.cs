@@ -1,15 +1,107 @@
-﻿namespace TutoringAcademicSupport.LogIn
+﻿using System.Data.OleDb;
+using System.Globalization;
+using TutoringAcademicSupport.Common.Database;
+
+namespace TutoringAcademicSupport.LogIn
 {
     public static class LoginHandler
     {
         public static LoginResult Handle(LoginRequest request)
         {
-            // Database table validation will be added after the exact
-            // Access table and column names are confirmed.
+            if (string.Equals(request.Role, "Administrator", StringComparison.OrdinalIgnoreCase))
+            {
+                return HandleAdministratorLogin(request);
+            }
+
+            if (!string.Equals(request.Role, "Student", StringComparison.OrdinalIgnoreCase))
+            {
+                return InvalidCredentials();
+            }
+
+            return HandleStudentLogin(request);
+        }
+
+        private static LoginResult HandleStudentLogin(LoginRequest request)
+        {
+            if (!int.TryParse(request.UserId, NumberStyles.None, CultureInfo.InvariantCulture, out int studentId) ||
+                studentId <= 0)
+            {
+                return InvalidCredentials();
+            }
+
+            DatabaseConnection.EnsureStudentPasswordSchema();
+            const string query = """
+                SELECT [Student_FName], [Student_Password]
+                FROM [Student]
+                WHERE [Student_ID] = ?
+                """;
+
+            using OleDbConnection connection = DatabaseConnection.GetConnection();
+            using OleDbCommand command = new(query, connection);
+            command.Parameters.Add("@Student_ID", OleDbType.Integer).Value = studentId;
+
+            connection.Open();
+            using OleDbDataReader reader = command.ExecuteReader();
+            if (!reader.Read() || reader.IsDBNull(1))
+            {
+                return InvalidCredentials();
+            }
+
+            string firstName = reader.GetString(0);
+            string passwordHash = reader.GetString(1);
+            if (!PasswordService.VerifyPassword(passwordHash, request.Password))
+            {
+                return InvalidCredentials();
+            }
+
             return new LoginResult
             {
-                Success = false,
-                Message = "Login database validation has not been configured yet."
+                Success = true,
+                Role = "Student",
+                UserId = studentId,
+                FirstName = firstName
+            };
+        }
+
+        private static LoginResult HandleAdministratorLogin(LoginRequest request)
+        {
+            const string query = """
+                SELECT [Admin_FName], [Admin_Password]
+                FROM [Administrator]
+                WHERE [Admin_ID] = ?
+                """;
+
+            using OleDbConnection connection = DatabaseConnection.GetConnection();
+            using OleDbCommand command = new(query, connection);
+            command.Parameters.Add("@Admin_ID", OleDbType.VarWChar, 8).Value = request.UserId.Trim();
+
+            connection.Open();
+            using OleDbDataReader reader = command.ExecuteReader();
+            if (!reader.Read() || reader.IsDBNull(1))
+            {
+                return InvalidCredentials();
+            }
+
+            string firstName = reader.GetString(0);
+            string passwordHash = reader.GetString(1);
+            if (!PasswordService.VerifyPassword(passwordHash, request.Password))
+            {
+                return InvalidCredentials();
+            }
+
+            return new LoginResult
+            {
+                Success = true,
+                Role = "Administrator",
+                FirstName = firstName
+            };
+        }
+
+        private static LoginResult InvalidCredentials()
+        {
+            return new LoginResult
+            {
+                Message = "Incorrect ID or password. Please try again."
             };
         }
     }

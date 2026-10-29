@@ -115,6 +115,7 @@
             LnkCreateStudent.TabIndex = 10;
             LnkCreateStudent.TabStop = true;
             LnkCreateStudent.Text = "New student? Create an account.";
+            LnkCreateStudent.LinkClicked += LnkCreateStudent_LinkClicked;
             // 
             // btnExit
             // 
@@ -193,4 +194,3 @@
         private Label lblIntroduction;
     }
 }
-

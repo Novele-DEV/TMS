@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using TutoringAcademicSupport.Student.ViewTutorAvailability;
 
 namespace TutoringAcademicSupport.Student
 {
@@ -15,6 +8,28 @@ namespace TutoringAcademicSupport.Student
         public StudentForm()
         {
             InitializeComponent();
+
+            Text = "Student Menu";
+            Controls.Add(new Label
+            {
+                Text = "Student Menu",
+                AutoSize = true,
+                Font = new Font("Segoe UI", 18, FontStyle.Bold),
+                Location = new Point(30, 25)
+            });
+
+            Button btnViewAvailability = new()
+            {
+                Text = "View Tutor Availability",
+                AutoSize = true,
+                Location = new Point(30, 90)
+            };
+            btnViewAvailability.Click += (_, _) =>
+            {
+                using ViewTutorAvailabilityForm form = new();
+                form.ShowDialog(this);
+            };
+            Controls.Add(btnViewAvailability);
         }
     }
 }

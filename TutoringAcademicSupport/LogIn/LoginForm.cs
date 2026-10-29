@@ -27,6 +27,7 @@ namespace TutoringAcademicSupport.LogIn
             lblIntro.Text = $"Enter your {selectedRole.ToLower()} ID and password.";
             lblMessage.Text = $"You are logging in as a {selectedRole.ToLower()}.";
             lblUserID.Text = $"Enter your {selectedRole.ToLower()} ID:";
+            LnkCreateStudent.Visible = string.Equals(selectedRole, "Student", StringComparison.OrdinalIgnoreCase);
             txtPassword.MaxLength = 64; // this matches the database column size
             txtUserID.MaxLength = 16; // the admin ID is the longest with 16 characters
             txtPassword.UseSystemPasswordChar = true;
@@ -56,7 +57,7 @@ namespace TutoringAcademicSupport.LogIn
             LoginResult? result = null;
             try
             {
-                var request = new LoginRequest(txtUserID.Text.Trim(), txtPassword.Text);
+                var request = new LoginRequest(txtUserID.Text.Trim(), txtPassword.Text, selectedRole);
 
                 // the validator will check the request before the handler does any work
                 string problem = LoginValidator.Validate(request);
@@ -154,10 +155,10 @@ namespace TutoringAcademicSupport.LogIn
                 form.ShowDialog(this);
                 if (form.CreatedStudentID.HasValue)
                 {
-                    // simply fill in the log in details
+                    // The generated password is shown on the creation form and prefilled here.
                     txtUserID.Text = form.CreatedStudentID.Value.ToString();
-                    txtPassword.Text = form.CreatedEmail;
-                    ShowSuccess("Student account created successfully. \u2713");
+                    txtPassword.Text = form.CreatedPassword;
+                    ShowSuccess("Student account created successfully. Your generated password is ready.");
                 }
             }
         }
