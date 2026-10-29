@@ -2,8 +2,6 @@
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Windows.Forms;
-using TutoringAcademicSupport.Admin.Dashboard;
-
 
 namespace TutoringAcademicSupport.Admin.AddTutor;
 
@@ -17,13 +15,9 @@ public partial class AddTutorForm : Form
     public AddTutorForm()
     {
         InitializeComponent();
-
-        btnAdd.Click += AddTutorButton_Click;
-        btnClear.Click += ClearButton_Click;
-        btnReturn.Click += ReturnButton_Click;
     }
 
-    private void AddTutorButton_Click(object? sender, EventArgs e)
+    private void btnAdd_Click(object sender, EventArgs e)
     { // This builds the request from the form, validates it and saves the new tutor to the database.
         var request = new AddTutorRequest(
             txtTutorFName.Text.Trim(),
@@ -36,7 +30,7 @@ public partial class AddTutorForm : Form
         string problem = AddTutorValidator.Validate(request);
         if (problem.Length > 0)
         {
-            MessageBox.Show(problem, "Check Tutor Details", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            ShowError(problem);
             return;
         }
 
@@ -45,56 +39,56 @@ public partial class AddTutorForm : Form
             AddTutorResult result = AddTutorHandler.Handle(request);
             if (!result.Success)
             {
-                MessageBox.Show(result.Message, "Tutor Not Added", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowError(result.Message);
                 return;
             }
 
             AddedCount++;
             LastAddedTutorId = result.TutorId;
 
-            MessageBox.Show(result.Message, "Tutor Added", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            ClearButton_Click(sender, e);
+            // the form stays open, so several tutors can be added in a row
+            ClearFields();
+            ShowSuccess($"Tutor {result.TutorId} was added. ✓ You can add another tutor or return to the dashboard.");
         }
         catch (Exception ex) when (ex is OleDbException or InvalidOperationException or FileNotFoundException)
         {
             Debug.WriteLine(ex);
-            MessageBox.Show(
-                "The tutor could not be saved to the database. Please try again.",
-                "Database Error",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
+            ShowError("The tutor could not be saved to the database. Please try again.");
         }
     }
 
-    private void ClearButton_Click(object? sender, EventArgs e)
+    private void btnClear_Click(object sender, EventArgs e)
     {// This clears the input fields on the form when the "Clear" button is clicked.
-        txtTutorID.Clear();
+        ClearFields();
+        lblStatus.Text = string.Empty;
+    }
+
+    private void ClearFields()
+    {
         txtTutorFName.Clear();
         txtTutorLName.Clear();
         txtTutorEmail.Clear();
         txtTutorPhoneNo.Clear();
         txtAcademicAverage.Clear();
         cmbPreferredMode.SelectedIndex = -1;
-    }
-
-    private void ReturnButton_Click(object? sender, EventArgs e)
-    {// This method is called when the "Return" button is clicked.
-     // It closes the current form and returns to the AdminForm.
-        if (Owner is AdminForm adminForm)
-        {
-            adminForm.Show();
-        }
-
-        Close();
+        txtTutorFName.Focus();
     }
 
     private void btnReturn_Click(object sender, EventArgs e)
-    { // takes the user back to the AdminForm when the "Return" button is clicked.
-        if (Owner is AdminForm adminForm)
-        {
-            adminForm.Show();
-        }
+    {// This method is called when the "Return" button is clicked.
+     // It closes the current form and returns to the AdminForm.
         Close();
+    }
 
+    private void ShowSuccess(string text)
+    {
+        lblStatus.ForeColor = ColorTranslator.FromHtml("#2E7D32");
+        lblStatus.Text = text;
+    }
+
+    private void ShowError(string text)
+    {
+        lblStatus.ForeColor = ColorTranslator.FromHtml("#C62828");
+        lblStatus.Text = text;
     }
 }

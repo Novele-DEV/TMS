@@ -8,11 +8,32 @@ namespace TutoringAcademicSupport.Common.Database
 {
     public static class DatabaseConnection
     {
-        private static readonly string DatabasePath = Path.Combine(
-            AppContext.BaseDirectory,
-            "Common",
-            "Database",
-            "ByteBetter_Tutoring.accdb");
+        private const string DatabaseFileName = "ByteBetter_Tutoring.accdb";
+
+        private static readonly string DatabasePath = FindDatabasePath();
+
+        // While developing (Debug build), the app uses the project's own database file
+        // (TutoringAcademicSupport\Common\Database), so saved changes such as new tutors are kept
+        // and can be opened in Access. Otherwise each build's copy in bin\ would be used, and that
+        // copy is replaced whenever the project's file is newer. A Release build uses the copy
+        // next to the program.
+        private static string FindDatabasePath()
+        {
+            string outputCopy = Path.Combine(AppContext.BaseDirectory, "Common", "Database", DatabaseFileName);
+
+#if DEBUG
+            for (DirectoryInfo? folder = new(AppContext.BaseDirectory); folder is not null; folder = folder.Parent)
+            {
+                string projectCopy = Path.Combine(folder.FullName, "Common", "Database", DatabaseFileName);
+                if (File.Exists(projectCopy) && folder.EnumerateFiles("*.csproj").Any())
+                {
+                    return projectCopy;
+                }
+            }
+#endif
+
+            return outputCopy;
+        }
 
         private static readonly string ConnectionString =
             $"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={DatabasePath};Persist Security Info=False;";

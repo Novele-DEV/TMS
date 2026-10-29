@@ -4,7 +4,6 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
-using TutoringAcademicSupport.Admin.Dashboard;
 using TutoringAcademicSupport.Common.Database;
 
 namespace TutoringAcademicSupport.Admin.EditTutor
@@ -12,6 +11,9 @@ namespace TutoringAcademicSupport.Admin.EditTutor
     public partial class EditTutorForm : Form
     {
         private readonly string tutorId = string.Empty;
+
+        // the values as loaded from the database, used by Undo Changes and the unsaved-changes check
+        private string[] savedValues = Array.Empty<string>();
 
         public EditTutorForm()
         {
@@ -22,92 +24,72 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         {
             InitializeComponent();
             this.tutorId = tutorId;
-
-            LoadTutorRecord();
         }
+
+        private void EditTutorForm_Load(object sender, EventArgs e)
+        {
+            if (tutorId.Length > 0)
+            {
+                LoadTutorRecord();
+            }
+        }
+
         private void LoadTutorRecord()
         {
+            DataTable tutorTable;
             try
             {
-                DataTable tutorTable = DatabaseConnection.LoadTutor(tutorId);
-
-                if (tutorTable.Rows.Count == 0)
-                {
-                    MessageBox.Show(
-                        "The selected tutor could not be found.",
-                        "Tutor Not Found",
-                        MessageBoxButtons.OK,
-                        MessageBoxIcon.Warning);
-
-                    Close();
-                    return;
-                }
-
-                dataGridView1.AutoGenerateColumns = true;
-                dataGridView1.AllowUserToAddRows = false;
-                dataGridView1.ReadOnly = false;
-                dataGridView1.SelectionMode =
-                    DataGridViewSelectionMode.CellSelect;
-                dataGridView1.DataSource = tutorTable;
-
-                dataGridView1.Columns["Tutor_ID"].ReadOnly = true;
+                tutorTable = DatabaseConnection.LoadTutor(tutorId);
             }
-            catch (Exception ex)
+            catch (Exception ex) when (ex is OleDbException or InvalidOperationException or FileNotFoundException)
+            {
+                Debug.WriteLine(ex);
+                SetFieldsEnabled(false);
+                ShowError("The tutor's details could not be loaded from the database. Please return and try again.");
+                return;
+            }
+
+            if (tutorTable.Rows.Count == 0)
             {
                 MessageBox.Show(
-                    ex.ToString(),
-                    "Database Error",
+                    "The selected tutor could not be found.",
+                    "Tutor Not Found",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
-        }
-        private void btnReturn_Click(object sender, EventArgs e)
-        {
-            //return to the AdminForm when the "Return" button is clicked.
-            if (Owner is AdminForm adminForm)
-            {
-                adminForm.Show();
-            }
+                    MessageBoxIcon.Warning);
 
-            Close();
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            //clear updates made to the form when the "Clear" button is clicked.
-
-            LoadTutorRecord();
-        }
-
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            //save changes made to the tutor record when the "Add" button is clicked.
-            dataGridView1.EndEdit(); // commits a cell that is still being typed in
-
-            if (dataGridView1.DataSource is not DataTable tutorTable || tutorTable.Rows.Count == 0)
-            {
-                MessageBox.Show(
-                    "There is no tutor record to save.",
-                    "Nothing to Save",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                BeginInvoke(Close); // the form cannot close while it is still loading
                 return;
             }
 
             DataRow row = tutorTable.Rows[0];
-            var request = new EditTutorRequest(
-                tutorId,
+            txtTutorID.Text = tutorId;
+            Text = $"Edit Tutor - {tutorId}";
+
+            ShowValues(new[]
+            {
                 CellText(row, "Tutor_FName"),
                 CellText(row, "Tutor_LName"),
                 CellText(row, "Tutor_Email"),
                 CellText(row, "Tutor_Phone"),
-                CellText(row, "Tutor_AcademicAverage"),
-                CellText(row, "Tutor_PreferredMode"));
+                AverageText(row["Tutor_AcademicAverage"]),
+                CellText(row, "Tutor_PreferredMode")
+            });
+
+            savedValues = CurrentValues();
+            lblStatus.Text = string.Empty;
+            txtTutorFName.Focus();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //save changes made to the tutor record when the "Save Changes" button is clicked.
+            string[] values = CurrentValues();
+            var request = new EditTutorRequest(tutorId, values[0], values[1], values[2], values[3], values[4], values[5]);
 
             string problem = EditTutorValidator.Validate(request);
             if (problem.Length > 0)
             {
-                MessageBox.Show(problem, "Check Tutor Details", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowError(problem);
                 return;
             }
 
@@ -116,28 +98,108 @@ namespace TutoringAcademicSupport.Admin.EditTutor
                 EditTutorResult result = EditTutorHandler.Handle(request);
                 if (!result.Success)
                 {
-                    MessageBox.Show(result.Message, "Tutor Not Updated", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    ShowError(result.Message);
                     return;
                 }
 
-                MessageBox.Show(result.Message, "Tutor Updated", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.OK; // closes the form and tells the dashboard the save worked
+                savedValues = values;
+                DialogResult = DialogResult.OK; // tells the dashboard the save worked, so it can confirm the update
+                Close();
             }
             catch (Exception ex) when (ex is OleDbException or InvalidOperationException or FileNotFoundException)
             {
                 Debug.WriteLine(ex);
-                MessageBox.Show(
-                    "The tutor changes could not be saved to the database. Please try again.",
-                    "Database Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                ShowError("The tutor changes could not be saved to the database. Please try again.");
             }
         }
 
-        // reads a grid value as trimmed text; an empty cell becomes an empty string
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            //undo changes made on the form, putting back the details as they were loaded.
+            if (savedValues.Length == 0) return;
+
+            ShowValues(savedValues);
+            ShowNeutral("Your changes were undone.");
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            //return to the AdminForm when the "Return" button is clicked.
+            Close();
+        }
+
+        // Asks before closing when there are changes that have not been saved.
+        private void EditTutorForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DialogResult == DialogResult.OK || !HasUnsavedChanges()) return;
+
+            DialogResult answer = MessageBox.Show(
+                "You have changes that have not been saved. Close without saving?",
+                "Unsaved Changes",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+
+            e.Cancel = answer != DialogResult.Yes;
+        }
+
+        private bool HasUnsavedChanges()
+        {
+            return savedValues.Length > 0 && !savedValues.SequenceEqual(CurrentValues());
+        }
+
+        private string[] CurrentValues()
+        {
+            return new[]
+            {
+                txtTutorFName.Text.Trim(),
+                txtTutorLName.Text.Trim(),
+                txtTutorEmail.Text.Trim(),
+                txtTutorPhoneNo.Text.Trim(),
+                txtAcademicAverage.Text.Trim(),
+                cmbPreferredMode.SelectedItem?.ToString() ?? string.Empty
+            };
+        }
+
+        private void ShowValues(string[] values)
+        {
+            txtTutorFName.Text = values[0];
+            txtTutorLName.Text = values[1];
+            txtTutorEmail.Text = values[2];
+            txtTutorPhoneNo.Text = values[3];
+            txtAcademicAverage.Text = values[4];
+            cmbPreferredMode.SelectedIndex = cmbPreferredMode.Items.IndexOf(values[5]);
+        }
+
+        private void SetFieldsEnabled(bool enabled)
+        {
+            txtTutorFName.Enabled = txtTutorLName.Enabled = txtTutorEmail.Enabled = enabled;
+            txtTutorPhoneNo.Enabled = txtAcademicAverage.Enabled = cmbPreferredMode.Enabled = enabled;
+            btnAdd.Enabled = btnClear.Enabled = enabled;
+        }
+
+        // reads a database value as trimmed text; an empty value becomes an empty string
         private static string CellText(DataRow row, string column)
         {
             return Convert.ToString(row[column], CultureInfo.CurrentCulture)?.Trim() ?? string.Empty;
+        }
+
+        // the average is shown the way it is typed, e.g. "82,5" where a decimal comma is used
+        private static string AverageText(object value)
+        {
+            return value is DBNull ? string.Empty : Convert.ToDouble(value).ToString("0.##", CultureInfo.CurrentCulture);
+        }
+
+        private void ShowError(string text)
+        {
+            lblStatus.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblStatus.Text = text;
+        }
+
+        private void ShowNeutral(string text)
+        {
+            lblStatus.ForeColor = SystemColors.ControlText;
+            lblStatus.Text = text;
         }
     }
 }

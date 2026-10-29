@@ -28,96 +28,272 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
             label1 = new Label();
-            btnReturn = new Button();
-            btnClear = new Button();
+            lblSubtitle = new Label();
+            lblTutorID = new Label();
+            txtTutorID = new TextBox();
+            lblFirstName = new Label();
+            txtTutorFName = new TextBox();
+            lblLastName = new Label();
+            txtTutorLName = new TextBox();
+            lblEmail = new Label();
+            txtTutorEmail = new TextBox();
+            lblPhone = new Label();
+            txtTutorPhoneNo = new TextBox();
+            lblAverage = new Label();
+            txtAcademicAverage = new TextBox();
+            lblMode = new Label();
+            cmbPreferredMode = new ComboBox();
+            lblStatus = new Label();
             btnAdd = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btnClear = new Button();
+            btnReturn = new Button();
             SuspendLayout();
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(48, 101);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(300, 188);
-            dataGridView1.TabIndex = 0;
-            // 
+            //
             // label1
-            // 
+            //
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             label1.ForeColor = SystemColors.HotTrack;
-            label1.Location = new Point(48, 37);
+            label1.Location = new Point(24, 15);
             label1.Name = "label1";
-            label1.Size = new Size(158, 41);
-            label1.TabIndex = 6;
+            label1.Size = new Size(152, 41);
+            label1.TabIndex = 0;
             label1.Text = "Edit Tutor";
-            // 
-            // btnReturn
-            // 
-            btnReturn.BackColor = SystemColors.Highlight;
-            btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnReturn.ForeColor = SystemColors.ControlDark;
-            btnReturn.Location = new Point(569, 50);
-            btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(190, 60);
-            btnReturn.TabIndex = 18;
-            btnReturn.Text = "Return";
-            btnReturn.UseVisualStyleBackColor = false;
-            btnReturn.Click += btnReturn_Click;
-            // 
-            // btnClear
-            // 
-            btnClear.BackColor = SystemColors.Highlight;
-            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnClear.ForeColor = SystemColors.ControlDark;
-            btnClear.Location = new Point(569, 144);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(190, 60);
-            btnClear.TabIndex = 19;
-            btnClear.Text = "Clear";
-            btnClear.UseVisualStyleBackColor = false;
-            btnClear.Click += btnClear_Click;
-            // 
+            //
+            // lblSubtitle
+            //
+            lblSubtitle.AutoSize = true;
+            lblSubtitle.ForeColor = SystemColors.GrayText;
+            lblSubtitle.Location = new Point(28, 60);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(430, 20);
+            lblSubtitle.TabIndex = 1;
+            lblSubtitle.Text = "Change the details below, then save. The tutor ID cannot be changed.";
+            //
+            // lblTutorID
+            //
+            lblTutorID.AutoSize = true;
+            lblTutorID.Location = new Point(28, 108);
+            lblTutorID.Name = "lblTutorID";
+            lblTutorID.Size = new Size(64, 20);
+            lblTutorID.TabIndex = 2;
+            lblTutorID.Text = "Tutor ID:";
+            //
+            // txtTutorID
+            //
+            txtTutorID.Location = new Point(210, 105);
+            txtTutorID.Name = "txtTutorID";
+            txtTutorID.ReadOnly = true;
+            txtTutorID.Size = new Size(400, 27);
+            txtTutorID.TabIndex = 3;
+            txtTutorID.TabStop = false;
+            //
+            // lblFirstName
+            //
+            lblFirstName.AutoSize = true;
+            lblFirstName.Location = new Point(28, 154);
+            lblFirstName.Name = "lblFirstName";
+            lblFirstName.Size = new Size(83, 20);
+            lblFirstName.TabIndex = 4;
+            lblFirstName.Text = "&First name:";
+            //
+            // txtTutorFName
+            //
+            txtTutorFName.Location = new Point(210, 151);
+            txtTutorFName.MaxLength = 50;
+            txtTutorFName.Name = "txtTutorFName";
+            txtTutorFName.Size = new Size(400, 27);
+            txtTutorFName.TabIndex = 5;
+            //
+            // lblLastName
+            //
+            lblLastName.AutoSize = true;
+            lblLastName.Location = new Point(28, 200);
+            lblLastName.Name = "lblLastName";
+            lblLastName.Size = new Size(82, 20);
+            lblLastName.TabIndex = 6;
+            lblLastName.Text = "La&st name:";
+            //
+            // txtTutorLName
+            //
+            txtTutorLName.Location = new Point(210, 197);
+            txtTutorLName.MaxLength = 50;
+            txtTutorLName.Name = "txtTutorLName";
+            txtTutorLName.Size = new Size(400, 27);
+            txtTutorLName.TabIndex = 7;
+            //
+            // lblEmail
+            //
+            lblEmail.AutoSize = true;
+            lblEmail.Location = new Point(28, 246);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(49, 20);
+            lblEmail.TabIndex = 8;
+            lblEmail.Text = "E&mail:";
+            //
+            // txtTutorEmail
+            //
+            txtTutorEmail.Location = new Point(210, 243);
+            txtTutorEmail.MaxLength = 100;
+            txtTutorEmail.Name = "txtTutorEmail";
+            txtTutorEmail.PlaceholderText = "name@example.com";
+            txtTutorEmail.Size = new Size(400, 27);
+            txtTutorEmail.TabIndex = 9;
+            //
+            // lblPhone
+            //
+            lblPhone.AutoSize = true;
+            lblPhone.Location = new Point(28, 292);
+            lblPhone.Name = "lblPhone";
+            lblPhone.Size = new Size(53, 20);
+            lblPhone.TabIndex = 10;
+            lblPhone.Text = "&Phone:";
+            //
+            // txtTutorPhoneNo
+            //
+            txtTutorPhoneNo.Location = new Point(210, 289);
+            txtTutorPhoneNo.MaxLength = 12;
+            txtTutorPhoneNo.Name = "txtTutorPhoneNo";
+            txtTutorPhoneNo.PlaceholderText = "+27821234567";
+            txtTutorPhoneNo.Size = new Size(400, 27);
+            txtTutorPhoneNo.TabIndex = 11;
+            //
+            // lblAverage
+            //
+            lblAverage.AutoSize = true;
+            lblAverage.Location = new Point(28, 338);
+            lblAverage.Name = "lblAverage";
+            lblAverage.Size = new Size(132, 20);
+            lblAverage.TabIndex = 12;
+            lblAverage.Text = "Academic a&verage:";
+            //
+            // txtAcademicAverage
+            //
+            txtAcademicAverage.Location = new Point(210, 335);
+            txtAcademicAverage.Name = "txtAcademicAverage";
+            txtAcademicAverage.PlaceholderText = "Optional, 0 to 100";
+            txtAcademicAverage.Size = new Size(400, 27);
+            txtAcademicAverage.TabIndex = 13;
+            //
+            // lblMode
+            //
+            lblMode.AutoSize = true;
+            lblMode.Location = new Point(28, 384);
+            lblMode.Name = "lblMode";
+            lblMode.Size = new Size(116, 20);
+            lblMode.TabIndex = 14;
+            lblMode.Text = "Preferred m&ode:";
+            //
+            // cmbPreferredMode
+            //
+            cmbPreferredMode.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbPreferredMode.Items.AddRange(new object[] { "Virtual", "In-person", "Both" });
+            cmbPreferredMode.Location = new Point(210, 381);
+            cmbPreferredMode.Name = "cmbPreferredMode";
+            cmbPreferredMode.Size = new Size(200, 28);
+            cmbPreferredMode.TabIndex = 15;
+            //
+            // lblStatus
+            //
+            lblStatus.Location = new Point(28, 425);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(582, 48);
+            lblStatus.TabIndex = 16;
+            //
             // btnAdd
-            // 
-            btnAdd.BackColor = SystemColors.Highlight;
+            //
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnAdd.ForeColor = SystemColors.ControlDark;
-            btnAdd.Location = new Point(569, 245);
+            btnAdd.Location = new Point(28, 486);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(190, 90);
-            btnAdd.TabIndex = 20;
-            btnAdd.Text = "Save Changes";
-            btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Size = new Size(170, 48);
+            btnAdd.TabIndex = 17;
+            btnAdd.Text = "&Save Changes";
+            btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
-            // 
+            //
+            // btnClear
+            //
+            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnClear.Location = new Point(210, 486);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(170, 48);
+            btnClear.TabIndex = 18;
+            btnClear.Text = "&Undo Changes";
+            btnClear.UseVisualStyleBackColor = true;
+            btnClear.Click += btnClear_Click;
+            //
+            // btnReturn
+            //
+            btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnReturn.Location = new Point(440, 486);
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(170, 48);
+            btnReturn.TabIndex = 19;
+            btnReturn.Text = "Re&turn";
+            btnReturn.UseVisualStyleBackColor = true;
+            btnReturn.Click += btnReturn_Click;
+            //
             // EditTutorForm
-            // 
+            //
+            AcceptButton = btnAdd;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            CancelButton = btnReturn;
+            ClientSize = new Size(640, 560);
             Controls.Add(btnReturn);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);
+            Controls.Add(lblStatus);
+            Controls.Add(cmbPreferredMode);
+            Controls.Add(lblMode);
+            Controls.Add(txtAcademicAverage);
+            Controls.Add(lblAverage);
+            Controls.Add(txtTutorPhoneNo);
+            Controls.Add(lblPhone);
+            Controls.Add(txtTutorEmail);
+            Controls.Add(lblEmail);
+            Controls.Add(txtTutorLName);
+            Controls.Add(lblLastName);
+            Controls.Add(txtTutorFName);
+            Controls.Add(lblFirstName);
+            Controls.Add(txtTutorID);
+            Controls.Add(lblTutorID);
+            Controls.Add(lblSubtitle);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "EditTutorForm";
-            Text = "EditTutorForm";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Edit Tutor";
+            FormClosing += EditTutorForm_FormClosing;
+            Load += EditTutorForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
         private Label label1;
-        private Button btnReturn;
-        private Button btnClear;
+        private Label lblSubtitle;
+        private Label lblTutorID;
+        private TextBox txtTutorID;
+        private Label lblFirstName;
+        private TextBox txtTutorFName;
+        private Label lblLastName;
+        private TextBox txtTutorLName;
+        private Label lblEmail;
+        private TextBox txtTutorEmail;
+        private Label lblPhone;
+        private TextBox txtTutorPhoneNo;
+        private Label lblAverage;
+        private TextBox txtAcademicAverage;
+        private Label lblMode;
+        private ComboBox cmbPreferredMode;
+        private Label lblStatus;
         private Button btnAdd;
+        private Button btnClear;
+        private Button btnReturn;
     }
 }

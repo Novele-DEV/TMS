@@ -1,268 +1,297 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-
-namespace TutoringAcademicSupport.Admin.AddTutor;
+﻿namespace TutoringAcademicSupport.Admin.AddTutor;
 
 partial class AddTutorForm
 {
-    private System.ComponentModel.IContainer? components;
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
+    private System.ComponentModel.IContainer components = null;
 
-    private Label label1 = null!;
-    private Label label2 = null!;
-    private Label label3 = null!;
-    private Label label4 = null!;
-    private Label label5 = null!;
-    private Label label6 = null!;
-    private Label label7 = null!;
-    private Label label8 = null!;
-
-    private TextBox txtTutorID = null!;
-    private TextBox txtTutorPhoneNo = null!;
-    private TextBox txtTutorEmail = null!;
-    private TextBox txtTutorLName = null!;
-    private TextBox txtTutorFName = null!;
-    private TextBox txtAcademicAverage = null!;
-
-    private ComboBox cmbPreferredMode = null!;
-
-    private Button btnReturn = null!;
-    private Button btnClear = null!;
-    private Button btnAdd = null!;
-
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
     protected override void Dispose(bool disposing)
     {
-        if (disposing && components != null)
+        if (disposing && (components != null))
         {
             components.Dispose();
         }
-
         base.Dispose(disposing);
     }
 
+    #region Windows Form Designer generated code
+
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
     private void InitializeComponent()
     {
-        label1 = new Label();
-        label2 = new Label();
-        label3 = new Label();
-        label4 = new Label();
-        label5 = new Label();
-        label6 = new Label();
-        label7 = new Label();
-        label8 = new Label();
+        lblTitle = new Label();
+        lblSubtitle = new Label();
+        lblTutorID = new Label();
         txtTutorID = new TextBox();
-        txtTutorPhoneNo = new TextBox();
-        txtTutorEmail = new TextBox();
-        txtTutorLName = new TextBox();
+        lblFirstName = new Label();
         txtTutorFName = new TextBox();
+        lblLastName = new Label();
+        txtTutorLName = new TextBox();
+        lblEmail = new Label();
+        txtTutorEmail = new TextBox();
+        lblPhone = new Label();
+        txtTutorPhoneNo = new TextBox();
+        lblAverage = new Label();
         txtAcademicAverage = new TextBox();
+        lblMode = new Label();
         cmbPreferredMode = new ComboBox();
-        btnReturn = new Button();
-        btnClear = new Button();
+        lblStatus = new Label();
         btnAdd = new Button();
+        btnClear = new Button();
+        btnReturn = new Button();
         SuspendLayout();
-        // 
-        // label1
-        // 
-        label1.AutoSize = true;
-        label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-        label1.ForeColor = SystemColors.HotTrack;
-        label1.Location = new Point(310, 25);
-        label1.Name = "label1";
-        label1.Size = new Size(129, 32);
-        label1.TabIndex = 0;
-        label1.Text = "Add Tutor";
-        // 
-        // label2
-        // 
-        label2.AutoSize = true;
-        label2.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-        label2.ForeColor = SystemColors.HotTrack;
-        label2.Location = new Point(90, 365);
-        label2.Name = "label2";
-        label2.Size = new Size(210, 31);
-        label2.TabIndex = 1;
-        label2.Text = "Academic Average";
-        // 
-        // label3
-        // 
-        label3.AutoSize = true;
-        label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-        label3.ForeColor = SystemColors.HotTrack;
-        label3.Location = new Point(90, 420);
-        label3.Name = "label3";
-        label3.Size = new Size(182, 31);
-        label3.TabIndex = 2;
-        label3.Text = "Preferred Mode";
-        // 
-        // label4
-        // 
-        label4.AutoSize = true;
-        label4.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-        label4.ForeColor = SystemColors.HotTrack;
-        label4.Location = new Point(90, 310);
-        label4.Name = "label4";
-        label4.Size = new Size(176, 31);
-        label4.TabIndex = 3;
-        label4.Text = "Phone Number";
-        // 
-        // label5
-        // 
-        label5.AutoSize = true;
-        label5.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-        label5.ForeColor = SystemColors.HotTrack;
-        label5.Location = new Point(90, 255);
-        label5.Name = "label5";
-        label5.Size = new Size(73, 31);
-        label5.TabIndex = 4;
-        label5.Text = "Email";
-        // 
-        // label6
-        // 
-        label6.AutoSize = true;
-        label6.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-        label6.ForeColor = SystemColors.HotTrack;
-        label6.Location = new Point(90, 200);
-        label6.Name = "label6";
-        label6.Size = new Size(126, 31);
-        label6.TabIndex = 5;
-        label6.Text = "Last Name";
-        // 
-        // label7
-        // 
-        label7.AutoSize = true;
-        label7.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-        label7.ForeColor = SystemColors.HotTrack;
-        label7.Location = new Point(90, 145);
-        label7.Name = "label7";
-        label7.Size = new Size(130, 31);
-        label7.TabIndex = 6;
-        label7.Text = "First Name";
-        // 
-        // label8
-        // 
-        label8.AutoSize = true;
-        label8.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-        label8.ForeColor = SystemColors.HotTrack;
-        label8.Location = new Point(90, 90);
-        label8.Name = "label8";
-        label8.Size = new Size(101, 31);
-        label8.TabIndex = 7;
-        label8.Text = "Tutor ID";
-        // 
+        //
+        // lblTitle
+        //
+        lblTitle.AutoSize = true;
+        lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+        lblTitle.ForeColor = SystemColors.HotTrack;
+        lblTitle.Location = new Point(24, 15);
+        lblTitle.Name = "lblTitle";
+        lblTitle.Size = new Size(155, 41);
+        lblTitle.TabIndex = 0;
+        lblTitle.Text = "Add Tutor";
+        //
+        // lblSubtitle
+        //
+        lblSubtitle.AutoSize = true;
+        lblSubtitle.ForeColor = SystemColors.GrayText;
+        lblSubtitle.Location = new Point(28, 60);
+        lblSubtitle.Name = "lblSubtitle";
+        lblSubtitle.Size = new Size(470, 20);
+        lblSubtitle.TabIndex = 1;
+        lblSubtitle.Text = "Enter the tutor's details. The tutor ID is created when you save.";
+        //
+        // lblTutorID
+        //
+        lblTutorID.AutoSize = true;
+        lblTutorID.Location = new Point(28, 108);
+        lblTutorID.Name = "lblTutorID";
+        lblTutorID.Size = new Size(64, 20);
+        lblTutorID.TabIndex = 2;
+        lblTutorID.Text = "Tutor ID:";
+        //
         // txtTutorID
-        // 
-        txtTutorID.Location = new Point(310, 90);
+        //
+        txtTutorID.Location = new Point(210, 105);
         txtTutorID.Name = "txtTutorID";
         txtTutorID.ReadOnly = true;
-        txtTutorID.Size = new Size(190, 27);
-        txtTutorID.TabIndex = 8;
-        txtTutorID.Text = "(auto-generated by system)";
-        // 
-        // txtTutorPhoneNo
-        // 
-        txtTutorPhoneNo.Location = new Point(310, 310);
-        txtTutorPhoneNo.Name = "txtTutorPhoneNo";
-        txtTutorPhoneNo.Size = new Size(165, 27);
-        txtTutorPhoneNo.TabIndex = 9;
-        // 
-        // txtTutorEmail
-        // 
-        txtTutorEmail.Location = new Point(310, 255);
-        txtTutorEmail.Name = "txtTutorEmail";
-        txtTutorEmail.Size = new Size(235, 27);
-        txtTutorEmail.TabIndex = 10;
-        // 
-        // txtTutorLName
-        // 
-        txtTutorLName.Location = new Point(310, 200);
-        txtTutorLName.Name = "txtTutorLName";
-        txtTutorLName.Size = new Size(190, 27);
-        txtTutorLName.TabIndex = 11;
-        // 
+        txtTutorID.Size = new Size(400, 27);
+        txtTutorID.TabIndex = 3;
+        txtTutorID.TabStop = false;
+        txtTutorID.Text = "(created when you save)";
+        //
+        // lblFirstName
+        //
+        lblFirstName.AutoSize = true;
+        lblFirstName.Location = new Point(28, 154);
+        lblFirstName.Name = "lblFirstName";
+        lblFirstName.Size = new Size(83, 20);
+        lblFirstName.TabIndex = 4;
+        lblFirstName.Text = "&First name:";
+        //
         // txtTutorFName
-        // 
-        txtTutorFName.Location = new Point(310, 145);
+        //
+        txtTutorFName.Location = new Point(210, 151);
+        txtTutorFName.MaxLength = 50;
         txtTutorFName.Name = "txtTutorFName";
-        txtTutorFName.Size = new Size(190, 27);
-        txtTutorFName.TabIndex = 12;
-        // 
+        txtTutorFName.Size = new Size(400, 27);
+        txtTutorFName.TabIndex = 5;
+        //
+        // lblLastName
+        //
+        lblLastName.AutoSize = true;
+        lblLastName.Location = new Point(28, 200);
+        lblLastName.Name = "lblLastName";
+        lblLastName.Size = new Size(82, 20);
+        lblLastName.TabIndex = 6;
+        lblLastName.Text = "La&st name:";
+        //
+        // txtTutorLName
+        //
+        txtTutorLName.Location = new Point(210, 197);
+        txtTutorLName.MaxLength = 50;
+        txtTutorLName.Name = "txtTutorLName";
+        txtTutorLName.Size = new Size(400, 27);
+        txtTutorLName.TabIndex = 7;
+        //
+        // lblEmail
+        //
+        lblEmail.AutoSize = true;
+        lblEmail.Location = new Point(28, 246);
+        lblEmail.Name = "lblEmail";
+        lblEmail.Size = new Size(49, 20);
+        lblEmail.TabIndex = 8;
+        lblEmail.Text = "E&mail:";
+        //
+        // txtTutorEmail
+        //
+        txtTutorEmail.Location = new Point(210, 243);
+        txtTutorEmail.MaxLength = 100;
+        txtTutorEmail.Name = "txtTutorEmail";
+        txtTutorEmail.PlaceholderText = "name@example.com";
+        txtTutorEmail.Size = new Size(400, 27);
+        txtTutorEmail.TabIndex = 9;
+        //
+        // lblPhone
+        //
+        lblPhone.AutoSize = true;
+        lblPhone.Location = new Point(28, 292);
+        lblPhone.Name = "lblPhone";
+        lblPhone.Size = new Size(53, 20);
+        lblPhone.TabIndex = 10;
+        lblPhone.Text = "&Phone:";
+        //
+        // txtTutorPhoneNo
+        //
+        txtTutorPhoneNo.Location = new Point(210, 289);
+        txtTutorPhoneNo.MaxLength = 12;
+        txtTutorPhoneNo.Name = "txtTutorPhoneNo";
+        txtTutorPhoneNo.PlaceholderText = "+27821234567";
+        txtTutorPhoneNo.Size = new Size(400, 27);
+        txtTutorPhoneNo.TabIndex = 11;
+        //
+        // lblAverage
+        //
+        lblAverage.AutoSize = true;
+        lblAverage.Location = new Point(28, 338);
+        lblAverage.Name = "lblAverage";
+        lblAverage.Size = new Size(132, 20);
+        lblAverage.TabIndex = 12;
+        lblAverage.Text = "Academic a&verage:";
+        //
         // txtAcademicAverage
-        // 
-        txtAcademicAverage.Location = new Point(310, 365);
+        //
+        txtAcademicAverage.Location = new Point(210, 335);
         txtAcademicAverage.Name = "txtAcademicAverage";
-        txtAcademicAverage.Size = new Size(165, 27);
+        txtAcademicAverage.PlaceholderText = "Optional, 0 to 100";
+        txtAcademicAverage.Size = new Size(400, 27);
         txtAcademicAverage.TabIndex = 13;
-        // 
+        //
+        // lblMode
+        //
+        lblMode.AutoSize = true;
+        lblMode.Location = new Point(28, 384);
+        lblMode.Name = "lblMode";
+        lblMode.Size = new Size(116, 20);
+        lblMode.TabIndex = 14;
+        lblMode.Text = "Preferred m&ode:";
+        //
         // cmbPreferredMode
-        // 
+        //
         cmbPreferredMode.DropDownStyle = ComboBoxStyle.DropDownList;
         cmbPreferredMode.Items.AddRange(new object[] { "Virtual", "In-person", "Both" });
-        cmbPreferredMode.Location = new Point(310, 420);
+        cmbPreferredMode.Location = new Point(210, 381);
         cmbPreferredMode.Name = "cmbPreferredMode";
-        cmbPreferredMode.Size = new Size(165, 28);
-        cmbPreferredMode.TabIndex = 14;
-        // 
-        // btnReturn
-        // 
-        btnReturn.BackColor = SystemColors.Highlight;
-        btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnReturn.ForeColor = SystemColors.ControlDark;
-        btnReturn.Location = new Point(560, 145);
-        btnReturn.Name = "btnReturn";
-        btnReturn.Size = new Size(190, 60);
-        btnReturn.TabIndex = 15;
-        btnReturn.Text = "Return";
-        btnReturn.UseVisualStyleBackColor = false;
-        btnReturn.Click += btnReturn_Click;
-        // 
-        // btnClear
-        // 
-        btnClear.BackColor = SystemColors.Highlight;
-        btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnClear.ForeColor = SystemColors.ControlDark;
-        btnClear.Location = new Point(560, 240);
-        btnClear.Name = "btnClear";
-        btnClear.Size = new Size(190, 60);
-        btnClear.TabIndex = 16;
-        btnClear.Text = "Clear";
-        btnClear.UseVisualStyleBackColor = false;
-        // 
+        cmbPreferredMode.Size = new Size(200, 28);
+        cmbPreferredMode.TabIndex = 15;
+        //
+        // lblStatus
+        //
+        lblStatus.Location = new Point(28, 425);
+        lblStatus.Name = "lblStatus";
+        lblStatus.Size = new Size(582, 48);
+        lblStatus.TabIndex = 16;
+        //
         // btnAdd
-        // 
-        btnAdd.BackColor = SystemColors.Highlight;
+        //
         btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnAdd.ForeColor = SystemColors.ControlDark;
-        btnAdd.Location = new Point(560, 335);
+        btnAdd.Location = new Point(28, 486);
         btnAdd.Name = "btnAdd";
-        btnAdd.Size = new Size(190, 90);
+        btnAdd.Size = new Size(170, 48);
         btnAdd.TabIndex = 17;
-        btnAdd.Text = "Add Tutor";
-        btnAdd.UseVisualStyleBackColor = false;
-        // 
+        btnAdd.Text = "&Add Tutor";
+        btnAdd.UseVisualStyleBackColor = true;
+        btnAdd.Click += btnAdd_Click;
+        //
+        // btnClear
+        //
+        btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+        btnClear.Location = new Point(210, 486);
+        btnClear.Name = "btnClear";
+        btnClear.Size = new Size(170, 48);
+        btnClear.TabIndex = 18;
+        btnClear.Text = "&Clear";
+        btnClear.UseVisualStyleBackColor = true;
+        btnClear.Click += btnClear_Click;
+        //
+        // btnReturn
+        //
+        btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+        btnReturn.Location = new Point(440, 486);
+        btnReturn.Name = "btnReturn";
+        btnReturn.Size = new Size(170, 48);
+        btnReturn.TabIndex = 19;
+        btnReturn.Text = "Re&turn";
+        btnReturn.UseVisualStyleBackColor = true;
+        btnReturn.Click += btnReturn_Click;
+        //
         // AddTutorForm
-        // 
-        ClientSize = new Size(800, 530);
-        Controls.Add(label1);
-        Controls.Add(label2);
-        Controls.Add(label3);
-        Controls.Add(label4);
-        Controls.Add(label5);
-        Controls.Add(label6);
-        Controls.Add(label7);
-        Controls.Add(label8);
-        Controls.Add(txtTutorID);
-        Controls.Add(txtTutorPhoneNo);
-        Controls.Add(txtTutorEmail);
-        Controls.Add(txtTutorLName);
-        Controls.Add(txtTutorFName);
-        Controls.Add(txtAcademicAverage);
-        Controls.Add(cmbPreferredMode);
+        //
+        AcceptButton = btnAdd;
+        AutoScaleDimensions = new SizeF(8F, 20F);
+        AutoScaleMode = AutoScaleMode.Font;
+        CancelButton = btnReturn;
+        ClientSize = new Size(640, 560);
         Controls.Add(btnReturn);
         Controls.Add(btnClear);
         Controls.Add(btnAdd);
+        Controls.Add(lblStatus);
+        Controls.Add(cmbPreferredMode);
+        Controls.Add(lblMode);
+        Controls.Add(txtAcademicAverage);
+        Controls.Add(lblAverage);
+        Controls.Add(txtTutorPhoneNo);
+        Controls.Add(lblPhone);
+        Controls.Add(txtTutorEmail);
+        Controls.Add(lblEmail);
+        Controls.Add(txtTutorLName);
+        Controls.Add(lblLastName);
+        Controls.Add(txtTutorFName);
+        Controls.Add(lblFirstName);
+        Controls.Add(txtTutorID);
+        Controls.Add(lblTutorID);
+        Controls.Add(lblSubtitle);
+        Controls.Add(lblTitle);
+        FormBorderStyle = FormBorderStyle.FixedDialog;
+        MaximizeBox = false;
+        MinimizeBox = false;
         Name = "AddTutorForm";
+        StartPosition = FormStartPosition.CenterParent;
         Text = "Add Tutor";
         ResumeLayout(false);
         PerformLayout();
     }
+
+    #endregion
+
+    private Label lblTitle;
+    private Label lblSubtitle;
+    private Label lblTutorID;
+    private TextBox txtTutorID;
+    private Label lblFirstName;
+    private TextBox txtTutorFName;
+    private Label lblLastName;
+    private TextBox txtTutorLName;
+    private Label lblEmail;
+    private TextBox txtTutorEmail;
+    private Label lblPhone;
+    private TextBox txtTutorPhoneNo;
+    private Label lblAverage;
+    private TextBox txtAcademicAverage;
+    private Label lblMode;
+    private ComboBox cmbPreferredMode;
+    private Label lblStatus;
+    private Button btnAdd;
+    private Button btnClear;
+    private Button btnReturn;
 }
