@@ -1,8 +1,0 @@
-if (LoginForm.currentUser is null)
-{
-    lblTutorMessage.Text = "Welcome!";
-}
-else
-{
-    lblTutorMessage.Text = $"Welcome, {LoginForm.currentUser.FirstName}!";
-}

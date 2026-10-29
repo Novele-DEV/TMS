@@ -89,7 +89,7 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
                                 cmbMode.Items.Add("In-person");
                                 cmbMode.Items.Add("Virtual");
 
-                                string mode = reader["Session_ModeOfDelivery"].ToString();
+                                string? mode = reader["Session_ModeOfDelivery"].ToString();
 
                                 if (cmbMode.Items.Contains(mode))
                                 {
@@ -212,4 +212,3 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
         }
     }
 }
-

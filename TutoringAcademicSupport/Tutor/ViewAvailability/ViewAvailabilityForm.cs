@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TutoringAcademicSupport.LogIn;
+using TutoringAcademicSupport.EntryPoint.Login;
+using TutoringAcademicSupport.Tutor.UpdateAvailability;
+using TutoringAcademicSupport.EntryPoint.MainMenu;
 
 namespace TutoringAcademicSupport.Tutor
 {

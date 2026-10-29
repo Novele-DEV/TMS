@@ -17,7 +17,7 @@ namespace TutoringAcademicSupport.Student.BookSession
 
 
 
-        private void BookSessionForm_Load(object sender, EventArgs e)
+        private void BookSessionForm_Load(object? sender, EventArgs e)
         {
             cmbMode.SelectedIndex = 0;
             dtpSessionDate.MinDate = DateTime.Today;

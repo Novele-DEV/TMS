@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿#nullable enable
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace TutoringAcademicSupport.Admin.AddTutor;
@@ -41,6 +42,7 @@ partial class AddTutorForm
 
     private void InitializeComponent()
     {
+        components = new System.ComponentModel.Container();
         label1 = new Label();
         label2 = new Label();
         label3 = new Label();

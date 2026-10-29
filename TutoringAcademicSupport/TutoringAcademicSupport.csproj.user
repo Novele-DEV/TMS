@@ -59,7 +59,7 @@
     <Compile Update="Tutor\UpdateAvailability\UpdateAvailabilityForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Tutor\ViewAvailabilityForm.cs">
+    <Compile Update="Tutor\ViewAvailability\ViewAvailabilityForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

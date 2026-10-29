@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Admin.Dashboard;
+using TutoringAcademicSupport.EntryPoint.MainMenu;
 using TutoringAcademicSupport.Student.CreateStudent;
 using TutoringAcademicSupport.Student.Dashboard;
 
@@ -166,7 +167,11 @@ namespace TutoringAcademicSupport.EntryPoint.Login
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Hide();
+            using(var page = new MainMenuForm())
+            {
+                page.ShowDialog(this);
+            }
         }
 
         private void ShowSuccess(string text)
