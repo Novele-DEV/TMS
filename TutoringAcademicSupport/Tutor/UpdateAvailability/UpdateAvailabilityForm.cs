@@ -6,128 +6,153 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
 {
     public partial class UpdateAvailabilityForm : Form
     {
-        private readonly TextBox txtTutorId = new();
-        private readonly DataGridView availabilityGrid = new();
-        private int? selectedAvailabilityId;
+        // the days in the order a week is read, rather than alphabetical order
+        private static readonly string[] WeekDays =
+            { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+        private int? selectedAvailabilityId; // null while a new slot is being entered
+        private bool loading;                 // ignores selection changes while the grid is refilled
 
         public UpdateAvailabilityForm(string tutorId = "")
         {
             InitializeComponent();
 
-            Text = "Update Tutor Availability";
-            ClientSize = new Size(800, 570);
-            StartPosition = FormStartPosition.CenterParent;
+            cmbAvailDay.Items.AddRange(WeekDays);
 
-            Controls.Add(new Label { Text = "Tutor ID", AutoSize = true, Location = new Point(20, 20) });
-            txtTutorId.Location = new Point(100, 16);
-            txtTutorId.Size = new Size(140, 27);
-            txtTutorId.MaxLength = 8;
-            txtTutorId.Text = tutorId;
-            Controls.Add(txtTutorId);
-
-            Button btnLoad = new() { Text = "Load", Location = new Point(250, 15), Size = new Size(85, 30) };
-            btnLoad.Click += (_, _) => LoadAvailability();
-            Controls.Add(btnLoad);
-
-            cmbAvailDay.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbAvailDay.Items.AddRange(Enum.GetNames<DayOfWeek>());
-            cmbAvailDay.SelectedIndex = 0;
-
-            ConfigureTimePicker(dtpStartTime, new Point(320, 60));
-
-            ConfigureTimePicker(dtpEndTime, new Point(545, 60));
-            dtpEndTime.Value = DateTime.Today.AddHours(10);
-
-            availabilityGrid.Location = new Point(20, 110);
-            availabilityGrid.Size = new Size(750, 350);
             availabilityGrid.ReadOnly = true;
             availabilityGrid.AllowUserToAddRows = false;
             availabilityGrid.AllowUserToDeleteRows = false;
+            availabilityGrid.AllowUserToResizeRows = false;
             availabilityGrid.MultiSelect = false;
+            availabilityGrid.RowHeadersVisible = false;
             availabilityGrid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             availabilityGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            availabilityGrid.SelectionChanged += AvailabilityGrid_SelectionChanged;
-            Controls.Add(availabilityGrid);
+            availabilityGrid.BackgroundColor = SystemColors.Window;
 
-            Button btnSave = new() { Text = "Save Slot", Location = new Point(20, 475), Size = new Size(120, 35) };
-            btnSave.Click += (_, _) => SaveAvailability();
-            Controls.Add(btnSave);
+            // a grid selects its first row by itself when it is filled or shown; clear that,
+            // so the form starts ready for a new slot instead of silently editing the first one
+            availabilityGrid.DataBindingComplete += (_, _) =>
+            {
+                loading = true;
+                availabilityGrid.ClearSelection();
+                availabilityGrid.CurrentCell = null;
+                loading = false;
+            };
 
-            Button btnNew = new() { Text = "New Slot", Location = new Point(155, 475), Size = new Size(120, 35) };
-            btnNew.Click += (_, _) => ClearSelection();
-            Controls.Add(btnNew);
-
-            Button btnDelete = new() { Text = "Delete Slot", Location = new Point(290, 475), Size = new Size(120, 35) };
-            btnDelete.Click += (_, _) => DeleteAvailability();
-            Controls.Add(btnDelete);
-
-            lblMessage.Location = new Point(20, 525);
-            lblMessage.Size = new Size(750, 30);
-
+            // opened from the dashboard for one tutor, the tutor cannot be changed here
+            txtTutorId.Text = tutorId;
             if (!string.IsNullOrWhiteSpace(tutorId))
             {
+                txtTutorId.ReadOnly = true;
+                txtTutorId.TabStop = false;
+                btnLoad.Visible = false;
+                Text = $"Tutor Availability - {tutorId}";
+            }
+
+            StartNewSlot();
+        }
+
+        private void UpdateAvailabilityForm_Load(object sender, EventArgs e)
+        {
+            if (txtTutorId.Text.Trim().Length > 0)
+            {
                 LoadAvailability();
+                ActiveControl = cmbAvailDay; // ready to enter a new slot
+            }
+            else
+            {
+                ShowNeutral("Enter a tutor ID and choose Load to see that tutor's availability.");
+                txtTutorId.Focus();
             }
         }
 
-        private static void ConfigureTimePicker(DateTimePicker picker, Point location)
+        private void btnLoad_Click(object sender, EventArgs e)
         {
-            picker.Format = DateTimePickerFormat.Custom;
-            picker.CustomFormat = "HH:mm";
-            picker.ShowUpDown = true;
-            picker.Value = DateTime.Today.AddHours(9);
-            picker.Location = location;
-            picker.Size = new Size(100, 27);
+            LoadAvailability();
         }
 
-        private void LoadAvailability()
+        // Loads the tutor's slots. Returns false (and says why) when they could not be loaded.
+        private bool LoadAvailability(bool reportCount = true)
         {
             string tutorId = txtTutorId.Text.Trim();
             if (tutorId.Length == 0)
             {
                 ShowError("Enter a tutor ID.");
-                return;
+                return false;
             }
 
+            DataTable availability;
             try
             {
-                DataTable availability = UpdateTutorAvailabilityHandler.LoadForTutor(tutorId);
-                if (availability.Rows.Count == 0)
-                {
-                    ShowError("No availability found for that tutor.");
-                }
-                else
-                {
-                    ShowNeutral($"Loaded {availability.Rows.Count} availability slot(s).");
-                }
-
-                availabilityGrid.DataSource = availability;
-                availabilityGrid.ClearSelection();
-                selectedAvailabilityId = null;
-                if (availabilityGrid.Columns["Avail_ID"] != null)
-                {
-                    availabilityGrid.Columns["Avail_ID"].Visible = false;
-                    availabilityGrid.Columns["Avail_StartTime"].DefaultCellStyle.Format = "HH:mm";
-                    availabilityGrid.Columns["Avail_EndTime"].DefaultCellStyle.Format = "HH:mm";
-                }
-
-                selectedAvailabilityId = null;
+                availability = UpdateTutorAvailabilityHandler.LoadForTutor(tutorId);
             }
-            catch (OleDbException ex)
+            catch (Exception ex) when (ex is OleDbException or InvalidOperationException)
             {
                 Debug.WriteLine(ex);
-                ShowError("Could not load tutor availability from the database.");
-                MessageBox.Show(this, ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                availabilityGrid.DataSource = null;
+                ShowError("The tutor's availability could not be loaded from the database. Please try again.");
+                return false;
+            }
+
+            // sort Monday to Sunday, then by start time
+            availability.Columns.Add("DayOrder", typeof(int));
+            foreach (DataRow row in availability.Rows)
+            {
+                row["DayOrder"] = Array.IndexOf(WeekDays, Convert.ToString(row["Avail_Day"]));
+            }
+
+            DataView view = availability.DefaultView;
+            view.Sort = "DayOrder, Avail_StartTime";
+
+            loading = true;
+            availabilityGrid.DataSource = view;
+            ShowColumns();
+            availabilityGrid.ClearSelection();
+            loading = false;
+
+            StartNewSlot();
+
+            if (reportCount)
+            {
+                if (availability.Rows.Count == 0)
+                    ShowNeutral("This tutor has no availability slots yet. Add one on the right.");
+                else
+                    ShowNeutral($"{availability.Rows.Count} availability slot(s). Select one to change or delete it.");
+            }
+
+            return true;
+        }
+
+        // Shows only Day, Start and End, with readable headings and 24-hour times.
+        private void ShowColumns()
+        {
+            foreach (DataGridViewColumn column in availabilityGrid.Columns)
+            {
+                column.Visible = column.Name is "Avail_Day" or "Avail_StartTime" or "Avail_EndTime";
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
+            if (availabilityGrid.Columns["Avail_Day"] is DataGridViewColumn day) day.HeaderText = "Day";
+            if (availabilityGrid.Columns["Avail_StartTime"] is DataGridViewColumn start)
+            {
+                start.HeaderText = "Start";
+                start.DefaultCellStyle.Format = "HH:mm";
+            }
+            if (availabilityGrid.Columns["Avail_EndTime"] is DataGridViewColumn end)
+            {
+                end.HeaderText = "End";
+                end.DefaultCellStyle.Format = "HH:mm";
             }
         }
 
-        private void SaveAvailability()
+        private void btnSave_Click(object sender, EventArgs e)
         {
+            bool updating = selectedAvailabilityId.HasValue;
             UpdateTutorAvailabilityRequest request = new()
             {
                 TutorId = txtTutorId.Text.Trim(),
                 AvailabilityId = selectedAvailabilityId,
-                Day = cmbAvailDay.Text,
+                Day = cmbAvailDay.SelectedItem?.ToString() ?? string.Empty,
                 StartTime = dtpStartTime.Value,
                 EndTime = dtpEndTime.Value
             };
@@ -141,30 +166,36 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
                     return;
                 }
 
-                ShowSuccess(result.Message);
-                LoadAvailability();
-                ClearSelection();
+                // reload first, then confirm, so the confirmation is not replaced by the slot count
+                if (LoadAvailability(reportCount: false))
+                {
+                    ShowSuccess($"{request.Day} {request.StartTime:HH:mm}-{request.EndTime:HH:mm} was {(updating ? "updated" : "added")}. ✓");
+                }
             }
-            catch (OleDbException ex)
+            catch (Exception ex) when (ex is OleDbException or InvalidOperationException)
             {
                 Debug.WriteLine(ex);
-                ShowError("Could not save tutor availability.");
-                MessageBox.Show(this, ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (InvalidOperationException ex)
-            {
-                Debug.WriteLine(ex);
-                ShowError(ex.Message);
+                ShowError("The availability slot could not be saved to the database. Please try again.");
             }
         }
 
-        private void DeleteAvailability()
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             if (!selectedAvailabilityId.HasValue)
             {
                 ShowError("Select an availability slot to delete.");
                 return;
             }
+
+            string slot = $"{cmbAvailDay.SelectedItem} {dtpStartTime.Value:HH:mm}-{dtpEndTime.Value:HH:mm}";
+            DialogResult answer = MessageBox.Show(
+                this,
+                $"Delete the {slot} slot?",
+                "Delete Slot",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button2);
+            if (answer != DialogResult.Yes) return;
 
             try
             {
@@ -177,19 +208,38 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
                     return;
                 }
 
-                ShowSuccess(result.Message);
-                LoadAvailability();
-                ClearSelection();
+                if (LoadAvailability(reportCount: false))
+                {
+                    ShowSuccess($"{slot} was deleted. ✓");
+                }
             }
-            catch (OleDbException ex)
+            catch (Exception ex) when (ex is OleDbException or InvalidOperationException)
             {
                 Debug.WriteLine(ex);
-                ShowError("Could not delete tutor availability.");
-                MessageBox.Show(this, ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ShowError("The availability slot could not be deleted. Please try again.");
             }
         }
 
-        private void AvailabilityGrid_SelectionChanged(object? sender, EventArgs e)
+        // Selecting a slot puts its details on the right, ready to update or delete.
+        // Only a selection the user makes counts (a click, or arrow keys while the grid has focus),
+        // not one the grid makes by itself.
+        private void availabilityGrid_SelectionChanged(object sender, EventArgs e)
+        {
+            if (!loading && availabilityGrid.Focused)
+            {
+                ShowSelectedSlot();
+            }
+        }
+
+        private void availabilityGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                ShowSelectedSlot();
+            }
+        }
+
+        private void ShowSelectedSlot()
         {
             if (availabilityGrid.SelectedRows.Count == 0 ||
                 availabilityGrid.SelectedRows[0].DataBoundItem is not DataRowView selectedRow)
@@ -201,30 +251,48 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             cmbAvailDay.SelectedItem = Convert.ToString(selectedRow["Avail_Day"]);
             dtpStartTime.Value = DateTime.Today.Add(Convert.ToDateTime(selectedRow["Avail_StartTime"]).TimeOfDay);
             dtpEndTime.Value = DateTime.Today.Add(Convert.ToDateTime(selectedRow["Avail_EndTime"]).TimeOfDay);
+
+            grpSlot.Text = "Change selected slot";
+            btnSave.Text = "&Update Slot";
+            btnDelete.Enabled = true;
         }
 
-        private void ClearSelection()
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            availabilityGrid.ClearSelection();
+            StartNewSlot();
+            ShowNeutral("Enter the day and times for the new slot, then choose Add Slot.");
+            cmbAvailDay.Focus();
+        }
+
+        // Resets the panel on the right for entering a new slot.
+        private void StartNewSlot()
         {
             selectedAvailabilityId = null;
-            availabilityGrid.ClearSelection();
-            if (cmbAvailDay.Items.Count > 0)
-            {
-                cmbAvailDay.SelectedIndex = 0;
-            }
-
+            cmbAvailDay.SelectedIndex = 0;
             dtpStartTime.Value = DateTime.Today.AddHours(9);
             dtpEndTime.Value = DateTime.Today.AddHours(10);
+
+            grpSlot.Text = "New slot";
+            btnSave.Text = "&Add Slot";
+            btnDelete.Enabled = false;
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            // closing returns to the screen that opened this one
+            Close();
         }
 
         private void ShowError(string message)
         {
-            lblMessage.ForeColor = Color.Firebrick;
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
             lblMessage.Text = message;
         }
 
         private void ShowSuccess(string message)
         {
-            lblMessage.ForeColor = Color.DarkGreen;
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
             lblMessage.Text = message;
         }
 
@@ -232,37 +300,6 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
         {
             lblMessage.ForeColor = SystemColors.ControlText;
             lblMessage.Text = message;
-        }
-
-        private void UpdateAvailabilityForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnReturn_Click(object sender, EventArgs e)
-        {
-            ViewAvailabilityForm? viewAvailabilityForm = Owner as ViewAvailabilityForm
-                ?? Application.OpenForms.OfType<ViewAvailabilityForm>().FirstOrDefault();
-
-            if (viewAvailabilityForm != null)
-            {
-                viewAvailabilityForm.Show();
-                viewAvailabilityForm.Activate();
-            }
-
-            Close();
-        }
-
-        private void btnClear_Click(object sender, EventArgs e)
-        {
-            ClearSelection();
-            cmbAvailDay.SelectedIndex = -1;
-            ShowNeutral("Availability fields cleared.");
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            SaveAvailability();
         }
     }
 }

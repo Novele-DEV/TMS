@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Student.ViewTutorAvailability;
 
 namespace TutoringAcademicSupport.Student.Dashboard
@@ -20,16 +21,27 @@ namespace TutoringAcademicSupport.Student.Dashboard
 
             Button btnViewAvailability = new()
             {
-                Text = "View Tutor Availability",
+                Text = "&View Tutor Availability",
                 AutoSize = true,
                 Location = new Point(30, 90)
             };
             btnViewAvailability.Click += (_, _) =>
             {
-                using ViewTutorAvailabilityForm form = new();
-                form.ShowDialog(this);
+                // the menu is hidden while tutor availability is open and comes back when it closes
+                ScreenNavigator.Open(this, new ViewTutorAvailabilityForm());
             };
             Controls.Add(btnViewAvailability);
+
+            // logging out closes the menu, which returns to the log in form
+            Button btnLogOut = new()
+            {
+                Text = "&Log Out",
+                AutoSize = true,
+                Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
+                Location = new Point(ClientSize.Width - 130, ClientSize.Height - 60)
+            };
+            btnLogOut.Click += (_, _) => Close();
+            Controls.Add(btnLogOut);
         }
     }
 }

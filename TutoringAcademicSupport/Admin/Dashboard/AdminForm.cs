@@ -9,6 +9,7 @@ using TutoringAcademicSupport.Admin.AddTutor;
 using TutoringAcademicSupport.Admin.EditTutor;
 using TutoringAcademicSupport.Admin.Reports;
 using TutoringAcademicSupport.Common.Database;
+using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Tutor.UpdateAvailability;
 
 namespace TutoringAcademicSupport.Admin.Dashboard
@@ -167,21 +168,21 @@ namespace TutoringAcademicSupport.Admin.Dashboard
 
         private void btnAddTutor_Click(object sender, EventArgs e)
         {// This method is called when the "Add Tutor" button is clicked.
-            using AddTutorForm addTutorForm = new();
-            addTutorForm.ShowDialog(this);
-
-            if (!LoadTutorList()) return;
-
-            if (addTutorForm.AddedCount == 1)
+            ScreenNavigator.Open(this, new AddTutorForm(), addTutorForm =>
             {
-                SelectTutor(addTutorForm.LastAddedTutorId);
-                ShowSuccess($"Tutor {addTutorForm.LastAddedTutorId} was added. ✓");
-            }
-            else if (addTutorForm.AddedCount > 1)
-            {
-                SelectTutor(addTutorForm.LastAddedTutorId);
-                ShowSuccess($"{addTutorForm.AddedCount} tutors were added (latest: {addTutorForm.LastAddedTutorId}). ✓");
-            }
+                if (!LoadTutorList()) return;
+
+                if (addTutorForm.AddedCount == 1)
+                {
+                    SelectTutor(addTutorForm.LastAddedTutorId);
+                    ShowSuccess($"Tutor {addTutorForm.LastAddedTutorId} was added. ✓");
+                }
+                else if (addTutorForm.AddedCount > 1)
+                {
+                    SelectTutor(addTutorForm.LastAddedTutorId);
+                    ShowSuccess($"{addTutorForm.AddedCount} tutors were added (latest: {addTutorForm.LastAddedTutorId}). ✓");
+                }
+            });
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -202,16 +203,16 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             string? tutorId = SelectedTutorId();
             if (tutorId is null) return;
 
-            using EditTutorForm editTutorForm = new(tutorId);
-            DialogResult result = editTutorForm.ShowDialog(this);
-
-            if (!LoadTutorList()) return;
-
-            SelectTutor(tutorId);
-            if (result == DialogResult.OK)
+            ScreenNavigator.Open(this, new EditTutorForm(tutorId), editTutorForm =>
             {
-                ShowSuccess($"Tutor {tutorId} was updated. ✓");
-            }
+                if (!LoadTutorList()) return;
+
+                SelectTutor(tutorId);
+                if (editTutorForm.DialogResult == DialogResult.OK)
+                {
+                    ShowSuccess($"Tutor {tutorId} was updated. ✓");
+                }
+            });
         }
 
         private void btnUpdateAvailability_Click(object sender, EventArgs e)
@@ -219,8 +220,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             string? tutorId = SelectedTutorId();
             if (tutorId is null) return;
 
-            using UpdateAvailabilityForm form = new(tutorId);
-            form.ShowDialog(this);
+            ScreenNavigator.Open(this, new UpdateAvailabilityForm(tutorId), _ => SelectTutor(tutorId));
         }
 
         // The Tutor_ID of the selected row, or null (after telling the admin why) when there is none.
@@ -272,9 +272,8 @@ namespace TutoringAcademicSupport.Admin.Dashboard
 
         private void btnGenerateReports_Click(object sender, EventArgs e)
         {// this method is called when the "Generate Reports" button is clicked.
-         // It opens the ReportGenerationForm as a modal dialog.
-            using ReportGenerationForm reportForm = new();
-            reportForm.ShowDialog(this);
+         // It opens the ReportGenerationForm in place of the dashboard.
+            ScreenNavigator.Open(this, new ReportGenerationForm());
         }
 
         private void ShowSuccess(string text)

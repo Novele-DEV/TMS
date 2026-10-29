@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Admin.Dashboard;
+using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Student.CreateStudent;
 using TutoringAcademicSupport.Student.Dashboard;
 
@@ -131,29 +132,25 @@ namespace TutoringAcademicSupport.EntryPoint.Login
         // frmMainMenu is the current placeholder until an actual menu form is created.
         private void OpenLandingForm(LoginResult result)
         {
-            if (result.Role == "Administrator")
+            Form landing = result.Role == "Administrator"
+                ? new AdminForm(result.FirstName)
+                : new StudentForm();
+
+            // the log in form is hidden while the landing page is open; logging out brings it back, reset
+            ScreenNavigator.Open(this, landing, _ =>
             {
-                using (var landing = new AdminForm(result.FirstName))
-                    landing.ShowDialog(this);
-            }
-            else
-            {
-                using (var landing = new StudentForm())
-                    landing.ShowDialog(this);
-            }
-            txtUserID.Clear();
-            txtPassword.Clear();
-            ShowNeutral("You have been logged out.");
-            Show();
-            txtUserID.Focus();
+                txtUserID.Clear();
+                txtPassword.Clear();
+                ShowNeutral("You have been logged out.");
+                txtUserID.Focus();
+            });
         }
 
         private void LnkCreateStudent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             if (busy) return;
-            using (var form = new CreateStudentForm())
+            ScreenNavigator.Open(this, new CreateStudentForm(), form =>
             {
-                form.ShowDialog(this);
                 if (form.CreatedStudentID.HasValue)
                 {
                     // The password chosen during registration is prefilled here.
@@ -161,7 +158,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
                     txtPassword.Text = form.CreatedPassword;
                     ShowSuccess("Student account created successfully. Your password is ready.");
                 }
-            }
+            });
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -171,7 +168,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
 
         private void ShowSuccess(string text)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("2E7D32");
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
             lblMessage.Text = text;
         }
 

@@ -63,7 +63,7 @@
             btnAgedRequests.Name = "btnAgedRequests";
             btnAgedRequests.Size = new Size(450, 55);
             btnAgedRequests.TabIndex = 2;
-            btnAgedRequests.Text = "Aged Submitted Requests (7+ Days)";
+            btnAgedRequests.Text = "&Aged Submitted Requests (7+ Days)";
             btnAgedRequests.UseVisualStyleBackColor = true;
             btnAgedRequests.Click += btnAgedRequests_Click;
             //
@@ -74,7 +74,7 @@
             btnTutorWorkload.Name = "btnTutorWorkload";
             btnTutorWorkload.Size = new Size(450, 55);
             btnTutorWorkload.TabIndex = 3;
-            btnTutorWorkload.Text = "Tutor Workload by Period";
+            btnTutorWorkload.Text = "Tutor &Workload by Period";
             btnTutorWorkload.UseVisualStyleBackColor = true;
             btnTutorWorkload.Click += btnTutorWorkload_Click;
             //
@@ -85,7 +85,7 @@
             btnCourseDemand.Name = "btnCourseDemand";
             btnCourseDemand.Size = new Size(450, 55);
             btnCourseDemand.TabIndex = 4;
-            btnCourseDemand.Text = "Course Support Demand and Tutor Coverage";
+            btnCourseDemand.Text = "&Course Support Demand and Tutor Coverage";
             btnCourseDemand.UseVisualStyleBackColor = true;
             btnCourseDemand.Click += btnCourseDemand_Click;
             //
@@ -96,7 +96,7 @@
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(180, 50);
             btnReturn.TabIndex = 5;
-            btnReturn.Text = "Return";
+            btnReturn.Text = "Re&turn";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
             //

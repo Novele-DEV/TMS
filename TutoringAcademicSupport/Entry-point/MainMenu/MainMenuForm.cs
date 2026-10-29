@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.EntryPoint.Login;
 
 namespace TutoringAcademicSupport.EntryPoint.MainMenu
@@ -19,15 +20,8 @@ namespace TutoringAcademicSupport.EntryPoint.MainMenu
         }
 
         private void OpenLoginForm(string role)
-        {
-            Hide();
-
-            using (var loginForm = new LoginForm(role))
-            {
-                loginForm.ShowDialog(this);
-            }
-
-            Show();
+        { // the main menu is hidden while the login form is open and comes back when it closes
+            ScreenNavigator.Open(this, new LoginForm(role));
         }
 
         private void btnStudent_Click(object sender, EventArgs e)

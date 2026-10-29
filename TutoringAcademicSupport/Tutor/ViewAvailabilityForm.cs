@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.EntryPoint.Login;
-using TutoringAcademicSupport.EntryPoint.MainMenu;
 using TutoringAcademicSupport.Tutor.UpdateAvailability;
 
 namespace TutoringAcademicSupport.Tutor
@@ -25,23 +25,13 @@ namespace TutoringAcademicSupport.Tutor
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            using UpdateAvailabilityForm updateForm = new();
-            updateForm.ShowDialog(this);
+            // this page is hidden while availability is being updated and comes back when that closes
+            ScreenNavigator.Open(this, new UpdateAvailabilityForm());
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            MainMenuForm? mainMenu = Application
-                .OpenForms
-                .OfType<MainMenuForm>()
-                .FirstOrDefault();
-
-            if (mainMenu != null)
-            {
-                mainMenu.Show();
-                mainMenu.Activate();
-            }
-
+            // closing returns to the screen that opened this one
             Close();
         }
     }
