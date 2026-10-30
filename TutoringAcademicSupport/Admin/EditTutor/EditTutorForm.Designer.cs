@@ -260,27 +260,26 @@
             btnAdd.BackColor = SystemColors.HotTrack;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAdd.Location = new Point(440, 445);
-=========
-            btnAdd.BackColor = Color.DarkBlue;
+            btnAdd.BackColor = Color.HotTrack;
             btnAdd.Location = new Point(28, 514);
             btnAdd.Location = new Point(440, 445);
             btnAdd.Size = new Size(168, 48);
             btnAdd.TabIndex = 17;
->>>>>>>>> Temporary merge branch 2
+
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(170, 79);
             btnAdd.TabIndex = 17;
             btnAdd.Text = "&Save Changes";
             btnAdd.UseVisualStyleBackColor = false;
             btnClear.BackColor = SystemColors.ButtonFace;
-<<<<<<<<< Temporary merge branch 1
+
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.ForeColor = SystemColors.HotTrack;
             btnClear.Location = new Point(202, 514);
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.ForeColor = Color.DarkBlue;
             btnClear.Location = new Point(210, 486);
->>>>>>>>> Temporary merge branch 2
+
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 48);
             btnClear.TabIndex = 22;
@@ -292,7 +291,7 @@
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.Size = new Size(77, 48);
             btnReturn.TabIndex = 19;
->>>>>>>>> Temporary merge branch 2
+
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(170, 48);
             btnReturn.TabIndex = 19;
