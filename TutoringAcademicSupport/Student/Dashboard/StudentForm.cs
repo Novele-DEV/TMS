@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Student.BookSession;
 using TutoringAcademicSupport.Student.CancelBooking;
@@ -17,62 +18,40 @@ namespace TutoringAcademicSupport.Student.Dashboard
             InitializeComponent();
             this.studentId = studentId;
 
-            Text = "Student Menu";
-            Controls.Add(new Label
-            {
-                Text = "Student Menu",
-                AutoSize = true,
-                Font = new Font("Segoe UI", 18, FontStyle.Bold),
-                Location = new Point(30, 25)
-            });
+            picLogo.Image = ByteBetterBrand.Logo;
+            Icon = ByteBetterBrand.WindowIcon;
+            lblLoggedInAs.Text = $"Logged in as student {studentId}";
 
-            // each page opens in place of this menu, which comes back when the page closes
-            Button btnViewAvailability = new()
+            foreach (Button option in new[] { btnViewAvailability, btnBookSession, btnUpdateBooking, btnCancelBooking })
             {
-                Text = "&View Tutor Availability",
-                AutoSize = true,
-                Location = new Point(30, 90)
-            };
-            btnViewAvailability.Click += (_, _) => ScreenNavigator.Open(this, new ViewTutorAvailabilityForm());
-            Controls.Add(btnViewAvailability);
+                ByteBetterBrand.AddFocusOutline(option);
+            }
+        }
 
-            Button btnBookSession = new()
-            {
-                Text = "Book a Tutorial Session",
-                AutoSize = true,
-                Location = new Point(30, 130)
-            };
-            btnBookSession.Click += (_, _) => ScreenNavigator.Open(this, new BookSessionForm());
-            Controls.Add(btnBookSession);
+        // each page opens in place of this menu, which comes back when the page closes
+        private void btnViewAvailability_Click(object sender, EventArgs e)
+        {
+            ScreenNavigator.Open(this, new ViewTutorAvailabilityForm());
+        }
 
-            Button btnUpdateBooking = new()
-            {
-                Text = "Update a Booking",
-                AutoSize = true,
-                Location = new Point(30, 170)
-            };
-            btnUpdateBooking.Click += (_, _) => ScreenNavigator.Open(this, new UpdateBookingForm());
-            Controls.Add(btnUpdateBooking);
+        private void btnBookSession_Click(object sender, EventArgs e)
+        {
+            ScreenNavigator.Open(this, new BookSessionForm(studentId));
+        }
 
-            Button btnCancelBooking = new()
-            {
-                Text = "Cancel a Booking",
-                AutoSize = true,
-                Location = new Point(30, 210)
-            };
-            btnCancelBooking.Click += (_, _) => ScreenNavigator.Open(this, new CancelBookingForm(this.studentId));
-            Controls.Add(btnCancelBooking);
+        private void btnUpdateBooking_Click(object sender, EventArgs e)
+        {
+            ScreenNavigator.Open(this, new UpdateBookingForm());
+        }
 
-            // logging out closes the menu, which returns to the log in form
-            Button btnLogOut = new()
-            {
-                Text = "&Log Out",
-                AutoSize = true,
-                Anchor = AnchorStyles.Bottom | AnchorStyles.Right,
-                Location = new Point(ClientSize.Width - 130, ClientSize.Height - 60)
-            };
-            btnLogOut.Click += (_, _) => Close();
-            Controls.Add(btnLogOut);
+        private void btnCancelBooking_Click(object sender, EventArgs e)
+        {
+            ScreenNavigator.Open(this, new CancelBookingForm(this.studentId));
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        { // logging out closes the menu, which returns to the log in form
+            Close();
         }
     }
 }

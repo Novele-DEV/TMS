@@ -25,6 +25,7 @@
 
         private System.Windows.Forms.Button btnBookTutorial;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnBack;
 
         protected override void Dispose(bool disposing)
         {
@@ -55,12 +56,14 @@
             cmbMode = new ComboBox();
             btnBookTutorial = new Button();
             btnClear = new Button();
+            btnBack = new Button();
             SuspendLayout();
             //
             // lblTitle
             //
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(35, 20);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(344, 41);
@@ -69,6 +72,7 @@
             //
             // lblRules
             //
+            lblRules.ForeColor = SystemColors.GrayText;
             lblRules.Location = new Point(40, 68);
             lblRules.Name = "lblRules";
             lblRules.Size = new Size(440, 36);
@@ -201,32 +205,47 @@
             //
             // btnBookTutorial
             //
-            btnBookTutorial.Location = new Point(180, 435);
+            btnBookTutorial.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnBookTutorial.Location = new Point(40, 436);
             btnBookTutorial.Name = "btnBookTutorial";
-            btnBookTutorial.Size = new Size(130, 35);
+            btnBookTutorial.Size = new Size(160, 44);
             btnBookTutorial.TabIndex = 16;
-            btnBookTutorial.Text = "Book Session";
+            btnBookTutorial.Text = "B&ook Session";
+            btnBookTutorial.UseVisualStyleBackColor = true;
             btnBookTutorial.Click += btnBookTutorial_Click;
             //
             // btnClear
             //
-            btnClear.Location = new Point(320, 435);
+            btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnClear.Location = new Point(210, 436);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(80, 35);
+            btnClear.Size = new Size(110, 44);
             btnClear.TabIndex = 17;
-            btnClear.Text = "Clear";
+            btnClear.Text = "&Clear";
+            btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
+            //
+            // btnBack
+            //
+            btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnBack.Location = new Point(340, 436);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(140, 44);
+            btnBack.TabIndex = 19;
+            btnBack.Text = "&Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
             //
             // lblMessage
             //
-            lblMessage.Location = new Point(40, 490);
+            lblMessage.Location = new Point(40, 494);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(440, 80);
             lblMessage.TabIndex = 18;
             //
             // BookSessionForm
             //
-            BackColor = Color.LightBlue;
+            CancelButton = btnBack;
             ClientSize = new Size(520, 585);
             Controls.Add(lblTitle);
             Controls.Add(lblRules);
@@ -246,6 +265,7 @@
             Controls.Add(cmbMode);
             Controls.Add(btnBookTutorial);
             Controls.Add(btnClear);
+            Controls.Add(btnBack);
             Controls.Add(lblMessage);
             Name = "BookSessionForm";
             StartPosition = FormStartPosition.CenterScreen;

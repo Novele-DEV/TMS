@@ -105,9 +105,9 @@
             // 
             btnClose.Location = new Point(287, 407);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(94, 29);
+            btnClose.Size = new Size(130, 29);
             btnClose.TabIndex = 27;
-            btnClose.Text = "Close";
+            btnClose.Text = "&Back";
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             //
@@ -202,6 +202,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSkyBlue;
+            CancelButton = btnClose;
             ClientSize = new Size(800, 450);
             Controls.Add(lblRules);
             Controls.Add(label7);

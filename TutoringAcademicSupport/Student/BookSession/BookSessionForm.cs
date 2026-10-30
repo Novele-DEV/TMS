@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Student.CancelBooking;
 
 namespace TutoringAcademicSupport.Student.BookSession
@@ -18,6 +19,21 @@ namespace TutoringAcademicSupport.Student.BookSession
         public BookSessionForm()
         {
             InitializeComponent();
+            ByteBetterBrand.AddLogo(this, 80, fitAbove: lblRules);
+        }
+
+        // Opened from the student menu: the logged-in student's ID is filled in and cannot be changed.
+        public BookSessionForm(int studentId) : this()
+        {
+            loggedInStudentId = studentId;
+        }
+
+        private readonly int? loggedInStudentId;
+
+        private void btnBack_Click(object? sender, EventArgs e)
+        {
+            // closing returns to the student menu that opened this page
+            Close();
         }
 
         private void BookSessionForm_Load(object? sender, EventArgs e)
@@ -33,6 +49,13 @@ namespace TutoringAcademicSupport.Student.BookSession
 
                 dtpSessionDate.MinDate = DateTime.Today;
                 ResetPickers();
+
+                if (loggedInStudentId.HasValue)
+                {
+                    txtStudentID.Text = loggedInStudentId.Value.ToString(CultureInfo.InvariantCulture);
+                    txtStudentID.ReadOnly = true;
+                    txtStudentID.TabStop = false;
+                }
             }
             finally
             {
@@ -41,6 +64,12 @@ namespace TutoringAcademicSupport.Student.BookSession
 
             UpdateControls();
             ShowNeutral(StartMessage);
+
+            // the student is already known, so their requests are loaded straight away
+            if (loggedInStudentId.HasValue)
+            {
+                LoadRequests();
+            }
         }
 
         // The pickers start at the current moment. The student chooses the real session date and times.
@@ -264,7 +293,12 @@ namespace TutoringAcademicSupport.Student.BookSession
             loading = true;
             try
             {
-                txtStudentID.Clear();
+                // the logged-in student's ID stays; only an ID that was typed in is cleared
+                if (!loggedInStudentId.HasValue)
+                {
+                    txtStudentID.Clear();
+                }
+
                 cmbRequest.Items.Clear();
                 cmbTutor.Items.Clear();
                 cmbMode.SelectedIndex = 0;
@@ -277,6 +311,11 @@ namespace TutoringAcademicSupport.Student.BookSession
 
             UpdateControls();
             ShowNeutral(StartMessage);
+
+            if (loggedInStudentId.HasValue)
+            {
+                LoadRequests();
+            }
         }
 
         private void ShowError(string text)

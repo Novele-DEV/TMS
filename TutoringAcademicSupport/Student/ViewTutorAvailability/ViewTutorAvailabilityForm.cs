@@ -49,8 +49,19 @@ namespace TutoringAcademicSupport.Student.ViewTutorAvailability
             Controls.Add(availabilityGrid);
 
             lblMessage.Location = new Point(20, 470);
-            lblMessage.Size = new Size(810, 30);
+            lblMessage.Size = new Size(670, 30);
             Controls.Add(lblMessage);
+
+            // closing returns to the student menu that opened this page
+            Button btnBack = new()
+            {
+                Text = "&Back",
+                Location = new Point(700, 466),
+                Size = new Size(130, 34)
+            };
+            btnBack.Click += (_, _) => Close();
+            Controls.Add(btnBack);
+            CancelButton = btnBack; // Esc also goes back
 
             LoadAvailability();
         }
