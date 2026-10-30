@@ -10,6 +10,9 @@ namespace TutoringAcademicSupport.EntryPoint.Login
 
         public int UserId { get; init; }
 
+        // Tutor IDs are text (e.g. TUT00001), so a tutor's ID is returned here instead of in UserId.
+        public string TutorId { get; init; } = string.Empty;
+
         public string FirstName { get; init; } = string.Empty;
     }
 }

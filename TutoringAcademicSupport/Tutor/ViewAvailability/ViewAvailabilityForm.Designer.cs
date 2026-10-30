@@ -28,96 +28,148 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            tblLayout = new TableLayoutPanel();
+            picLogo = new PictureBox();
             label1 = new Label();
             lblTutorMessage = new Label();
-            tutorBindingSource = new BindingSource(components);
-            dataGridView1 = new DataGridView();
+            lblPrompt = new Label();
             btnUpdate = new Button();
             btnReturn = new Button();
-            ((System.ComponentModel.ISupportInitialize)tutorBindingSource).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            tblLayout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             SuspendLayout();
-            // 
+            //
+            // tblLayout
+            //
+            tblLayout.BackColor = Color.White;
+            tblLayout.ColumnCount = 1;
+            tblLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblLayout.Controls.Add(picLogo, 0, 1);
+            tblLayout.Controls.Add(label1, 0, 2);
+            tblLayout.Controls.Add(lblTutorMessage, 0, 3);
+            tblLayout.Controls.Add(lblPrompt, 0, 5);
+            tblLayout.Controls.Add(btnUpdate, 0, 6);
+            tblLayout.Controls.Add(btnReturn, 0, 8);
+            tblLayout.Dock = DockStyle.Fill;
+            tblLayout.Location = new Point(0, 0);
+            tblLayout.Name = "tblLayout";
+            tblLayout.RowCount = 9;
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 46F));
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 38F));
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 100F));
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tblLayout.RowStyles.Add(new RowStyle(SizeType.Absolute, 60F));
+            tblLayout.Size = new Size(760, 580);
+            tblLayout.TabIndex = 0;
+            //
+            // picLogo
+            //
+            picLogo.AccessibleName = "Byte Better logo";
+            picLogo.Anchor = AnchorStyles.None;
+            picLogo.Margin = new Padding(0);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(100, 100);
+            picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            picLogo.TabIndex = 0;
+            picLogo.TabStop = false;
+            //
             // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            //
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.HotTrack;
-            label1.Location = new Point(30, 9);
+            label1.Margin = new Padding(0);
             label1.Name = "label1";
-            label1.Size = new Size(255, 41);
-            label1.TabIndex = 2;
-            label1.Text = "View Availability";
-            // 
+            label1.TabIndex = 1;
+            label1.Text = "Tutor Menu";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            //
             // lblTutorMessage
-            // 
-            lblTutorMessage.AutoSize = true;
-            lblTutorMessage.Location = new Point(30, 59);
+            //
+            lblTutorMessage.Dock = DockStyle.Fill;
+            lblTutorMessage.Font = new Font("Segoe UI", 10F, FontStyle.Italic, GraphicsUnit.Point, 0);
+            lblTutorMessage.ForeColor = Color.FromArgb(96, 96, 96);
+            lblTutorMessage.Margin = new Padding(0);
             lblTutorMessage.Name = "lblTutorMessage";
-            lblTutorMessage.Size = new Size(67, 20);
-            lblTutorMessage.TabIndex = 3;
-            lblTutorMessage.Text = "Hi Tutor!";
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(30, 92);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(312, 188);
-            dataGridView1.TabIndex = 4;
-            // 
+            lblTutorMessage.TabIndex = 2;
+            lblTutorMessage.Text = "Welcome";
+            lblTutorMessage.TextAlign = ContentAlignment.MiddleCenter;
+            //
+            // lblPrompt
+            //
+            lblPrompt.Dock = DockStyle.Fill;
+            lblPrompt.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblPrompt.ForeColor = Color.FromArgb(31, 56, 100);
+            lblPrompt.Margin = new Padding(0);
+            lblPrompt.Name = "lblPrompt";
+            lblPrompt.TabIndex = 3;
+            lblPrompt.Text = "What would you like to do?";
+            lblPrompt.TextAlign = ContentAlignment.MiddleCenter;
+            //
             // btnUpdate
-            // 
-            btnUpdate.BackColor = SystemColors.Highlight;
-            btnUpdate.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            btnUpdate.ForeColor = SystemColors.ControlLightLight;
-            btnUpdate.Location = new Point(389, 154);
+            //
+            btnUpdate.Anchor = AnchorStyles.None;
+            btnUpdate.BackColor = Color.FromArgb(31, 56, 100);
+            btnUpdate.Cursor = Cursors.Hand;
+            btnUpdate.FlatAppearance.BorderSize = 0;
+            btnUpdate.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 38, 70);
+            btnUpdate.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 82, 140);
+            btnUpdate.FlatStyle = FlatStyle.Flat;
+            btnUpdate.Font = new Font("Segoe UI Semibold", 13F, FontStyle.Bold);
+            btnUpdate.ForeColor = Color.White;
+            btnUpdate.Margin = new Padding(0);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(256, 69);
-            btnUpdate.TabIndex = 5;
-            btnUpdate.Text = "Update Availability";
+            btnUpdate.Size = new Size(300, 88);
+            btnUpdate.TabIndex = 4;
+            btnUpdate.Text = "My &Availability";
             btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
-            // 
+            //
             // btnReturn
-            // 
-            btnReturn.BackColor = SystemColors.Highlight;
-            btnReturn.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold);
-            btnReturn.ForeColor = SystemColors.ControlLightLight;
-            btnReturn.Location = new Point(30, 301);
+            //
+            btnReturn.Anchor = AnchorStyles.Right;
+            btnReturn.BackColor = Color.White;
+            btnReturn.Cursor = Cursors.Hand;
+            btnReturn.FlatAppearance.BorderColor = Color.FromArgb(200, 200, 200);
+            btnReturn.FlatAppearance.MouseDownBackColor = Color.FromArgb(225, 228, 235);
+            btnReturn.FlatAppearance.MouseOverBackColor = Color.FromArgb(240, 242, 246);
+            btnReturn.FlatStyle = FlatStyle.Flat;
+            btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
+            btnReturn.Margin = new Padding(0, 0, 24, 0);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(130, 61);
-            btnReturn.TabIndex = 6;
-            btnReturn.Text = "Return";
+            btnReturn.Size = new Size(120, 36);
+            btnReturn.TabIndex = 5;
+            btnReturn.Text = "&Log Out";
             btnReturn.UseVisualStyleBackColor = false;
             btnReturn.Click += btnReturn_Click;
-            // 
+            //
             // ViewAvailabilityForm
-            // 
+            //
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(btnReturn);
-            Controls.Add(btnUpdate);
-            Controls.Add(dataGridView1);
-            Controls.Add(lblTutorMessage);
-            Controls.Add(label1);
+            BackColor = Color.White;
+            ClientSize = new Size(760, 580);
+            Controls.Add(tblLayout);
+            MinimumSize = new Size(700, 600);
             Name = "ViewAvailabilityForm";
-            Text = "ViewAvailabilityForm";
-            ((System.ComponentModel.ISupportInitialize)tutorBindingSource).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Tutor Menu";
+            tblLayout.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
+        private TableLayoutPanel tblLayout;
+        private PictureBox picLogo;
         private Label label1;
         private Label lblTutorMessage;
-        private BindingSource tutorBindingSource;
-        private DataGridView dataGridView1;
+        private Label lblPrompt;
         private Button btnUpdate;
         private Button btnReturn;
     }

@@ -14,6 +14,11 @@ namespace TutoringAcademicSupport.EntryPoint.Login
                 return HandleAdministratorLogin(request);
             }
 
+            if (string.Equals(request.Role, "Tutor", StringComparison.OrdinalIgnoreCase))
+            {
+                return HandleTutorLogin(request);
+            }
+
             if (!string.Equals(request.Role, "Student", StringComparison.OrdinalIgnoreCase))
             {
                 return InvalidCredentials();
@@ -93,6 +98,43 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             {
                 Success = true,
                 Role = "Administrator",
+                FirstName = firstName
+            };
+        }
+
+        // Same checks as the administrator login, against the Tutor table.
+        private static LoginResult HandleTutorLogin(LoginRequest request)
+        {
+            const string query = """
+                SELECT [Tutor_ID], [Tutor_FName], [Tutor_Password]
+                FROM [Tutor]
+                WHERE [Tutor_ID] = ?
+                """;
+
+            using OleDbConnection connection = DatabaseConnection.GetConnection();
+            using OleDbCommand command = new(query, connection);
+            command.Parameters.Add("@Tutor_ID", OleDbType.VarWChar, 8).Value = request.UserId.Trim();
+
+            connection.Open();
+            using OleDbDataReader reader = command.ExecuteReader();
+            if (!reader.Read() || reader.IsDBNull(2))
+            {
+                return InvalidCredentials();
+            }
+
+            string tutorId = reader.GetString(0); // as stored, e.g. TUT00001 even if typed tut00001
+            string firstName = reader.GetString(1);
+            string passwordHash = reader.GetString(2);
+            if (!PasswordService.VerifyPassword(passwordHash, request.Password))
+            {
+                return InvalidCredentials();
+            }
+
+            return new LoginResult
+            {
+                Success = true,
+                Role = "Tutor",
+                TutorId = tutorId,
                 FirstName = firstName
             };
         }

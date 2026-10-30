@@ -52,7 +52,9 @@ public partial class AddTutorForm : Form
 
             // the form stays open, so several tutors can be added in a row
             ClearFields();
-            ShowSuccess($"Tutor {result.TutorId} was added. ✓ You can add another tutor or return to the dashboard.");
+            // the starting password is shown once, so the admin can pass it on to the tutor
+            ShowSuccess($"Tutor {result.TutorId} was added. ✓ Their starting password is {result.StartingPassword} " +
+                        "- give it to the tutor so they can log in.");
         }
         catch (Exception ex) when (ex is OleDbException or InvalidOperationException or FileNotFoundException)
         {

@@ -1,5 +1,6 @@
 using System.Data.OleDb;
 using System.Globalization;
+using TutoringAcademicSupport.Common.Authentication;
 using TutoringAcademicSupport.Common.Database;
 
 namespace TutoringAcademicSupport.Admin.AddTutor;
@@ -26,12 +27,13 @@ public static class AddTutorHandler
         }
 
         string tutorId = NextTutorId(connection);
+        string startingPassword = StartingPassword(tutorId, request.FirstName);
 
         const string insert = """
             INSERT INTO [Tutor]
                 ([Tutor_ID], [Tutor_FName], [Tutor_LName], [Tutor_Email],
-                 [Tutor_Phone], [Tutor_AcademicAverage], [Tutor_PreferredMode])
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+                 [Tutor_Phone], [Tutor_AcademicAverage], [Tutor_PreferredMode], [Tutor_Password])
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
         // OleDb parameters are matched by position, so they must be added in the same order as the columns.
@@ -43,6 +45,7 @@ public static class AddTutorHandler
         command.Parameters.Add("@Tutor_Phone", OleDbType.VarWChar, 12).Value = request.Phone;
         command.Parameters.Add("@Tutor_AcademicAverage", OleDbType.Double).Value = ParseAverage(request.AcademicAverage);
         command.Parameters.Add("@Tutor_PreferredMode", OleDbType.VarWChar, 20).Value = request.PreferredMode;
+        command.Parameters.Add("@Tutor_Password", OleDbType.VarWChar, 255).Value = PasswordService.HashPassword(startingPassword);
 
         command.ExecuteNonQuery();
 
@@ -50,8 +53,18 @@ public static class AddTutorHandler
         {
             Success = true,
             TutorId = tutorId,
+            StartingPassword = startingPassword,
             Message = $"Tutor {tutorId} was added successfully."
         };
+    }
+
+    // The tutor's first password, following the same rule as the student accounts:
+    // last letter of the first name + last 3 digits of the ID + "#TMS" (e.g. Thabo, TUT00001 -> o001#TMS).
+    // Only its hash is stored; the admin passes the password on to the tutor.
+    private static string StartingPassword(string tutorId, string firstName)
+    {
+        int number = int.Parse(tutorId.AsSpan(IdPrefix.Length), CultureInfo.InvariantCulture);
+        return $"{firstName.Trim()[^1]}{(number % 1000).ToString("D3", CultureInfo.InvariantCulture)}#TMS";
     }
 
     private static bool ValueExists(OleDbConnection connection, string column, string value)
