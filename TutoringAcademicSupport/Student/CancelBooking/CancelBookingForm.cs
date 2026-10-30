@@ -13,7 +13,6 @@ namespace TutoringAcademicSupport.Student.CancelBooking
 {
     public partial class CancelBookingForm : Form
     {
-        private const string RuleNoticeText = "Bookings cannot be changed or cancelled less than 48 hours before the session.";
         private const string LoadingMessage = "Loading your bookings...";
         private const string SaveErrorMessage = "An unexpected error has occured. Please try again.";
         private readonly DataSet bookingData = new DataSet("BookingData");
@@ -43,7 +42,7 @@ namespace TutoringAcademicSupport.Student.CancelBooking
             dgvBookings.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBookings.RowHeadersVisible = false;
 
-            lblRules.Text = RuleNoticeText;
+            lblRules.Text = CancelBookingValidator.RuleNotice;
             lblSelected.Text = "";
             lblMessage.Text = "";
             UpdateControls();
@@ -186,7 +185,7 @@ namespace TutoringAcademicSupport.Student.CancelBooking
             dgvBookings.Columns[name].HeaderText = header;
         }
 
-        private void bookingSource_PositioneChanged(object sender, EventArgs e)
+        private void bookingSource_PositionChanged(object sender, EventArgs e)
         {
             if (loading) return;
             ShowCurrentBooking();

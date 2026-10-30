@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Common;
 using TutoringAcademicSupport.Common.Database;
+using TutoringAcademicSupport.Student.CancelBooking;
 
 namespace TutoringAcademicSupport.Student.UpdateBooking
 {
@@ -20,6 +21,10 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
         public UpdateBookingForm()
         {
             InitializeComponent();
+
+            // The notice period comes from the one place it is defined.
+            lblRules.Text = CancelBookingValidator.RuleNotice;
+
             // Add the available tutoring modes.
             cmbMode.Items.Clear();
             cmbMode.Items.Add("In-person");
@@ -197,6 +202,11 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
                 MessageBoxButtons.OK,
                 result.Success ? MessageBoxIcon.Information : MessageBoxIcon.Warning);
         }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void cmbMode_SelectedIndexChanged(object sender, EventArgs e)
         {
 

@@ -55,8 +55,7 @@
             lblHeading.Size = new Size(198, 25);
             lblHeading.TabIndex = 0;
             lblHeading.Text = "Cancel your booking";
-            lblHeading.Click += lblHeading_Click;
-            // 
+            //
             // lblRules
             // 
             lblRules.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -91,7 +90,7 @@
             dgvBookings.RowHeadersVisible = false;
             dgvBookings.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBookings.Size = new Size(840, 265);
-            dgvBookings.TabIndex = 0;
+            dgvBookings.TabIndex = 2;
             // 
             // lblSelected
             // 
@@ -120,7 +119,7 @@
             btnBack.Margin = new Padding(4, 3, 4, 3);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(117, 37);
-            btnBack.TabIndex = 1;
+            btnBack.TabIndex = 5;
             btnBack.Text = "Back to Menu";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
@@ -131,19 +130,24 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(738, 543);
+            btnCancel.Location = new Point(725, 543);
             btnCancel.Margin = new Padding(4, 3, 4, 3);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(117, 37);
-            btnCancel.TabIndex = 2;
-            btnCancel.Text = "Cancel";
+            btnCancel.Size = new Size(130, 37);
+            btnCancel.TabIndex = 6;
+            btnCancel.Text = "Cancel Booking";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancelBooking_Click;
             // 
             // errorProvider
             // 
             errorProvider.ContainerControl = this;
-            // 
+            //
+            // bookingSource
+            //
+            bookingSource.ListChanged += bookingSource_ListChanged;
+            bookingSource.PositionChanged += bookingSource_PositionChanged;
+            //
             // CancelBookingForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);

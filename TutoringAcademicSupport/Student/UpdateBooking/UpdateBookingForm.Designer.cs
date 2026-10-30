@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            lblRules = new Label();
             label7 = new Label();
             label6 = new Label();
             txtSession = new TextBox();
@@ -45,9 +46,16 @@
             label2 = new Label();
             label1 = new Label();
             SuspendLayout();
-            // 
+            //
+            // lblRules
+            //
+            lblRules.Location = new Point(40, 50);
+            lblRules.Name = "lblRules";
+            lblRules.Size = new Size(720, 20);
+            lblRules.TabIndex = 33;
+            //
             // label7
-            // 
+            //
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label7.Location = new Point(252, 15);
@@ -80,7 +88,8 @@
             btnFindSession.TabIndex = 29;
             btnFindSession.Text = "Find";
             btnFindSession.UseVisualStyleBackColor = true;
-            // 
+            btnFindSession.Click += btnFindSession_Click;
+            //
             // btnUpdateSession
             // 
             btnUpdateSession.BackColor = Color.Azure;
@@ -90,7 +99,8 @@
             btnUpdateSession.TabIndex = 28;
             btnUpdateSession.Text = "Update";
             btnUpdateSession.UseVisualStyleBackColor = false;
-            // 
+            btnUpdateSession.Click += btnUpdateSession_Click;
+            //
             // btnClose
             // 
             btnClose.Location = new Point(287, 407);
@@ -99,7 +109,8 @@
             btnClose.TabIndex = 27;
             btnClose.Text = "Close";
             btnClose.UseVisualStyleBackColor = true;
-            // 
+            btnClose.Click += btnClose_Click;
+            //
             // cmbMode
             // 
             cmbMode.FormattingEnabled = true;
@@ -192,6 +203,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.LightSkyBlue;
             ClientSize = new Size(800, 450);
+            Controls.Add(lblRules);
             Controls.Add(label7);
             Controls.Add(label6);
             Controls.Add(txtSession);
@@ -209,7 +221,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "UpdateBookingForm";
-            Text = "UpdateBookingForm";
+            Text = "Update Booking";
             Load += UpdateBookingForm_Load_1;
             ResumeLayout(false);
             PerformLayout();
@@ -217,6 +229,7 @@
 
         #endregion
 
+        private Label lblRules;
         private Label label7;
         private Label label6;
         private TextBox txtSession;
