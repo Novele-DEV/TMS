@@ -17,6 +17,45 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
             return new DateTime(1899, 12, 30).Add(time.TimeOfDay);
         }
 
+        // The student's scheduled sessions, soonest first, for the "Your booking" list.
+        // Read-only: it only lists bookings; Handle still does the update.
+        public static List<ScheduledBooking> GetScheduledBookings(int studentId)
+        {
+            const string query = """
+                SELECT s.[Session_ID], s.[Tutor_ID], t.[Tutor_FName], t.[Tutor_LName], r.[Course_Code],
+                       s.[Session_Date], s.[Session_StartTime], s.[Session_EndTime], s.[Session_ModeOfDelivery]
+                FROM ([TutoringSession] AS s
+                    INNER JOIN [Tutor] AS t ON t.[Tutor_ID] = s.[Tutor_ID])
+                    INNER JOIN [TutoringRequest] AS r ON r.[Request_ID] = s.[Request_ID]
+                WHERE s.[Student_ID] = ? AND s.[Session_Status] = ?
+                ORDER BY s.[Session_Date], s.[Session_StartTime]
+                """;
+
+            using OleDbConnection connection = DatabaseConnection.GetConnection();
+            using OleDbCommand command = new(query, connection);
+            command.Parameters.Add("@Student_ID", OleDbType.Integer).Value = studentId;
+            command.Parameters.Add("@Session_Status", OleDbType.VarWChar, 20).Value = ScheduledStatus;
+
+            connection.Open();
+            using OleDbDataReader reader = command.ExecuteReader();
+
+            List<ScheduledBooking> bookings = new();
+            while (reader.Read())
+            {
+                bookings.Add(new ScheduledBooking(
+                    Convert.ToInt32(reader["Session_ID"]),
+                    Convert.ToString(reader["Tutor_ID"]) ?? string.Empty,
+                    $"{reader["Tutor_FName"]} {reader["Tutor_LName"]}",
+                    Convert.ToString(reader["Course_Code"]) ?? string.Empty,
+                    Convert.ToDateTime(reader["Session_Date"]),
+                    Convert.ToDateTime(reader["Session_StartTime"]),
+                    Convert.ToDateTime(reader["Session_EndTime"]),
+                    Convert.ToString(reader["Session_ModeOfDelivery"]) ?? string.Empty));
+            }
+
+            return bookings;
+        }
+
         public UpdateBookingResult Handle(UpdateBookingRequest request)
         {
             string validationMessage = UpdateBookingValidator.Validate(request);

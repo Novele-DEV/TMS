@@ -47,11 +47,13 @@ namespace TutoringAcademicSupport.Common.Branding
 
         // Flat navy menu buttons hide the usual focus rectangle, so this draws a white inner
         // outline on the focused one, making it clear which choice Tab or the arrow keys are on.
+        // Like a normal focus rectangle, it only shows once the keyboard is being used, so a
+        // mouse user never sees one option boxed for no reason.
         public static void AddFocusOutline(Button button)
         {
             button.Paint += (_, e) =>
             {
-                if (!button.Focused) return;
+                if (!button.Focused || !KeyboardCuesShown(button)) return;
 
                 using Pen outline = new(Color.White, 2F);
                 Rectangle inner = button.ClientRectangle;
@@ -59,6 +61,39 @@ namespace TutoringAcademicSupport.Common.Branding
                 e.Graphics.DrawRectangle(outline, inner);
             };
         }
+
+        // A disabled navy button draws its text in dark grey, which can hardly be read on navy.
+        // While disabled, the button turns light grey with grey text instead, so it clearly reads
+        // as "not available yet"; it goes back to navy with white text when it is enabled again.
+        public static void KeepReadableWhenDisabled(Button button)
+        {
+            Color enabledBack = button.BackColor;
+            Color enabledFore = button.ForeColor;
+            Cursor enabledCursor = button.Cursor;
+
+            void Apply()
+            {
+                button.BackColor = button.Enabled ? enabledBack : Color.FromArgb(225, 228, 235);
+                button.ForeColor = button.Enabled ? enabledFore : Color.FromArgb(110, 110, 110);
+                button.Cursor = button.Enabled ? enabledCursor : Cursors.Default;
+            }
+
+            button.EnabledChanged += (_, _) => Apply();
+            Apply();
+        }
+
+        // Windows hides focus rectangles until the keyboard is used (UISF_HIDEFOCUS);
+        // this asks the window whether they are currently hidden.
+        private static bool KeyboardCuesShown(Control control)
+        {
+            const int WM_QUERYUISTATE = 0x0129;
+            const int UISF_HIDEFOCUS = 0x1;
+            int state = (int)SendMessage(control.Handle, WM_QUERYUISTATE, IntPtr.Zero, IntPtr.Zero);
+            return (state & UISF_HIDEFOCUS) == 0;
+        }
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, IntPtr lParam);
 
         // Uses the logo as the window icon only, for screens with no room for it.
         public static void SetIcon(Form form)

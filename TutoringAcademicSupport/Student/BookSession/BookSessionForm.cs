@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Student.CancelBooking;
 
@@ -19,7 +20,8 @@ namespace TutoringAcademicSupport.Student.BookSession
         public BookSessionForm()
         {
             InitializeComponent();
-            ByteBetterBrand.AddLogo(this, 80, fitAbove: lblRules);
+            ByteBetterBrand.AddLogo(this, 80, fitAbove: txtStudentID);
+            ScreenLayout.CentreContent(this);
         }
 
         // Opened from the student menu: the logged-in student's ID is filled in and cannot be changed.
@@ -72,13 +74,13 @@ namespace TutoringAcademicSupport.Student.BookSession
             }
         }
 
-        // The pickers start at the current moment. The student chooses the real session date and times.
+        // Starts at the next whole hour with a one-hour session, so the default times are already valid.
         private void ResetPickers()
         {
-            DateTime now = DateTime.Now;
+            DateTime start = DateTime.Today.AddHours(DateTime.Now.Hour + 1);
             dtpSessionDate.Value = DateTime.Today;
-            dtpStartTime.Value = now;
-            dtpEndTime.Value = now;
+            dtpStartTime.Value = start;
+            dtpEndTime.Value = start.AddHours(1);
         }
 
         private void txtStudentID_Leave(object? sender, EventArgs e)
@@ -250,6 +252,11 @@ namespace TutoringAcademicSupport.Student.BookSession
                 ModeOfDelivery = cmbMode.SelectedItem as string ?? string.Empty
             };
 
+            // show that the booking is being saved and stop it being sent twice
+            btnBookTutorial.Enabled = false;
+            ShowNeutral("Booking your session...");
+            Cursor = Cursors.WaitCursor;
+
             try
             {
                 BookSessionResult result = BookSessionHandler.Handle(request);
@@ -285,6 +292,11 @@ namespace TutoringAcademicSupport.Student.BookSession
                     "Booking Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+            }
+            finally
+            {
+                Cursor = Cursors.Default;
+                UpdateControls(); // re-enables Book Session when a request and tutor are still selected
             }
         }
 

@@ -230,7 +230,7 @@
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(170, 48);
             btnReturn.TabIndex = 19;
-            btnReturn.Text = "Re&turn";
+            btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
             //
@@ -261,9 +261,6 @@
             Controls.Add(lblTutorID);
             Controls.Add(lblSubtitle);
             Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
             Name = "EditTutorForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Edit Tutor";

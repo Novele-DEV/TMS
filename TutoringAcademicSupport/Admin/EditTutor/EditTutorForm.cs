@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Common.Database;
 
@@ -20,6 +21,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         {
             InitializeComponent();
             ByteBetterBrand.AddLogo(this, 80, fitAbove: txtTutorID);
+            ScreenLayout.CentreContent(this);
         }
 
         public EditTutorForm(string tutorId) : this()
@@ -125,7 +127,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            //return to the AdminForm when the "Return" button is clicked.
+            //return to the AdminForm when the "Back" button is clicked.
             Close();
         }
 

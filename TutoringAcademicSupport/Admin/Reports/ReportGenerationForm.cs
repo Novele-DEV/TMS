@@ -14,6 +14,7 @@ namespace TutoringAcademicSupport.Admin.Reports
         {
             InitializeComponent();
             ByteBetterBrand.AddLogo(this, 90);
+            ScreenLayout.CentreContent(this);
             CancelButton = btnReturn; // Esc returns to the dashboard
         }
 

@@ -231,7 +231,7 @@ partial class AddTutorForm
         btnReturn.Name = "btnReturn";
         btnReturn.Size = new Size(170, 48);
         btnReturn.TabIndex = 19;
-        btnReturn.Text = "Re&turn";
+        btnReturn.Text = "&Back";
         btnReturn.UseVisualStyleBackColor = true;
         btnReturn.Click += btnReturn_Click;
         //
@@ -262,9 +262,6 @@ partial class AddTutorForm
         Controls.Add(lblTutorID);
         Controls.Add(lblSubtitle);
         Controls.Add(lblTitle);
-        FormBorderStyle = FormBorderStyle.FixedDialog;
-        MaximizeBox = false;
-        MinimizeBox = false;
         Name = "AddTutorForm";
         StartPosition = FormStartPosition.CenterParent;
         Text = "Add Tutor";

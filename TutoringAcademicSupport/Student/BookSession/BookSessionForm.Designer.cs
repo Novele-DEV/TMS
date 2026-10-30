@@ -75,7 +75,7 @@
             lblRules.ForeColor = SystemColors.GrayText;
             lblRules.Location = new Point(40, 68);
             lblRules.Name = "lblRules";
-            lblRules.Size = new Size(440, 36);
+            lblRules.Size = new Size(440, 44);
             lblRules.TabIndex = 1;
             //
             // lblStudentID
@@ -142,7 +142,8 @@
             //
             // dtpStartTime
             //
-            dtpStartTime.Format = DateTimePickerFormat.Time;
+            dtpStartTime.CustomFormat = "HH:mm";
+            dtpStartTime.Format = DateTimePickerFormat.Custom;
             dtpStartTime.Location = new Point(180, 250);
             dtpStartTime.Name = "dtpStartTime";
             dtpStartTime.ShowUpDown = true;
@@ -161,7 +162,8 @@
             //
             // dtpEndTime
             //
-            dtpEndTime.Format = DateTimePickerFormat.Time;
+            dtpEndTime.CustomFormat = "HH:mm";
+            dtpEndTime.Format = DateTimePickerFormat.Custom;
             dtpEndTime.Location = new Point(180, 295);
             dtpEndTime.Name = "dtpEndTime";
             dtpEndTime.ShowUpDown = true;
@@ -246,7 +248,9 @@
             // BookSessionForm
             //
             CancelButton = btnBack;
-            ClientSize = new Size(520, 585);
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(600, 585);
             Controls.Add(lblTitle);
             Controls.Add(lblRules);
             Controls.Add(lblStudentID);

@@ -13,14 +13,18 @@ namespace TutoringAcademicSupport.Student.Dashboard
         // The ID of the student who logged in. The Cancel form needs it to list only this student's bookings.
         private readonly int studentId;
 
-        public StudentForm(int studentId)
+        public StudentForm(int studentId, string firstName = "")
         {
             InitializeComponent();
             this.studentId = studentId;
 
             picLogo.Image = ByteBetterBrand.Logo;
             Icon = ByteBetterBrand.WindowIcon;
-            lblLoggedInAs.Text = $"Logged in as student {studentId}";
+
+            // greet the student by name, with the student number as a reference
+            lblLoggedInAs.Text = string.IsNullOrWhiteSpace(firstName)
+                ? $"Logged in as student {studentId}"
+                : $"Welcome, {firstName}  ·  Student {studentId}";
 
             foreach (Button option in new[] { btnViewAvailability, btnBookSession, btnUpdateBooking, btnCancelBooking })
             {
@@ -41,7 +45,7 @@ namespace TutoringAcademicSupport.Student.Dashboard
 
         private void btnUpdateBooking_Click(object sender, EventArgs e)
         {
-            ScreenNavigator.Open(this, new UpdateBookingForm());
+            ScreenNavigator.Open(this, new UpdateBookingForm(studentId));
         }
 
         private void btnCancelBooking_Click(object sender, EventArgs e)

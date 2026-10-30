@@ -29,6 +29,8 @@ namespace TutoringAcademicSupport.Student.CreateStudent
         public CreateStudentForm()
         {
             InitializeComponent();
+            TutoringAcademicSupport.Common.Branding.ByteBetterBrand.SetIcon(this);
+            TutoringAcademicSupport.Common.Navigation.ScreenLayout.CentreContent(this);
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
 

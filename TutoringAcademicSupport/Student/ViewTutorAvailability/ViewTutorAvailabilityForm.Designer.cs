@@ -28,12 +28,116 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "ViewTutorAvailabilityForm";
+            lblTitle = new Label();
+            lblSubtitle = new Label();
+            lblTutor = new Label();
+            cmbTutor = new ComboBox();
+            availabilityGrid = new DataGridView();
+            lblMessage = new Label();
+            btnBack = new Button();
+            ((System.ComponentModel.ISupportInitialize)availabilityGrid).BeginInit();
+            SuspendLayout();
+            //
+            // lblTitle
+            //
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            lblTitle.ForeColor = SystemColors.HotTrack;
+            lblTitle.Location = new Point(24, 15);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(279, 41);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "Tutor Availability";
+            //
+            // lblSubtitle
+            //
+            lblSubtitle.AutoSize = true;
+            lblSubtitle.ForeColor = SystemColors.GrayText;
+            lblSubtitle.Location = new Point(28, 60);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(480, 20);
+            lblSubtitle.TabIndex = 1;
+            lblSubtitle.Text = "When each tutor is available during the week. Choose a tutor to see only their times.";
+            //
+            // lblTutor
+            //
+            lblTutor.AutoSize = true;
+            lblTutor.Location = new Point(28, 103);
+            lblTutor.Name = "lblTutor";
+            lblTutor.Size = new Size(46, 20);
+            lblTutor.TabIndex = 2;
+            lblTutor.Text = "&Tutor:";
+            //
+            // cmbTutor
+            //
+            cmbTutor.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTutor.Location = new Point(90, 99);
+            cmbTutor.Name = "cmbTutor";
+            cmbTutor.Size = new Size(300, 28);
+            cmbTutor.TabIndex = 3;
+            cmbTutor.SelectedIndexChanged += cmbTutor_SelectedIndexChanged;
+            //
+            // availabilityGrid
+            //
+            availabilityGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            availabilityGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            availabilityGrid.Location = new Point(28, 142);
+            availabilityGrid.Name = "availabilityGrid";
+            availabilityGrid.RowHeadersWidth = 51;
+            availabilityGrid.Size = new Size(804, 330);
+            availabilityGrid.TabIndex = 4;
+            //
+            // lblMessage
+            //
+            lblMessage.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            lblMessage.Location = new Point(28, 482);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new Size(640, 48);
+            lblMessage.TabIndex = 5;
+            //
+            // btnBack
+            //
+            btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnBack.Location = new Point(692, 486);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(140, 44);
+            btnBack.TabIndex = 6;
+            btnBack.Text = "&Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            //
+            // ViewTutorAvailabilityForm
+            //
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnBack;
+            ClientSize = new Size(860, 550);
+            Controls.Add(btnBack);
+            Controls.Add(lblMessage);
+            Controls.Add(availabilityGrid);
+            Controls.Add(cmbTutor);
+            Controls.Add(lblTutor);
+            Controls.Add(lblSubtitle);
+            Controls.Add(lblTitle);
+            MinimumSize = new Size(700, 480);
+            Name = "ViewTutorAvailabilityForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Tutor Availability";
+            Load += ViewTutorAvailabilityForm_Load;
+            ((System.ComponentModel.ISupportInitialize)availabilityGrid).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblTitle;
+        private Label lblSubtitle;
+        private Label lblTutor;
+        private ComboBox cmbTutor;
+        private DataGridView availabilityGrid;
+        private Label lblMessage;
+        private Button btnBack;
     }
 }

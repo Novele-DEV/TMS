@@ -2,6 +2,7 @@
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Common.Branding;
 
 namespace TutoringAcademicSupport.Admin.AddTutor;
@@ -17,6 +18,7 @@ public partial class AddTutorForm : Form
     {
         InitializeComponent();
         ByteBetterBrand.AddLogo(this, 80, fitAbove: txtTutorID);
+        ScreenLayout.CentreContent(this);
     }
 
     private void btnAdd_Click(object sender, EventArgs e)
@@ -77,7 +79,7 @@ public partial class AddTutorForm : Form
     }
 
     private void btnReturn_Click(object sender, EventArgs e)
-    {// This method is called when the "Return" button is clicked.
+    {// This method is called when the "Back" button is clicked.
      // It closes the current form and returns to the AdminForm.
         Close();
     }

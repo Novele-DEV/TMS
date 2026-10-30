@@ -226,7 +226,7 @@
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(140, 40);
             btnReturn.TabIndex = 17;
-            btnReturn.Text = "Re&turn";
+            btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
             //

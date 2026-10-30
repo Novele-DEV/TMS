@@ -241,7 +241,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(160, 48);
             btnReturn.TabIndex = 8;
-            btnReturn.Text = "Re&turn";
+            btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
             //

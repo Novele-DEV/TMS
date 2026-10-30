@@ -30,6 +30,9 @@ namespace TutoringAcademicSupport.Student.CancelBooking
         public CancelBookingForm(int studentId)
         {
             InitializeComponent();
+            TutoringAcademicSupport.Common.Branding.ByteBetterBrand.AddLogo(this, 80, fitAbove: dgvBookings);
+            TutoringAcademicSupport.Common.Navigation.ScreenLayout.CentreContent(this);
+            TutoringAcademicSupport.Common.Branding.ByteBetterBrand.KeepReadableWhenDisabled(btnCancel);
             this.StudentId = studentId;
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;

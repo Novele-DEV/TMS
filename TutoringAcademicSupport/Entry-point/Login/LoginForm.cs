@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Admin.Dashboard;
+using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Student.CreateStudent;
 using TutoringAcademicSupport.Student.Dashboard;
@@ -20,6 +21,13 @@ namespace TutoringAcademicSupport.EntryPoint.Login
         public LoginForm(string role)
         {
             InitializeComponent();
+            ByteBetterBrand.AddLogo(this, 80, fitAbove: txtUserID);
+            ScreenLayout.CentreContent(this);
+            ByteBetterBrand.KeepReadableWhenDisabled(btnLogIn);
+
+            AcceptButton = btnLogIn;  // Enter logs in
+            CancelButton = btnExit;   // Esc goes back to the main menu
+            btnExit.Text = "&Back";   // it returns to the main menu, it does not close the program
 
             selectedRole = role; //this variable is used to display the role in the form
                                  //and to determine which landing page to open after a successful login.
@@ -134,7 +142,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
         {
             Form landing = result.Role == "Administrator"
                 ? new AdminForm(result.FirstName)
-                : new StudentForm(result.UserId); // the student menu needs the ID to show only that student's bookings
+                : new StudentForm(result.UserId, result.FirstName); // the ID shows only that student's bookings; the name greets them
 
             // the log in form is hidden while the landing page is open; logging out brings it back, reset
             ScreenNavigator.Open(this, landing, _ =>

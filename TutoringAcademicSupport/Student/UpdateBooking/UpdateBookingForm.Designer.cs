@@ -28,224 +28,207 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblRules = new Label();
             label7 = new Label();
+            lblRules = new Label();
+            lblBooking = new Label();
+            cmbBooking = new ComboBox();
+            label3 = new Label();
+            dtpSession = new DateTimePicker();
+            label4 = new Label();
+            dtpStartTime = new DateTimePicker();
+            label5 = new Label();
+            dtpEndTime = new DateTimePicker();
             label6 = new Label();
-            txtSession = new TextBox();
-            btnFindSession = new Button();
+            cmbMode = new ComboBox();
+            lblMessage = new Label();
             btnUpdateSession = new Button();
             btnClose = new Button();
-            cmbMode = new ComboBox();
-            dtpEndTime = new DateTimePicker();
-            dtpStartTime = new DateTimePicker();
-            dtpSession = new DateTimePicker();
-            txtStudentID = new TextBox();
-            label5 = new Label();
-            label4 = new Label();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
             SuspendLayout();
-            //
-            // lblRules
-            //
-            lblRules.Location = new Point(40, 50);
-            lblRules.Name = "lblRules";
-            lblRules.Size = new Size(720, 20);
-            lblRules.TabIndex = 33;
             //
             // label7
             //
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(252, 15);
+            label7.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            label7.ForeColor = SystemColors.HotTrack;
+            label7.Location = new Point(24, 15);
             label7.Name = "label7";
-            label7.Size = new Size(283, 28);
-            label7.TabIndex = 32;
-            label7.Text = "UPDATE TUTORING SESSION";
-            // 
+            label7.Size = new Size(255, 41);
+            label7.TabIndex = 0;
+            label7.Text = "Update a Booking";
+            //
+            // lblRules
+            //
+            lblRules.ForeColor = SystemColors.GrayText;
+            lblRules.Location = new Point(28, 60);
+            lblRules.Name = "lblRules";
+            lblRules.Size = new Size(500, 24);
+            lblRules.TabIndex = 1;
+            //
+            // lblBooking
+            //
+            lblBooking.AutoSize = true;
+            lblBooking.Location = new Point(28, 108);
+            lblBooking.Name = "lblBooking";
+            lblBooking.Size = new Size(97, 20);
+            lblBooking.TabIndex = 2;
+            lblBooking.Text = "Your boo&king:";
+            //
+            // cmbBooking
+            //
+            cmbBooking.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbBooking.Location = new Point(170, 104);
+            cmbBooking.Name = "cmbBooking";
+            cmbBooking.Size = new Size(440, 28);
+            cmbBooking.TabIndex = 3;
+            cmbBooking.SelectedIndexChanged += cmbBooking_SelectedIndexChanged;
+            //
+            // label3
+            //
+            label3.AutoSize = true;
+            label3.Location = new Point(28, 156);
+            label3.Name = "label3";
+            label3.Size = new Size(95, 20);
+            label3.TabIndex = 4;
+            label3.Text = "Session &date:";
+            //
+            // dtpSession
+            //
+            dtpSession.Format = DateTimePickerFormat.Short;
+            dtpSession.Location = new Point(170, 152);
+            dtpSession.Name = "dtpSession";
+            dtpSession.Size = new Size(200, 27);
+            dtpSession.TabIndex = 5;
+            //
+            // label4
+            //
+            label4.AutoSize = true;
+            label4.Location = new Point(28, 202);
+            label4.Name = "label4";
+            label4.Size = new Size(77, 20);
+            label4.TabIndex = 6;
+            label4.Text = "&Start time:";
+            //
+            // dtpStartTime
+            //
+            dtpStartTime.CustomFormat = "HH:mm";
+            dtpStartTime.Format = DateTimePickerFormat.Custom;
+            dtpStartTime.Location = new Point(170, 198);
+            dtpStartTime.Name = "dtpStartTime";
+            dtpStartTime.ShowUpDown = true;
+            dtpStartTime.Size = new Size(120, 27);
+            dtpStartTime.TabIndex = 7;
+            //
+            // label5
+            //
+            label5.AutoSize = true;
+            label5.Location = new Point(28, 248);
+            label5.Name = "label5";
+            label5.Size = new Size(71, 20);
+            label5.TabIndex = 8;
+            label5.Text = "&End time:";
+            //
+            // dtpEndTime
+            //
+            dtpEndTime.CustomFormat = "HH:mm";
+            dtpEndTime.Format = DateTimePickerFormat.Custom;
+            dtpEndTime.Location = new Point(170, 244);
+            dtpEndTime.Name = "dtpEndTime";
+            dtpEndTime.ShowUpDown = true;
+            dtpEndTime.Size = new Size(120, 27);
+            dtpEndTime.TabIndex = 9;
+            //
             // label6
-            // 
+            //
             label6.AutoSize = true;
-            label6.Location = new Point(547, 205);
+            label6.Location = new Point(28, 294);
             label6.Name = "label6";
-            label6.Size = new Size(48, 20);
-            label6.TabIndex = 31;
-            label6.Text = "Mode";
-            // 
-            // txtSession
-            // 
-            txtSession.Location = new Point(175, 140);
-            txtSession.Name = "txtSession";
-            txtSession.Size = new Size(250, 27);
-            txtSession.TabIndex = 30;
-            // 
-            // btnFindSession
-            // 
-            btnFindSession.Location = new Point(16, 407);
-            btnFindSession.Name = "btnFindSession";
-            btnFindSession.Size = new Size(94, 29);
-            btnFindSession.TabIndex = 29;
-            btnFindSession.Text = "Find";
-            btnFindSession.UseVisualStyleBackColor = true;
-            btnFindSession.Click += btnFindSession_Click;
+            label6.Size = new Size(51, 20);
+            label6.TabIndex = 10;
+            label6.Text = "M&ode:";
+            //
+            // cmbMode
+            //
+            cmbMode.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbMode.Location = new Point(170, 290);
+            cmbMode.Name = "cmbMode";
+            cmbMode.Size = new Size(200, 28);
+            cmbMode.TabIndex = 11;
+            //
+            // lblMessage
+            //
+            lblMessage.Location = new Point(28, 336);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new Size(582, 56);
+            lblMessage.TabIndex = 12;
             //
             // btnUpdateSession
-            // 
-            btnUpdateSession.BackColor = Color.Azure;
-            btnUpdateSession.Location = new Point(145, 407);
+            //
+            btnUpdateSession.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnUpdateSession.Location = new Point(28, 404);
             btnUpdateSession.Name = "btnUpdateSession";
-            btnUpdateSession.Size = new Size(94, 29);
-            btnUpdateSession.TabIndex = 28;
-            btnUpdateSession.Text = "Update";
-            btnUpdateSession.UseVisualStyleBackColor = false;
+            btnUpdateSession.Size = new Size(180, 44);
+            btnUpdateSession.TabIndex = 13;
+            btnUpdateSession.Text = "&Update Booking";
+            btnUpdateSession.UseVisualStyleBackColor = true;
             btnUpdateSession.Click += btnUpdateSession_Click;
             //
             // btnClose
-            // 
-            btnClose.Location = new Point(287, 407);
+            //
+            btnClose.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnClose.Location = new Point(470, 404);
             btnClose.Name = "btnClose";
-            btnClose.Size = new Size(130, 29);
-            btnClose.TabIndex = 27;
+            btnClose.Size = new Size(140, 44);
+            btnClose.TabIndex = 14;
             btnClose.Text = "&Back";
             btnClose.UseVisualStyleBackColor = true;
             btnClose.Click += btnClose_Click;
             //
-            // cmbMode
-            // 
-            cmbMode.FormattingEnabled = true;
-            cmbMode.Location = new Point(634, 202);
-            cmbMode.Name = "cmbMode";
-            cmbMode.Size = new Size(151, 28);
-            cmbMode.TabIndex = 26;
-            // 
-            // dtpEndTime
-            // 
-            dtpEndTime.Format = DateTimePickerFormat.Time;
-            dtpEndTime.Location = new Point(175, 305);
-            dtpEndTime.Name = "dtpEndTime";
-            dtpEndTime.ShowUpDown = true;
-            dtpEndTime.Size = new Size(250, 27);
-            dtpEndTime.TabIndex = 25;
-            // 
-            // dtpStartTime
-            // 
-            dtpStartTime.Format = DateTimePickerFormat.Time;
-            dtpStartTime.Location = new Point(175, 252);
-            dtpStartTime.Name = "dtpStartTime";
-            dtpStartTime.ShowUpDown = true;
-            dtpStartTime.Size = new Size(250, 27);
-            dtpStartTime.TabIndex = 24;
-            // 
-            // dtpSession
-            // 
-            dtpSession.Location = new Point(175, 205);
-            dtpSession.Name = "dtpSession";
-            dtpSession.Size = new Size(250, 27);
-            dtpSession.TabIndex = 23;
-            // 
-            // txtStudentID
-            // 
-            txtStudentID.Location = new Point(175, 77);
-            txtStudentID.Name = "txtStudentID";
-            txtStudentID.Size = new Size(250, 27);
-            txtStudentID.TabIndex = 22;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(48, 310);
-            label5.Name = "label5";
-            label5.Size = new Size(71, 20);
-            label5.TabIndex = 21;
-            label5.Text = "End Time";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(42, 257);
-            label4.Name = "label4";
-            label4.Size = new Size(77, 20);
-            label4.TabIndex = 20;
-            label4.Text = "Start Time";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(40, 210);
-            label3.Name = "label3";
-            label3.Size = new Size(94, 20);
-            label3.TabIndex = 19;
-            label3.Tag = "Session Date";
-            label3.Text = "Session Date";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(40, 143);
-            label2.Name = "label2";
-            label2.Size = new Size(77, 20);
-            label2.TabIndex = 18;
-            label2.Text = "Session ID";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(40, 84);
-            label1.Name = "label1";
-            label1.Size = new Size(79, 20);
-            label1.TabIndex = 17;
-            label1.Text = "Student ID";
-            // 
             // UpdateBookingForm
-            // 
+            //
+            AcceptButton = btnUpdateSession;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.LightSkyBlue;
             CancelButton = btnClose;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(640, 470);
+            Controls.Add(btnClose);
+            Controls.Add(btnUpdateSession);
+            Controls.Add(lblMessage);
+            Controls.Add(cmbMode);
+            Controls.Add(label6);
+            Controls.Add(dtpEndTime);
+            Controls.Add(label5);
+            Controls.Add(dtpStartTime);
+            Controls.Add(label4);
+            Controls.Add(dtpSession);
+            Controls.Add(label3);
+            Controls.Add(cmbBooking);
+            Controls.Add(lblBooking);
             Controls.Add(lblRules);
             Controls.Add(label7);
-            Controls.Add(label6);
-            Controls.Add(txtSession);
-            Controls.Add(btnFindSession);
-            Controls.Add(btnUpdateSession);
-            Controls.Add(btnClose);
-            Controls.Add(cmbMode);
-            Controls.Add(dtpEndTime);
-            Controls.Add(dtpStartTime);
-            Controls.Add(dtpSession);
-            Controls.Add(txtStudentID);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
             Name = "UpdateBookingForm";
-            Text = "Update Booking";
-            Load += UpdateBookingForm_Load_1;
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Update a Booking";
+            Load += UpdateBookingForm_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label lblRules;
         private Label label7;
+        private Label lblRules;
+        private Label lblBooking;
+        private ComboBox cmbBooking;
+        private Label label3;
+        private DateTimePicker dtpSession;
+        private Label label4;
+        private DateTimePicker dtpStartTime;
+        private Label label5;
+        private DateTimePicker dtpEndTime;
         private Label label6;
-        private TextBox txtSession;
-        private Button btnFindSession;
+        private ComboBox cmbMode;
+        private Label lblMessage;
         private Button btnUpdateSession;
         private Button btnClose;
-        private ComboBox cmbMode;
-        private DateTimePicker dtpEndTime;
-        private DateTimePicker dtpStartTime;
-        private DateTimePicker dtpSession;
-        private TextBox txtStudentID;
-        private Label label5;
-        private Label label4;
-        private Label label3;
-        private Label label2;
-        private Label label1;
     }
 }

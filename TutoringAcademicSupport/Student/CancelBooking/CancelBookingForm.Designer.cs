@@ -48,21 +48,23 @@
             // lblHeading
             // 
             lblHeading.AutoSize = true;
-            lblHeading.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHeading.Location = new Point(23, 16);
+            lblHeading.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeading.ForeColor = SystemColors.HotTrack;
+            lblHeading.Location = new Point(18, 12);
             lblHeading.Margin = new Padding(4, 0, 4, 0);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(198, 25);
+            lblHeading.Size = new Size(260, 41);
             lblHeading.TabIndex = 0;
-            lblHeading.Text = "Cancel your booking";
+            lblHeading.Text = "Cancel a Booking";
             //
             // lblRules
             // 
             lblRules.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblRules.ForeColor = SystemColors.GrayText;
             lblRules.Location = new Point(23, 60);
             lblRules.Margin = new Padding(4, 0, 4, 0);
             lblRules.Name = "lblRules";
-            lblRules.Size = new Size(831, 42);
+            lblRules.Size = new Size(720, 42);
             lblRules.TabIndex = 1;
             lblRules.Text = "Rule message";
             // 
@@ -73,6 +75,7 @@
             dataGridViewCellStyle9.BackColor = Color.FromArgb(242, 242, 242);
             dgvBookings.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             dgvBookings.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvBookings.BackgroundColor = SystemColors.Window;
             dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = Color.FromArgb(31, 56, 100);
             dataGridViewCellStyle10.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -114,13 +117,13 @@
             // 
             // btnBack
             // 
-            btnBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnBack.Location = new Point(14, 543);
+            btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBack.Location = new Point(714, 538);
             btnBack.Margin = new Padding(4, 3, 4, 3);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(117, 37);
-            btnBack.TabIndex = 5;
-            btnBack.Text = "Back to Menu";
+            btnBack.Size = new Size(140, 44);
+            btnBack.TabIndex = 6;
+            btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
@@ -128,14 +131,18 @@
             // 
             btnCancel.BackColor = Color.FromArgb(31, 56, 100);
             btnCancel.FlatStyle = FlatStyle.Flat;
-            btnCancel.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCancel.Cursor = Cursors.Hand;
+            btnCancel.FlatAppearance.BorderSize = 0;
+            btnCancel.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 38, 70);
+            btnCancel.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 82, 140);
+            btnCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(725, 543);
+            btnCancel.Location = new Point(14, 538);
             btnCancel.Margin = new Padding(4, 3, 4, 3);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(130, 37);
-            btnCancel.TabIndex = 6;
-            btnCancel.Text = "Cancel Booking";
+            btnCancel.Size = new Size(180, 44);
+            btnCancel.TabIndex = 5;
+            btnCancel.Text = "&Cancel Booking";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancelBooking_Click;
             // 
@@ -150,8 +157,9 @@
             //
             // CancelBookingForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnBack;
             ClientSize = new Size(868, 589);
             Controls.Add(btnCancel);
             Controls.Add(btnBack);
@@ -161,7 +169,6 @@
             Controls.Add(lblRules);
             Controls.Add(lblHeading);
             Margin = new Padding(4, 3, 4, 3);
-            MaximizeBox = false;
             Name = "CancelBookingForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Cancel Booking";

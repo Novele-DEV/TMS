@@ -47,11 +47,11 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // lblHeading
             // 
             lblHeading.AutoSize = true;
-            lblHeading.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblHeading.ForeColor = Color.FromArgb(31, 56, 100);
+            lblHeading.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeading.ForeColor = SystemColors.HotTrack;
             lblHeading.Location = new Point(20, 14);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(267, 32);
+            lblHeading.Size = new Size(330, 41);
             lblHeading.TabIndex = 0;
             lblHeading.Text = "Log into your account";
             // 
@@ -119,10 +119,11 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(12, 360);
+            btnExit.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnExit.Location = new Point(360, 350);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(100, 32);
-            btnExit.TabIndex = 11;
+            btnExit.Size = new Size(140, 44);
+            btnExit.TabIndex = 12;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
             btnExit.Click += btnExit_Click;
@@ -130,13 +131,18 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // btnLogIn
             // 
             btnLogIn.BackColor = Color.FromArgb(31, 56, 100);
+            btnLogIn.Cursor = Cursors.Hand;
+            btnLogIn.FlatAppearance.BorderSize = 0;
+            btnLogIn.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 38, 70);
+            btnLogIn.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 82, 140);
             btnLogIn.FlatStyle = FlatStyle.Flat;
+            btnLogIn.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnLogIn.ForeColor = Color.White;
-            btnLogIn.Location = new Point(538, 360);
+            btnLogIn.Location = new Point(20, 350);
             btnLogIn.Name = "btnLogIn";
-            btnLogIn.Size = new Size(100, 32);
-            btnLogIn.TabIndex = 12;
-            btnLogIn.Text = "Log In";
+            btnLogIn.Size = new Size(140, 44);
+            btnLogIn.TabIndex = 11;
+            btnLogIn.Text = "&Log In";
             btnLogIn.UseVisualStyleBackColor = false;
             btnLogIn.Click += btnLogIn_Click;
             // 
