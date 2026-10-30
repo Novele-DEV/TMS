@@ -59,10 +59,10 @@ partial class AddTutorForm
         lblTitle.AutoSize = true;
         lblTitle.BackColor = Color.Transparent;
         lblTitle.Font = new Font("Cooper Black", 25F);
-        lblTitle.ForeColor = Color.MediumBlue;
+        lblTitle.ForeColor = SystemColors.HotTrack;
         lblTitle.Location = new Point(28, 11);
         lblTitle.Name = "lblTitle";
-        lblTitle.Size = new Size(155, 41);
+        lblTitle.Size = new Size(245, 49);
         lblTitle.TabIndex = 0;
         lblTitle.Text = "Add Tutor";
         // 
@@ -74,7 +74,7 @@ partial class AddTutorForm
         lblSubtitle.ForeColor = SystemColors.GrayText;
         lblSubtitle.Location = new Point(28, 60);
         lblSubtitle.Name = "lblSubtitle";
-        lblSubtitle.Size = new Size(470, 20);
+        lblSubtitle.Size = new Size(404, 20);
         lblSubtitle.TabIndex = 1;
         lblSubtitle.Text = "Enter the tutor's details. The tutor ID is created when you save.";
         // 
@@ -89,7 +89,7 @@ partial class AddTutorForm
         lblTutorID.Text = "Tutor ID:";
         // 
         // txtTutorID
-        //
+        // 
         txtTutorID.Location = new Point(210, 105);
         txtTutorID.Name = "txtTutorID";
         txtTutorID.ReadOnly = true;
@@ -109,7 +109,7 @@ partial class AddTutorForm
         lblFirstName.Text = "$First name:";
         // 
         // txtTutorFName
-        //
+        // 
         txtTutorFName.Location = new Point(210, 151);
         txtTutorFName.MaxLength = 50;
         txtTutorFName.Name = "txtTutorFName";
@@ -127,7 +127,7 @@ partial class AddTutorForm
         lblLastName.Text = "La&st name:";
         // 
         // txtTutorLName
-        //
+        // 
         txtTutorLName.Location = new Point(210, 197);
         txtTutorLName.MaxLength = 50;
         txtTutorLName.Name = "txtTutorLName";
@@ -145,7 +145,7 @@ partial class AddTutorForm
         lblEmail.Text = "E$mail:";
         // 
         // txtTutorEmail
-        //
+        // 
         txtTutorEmail.Location = new Point(210, 243);
         txtTutorEmail.MaxLength = 100;
         txtTutorEmail.Name = "txtTutorEmail";
@@ -164,7 +164,7 @@ partial class AddTutorForm
         lblPhone.Text = "&Phone:";
         // 
         // txtTutorPhoneNo
-        //
+        // 
         txtTutorPhoneNo.Location = new Point(210, 289);
         txtTutorPhoneNo.MaxLength = 12;
         txtTutorPhoneNo.Name = "txtTutorPhoneNo";
@@ -183,7 +183,7 @@ partial class AddTutorForm
         lblAverage.Text = "Academic a&verage:";
         // 
         // txtAcademicAverage
-        //
+        // 
         txtAcademicAverage.Location = new Point(210, 335);
         txtAcademicAverage.Name = "txtAcademicAverage";
         txtAcademicAverage.PlaceholderText = "Optional, 0 to 100";
@@ -201,7 +201,7 @@ partial class AddTutorForm
         lblMode.Text = "Preferred m&ode:";
         // 
         // cmbPreferredMode
-        //
+        // 
         cmbPreferredMode.DropDownStyle = ComboBoxStyle.DropDownList;
         cmbPreferredMode.Items.AddRange(new object[] { "Virtual", "In-person", "Both" });
         cmbPreferredMode.Location = new Point(210, 381);
@@ -238,16 +238,18 @@ partial class AddTutorForm
         btnBrowseCurriculumVitae.Click += btnBrowseCurriculumVitae_Click;
         //
         // lblStatus
-        //
-        lblStatus.Location = new Point(28, 458);
+        // 
+        lblStatus.Location = new Point(28, 425);
         lblStatus.Name = "lblStatus";
         lblStatus.Size = new Size(582, 48);
         lblStatus.TabIndex = 19;
         // 
         // btnAdd
-        //
+        // 
+        btnAdd.BackColor = SystemColors.HotTrack;
         btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnAdd.Location = new Point(440, 515);
+        btnAdd.ForeColor = Color.White;
+        btnAdd.Location = new Point(28, 486);
         btnAdd.Name = "btnAdd";
         btnAdd.Size = new Size(170, 48);
         btnAdd.TabIndex = 17;
@@ -256,9 +258,11 @@ partial class AddTutorForm
         btnAdd.Click += btnAdd_Click;
         // 
         // btnClear
-        //
+        // 
+        btnClear.BackColor = SystemColors.ButtonFace;
         btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnClear.Location = new Point(210, 515);
+        btnClear.ForeColor = SystemColors.HotTrack;
+        btnClear.Location = new Point(210, 486);
         btnClear.Name = "btnClear";
         btnClear.Size = new Size(151, 48);
         btnClear.TabIndex = 18;
