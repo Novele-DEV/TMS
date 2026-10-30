@@ -29,6 +29,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             lblHeading = new Label();
             lblIntro = new Label();
             lblUserID = new Label();
@@ -47,20 +48,23 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // lblHeading
             // 
             lblHeading.AutoSize = true;
-            lblHeading.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeading.BackColor = Color.Transparent;
+            lblHeading.Font = new Font("Cooper Black", 25F);
             lblHeading.ForeColor = SystemColors.HotTrack;
-            lblHeading.Location = new Point(20, 14);
+            lblHeading.Location = new Point(20, 20);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(330, 41);
+            lblHeading.Size = new Size(487, 49);
             lblHeading.TabIndex = 0;
             lblHeading.Text = "Log into your account";
             // 
             // lblIntro
             // 
             lblIntro.AutoSize = true;
+            lblIntro.BackColor = Color.Transparent;
+            lblIntro.Font = new Font("Segoe UI", 10.2F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblIntro.Location = new Point(22, 79);
             lblIntro.Name = "lblIntro";
-            lblIntro.Size = new Size(314, 23);
+            lblIntro.Size = new Size(301, 23);
             lblIntro.TabIndex = 1;
             lblIntro.Text = "Enter your ID and password to continue";
             lblIntro.Click += lblIntro_Click;
@@ -68,7 +72,8 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // lblUserID
             // 
             lblUserID.AutoSize = true;
-            lblUserID.Location = new Point(22, 134);
+            lblUserID.BackColor = Color.Transparent;
+            lblUserID.Location = new Point(22, 128);
             lblUserID.Name = "lblUserID";
             lblUserID.Size = new Size(284, 23);
             lblUserID.TabIndex = 5;
@@ -76,15 +81,17 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // 
             // txtUserID
             // 
+            txtUserID.BorderStyle = BorderStyle.FixedSingle;
             txtUserID.Location = new Point(20, 154);
             txtUserID.Name = "txtUserID";
-            txtUserID.Size = new Size(480, 29);
+            txtUserID.Size = new Size(633, 29);
             txtUserID.TabIndex = 6;
             // 
             // lblPassword
             // 
             lblPassword.AutoSize = true;
-            lblPassword.Location = new Point(22, 208);
+            lblPassword.BackColor = Color.Transparent;
+            lblPassword.Location = new Point(20, 229);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(80, 23);
             lblPassword.TabIndex = 7;
@@ -92,16 +99,18 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // 
             // txtPassword
             // 
-            txtPassword.Location = new Point(20, 228);
+            txtPassword.BorderStyle = BorderStyle.FixedSingle;
+            txtPassword.Location = new Point(22, 255);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(480, 29);
+            txtPassword.Size = new Size(631, 29);
             txtPassword.TabIndex = 8;
             // 
             // lblMessage
             // 
-            lblMessage.Location = new Point(20, 272);
+            lblMessage.BackColor = Color.Transparent;
+            lblMessage.Location = new Point(20, 336);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(480, 36);
+            lblMessage.Size = new Size(633, 36);
             lblMessage.TabIndex = 9;
             lblMessage.Text = "You are loggin in as";
             lblMessage.Click += lblMessage_Click;
@@ -109,7 +118,8 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // LnkCreateStudent
             // 
             LnkCreateStudent.AutoSize = true;
-            LnkCreateStudent.Location = new Point(20, 318);
+            LnkCreateStudent.BackColor = Color.Transparent;
+            LnkCreateStudent.Location = new Point(20, 415);
             LnkCreateStudent.Name = "LnkCreateStudent";
             LnkCreateStudent.Size = new Size(264, 23);
             LnkCreateStudent.TabIndex = 10;
@@ -120,7 +130,8 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // btnExit
             // 
             btnExit.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnExit.Location = new Point(360, 350);
+            btnExit.ForeColor = Color.FromArgb(64, 64, 64);
+            btnExit.Location = new Point(513, 478);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(140, 44);
             btnExit.TabIndex = 12;
@@ -130,15 +141,15 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // 
             // btnLogIn
             // 
-            btnLogIn.BackColor = Color.FromArgb(31, 56, 100);
+            btnLogIn.BackColor = SystemColors.HotTrack;
             btnLogIn.Cursor = Cursors.Hand;
             btnLogIn.FlatAppearance.BorderSize = 0;
             btnLogIn.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 38, 70);
             btnLogIn.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 82, 140);
-            btnLogIn.FlatStyle = FlatStyle.Flat;
+            btnLogIn.FlatStyle = FlatStyle.Popup;
             btnLogIn.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnLogIn.ForeColor = Color.White;
-            btnLogIn.Location = new Point(20, 350);
+            btnLogIn.Location = new Point(12, 478);
             btnLogIn.Name = "btnLogIn";
             btnLogIn.Size = new Size(140, 44);
             btnLogIn.TabIndex = 11;
@@ -162,7 +173,10 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 401);
+            BackColor = SystemColors.ButtonHighlight;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(683, 570);
             Controls.Add(lblIntroduction);
             Controls.Add(btnLogIn);
             Controls.Add(btnExit);
@@ -174,6 +188,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             Controls.Add(lblUserID);
             Controls.Add(lblIntro);
             Controls.Add(lblHeading);
+            DoubleBuffered = true;
             Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Margin = new Padding(4);
             Name = "LoginForm";
