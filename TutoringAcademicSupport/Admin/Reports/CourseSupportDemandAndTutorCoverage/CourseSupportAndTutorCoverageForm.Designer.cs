@@ -41,26 +41,22 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             btnClearFilters = new Button();
             lblFilter = new Label();
             pnlKpis = new FlowLayoutPanel();
-            tabReport = new TabControl();
-            tabTable = new TabPage();
+            tblReport = new TableLayoutPanel();
             dgvReport = new DataGridView();
-            tabChart = new TabPage();
             chartPanel = new ReportChartPanel();
             lblSummary = new Label();
             btnExport = new Button();
             btnPreview = new Button();
             btnReturn = new Button();
-            tabReport.SuspendLayout();
-            tabTable.SuspendLayout();
+            tblReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
-            tabChart.SuspendLayout();
             SuspendLayout();
             // 
             // lblTitle
             // 
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.Transparent;
-            lblTitle.Font = new Font("Cooper Black", 25F);
+            lblTitle.Font = new Font("Cooper Black", 20F);
             lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(22, 9);
             lblTitle.Name = "lblTitle";
@@ -174,27 +170,20 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             pnlKpis.TabIndex = 10;
             pnlKpis.WrapContents = false;
             // 
-            // tabReport
+            // tblReport
             // 
-            tabReport.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            tabReport.Controls.Add(tabTable);
-            tabReport.Controls.Add(tabChart);
-            tabReport.Location = new Point(24, 272);
-            tabReport.Name = "tabReport";
-            tabReport.SelectedIndex = 0;
-            tabReport.Size = new Size(1150, 388);
-            tabReport.TabIndex = 11;
-            // 
-            // tabTable
-            // 
-            tabTable.Controls.Add(dgvReport);
-            tabTable.Location = new Point(4, 29);
-            tabTable.Name = "tabTable";
-            tabTable.Padding = new Padding(3);
-            tabTable.Size = new Size(1142, 355);
-            tabTable.TabIndex = 0;
-            tabTable.Text = "Table";
-            tabTable.UseVisualStyleBackColor = true;
+            tblReport.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            tblReport.ColumnCount = 1;
+            tblReport.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tblReport.Controls.Add(dgvReport, 0, 0);
+            tblReport.Controls.Add(chartPanel, 0, 1);
+            tblReport.Location = new Point(24, 272);
+            tblReport.Name = "tblReport";
+            tblReport.RowCount = 2;
+            tblReport.RowStyles.Add(new RowStyle(SizeType.Percent, 45F));
+            tblReport.RowStyles.Add(new RowStyle(SizeType.Percent, 55F));
+            tblReport.Size = new Size(1150, 388);
+            tblReport.TabIndex = 11;
             // 
             // dgvReport
             // 
@@ -206,17 +195,6 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             dgvReport.RowHeadersWidth = 51;
             dgvReport.Size = new Size(1136, 349);
             dgvReport.TabIndex = 0;
-            // 
-            // tabChart
-            // 
-            tabChart.Controls.Add(chartPanel);
-            tabChart.Location = new Point(4, 29);
-            tabChart.Name = "tabChart";
-            tabChart.Padding = new Padding(3);
-            tabChart.Size = new Size(1142, 355);
-            tabChart.TabIndex = 1;
-            tabChart.Text = "Chart";
-            tabChart.UseVisualStyleBackColor = true;
             // 
             // chartPanel
             // 
@@ -265,7 +243,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             // 
             // btnReturn
             // 
-            btnReturn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnReturn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
             btnReturn.Location = new Point(22, 708);
             btnReturn.Name = "btnReturn";
@@ -289,7 +267,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             Controls.Add(btnPreview);
             Controls.Add(btnExport);
             Controls.Add(lblSummary);
-            Controls.Add(tabReport);
+            Controls.Add(tblReport);
             Controls.Add(pnlKpis);
             Controls.Add(lblFilter);
             Controls.Add(btnClearFilters);
@@ -303,16 +281,14 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             Controls.Add(lblPeriod);
             Controls.Add(lblTitle);
             DoubleBuffered = true;
-            MinimumSize = new Size(1050, 600);
+            MinimumSize = new Size(1050, 760);
             Name = "CourseSupportAndTutorCoverageForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Course Support Demand and Tutor Coverage";
             WindowState = FormWindowState.Maximized;
             Load += CourseSupportAndTutorCoverageForm_Load;
-            tabReport.ResumeLayout(false);
-            tabTable.ResumeLayout(false);
+            tblReport.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
-            tabChart.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -331,10 +307,8 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
         private Button btnClearFilters;
         private Label lblFilter;
         private FlowLayoutPanel pnlKpis;
-        private TabControl tabReport;
-        private TabPage tabTable;
+        private TableLayoutPanel tblReport;
         private DataGridView dgvReport;
-        private TabPage tabChart;
         private ReportChartPanel chartPanel;
         private Label lblSummary;
         private Button btnExport;

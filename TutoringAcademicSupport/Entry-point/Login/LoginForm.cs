@@ -187,19 +187,19 @@ namespace TutoringAcademicSupport.EntryPoint.Login
 
         private void ShowSuccess(string text)
         {
-            lblMessage.ForeColor = AppTheme.SuccessText;
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
             lblMessage.Text = text;
         }
 
         private void ShowError(string text)
         {
-            lblMessage.ForeColor = AppTheme.ErrorText;
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
             lblMessage.Text = text;
         }
 
         private void ShowNeutral(string text)
         {
-            lblMessage.ForeColor = AppTheme.NormalText;
+            lblMessage.ForeColor = SystemColors.ControlText;
             lblMessage.Text = text;
         }
 

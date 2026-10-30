@@ -1,4 +1,3 @@
-using TutoringAcademicSupport.Common.Branding;
 
 namespace TutoringAcademicSupport.Common.Navigation
 {
@@ -54,14 +53,12 @@ namespace TutoringAcademicSupport.Common.Navigation
                     }
                 }
 
-                AppTheme.Apply(current);
                 current.Show();
                 current.Activate();
                 onReturn?.Invoke(next);
             };
 
             next.Load += (_, _) => ScreenLayout.TidyLabels(next);
-            AppTheme.Apply(next);
             current.Hide();
             next.Show();
         }

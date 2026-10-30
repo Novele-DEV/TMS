@@ -111,13 +111,13 @@ public partial class AddTutorForm : Form
 
     private void ShowSuccess(string text)
     {
-        lblStatus.ForeColor = AppTheme.SuccessText;
+        lblStatus.ForeColor = ColorTranslator.FromHtml("#2E7D32");
         lblStatus.Text = text;
     }
 
     private void ShowError(string text)
     {
-        lblStatus.ForeColor = AppTheme.ErrorText;
+        lblStatus.ForeColor = ColorTranslator.FromHtml("#C62828");
         lblStatus.Text = text;
     }
 }

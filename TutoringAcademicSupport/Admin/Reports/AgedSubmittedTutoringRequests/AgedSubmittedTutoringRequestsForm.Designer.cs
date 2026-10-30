@@ -55,7 +55,7 @@
             // 
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.Transparent;
-            lblTitle.Font = new Font("Cooper Black", 25F);
+            lblTitle.Font = new Font("Cooper Black", 20F);
             lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(24, 29);
             lblTitle.Name = "lblTitle";
@@ -240,7 +240,7 @@
             // 
             // btnReturn
             // 
-            btnReturn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnReturn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
             btnReturn.Location = new Point(24, 635);
             btnReturn.Name = "btnReturn";

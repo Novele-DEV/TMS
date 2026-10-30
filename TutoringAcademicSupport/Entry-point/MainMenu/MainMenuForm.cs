@@ -27,11 +27,8 @@ namespace TutoringAcademicSupport.EntryPoint.MainMenu
                 ByteBetterBrand.AddFocusOutline(roleButton);
             }
 
-            AppTheme.AddToggle(this);
-
             // the first screen does not come through ScreenNavigator, so it does this itself
             Load += (_, _) => ScreenLayout.TidyLabels(this);
-            AppTheme.Apply(this);
         }
 
         private void OpenLoginForm(string role)

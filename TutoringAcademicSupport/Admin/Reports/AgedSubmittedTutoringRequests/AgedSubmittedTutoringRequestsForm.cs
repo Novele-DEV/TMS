@@ -118,7 +118,7 @@ namespace TutoringAcademicSupport.Admin.Reports.AgedSubmittedTutoringRequests
                 (result.UrgentOrHighCount.ToString(), "Urgent or High priority")
             };
 
-            lblFilter.ForeColor = AppTheme.MutedText;
+            lblFilter.ForeColor = SystemColors.GrayText;
             lblPeriod.Text = periodLine;
             lblFilter.Text = $"Filters: Course: {ReportOutput.FilterText(cmbCourse)}  |  " +
                              $"Priority: {ReportOutput.FilterText(cmbPriority)}  |  Action: {ReportOutput.FilterText(cmbAction)}";

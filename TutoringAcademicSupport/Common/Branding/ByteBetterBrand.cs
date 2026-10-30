@@ -7,14 +7,10 @@ namespace TutoringAcademicSupport.Common.Branding
         private const string LogoResource = "ByteBetterLogo.png";
 
         private static Image? logo;
-        private static Image? logoOnDark;
         private static Icon? windowIcon;
 
         // the logo with a transparent background, so it sits cleanly on any form or page
         public static Image Logo => logo ??= LoadLogo();
-
-        // the same logo in a pale blue, because the navy one cannot be seen in dark mode
-        public static Image LogoOnDark => logoOnDark ??= MakePaleLogo(Logo);
 
         public static Icon WindowIcon => windowIcon ??= MakeIcon(Logo);
 
@@ -71,18 +67,19 @@ namespace TutoringAcademicSupport.Common.Branding
         // as "not available yet"; it goes back to navy with white text when it is enabled again.
         public static void KeepReadableWhenDisabled(Button button)
         {
+            Color enabledBack = button.BackColor;
+            Color enabledFore = button.ForeColor;
             Cursor enabledCursor = button.Cursor;
 
-            void ApplyCursor()
+            void Apply()
             {
+                button.BackColor = button.Enabled ? enabledBack : Color.FromArgb(225, 228, 235);
+                button.ForeColor = button.Enabled ? enabledFore : Color.FromArgb(110, 110, 110);
                 button.Cursor = button.Enabled ? enabledCursor : Cursors.Default;
             }
 
-            button.EnabledChanged += (_, _) => ApplyCursor();
-            ApplyCursor();
-
-            // the colours depend on light or dark mode, so the theme looks after them
-            AppTheme.TrackDisabledLook(button);
+            button.EnabledChanged += (_, _) => Apply();
+            Apply();
         }
 
         // Windows hides focus rectangles until the keyboard is used (UISF_HIDEFOCUS);
@@ -115,25 +112,6 @@ namespace TutoringAcademicSupport.Common.Branding
             // copy the image, so it does not depend on the stream staying open
             using Image image = Image.FromStream(stream);
             return new Bitmap(image);
-        }
-
-        // Keeps the logo's shape (its transparency) and replaces every colour with one pale blue.
-        private static Image MakePaleLogo(Image image)
-        {
-            System.Drawing.Imaging.ColorMatrix matrix = new()
-            {
-                Matrix00 = 0F, Matrix11 = 0F, Matrix22 = 0F,
-                Matrix40 = 220 / 255F, Matrix41 = 232 / 255F, Matrix42 = 250 / 255F
-            };
-
-            using System.Drawing.Imaging.ImageAttributes attributes = new();
-            attributes.SetColorMatrix(matrix);
-
-            Bitmap pale = new(image.Width, image.Height);
-            using Graphics g = Graphics.FromImage(pale);
-            g.DrawImage(image, new Rectangle(0, 0, image.Width, image.Height),
-                0, 0, image.Width, image.Height, GraphicsUnit.Pixel, attributes);
-            return pale;
         }
 
         private static Icon MakeIcon(Image image)

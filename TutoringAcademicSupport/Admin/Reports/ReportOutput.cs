@@ -1,6 +1,5 @@
 using System.Globalization;
 using System.Text;
-using TutoringAcademicSupport.Common.Branding;
 
 namespace TutoringAcademicSupport.Admin.Reports
 {
@@ -14,11 +13,7 @@ namespace TutoringAcademicSupport.Admin.Reports
         public static readonly Color HeaderColour = Color.FromArgb(31, 56, 100);
         public static readonly Color FlagColour = Color.FromArgb(252, 228, 214);
         public static readonly Color TotalsColour = Color.FromArgb(226, 230, 243);
-
-        // The colours above are for the printed page, which is always light. These follow light or dark mode on screen.
-        private static Color ScreenFlagColour => AppTheme.Choose(FlagColour, Color.FromArgb(96, 58, 36));
-        private static Color ScreenTotalsColour => AppTheme.Choose(TotalsColour, Color.FromArgb(44, 58, 92));
-        private static Color ScreenTileText => AppTheme.Choose(HeaderColour, Color.FromArgb(232, 234, 238));
+        public static readonly Color ErrorColour = Color.FromArgb(198, 40, 40);
 
         private const string TotalsRowTag = "Totals";
 
@@ -91,14 +86,14 @@ namespace TutoringAcademicSupport.Admin.Reports
 
         public static void MarkFlagCell(DataGridViewCell cell)
         {
-            cell.Style.BackColor = ScreenFlagColour;
+            cell.Style.BackColor = FlagColour;
             cell.Style.Font = new Font(cell.DataGridView!.Font, FontStyle.Bold);
         }
 
         public static void MarkTotalsRow(DataGridViewRow row)
         {
             row.Tag = TotalsRowTag;
-            row.DefaultCellStyle.BackColor = ScreenTotalsColour;
+            row.DefaultCellStyle.BackColor = TotalsColour;
             row.DefaultCellStyle.Font = new Font(row.DataGridView!.Font, FontStyle.Bold);
         }
 
@@ -144,8 +139,8 @@ namespace TutoringAcademicSupport.Admin.Reports
                     Size = new Size(215, tileHeight),
                     Margin = new Padding(0, 0, 10, 0),
                     BorderStyle = BorderStyle.FixedSingle,
-                    BackColor = ScreenTotalsColour,
-                    ForeColor = ScreenTileText,
+                    BackColor = TotalsColour,
+                    ForeColor = HeaderColour,
                     TextAlign = ContentAlignment.MiddleCenter,
                     Font = new Font("Segoe UI", 9.5F, FontStyle.Bold),
                     Text = value + Environment.NewLine + caption
@@ -161,7 +156,7 @@ namespace TutoringAcademicSupport.Admin.Reports
             kpiPanel.Controls.Clear();
             periodLabel.Text = string.Empty;
             if (chartPanel is not null) chartPanel.Chart = null;
-            statusLabel.ForeColor = AppTheme.ErrorText;
+            statusLabel.ForeColor = ErrorColour;
             statusLabel.Text = NotGeneratedText;
             summaryLabel.Text = string.Empty;
         }
@@ -170,7 +165,6 @@ namespace TutoringAcademicSupport.Admin.Reports
         {
             using ReportPrintDocument document = new(details, grid, DateTime.Now);
             using ReportPreviewForm preview = new(document);
-            AppTheme.Apply(preview);
             preview.ShowDialog(owner);
         }
 

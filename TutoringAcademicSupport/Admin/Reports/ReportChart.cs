@@ -26,13 +26,6 @@ namespace TutoringAcademicSupport.Admin.Reports
         private static readonly Color Gridline = ColorTranslator.FromHtml("#e1e0d9");
         private static readonly Color Baseline = ColorTranslator.FromHtml("#c3c2b7");
 
-        // The same chrome for a dark surface. The series colours stay the same on both.
-        private static readonly Color DarkPrimaryInk = ColorTranslator.FromHtml("#f2f2f0");
-        private static readonly Color DarkSecondaryInk = ColorTranslator.FromHtml("#c9c8c2");
-        private static readonly Color DarkMutedInk = ColorTranslator.FromHtml("#a3a29b");
-        private static readonly Color DarkGridline = ColorTranslator.FromHtml("#3a3e49");
-        private static readonly Color DarkBaseline = ColorTranslator.FromHtml("#5c6170");
-
         private const float MaxBarWidth = 24F;
         private const float CornerRadius = 4F;
         private const float SurfaceGap = 2F;
@@ -53,13 +46,12 @@ namespace TutoringAcademicSupport.Admin.Reports
         public List<ChartHit> Draw(Graphics g, RectangleF bounds, Font font, Color surface)
         {
             List<ChartHit> hits = new();
-            bool darkSurface = surface.GetBrightness() < 0.5F; // the printed page is always white, so it stays light
 
             using Font titleFont = new(font.FontFamily, font.Size + 2F, FontStyle.Bold);
             using Font smallFont = new(font.FontFamily, Math.Max(6F, font.Size - 1F));
-            using SolidBrush primary = new(darkSurface ? DarkPrimaryInk : PrimaryInk);
-            using SolidBrush secondary = new(darkSurface ? DarkSecondaryInk : SecondaryInk);
-            using SolidBrush muted = new(darkSurface ? DarkMutedInk : MutedInk);
+            using SolidBrush primary = new(PrimaryInk);
+            using SolidBrush secondary = new(SecondaryInk);
+            using SolidBrush muted = new(MutedInk);
 
             float y = bounds.Top;
             g.DrawString(Title, titleFont, primary, bounds.Left, y);
@@ -87,7 +79,10 @@ namespace TutoringAcademicSupport.Admin.Reports
             if (plotArea.Height < 40 || Categories.Count == 0 || maximum <= 0)
             {
                 using StringFormat centred = new() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-                g.DrawString("No data for this period.", font, secondary, new RectangleF(bounds.Left, y, bounds.Width, bounds.Bottom - y), centred);
+                string message = Categories.Count == 0 || maximum <= 0
+                    ? "No data for this period."
+                    : "Make the window bigger to see this chart.";
+                g.DrawString(message, font, secondary, new RectangleF(bounds.Left, y, bounds.Width, bounds.Bottom - y), centred);
                 return hits;
             }
 
@@ -97,8 +92,8 @@ namespace TutoringAcademicSupport.Admin.Reports
             float tickWidth = g.MeasureString(niceMaximum.ToString("0"), smallFont).Width + 8;
             RectangleF plot = new(plotArea.Left + tickWidth, plotArea.Top, plotArea.Width - tickWidth, plotArea.Height);
 
-            using (Pen gridPen = new(darkSurface ? DarkGridline : Gridline, 1F))
-            using (Pen basePen = new(darkSurface ? DarkBaseline : Baseline, 1F))
+            using (Pen gridPen = new(Gridline, 1F))
+            using (Pen basePen = new(Baseline, 1F))
             using (StringFormat rightAligned = new() { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Center })
             {
                 for (double value = 0; value <= niceMaximum + step / 2; value += step)

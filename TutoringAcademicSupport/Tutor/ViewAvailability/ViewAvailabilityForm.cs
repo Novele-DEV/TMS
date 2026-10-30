@@ -19,7 +19,6 @@ namespace TutoringAcademicSupport.Tutor
             picLogo.Image = ByteBetterBrand.Logo;
             Icon = ByteBetterBrand.WindowIcon;
             ByteBetterBrand.AddFocusOutline(btnUpdate);
-            AppTheme.AddToggle(this);
 
             lblTutorMessage.Text = string.IsNullOrWhiteSpace(firstName)
                 ? $"Logged in as tutor {tutorId}"

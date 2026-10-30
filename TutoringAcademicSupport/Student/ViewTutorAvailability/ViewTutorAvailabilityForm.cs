@@ -139,13 +139,13 @@ namespace TutoringAcademicSupport.Student.ViewTutorAvailability
 
         private void ShowError(string message)
         {
-            lblMessage.ForeColor = AppTheme.ErrorText;
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
             lblMessage.Text = message;
         }
 
         private void ShowNeutral(string message)
         {
-            lblMessage.ForeColor = AppTheme.NormalText;
+            lblMessage.ForeColor = SystemColors.ControlText;
             lblMessage.Text = message;
         }
     }

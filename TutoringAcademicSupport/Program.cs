@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Forms;
-using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.EntryPoint.MainMenu;
 
 namespace TutoringAcademicSupport
@@ -11,7 +10,6 @@ namespace TutoringAcademicSupport
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            AppTheme.LoadSavedChoice();
             Application.Run(new MainMenuForm());
         }
     }
