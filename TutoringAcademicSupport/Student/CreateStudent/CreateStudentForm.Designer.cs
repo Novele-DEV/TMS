@@ -74,6 +74,7 @@
             this.txtStudentID.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStudentID.Location = new System.Drawing.Point(20, 76);
             this.txtStudentID.Name = "txtStudentID";
+            this.txtStudentID.PlaceholderText = "2000015";
             this.txtStudentID.Size = new System.Drawing.Size(258, 25);
             this.txtStudentID.TabIndex = 1;
             // 
@@ -98,6 +99,7 @@
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(20, 200);
             this.txtEmail.Name = "txtEmail";
+            this.txtEmail.PlaceholderText = "name@example.com";
             this.txtEmail.Size = new System.Drawing.Size(258, 25);
             this.txtEmail.TabIndex = 4;
             // 
@@ -124,6 +126,7 @@
             this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.Location = new System.Drawing.Point(400, 200);
             this.txtPhone.Name = "txtPhone";
+            this.txtPhone.PlaceholderText = "+27821234567";
             this.txtPhone.Size = new System.Drawing.Size(258, 25);
             this.txtPhone.TabIndex = 7;
             // 
@@ -139,7 +142,7 @@
             // lblRequired
             // 
             this.lblRequired.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRequired.Location = new System.Drawing.Point(17, 446);
+            this.lblRequired.Location = new System.Drawing.Point(20, 446);
             this.lblRequired.Name = "lblRequired";
             this.lblRequired.Size = new System.Drawing.Size(258, 37);
             this.lblRequired.TabIndex = 9;
@@ -148,7 +151,7 @@
             // lblMessage
             // 
             this.lblMessage.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMessage.Location = new System.Drawing.Point(17, 499);
+            this.lblMessage.Location = new System.Drawing.Point(20, 499);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(710, 44);
             this.lblMessage.TabIndex = 10;
@@ -157,11 +160,11 @@
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.Location = new System.Drawing.Point(12, 582);
+            this.btnBack.Location = new System.Drawing.Point(20, 582);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 32);
             this.btnBack.TabIndex = 11;
-            this.btnBack.Text = "Back to Login";
+            this.btnBack.Text = "&Back";
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
@@ -182,7 +185,7 @@
             // lblStudentNo
             // 
             this.lblStudentNo.AutoSize = true;
-            this.lblStudentNo.Location = new System.Drawing.Point(25, 57);
+            this.lblStudentNo.Location = new System.Drawing.Point(20, 57);
             this.lblStudentNo.Name = "lblStudentNo";
             this.lblStudentNo.Size = new System.Drawing.Size(99, 13);
             this.lblStudentNo.TabIndex = 13;
@@ -200,7 +203,7 @@
             // lblFName
             // 
             this.lblFName.AutoSize = true;
-            this.lblFName.Location = new System.Drawing.Point(23, 119);
+            this.lblFName.Location = new System.Drawing.Point(20, 119);
             this.lblFName.Name = "lblFName";
             this.lblFName.Size = new System.Drawing.Size(68, 13);
             this.lblFName.TabIndex = 15;
@@ -283,11 +286,11 @@
             // lblConfirmPassword
             // 
             this.lblConfirmPassword.AutoSize = true;
-            this.lblConfirmPassword.Location = new System.Drawing.Point(20, 375);
+            this.lblConfirmPassword.Location = new System.Drawing.Point(20, 372);
             this.lblConfirmPassword.Name = "lblConfirmPassword";
             this.lblConfirmPassword.Size = new System.Drawing.Size(108, 13);
             this.lblConfirmPassword.TabIndex = 25;
-            this.lblConfirmPassword.Text = "Confirm Password *";
+            this.lblConfirmPassword.Text = "Confirm password *";
             // 
             // CreateStudentForm
             // 

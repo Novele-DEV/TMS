@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using TutoringAcademicSupport.Common.Branding;
+using System.Collections.Generic;
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Drawing;
@@ -16,7 +17,7 @@ namespace TutoringAcademicSupport.Student.CreateStudent
         private static readonly Dictionary<string, string[]> Programmes = new Dictionary<string, string[]>
         {
             {"Commerce", new[] {"BCom Information Systems", "BCom Economics", "BCom Accounting"}},
-            {"Science", new[] {"BSc Acturial Science", "BSc Statistics", "BSc Mathematical Sciences"} }
+            {"Science", new[] {"BSc Actuarial Science", "BSc Statistics", "BSc Mathematical Sciences"} }
         };
 
         private bool busy; // prevents competing actions
@@ -33,6 +34,12 @@ namespace TutoringAcademicSupport.Student.CreateStudent
             TutoringAcademicSupport.Common.Navigation.ScreenLayout.CentreContent(this);
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
+
+            // the labels match the fields they describe, as on the other data entry screens
+            foreach (Label label in new[] { lblStudentNo, lblDoB, lblFName, lblLName, lblEmail, lblPhone, lblFaculty, lblProgramme, lblPassword, lblConfirmPassword })
+            {
+                label.Font = txtEmail.Font;
+            }
 
             // these limits follow the data dictionary from Milestone 1
             txtStudentID.MaxLength = 7; // 7 digit number
@@ -221,19 +228,19 @@ namespace TutoringAcademicSupport.Student.CreateStudent
         // the codes inside each "Show" method are placeholders for testing, replace the bodies with better logic if it exists.
         private void ShowError(string text)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblMessage.ForeColor = AppTheme.ErrorText;
             lblMessage.Text = text;
         }
 
         private void ShowSuccess(string text)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
+            lblMessage.ForeColor = AppTheme.SuccessText;
             lblMessage.Text = text;
         }
 
         private void ShowNeutral(string text)
         {
-            lblMessage.ForeColor = SystemColors.ControlText;
+            lblMessage.ForeColor = AppTheme.NormalText;
             lblMessage.Text = text;
         }
 

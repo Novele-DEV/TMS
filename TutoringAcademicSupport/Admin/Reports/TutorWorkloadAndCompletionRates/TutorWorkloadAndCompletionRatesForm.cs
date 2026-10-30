@@ -95,7 +95,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
                 (result.HoursDelivered.ToString("0.0"), "Hours delivered")
             };
 
-            lblFilter.ForeColor = SystemColors.GrayText;
+            lblFilter.ForeColor = AppTheme.MutedText;
             lblPeriod.Text = periodLine;
             lblFilter.Text = $"Filters: Workload flag: {ReportOutput.FilterText(cmbWorkloadFlag)}";
             ReportOutput.ShowKpis(pnlKpis, kpis);

@@ -11,6 +11,10 @@ namespace TutoringAcademicSupport.Student.CancelBooking
         public static string RuleNotice =>
             $"Bookings cannot be changed or cancelled less than {MinimumNoticeHours} hours before the session.";
 
+        // The same rule for the screens with room for only one short line.
+        public static string ShortRuleNotice =>
+            $"No changes or cancellations within {MinimumNoticeHours} hours of a session.";
+
         // Used by the form before it asks the student to confirm.
         public static string Validate(DateTime sessionStart)
         {

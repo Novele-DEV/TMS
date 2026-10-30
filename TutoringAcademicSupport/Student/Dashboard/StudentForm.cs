@@ -30,6 +30,8 @@ namespace TutoringAcademicSupport.Student.Dashboard
             {
                 ByteBetterBrand.AddFocusOutline(option);
             }
+
+            AppTheme.AddToggle(this);
         }
 
         // each page opens in place of this menu, which comes back when the page closes

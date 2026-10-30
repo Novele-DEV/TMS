@@ -42,6 +42,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
         {
             InitializeComponent();
             ByteBetterBrand.AddLogo(this, 110, fitAbove: tutorDataGridView);
+            AppTheme.AddToggle(this, leftOf: Controls["picLogo"]);
 
             lblWelcome.Text = string.IsNullOrWhiteSpace(adminName) ? "Welcome" : $"Welcome, {adminName}";
 
@@ -280,13 +281,13 @@ namespace TutoringAcademicSupport.Admin.Dashboard
 
         private void ShowSuccess(string text)
         {
-            lblStatus.ForeColor = ColorTranslator.FromHtml("#2E7D32");
+            lblStatus.ForeColor = AppTheme.SuccessText;
             lblStatus.Text = text;
         }
 
         private void ShowError(string text)
         {
-            lblStatus.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblStatus.ForeColor = AppTheme.ErrorText;
             lblStatus.Text = text;
         }
     }

@@ -51,7 +51,18 @@ namespace TutoringAcademicSupport.Common.Database
                     $"The database file was not found at:{Environment.NewLine}{DatabasePath}");
             }
 
-            const string query = "SELECT * FROM [Tutor]";
+            // the columns are named so the password hash is never loaded into the dashboard grid
+            const string query = """
+        SELECT
+            [Tutor_ID],
+            [Tutor_FName],
+            [Tutor_LName],
+            [Tutor_Email],
+            [Tutor_Phone],
+            [Tutor_AcademicAverage],
+            [Tutor_PreferredMode]
+        FROM [Tutor]
+        """;
 
             using OleDbConnection connection = new(ConnectionString);
             using OleDbDataAdapter adapter = new(query, connection);

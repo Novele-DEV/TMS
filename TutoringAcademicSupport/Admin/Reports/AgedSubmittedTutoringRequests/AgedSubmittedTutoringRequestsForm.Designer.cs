@@ -64,7 +64,7 @@
             // lblPeriod
             //
             lblPeriod.AutoSize = true;
-            lblPeriod.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblPeriod.Font = new Font("Segoe UI", 10.5F, FontStyle.Bold);
             lblPeriod.ForeColor = Color.FromArgb(31, 56, 100);
             lblPeriod.Location = new Point(22, 52);
             lblPeriod.Name = "lblPeriod";
