@@ -1,6 +1,6 @@
 ﻿using System.Data.OleDb;
 using System.Diagnostics;
-using TutoringAcademicSupport.Admin.Branding;
+using TutoringAcademicSupport.Common.Branding;
 
 namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCoverage
 {

@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using System.Drawing.Printing;
-using TutoringAcademicSupport.Admin.Branding;
+using TutoringAcademicSupport.Common.Branding;
 
 namespace TutoringAcademicSupport.Admin.Reports
 {

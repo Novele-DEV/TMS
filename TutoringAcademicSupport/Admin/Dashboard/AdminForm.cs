@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Admin.AddTutor;
-using TutoringAcademicSupport.Admin.Branding;
+using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Admin.EditTutor;
 using TutoringAcademicSupport.Admin.Reports;
 using TutoringAcademicSupport.Common.Database;

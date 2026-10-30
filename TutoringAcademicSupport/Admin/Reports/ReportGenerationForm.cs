@@ -1,4 +1,4 @@
-﻿using TutoringAcademicSupport.Admin.Branding;
+﻿using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Admin.Reports.AgedSubmittedTutoringRequests;
 using TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCoverage;
 using TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates;

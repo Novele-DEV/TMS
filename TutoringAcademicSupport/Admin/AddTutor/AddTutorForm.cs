@@ -2,7 +2,7 @@
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Windows.Forms;
-using TutoringAcademicSupport.Admin.Branding;
+using TutoringAcademicSupport.Common.Branding;
 
 namespace TutoringAcademicSupport.Admin.AddTutor;
 

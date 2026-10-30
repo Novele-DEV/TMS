@@ -1,6 +1,6 @@
-namespace TutoringAcademicSupport.Admin.Branding
+namespace TutoringAcademicSupport.Common.Branding
 {
-    // The Byte Better logo, shared by the admin screens and the printed reports.
+    // The Byte Better logo, shared by the main menu, the admin screens and the printed reports.
     // The image is built into the program (see the .csproj), so it is always available.
     public static class ByteBetterBrand
     {
@@ -43,6 +43,21 @@ namespace TutoringAcademicSupport.Admin.Branding
             };
 
             form.Controls.Add(logoBox);
+        }
+
+        // Flat navy menu buttons hide the usual focus rectangle, so this draws a white inner
+        // outline on the focused one, making it clear which choice Tab or the arrow keys are on.
+        public static void AddFocusOutline(Button button)
+        {
+            button.Paint += (_, e) =>
+            {
+                if (!button.Focused) return;
+
+                using Pen outline = new(Color.White, 2F);
+                Rectangle inner = button.ClientRectangle;
+                inner.Inflate(-6, -6);
+                e.Graphics.DrawRectangle(outline, inner);
+            };
         }
 
         // Uses the logo as the window icon only, for screens with no room for it.

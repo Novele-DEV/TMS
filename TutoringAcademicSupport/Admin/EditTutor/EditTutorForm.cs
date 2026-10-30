@@ -4,7 +4,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
-using TutoringAcademicSupport.Admin.Branding;
+using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Common.Database;
 
 namespace TutoringAcademicSupport.Admin.EditTutor

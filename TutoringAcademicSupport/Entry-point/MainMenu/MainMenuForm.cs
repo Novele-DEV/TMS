@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.EntryPoint.Login;
 
@@ -17,6 +18,14 @@ namespace TutoringAcademicSupport.EntryPoint.MainMenu
         public MainMenuForm()
         {
             InitializeComponent();
+
+            picLogo.Image = ByteBetterBrand.Logo;
+            Icon = ByteBetterBrand.WindowIcon;
+
+            foreach (Button roleButton in new[] { btnStudent, btnTutor, btnAdministrator })
+            {
+                ByteBetterBrand.AddFocusOutline(roleButton);
+            }
         }
 
         private void OpenLoginForm(string role)
@@ -37,6 +46,11 @@ namespace TutoringAcademicSupport.EntryPoint.MainMenu
         private void btnAdministrator_Click(object sender, EventArgs e)
         {
             OpenLoginForm("Administrator");
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        { // closing the main menu ends the program
+            Close();
         }
     }
 }
