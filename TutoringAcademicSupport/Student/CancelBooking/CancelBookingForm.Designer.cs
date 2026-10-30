@@ -126,6 +126,7 @@
             btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.FromArgb(64, 64, 64);
             btnBack.Location = new Point(714, 533);
+            btnBack.Location = new Point(23, 533);
             btnBack.Margin = new Padding(4, 3, 4, 3);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(140, 44);
@@ -144,10 +145,10 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(14, 533);
+            btnCancel.Location = new Point(593, 484);
             btnCancel.Margin = new Padding(4, 3, 4, 3);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(180, 44);
+            btnCancel.Size = new Size(223, 93);
             btnCancel.TabIndex = 5;
             btnCancel.Text = "&Cancel Booking";
             btnCancel.UseVisualStyleBackColor = false;

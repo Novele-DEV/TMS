@@ -54,6 +54,7 @@
             label7.ForeColor = Color.Blue;
             label7.Location = new Point(28, 11);
             label7.Name = "label7";
+            label7.Size = new Size(272, 41);
             label7.Size = new Size(400, 49);
             label7.TabIndex = 0;
             label7.Text = "Update a Booking";
@@ -179,8 +180,9 @@
             btnUpdateSession.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnUpdateSession.ForeColor = Color.White;
             btnUpdateSession.Location = new Point(28, 404);
+            btnUpdateSession.Location = new Point(395, 395);
             btnUpdateSession.Name = "btnUpdateSession";
-            btnUpdateSession.Size = new Size(180, 44);
+            btnUpdateSession.Size = new Size(203, 63);
             btnUpdateSession.TabIndex = 13;
             btnUpdateSession.Text = "&Update Booking";
             btnUpdateSession.UseVisualStyleBackColor = false;
@@ -191,6 +193,7 @@
             btnClose.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClose.ForeColor = Color.FromArgb(64, 64, 64);
             btnClose.Location = new Point(470, 404);
+            btnClose.Location = new Point(24, 414);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(140, 44);
             btnClose.TabIndex = 14;

@@ -36,8 +36,15 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             errorProvider.ContainerControl = this;
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             lblIntro.Text = $"Enter your {selectedRole.ToLower()} ID and password.";
-            lblMessage.Text = $"You are logging in as a {selectedRole.ToLower()}.";
+            string article = selectedRole == "Administrator" ? "an" : "a";
+            lblMessage.Text = $"Logging in as {article} {selectedRole.ToLower()}.";
             lblUserID.Text = $"Enter your {selectedRole.ToLower()} ID:";
+            txtUserID.PlaceholderText = selectedRole switch
+            {
+                "Administrator" => "ADM00001",
+                "Tutor" => "TUT00001",
+                _ => "2000001"
+            };
             LnkCreateStudent.Visible = string.Equals(selectedRole, "Student", StringComparison.OrdinalIgnoreCase);
             txtPassword.MaxLength = 64; // this matches the database column size
             txtUserID.MaxLength = 16; // the admin ID is the longest with 16 characters
@@ -122,7 +129,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
 
             if (txtUserID.Text.Trim().Length == 0)
             {
-                errorProvider.SetError(txtUserID, "Please fill in your student number or administrator ID.");
+                errorProvider.SetError(txtUserID, $"Please fill in your {selectedRole.ToLower()} ID.");
                 valid = false;
             }
 
@@ -180,19 +187,19 @@ namespace TutoringAcademicSupport.EntryPoint.Login
 
         private void ShowSuccess(string text)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
+            lblMessage.ForeColor = AppTheme.SuccessText;
             lblMessage.Text = text;
         }
 
         private void ShowError(string text)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblMessage.ForeColor = AppTheme.ErrorText;
             lblMessage.Text = text;
         }
 
         private void ShowNeutral(string text)
         {
-            lblMessage.ForeColor = SystemColors.ControlText;
+            lblMessage.ForeColor = AppTheme.NormalText;
             lblMessage.Text = text;
         }
 

@@ -240,6 +240,7 @@
             btnClear.BackColor = SystemColors.ButtonFace;
             btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClear.Location = new Point(199, 512);
+            btnClear.Location = new Point(151, 512);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(144, 44);
             btnClear.TabIndex = 17;

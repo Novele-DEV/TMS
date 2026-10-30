@@ -42,7 +42,7 @@ namespace TutoringAcademicSupport.Admin.Reports
             }
 
             RectangleF bounds = new(16, 12, Math.Max(1, Width - 32), Math.Max(1, Height - 24));
-            hits = chart.Draw(e.Graphics, bounds, Font, Surface);
+            hits = chart.Draw(e.Graphics, bounds, Font, BackColor); // BackColor follows light or dark mode
         }
 
         protected override void OnMouseMove(MouseEventArgs e)

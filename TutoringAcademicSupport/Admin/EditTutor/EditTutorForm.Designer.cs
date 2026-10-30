@@ -219,10 +219,11 @@
             btnAdd.BackColor = Color.DarkBlue;
             btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnAdd.Location = new Point(440, 445);
             btnAdd.ForeColor = SystemColors.ButtonHighlight;
             btnAdd.Location = new Point(28, 486);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(170, 48);
+            btnAdd.Size = new Size(170, 79);
             btnAdd.TabIndex = 17;
             btnAdd.Text = "&Save Changes";
             btnAdd.UseVisualStyleBackColor = false;
@@ -234,6 +235,7 @@
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.ForeColor = Color.DarkBlue;
             btnClear.Location = new Point(210, 486);
+            btnClear.Location = new Point(204, 476);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 48);
             btnClear.TabIndex = 18;
@@ -246,6 +248,7 @@
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
             btnReturn.Location = new Point(440, 486);
+            btnReturn.Location = new Point(28, 476);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(170, 48);
             btnReturn.TabIndex = 19;

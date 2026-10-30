@@ -98,6 +98,8 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // 
             btnLoad.BackColor = SystemColors.ActiveCaption;
             btnLoad.Location = new Point(488, 92);
+            // 
+            btnLoad.Location = new Point(262, 96);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(100, 34);
             btnLoad.TabIndex = 4;
@@ -254,6 +256,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
             btnReturn.Location = new Point(812, 532);
+            btnReturn.Location = new Point(28, 501);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(160, 48);
             btnReturn.TabIndex = 8;
