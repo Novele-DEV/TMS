@@ -1,5 +1,6 @@
 ﻿using System.Data.OleDb;
 using System.Diagnostics;
+using TutoringAcademicSupport.Admin.Branding;
 
 namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCoverage
 {
@@ -14,6 +15,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
         public CourseSupportAndTutorCoverageForm()
         {
             InitializeComponent();
+            ByteBetterBrand.AddLogo(this, 80);
 
             // the period defaults to the current month so far
             dtpStartDate.Value = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);

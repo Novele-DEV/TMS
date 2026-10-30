@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Admin.AddTutor;
+using TutoringAcademicSupport.Admin.Branding;
 using TutoringAcademicSupport.Admin.EditTutor;
 using TutoringAcademicSupport.Admin.Reports;
 using TutoringAcademicSupport.Common.Database;
@@ -40,6 +41,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
         public AdminForm(string adminName)
         {
             InitializeComponent();
+            ByteBetterBrand.AddLogo(this, 110, fitAbove: tutorDataGridView);
 
             lblWelcome.Text = string.IsNullOrWhiteSpace(adminName) ? "Welcome" : $"Welcome, {adminName}";
 

@@ -1,4 +1,5 @@
 using System.Drawing.Printing;
+using TutoringAcademicSupport.Admin.Branding;
 
 namespace TutoringAcademicSupport.Admin.Reports
 {
@@ -10,6 +11,9 @@ namespace TutoringAcademicSupport.Admin.Reports
     {
         private const string SystemName = "#TutAcadSupport  |  Byte Better Management System";
         private const float CellPadding = 4F;
+
+        // the Byte Better logo in the top-right corner of every page header (0.7 inch)
+        private const float LogoSize = 70F;
 
         // The chart shares the last page when at least the minimum height is left; otherwise it gets its own page.
         private const float MinChartHeight = 230F;
@@ -113,10 +117,14 @@ namespace TutoringAcademicSupport.Admin.Reports
             float totalWeight = columns.Sum(c => c.FillWeight);
             float[] widths = columns.Select(c => area.Width * c.FillWeight / totalWeight).ToArray();
 
-            float headerHeight = systemFont.GetHeight(g) + 2
-                                 + titleFont.GetHeight(g) + 2
-                                 + Measure(g, details.PeriodLine, periodFont, area.Width) + 2
-                                 + Measure(g, details.FiltersLine, metaFont, area.Width)
+            // the header text wraps before the logo; the header is at least as tall as the logo
+            float textWidth = HeaderTextWidth(area);
+            float headerHeight = Math.Max(
+                                     systemFont.GetHeight(g) + 2
+                                     + titleFont.GetHeight(g) + 2
+                                     + Measure(g, details.PeriodLine, periodFont, textWidth) + 2
+                                     + Measure(g, details.FiltersLine, metaFont, textWidth),
+                                     LogoSize)
                                  + 10;
             float kpiHeight = details.Kpis.Count == 0 ? 0 : KpiTileHeight(g) + 10;
 
@@ -228,6 +236,10 @@ namespace TutoringAcademicSupport.Admin.Reports
         private float DrawHeader(Graphics g, Rectangle area)
         {
             float y = area.Top;
+            float textWidth = HeaderTextWidth(area);
+
+            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+            g.DrawImage(ByteBetterBrand.Logo, area.Right - LogoSize, area.Top, LogoSize, LogoSize);
 
             g.DrawString(SystemName, systemFont, Brushes.DimGray, area.Left, y);
             y += systemFont.GetHeight(g) + 2;
@@ -238,10 +250,11 @@ namespace TutoringAcademicSupport.Admin.Reports
                 y += titleFont.GetHeight(g) + 2;
 
                 // the period heading sits directly under the title on every page
-                y = DrawWrapped(g, details.PeriodLine, periodFont, titleBrush, area.Left, y, area.Width) + 2;
+                y = DrawWrapped(g, details.PeriodLine, periodFont, titleBrush, area.Left, y, textWidth) + 2;
             }
 
-            y = DrawWrapped(g, details.FiltersLine, metaFont, Brushes.Black, area.Left, y, area.Width);
+            y = DrawWrapped(g, details.FiltersLine, metaFont, Brushes.Black, area.Left, y, textWidth);
+            y = Math.Max(y, area.Top + LogoSize);
 
             using (Pen rule = new(ReportOutput.HeaderColour, 1.5F))
             {
@@ -377,6 +390,11 @@ namespace TutoringAcademicSupport.Admin.Reports
         {
             if (text.Length == 0) return 0;
             return g.MeasureString(text, font, (int)Math.Max(1, width)).Height;
+        }
+
+        private static float HeaderTextWidth(Rectangle area)
+        {
+            return area.Width - LogoSize - 12;
         }
 
         private float KpiTileHeight(Graphics g)

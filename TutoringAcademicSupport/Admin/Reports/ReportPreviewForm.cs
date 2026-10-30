@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Drawing.Printing;
+using TutoringAcademicSupport.Admin.Branding;
 
 namespace TutoringAcademicSupport.Admin.Reports
 {
@@ -18,6 +19,7 @@ namespace TutoringAcademicSupport.Admin.Reports
         public ReportPreviewForm(ReportPrintDocument document)
         {
             InitializeComponent();
+            ByteBetterBrand.SetIcon(this);
 
             this.document = document;
             Text = $"Print Preview - {document.DocumentName}";

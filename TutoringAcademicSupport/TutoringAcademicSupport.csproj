@@ -17,6 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Byte Better logo, built into the program so the admin screens and printed reports can show it -->
+    <EmbeddedResource Include="Admin\Branding\ByteBetterLogo.png" LogicalName="ByteBetterLogo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.2.0" />
     <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
   </ItemGroup>

@@ -4,6 +4,7 @@ using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Admin.Branding;
 using TutoringAcademicSupport.Common.Database;
 
 namespace TutoringAcademicSupport.Admin.EditTutor
@@ -18,11 +19,11 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         public EditTutorForm()
         {
             InitializeComponent();
+            ByteBetterBrand.AddLogo(this, 80, fitAbove: txtTutorID);
         }
 
-        public EditTutorForm(string tutorId)
+        public EditTutorForm(string tutorId) : this()
         {
-            InitializeComponent();
             this.tutorId = tutorId;
         }
 

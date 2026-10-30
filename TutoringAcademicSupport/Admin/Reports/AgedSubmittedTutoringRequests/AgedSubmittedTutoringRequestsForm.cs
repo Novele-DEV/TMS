@@ -1,5 +1,6 @@
 ﻿using System.Data.OleDb;
 using System.Diagnostics;
+using TutoringAcademicSupport.Admin.Branding;
 
 namespace TutoringAcademicSupport.Admin.Reports.AgedSubmittedTutoringRequests
 {
@@ -14,6 +15,7 @@ namespace TutoringAcademicSupport.Admin.Reports.AgedSubmittedTutoringRequests
         public AgedSubmittedTutoringRequestsForm()
         {
             InitializeComponent();
+            ByteBetterBrand.AddLogo(this, 80);
 
             dtpRunDate.Value = DateTime.Today;
             dtpRunDate.MaxDate = DateTime.Today; // a report cannot be run for a future date

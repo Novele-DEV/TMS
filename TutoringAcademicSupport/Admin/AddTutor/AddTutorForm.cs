@@ -2,6 +2,7 @@
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Admin.Branding;
 
 namespace TutoringAcademicSupport.Admin.AddTutor;
 
@@ -15,6 +16,7 @@ public partial class AddTutorForm : Form
     public AddTutorForm()
     {
         InitializeComponent();
+        ByteBetterBrand.AddLogo(this, 80, fitAbove: txtTutorID);
     }
 
     private void btnAdd_Click(object sender, EventArgs e)

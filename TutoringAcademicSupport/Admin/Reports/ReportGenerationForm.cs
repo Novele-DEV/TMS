@@ -1,4 +1,5 @@
-﻿using TutoringAcademicSupport.Admin.Reports.AgedSubmittedTutoringRequests;
+﻿using TutoringAcademicSupport.Admin.Branding;
+using TutoringAcademicSupport.Admin.Reports.AgedSubmittedTutoringRequests;
 using TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCoverage;
 using TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates;
 using TutoringAcademicSupport.Common.Navigation;
@@ -12,6 +13,7 @@ namespace TutoringAcademicSupport.Admin.Reports
         public ReportGenerationForm()
         {
             InitializeComponent();
+            ByteBetterBrand.AddLogo(this, 90);
             CancelButton = btnReturn; // Esc returns to the dashboard
         }
 
