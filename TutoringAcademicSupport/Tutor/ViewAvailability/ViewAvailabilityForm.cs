@@ -1,37 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Common.Navigation;
-using TutoringAcademicSupport.EntryPoint.Login;
 using TutoringAcademicSupport.Tutor.UpdateAvailability;
 
 namespace TutoringAcademicSupport.Tutor
 {
+    // The tutor's landing page after logging in.
     public partial class ViewAvailabilityForm : Form
     {
-        public ViewAvailabilityForm(LoginForm loginForm)
+        private readonly string tutorId; // the logged-in tutor, e.g. TUT00001
+
+        public ViewAvailabilityForm(string tutorId, string firstName)
         {
             InitializeComponent();
+            this.tutorId = tutorId;
 
-            lblTutorMessage.Text = "Welcome, Tutor !";
+            picLogo.Image = ByteBetterBrand.Logo;
+            Icon = ByteBetterBrand.WindowIcon;
+            ByteBetterBrand.AddFocusOutline(btnUpdate);
 
+            lblTutorMessage.Text = string.IsNullOrWhiteSpace(firstName)
+                ? $"Logged in as tutor {tutorId}"
+                : $"Welcome, {firstName}  ·  Tutor {tutorId}";
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            // this page is hidden while availability is being updated and comes back when that closes
-            ScreenNavigator.Open(this, new UpdateAvailabilityForm());
+            // opens this tutor's own availability with their ID locked, so they cannot change another tutor's
+            ScreenNavigator.Open(this, new UpdateAvailabilityForm(tutorId));
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
-            // closing returns to the screen that opened this one
+            // logging out closes the menu, which returns to the log in form
             Close();
         }
     }

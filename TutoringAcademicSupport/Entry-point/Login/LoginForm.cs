@@ -8,6 +8,7 @@ using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Student.CreateStudent;
 using TutoringAcademicSupport.Student.Dashboard;
+using TutoringAcademicSupport.Tutor;
 
 namespace TutoringAcademicSupport.EntryPoint.Login
 {
@@ -140,9 +141,12 @@ namespace TutoringAcademicSupport.EntryPoint.Login
         // frmMainMenu is the current placeholder until an actual menu form is created.
         private void OpenLandingForm(LoginResult result)
         {
-            Form landing = result.Role == "Administrator"
-                ? new AdminForm(result.FirstName)
-                : new StudentForm(result.UserId, result.FirstName); // the ID shows only that student's bookings; the name greets them
+            Form landing = result.Role switch
+            {
+                "Administrator" => new AdminForm(result.FirstName),
+                "Tutor" => new ViewAvailabilityForm(result.TutorId, result.FirstName), // the ID locks availability to this tutor
+                _ => new StudentForm(result.UserId, result.FirstName) // the ID shows only that student's bookings; the name greets them
+            };
 
             // the log in form is hidden while the landing page is open; logging out brings it back, reset
             ScreenNavigator.Open(this, landing, _ =>
