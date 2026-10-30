@@ -134,32 +134,16 @@ namespace TutoringAcademicSupport.EntryPoint.Login
         {
             Form landing = result.Role == "Administrator"
                 ? new AdminForm(result.FirstName)
-                : new StudentForm();
+                : new StudentForm(result.UserId); // the student menu needs the ID to show only that student's bookings
 
             // the log in form is hidden while the landing page is open; logging out brings it back, reset
             ScreenNavigator.Open(this, landing, _ =>
             {
-<<<<<<< Updated upstream
                 txtUserID.Clear();
                 txtPassword.Clear();
                 ShowNeutral("You have been logged out.");
                 txtUserID.Focus();
             });
-=======
-                using (var landing = new AdminForm())
-                    landing.ShowDialog(this);
-            }
-            else
-            {
-                using (var landing = new StudentForm(result.UserId))
-                    landing.ShowDialog(this);
-            }
-            txtUserID.Clear();
-            txtPassword.Clear();
-            ShowNeutral("You have been logged out.");
-            Show();
-            txtUserID.Focus();
->>>>>>> Stashed changes
         }
 
         private void LnkCreateStudent_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
