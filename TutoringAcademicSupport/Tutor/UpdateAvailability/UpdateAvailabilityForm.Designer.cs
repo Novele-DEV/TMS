@@ -97,7 +97,8 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // btnLoad
             // 
             btnLoad.BackColor = SystemColors.ActiveCaption;
-            btnLoad.Location = new Point(262, 96);
+            btnLoad.FlatStyle = FlatStyle.Popup;
+            btnLoad.Location = new Point(488, 92);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(100, 34);
             btnLoad.TabIndex = 4;
@@ -203,6 +204,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // btnSave
             // 
             btnSave.BackColor = SystemColors.HotTrack;
+            btnSave.FlatStyle = FlatStyle.Popup;
             btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(16, 200);
@@ -216,6 +218,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // btnClear
             // 
             btnClear.BackColor = SystemColors.ButtonFace;
+            btnClear.FlatStyle = FlatStyle.Popup;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.ForeColor = SystemColors.HotTrack;
             btnClear.Location = new Point(184, 200);
@@ -228,6 +231,8 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.White;
+            btnDelete.FlatStyle = FlatStyle.Popup;
             btnDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnDelete.ForeColor = Color.Black;
             btnDelete.Location = new Point(16, 262);
@@ -235,7 +240,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnDelete.Size = new Size(328, 48);
             btnDelete.TabIndex = 8;
             btnDelete.Text = "&Delete Slot";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // lblMessage
@@ -253,7 +258,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnReturn.FlatAppearance.BorderColor = Color.Silver;
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(28, 544);
+            btnReturn.Location = new Point(28, 520);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(85, 44);
             btnReturn.TabIndex = 8;

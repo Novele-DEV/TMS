@@ -153,10 +153,10 @@
             btnReturn.FlatAppearance.MouseDownBackColor = Color.FromArgb(225, 228, 235);
             btnReturn.FlatAppearance.MouseOverBackColor = Color.FromArgb(240, 242, 246);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(596, 527);
+            btnReturn.Location = new Point(651, 527);
             btnReturn.Margin = new Padding(0, 0, 24, 0);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(140, 44);
+            btnReturn.Size = new Size(85, 44);
             btnReturn.TabIndex = 5;
             btnReturn.Text = "&Log Out";
             btnReturn.UseVisualStyleBackColor = false;

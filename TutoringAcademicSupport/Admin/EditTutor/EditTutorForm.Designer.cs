@@ -95,7 +95,7 @@
             txtTutorID.Location = new Point(210, 105);
             txtTutorID.Name = "txtTutorID";
             txtTutorID.ReadOnly = true;
-            txtTutorID.Size = new Size(400, 27);
+            txtTutorID.Size = new Size(561, 27);
             txtTutorID.TabIndex = 3;
             txtTutorID.TabStop = false;
             // 
@@ -114,7 +114,7 @@
             txtTutorFName.Location = new Point(210, 151);
             txtTutorFName.MaxLength = 50;
             txtTutorFName.Name = "txtTutorFName";
-            txtTutorFName.Size = new Size(400, 27);
+            txtTutorFName.Size = new Size(561, 27);
             txtTutorFName.TabIndex = 5;
             // 
             // lblLastName
@@ -132,7 +132,7 @@
             txtTutorLName.Location = new Point(210, 197);
             txtTutorLName.MaxLength = 50;
             txtTutorLName.Name = "txtTutorLName";
-            txtTutorLName.Size = new Size(400, 27);
+            txtTutorLName.Size = new Size(561, 27);
             txtTutorLName.TabIndex = 7;
             // 
             // lblEmail
@@ -151,7 +151,7 @@
             txtTutorEmail.MaxLength = 100;
             txtTutorEmail.Name = "txtTutorEmail";
             txtTutorEmail.PlaceholderText = "name@example.com";
-            txtTutorEmail.Size = new Size(400, 27);
+            txtTutorEmail.Size = new Size(561, 27);
             txtTutorEmail.TabIndex = 9;
             // 
             // lblPhone
@@ -170,7 +170,7 @@
             txtTutorPhoneNo.MaxLength = 12;
             txtTutorPhoneNo.Name = "txtTutorPhoneNo";
             txtTutorPhoneNo.PlaceholderText = "+27821234567";
-            txtTutorPhoneNo.Size = new Size(400, 27);
+            txtTutorPhoneNo.Size = new Size(563, 27);
             txtTutorPhoneNo.TabIndex = 11;
             // 
             // lblAverage
@@ -188,7 +188,7 @@
             txtAcademicAverage.Location = new Point(210, 335);
             txtAcademicAverage.Name = "txtAcademicAverage";
             txtAcademicAverage.PlaceholderText = "Optional, 0 to 100";
-            txtAcademicAverage.Size = new Size(400, 27);
+            txtAcademicAverage.Size = new Size(561, 27);
             txtAcademicAverage.TabIndex = 13;
             // 
             // lblMode
@@ -207,46 +207,46 @@
             cmbPreferredMode.Items.AddRange(new object[] { "Virtual", "In-person", "Both" });
             cmbPreferredMode.Location = new Point(210, 381);
             cmbPreferredMode.Name = "cmbPreferredMode";
-            cmbPreferredMode.Size = new Size(200, 28);
+            cmbPreferredMode.Size = new Size(298, 28);
             cmbPreferredMode.TabIndex = 15;
             // 
             // lblCurriculumVitae
-            //
+            // 
             lblCurriculumVitae.AutoSize = true;
             lblCurriculumVitae.Location = new Point(28, 430);
             lblCurriculumVitae.Name = "lblCurriculumVitae";
-            lblCurriculumVitae.Size = new Size(124, 20);
+            lblCurriculumVitae.Size = new Size(118, 20);
             lblCurriculumVitae.TabIndex = 16;
             lblCurriculumVitae.Text = "&Curriculum Vitae";
-            //
+            // 
             // txtCurriculumVitae
-            //
+            // 
             txtCurriculumVitae.Location = new Point(210, 427);
             txtCurriculumVitae.Name = "txtCurriculumVitae";
             txtCurriculumVitae.ReadOnly = true;
-            txtCurriculumVitae.Size = new Size(300, 27);
+            txtCurriculumVitae.Size = new Size(436, 27);
             txtCurriculumVitae.TabIndex = 17;
             txtCurriculumVitae.TabStop = false;
-            //
+            // 
             // btnBrowseCurriculumVitae
-            //
-            btnBrowseCurriculumVitae.Location = new Point(520, 426);
+            // 
+            btnBrowseCurriculumVitae.Location = new Point(681, 430);
             btnBrowseCurriculumVitae.Name = "btnBrowseCurriculumVitae";
             btnBrowseCurriculumVitae.Size = new Size(90, 29);
             btnBrowseCurriculumVitae.TabIndex = 18;
             btnBrowseCurriculumVitae.Text = "Browse...";
             btnBrowseCurriculumVitae.UseVisualStyleBackColor = true;
             btnBrowseCurriculumVitae.Click += btnBrowseCurriculumVitae_Click;
-            //
+            // 
             // lblCurriculumVitaeStatus
-            //
+            // 
             lblCurriculumVitaeStatus.AutoSize = true;
             lblCurriculumVitaeStatus.ForeColor = SystemColors.GrayText;
             lblCurriculumVitaeStatus.Location = new Point(210, 458);
             lblCurriculumVitaeStatus.Name = "lblCurriculumVitaeStatus";
             lblCurriculumVitaeStatus.Size = new Size(0, 20);
             lblCurriculumVitaeStatus.TabIndex = 19;
-            //
+            // 
             // lblStatus
             // 
             lblStatus.BackColor = Color.Transparent;
@@ -258,42 +258,36 @@
             // btnAdd
             // 
             btnAdd.BackColor = SystemColors.HotTrack;
+            btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnAdd.Location = new Point(440, 445);
-            btnAdd.BackColor = Color.Blue;
-            btnAdd.Location = new Point(28, 514);
-            btnAdd.Location = new Point(440, 445);
-            btnAdd.Size = new Size(168, 48);
-            btnAdd.TabIndex = 17;
-
+            btnAdd.ForeColor = Color.White;
+            btnAdd.Location = new Point(433, 518);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(170, 79);
+            btnAdd.Size = new Size(162, 44);
             btnAdd.TabIndex = 17;
             btnAdd.Text = "&Save Changes";
             btnAdd.UseVisualStyleBackColor = false;
+            // 
+            // btnClear
+            // 
             btnClear.BackColor = SystemColors.ButtonFace;
-
-            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnClear.ForeColor = SystemColors.HotTrack;
-            btnClear.Location = new Point(202, 514);
+            btnClear.FlatStyle = FlatStyle.Popup;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.ForeColor = Color.DarkBlue;
-            btnClear.Location = new Point(210, 486);
-
+            btnClear.Location = new Point(601, 518);
             btnClear.Name = "btnClear";
-            btnClear.Size = new Size(170, 48);
+            btnClear.Size = new Size(170, 44);
             btnClear.TabIndex = 22;
             btnClear.Text = "&Undo Changes";
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
-            btnReturn.Location = new Point(533, 514);
+            // btnReturn
+            // 
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnReturn.Size = new Size(77, 48);
-            btnReturn.TabIndex = 19;
-
+            btnReturn.Location = new Point(28, 518);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(170, 48);
+            btnReturn.Size = new Size(85, 44);
             btnReturn.TabIndex = 19;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
@@ -304,11 +298,10 @@
             AcceptButton = btnAdd;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 639);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnReturn;
-            ClientSize = new Size(640, 560);
+            ClientSize = new Size(801, 601);
             Controls.Add(btnReturn);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);

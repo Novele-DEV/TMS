@@ -153,9 +153,10 @@
             // 
             // lblMessage
             // 
-            lblMessage.Location = new Point(40, 494);
+            lblMessage.BackColor = Color.Transparent;
+            lblMessage.Location = new Point(40, 429);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(440, 80);
+            lblMessage.Size = new Size(629, 59);
             lblMessage.TabIndex = 18;
             // 
             // txtStudentID
@@ -225,6 +226,7 @@
             // btnBookTutorial
             // 
             btnBookTutorial.BackColor = SystemColors.HotTrack;
+            btnBookTutorial.FlatStyle = FlatStyle.Popup;
             btnBookTutorial.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnBookTutorial.ForeColor = SystemColors.ButtonHighlight;
             btnBookTutorial.Location = new Point(365, 512);
@@ -238,6 +240,7 @@
             // btnClear
             // 
             btnClear.BackColor = SystemColors.ButtonFace;
+            btnClear.FlatStyle = FlatStyle.Popup;
             btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClear.ForeColor = SystemColors.HotTrack;
             btnClear.Location = new Point(525, 512);

@@ -93,9 +93,10 @@
             // btnGenerate
             // 
             btnGenerate.BackColor = SystemColors.ActiveCaption;
+            btnGenerate.FlatStyle = FlatStyle.Popup;
             btnGenerate.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnGenerate.ForeColor = SystemColors.ActiveCaptionText;
-            btnGenerate.Location = new Point(385, 81);
+            btnGenerate.Location = new Point(1034, 81);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(140, 35);
             btnGenerate.TabIndex = 3;
@@ -160,6 +161,7 @@
             // btnClearFilters
             // 
             btnClearFilters.BackColor = SystemColors.ButtonFace;
+            btnClearFilters.FlatStyle = FlatStyle.Popup;
             btnClearFilters.Location = new Point(1034, 132);
             btnClearFilters.Name = "btnClearFilters";
             btnClearFilters.Size = new Size(140, 35);

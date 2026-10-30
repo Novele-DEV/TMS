@@ -206,10 +206,10 @@ namespace TutoringAcademicSupport.EntryPoint.MainMenu
             btnExit.FlatAppearance.MouseDownBackColor = Color.FromArgb(225, 228, 235);
             btnExit.FlatAppearance.MouseOverBackColor = Color.FromArgb(240, 242, 246);
             btnExit.ForeColor = Color.FromArgb(64, 64, 64);
-            btnExit.Location = new Point(726, 552);
+            btnExit.Location = new Point(751, 548);
             btnExit.Margin = new Padding(0, 0, 24, 0);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(110, 36);
+            btnExit.Size = new Size(85, 44);
             btnExit.TabIndex = 5;
             btnExit.Text = "E&xit";
             btnExit.UseVisualStyleBackColor = false;

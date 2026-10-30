@@ -141,7 +141,7 @@
             btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 38, 70);
             btnCancel.FlatAppearance.MouseOverBackColor = Color.FromArgb(46, 82, 140);
-            btnCancel.FlatStyle = FlatStyle.Flat;
+            btnCancel.FlatStyle = FlatStyle.Popup;
             btnCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = Color.White;
             btnCancel.Location = new Point(683, 533);

@@ -127,6 +127,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             // 
             btnAddTutor.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnAddTutor.BackColor = SystemColors.ActiveCaption;
+            btnAddTutor.FlatStyle = FlatStyle.Popup;
             btnAddTutor.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAddTutor.Location = new Point(28, 572);
             btnAddTutor.Name = "btnAddTutor";
@@ -140,6 +141,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             // 
             btnEdit.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnEdit.BackColor = SystemColors.InactiveCaption;
+            btnEdit.FlatStyle = FlatStyle.Popup;
             btnEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnEdit.Location = new Point(181, 572);
             btnEdit.Name = "btnEdit";
@@ -153,6 +155,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             // 
             btnUpdateAvailability.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnUpdateAvailability.BackColor = SystemColors.GradientActiveCaption;
+            btnUpdateAvailability.FlatStyle = FlatStyle.Popup;
             btnUpdateAvailability.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnUpdateAvailability.Location = new Point(333, 572);
             btnUpdateAvailability.Name = "btnUpdateAvailability";
@@ -166,6 +169,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             // 
             btnGenerateReports.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnGenerateReports.BackColor = SystemColors.GradientInactiveCaption;
+            btnGenerateReports.FlatStyle = FlatStyle.Popup;
             btnGenerateReports.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnGenerateReports.Location = new Point(540, 572);
             btnGenerateReports.Name = "btnGenerateReports";

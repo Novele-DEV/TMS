@@ -248,6 +248,7 @@ partial class AddTutorForm
         // btnAdd
         // 
         btnAdd.BackColor = SystemColors.HotTrack;
+        btnAdd.FlatStyle = FlatStyle.Popup;
         btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         btnAdd.ForeColor = Color.White;
         btnAdd.Location = new Point(262, 486);
@@ -261,6 +262,7 @@ partial class AddTutorForm
         // btnClear
         // 
         btnClear.BackColor = SystemColors.ButtonFace;
+        btnClear.FlatStyle = FlatStyle.Popup;
         btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         btnClear.ForeColor = SystemColors.HotTrack;
         btnClear.Location = new Point(459, 486);
@@ -274,7 +276,7 @@ partial class AddTutorForm
         // btnReturn
         // 
         btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnReturn.Location = new Point(28, 485);
+        btnReturn.Location = new Point(22, 490);
         btnReturn.Name = "btnReturn";
         btnReturn.Size = new Size(85, 44);
         btnReturn.TabIndex = 19;

@@ -241,10 +241,10 @@ namespace TutoringAcademicSupport.Student.Dashboard
             btnLogOut.FlatAppearance.MouseOverBackColor = Color.FromArgb(240, 242, 246);
             btnLogOut.FlatStyle = FlatStyle.Flat;
             btnLogOut.ForeColor = Color.FromArgb(64, 64, 64);
-            btnLogOut.Location = new Point(596, 528);
+            btnLogOut.Location = new Point(651, 528);
             btnLogOut.Margin = new Padding(0, 0, 24, 0);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(140, 44);
+            btnLogOut.Size = new Size(85, 44);
             btnLogOut.TabIndex = 5;
             btnLogOut.Text = "&Log Out";
             btnLogOut.UseVisualStyleBackColor = false;

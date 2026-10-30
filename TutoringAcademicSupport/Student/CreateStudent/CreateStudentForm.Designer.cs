@@ -158,8 +158,8 @@
             // 
             // btnCreate
             // 
-            btnCreate.BackColor = Color.FromArgb(31, 56, 100);
-            btnCreate.FlatStyle = FlatStyle.Flat;
+            btnCreate.BackColor = SystemColors.HotTrack;
+            btnCreate.FlatStyle = FlatStyle.Popup;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCreate.ForeColor = Color.White;
             btnCreate.Location = new Point(896, 842);

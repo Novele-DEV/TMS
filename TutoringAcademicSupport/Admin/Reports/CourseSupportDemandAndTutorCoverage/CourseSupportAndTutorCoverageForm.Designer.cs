@@ -114,8 +114,9 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             // btnGenerate
             // 
             btnGenerate.BackColor = SystemColors.ActiveCaption;
+            btnGenerate.FlatStyle = FlatStyle.Popup;
             btnGenerate.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnGenerate.Location = new Point(670, 81);
+            btnGenerate.Location = new Point(1027, 74);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(140, 35);
             btnGenerate.TabIndex = 5;
@@ -144,6 +145,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             // btnClearFilters
             // 
             btnClearFilters.BackColor = SystemColors.ButtonFace;
+            btnClearFilters.FlatStyle = FlatStyle.Popup;
             btnClearFilters.Location = new Point(1027, 124);
             btnClearFilters.Name = "btnClearFilters";
             btnClearFilters.Size = new Size(140, 35);

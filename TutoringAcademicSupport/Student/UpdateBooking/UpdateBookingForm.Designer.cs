@@ -176,6 +176,7 @@
             // btnUpdateSession
             // 
             btnUpdateSession.BackColor = SystemColors.HotTrack;
+            btnUpdateSession.FlatStyle = FlatStyle.Popup;
             btnUpdateSession.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnUpdateSession.ForeColor = Color.White;
             btnUpdateSession.Location = new Point(424, 395);

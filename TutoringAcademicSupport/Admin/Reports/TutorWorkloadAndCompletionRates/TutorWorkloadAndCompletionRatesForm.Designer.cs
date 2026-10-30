@@ -28,6 +28,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TutorWorkloadAndCompletionRatesForm));
             lblTitle = new Label();
             lblPeriod = new Label();
             lblStartDate = new Label();
@@ -58,6 +59,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // lblTitle
             // 
             lblTitle.AutoSize = true;
+            lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Cooper Black", 25F);
             lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(20, 10);
@@ -79,6 +81,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // lblStartDate
             // 
             lblStartDate.AutoSize = true;
+            lblStartDate.BackColor = Color.Transparent;
             lblStartDate.Location = new Point(24, 89);
             lblStartDate.Name = "lblStartDate";
             lblStartDate.Size = new Size(46, 20);
@@ -95,6 +98,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // lblEndDate
             // 
             lblEndDate.AutoSize = true;
+            lblEndDate.BackColor = Color.Transparent;
             lblEndDate.Location = new Point(355, 89);
             lblEndDate.Name = "lblEndDate";
             lblEndDate.Size = new Size(28, 20);
@@ -111,8 +115,9 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // btnGenerate
             // 
             btnGenerate.BackColor = SystemColors.GradientActiveCaption;
+            btnGenerate.FlatStyle = FlatStyle.Popup;
             btnGenerate.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            btnGenerate.Location = new Point(670, 81);
+            btnGenerate.Location = new Point(1027, 74);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(140, 35);
             btnGenerate.TabIndex = 5;
@@ -123,6 +128,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // lblWorkloadFlag
             // 
             lblWorkloadFlag.AutoSize = true;
+            lblWorkloadFlag.BackColor = Color.Transparent;
             lblWorkloadFlag.Location = new Point(24, 138);
             lblWorkloadFlag.Name = "lblWorkloadFlag";
             lblWorkloadFlag.Size = new Size(106, 20);
@@ -140,6 +146,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // btnClearFilters
             // 
             btnClearFilters.BackColor = SystemColors.ButtonFace;
+            btnClearFilters.FlatStyle = FlatStyle.Popup;
             btnClearFilters.Location = new Point(1030, 123);
             btnClearFilters.Name = "btnClearFilters";
             btnClearFilters.Size = new Size(140, 35);
@@ -152,6 +159,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // 
             lblFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblFilter.AutoEllipsis = true;
+            lblFilter.BackColor = Color.Transparent;
             lblFilter.ForeColor = SystemColors.GrayText;
             lblFilter.Location = new Point(24, 168);
             lblFilter.Name = "lblFilter";
@@ -161,6 +169,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // pnlKpis
             // 
             pnlKpis.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlKpis.BackColor = Color.Transparent;
             pnlKpis.Location = new Point(24, 196);
             pnlKpis.Name = "pnlKpis";
             pnlKpis.Size = new Size(1146, 70);
@@ -276,6 +285,8 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnReturn;
             ClientSize = new Size(1200, 760);
             Controls.Add(btnReturn);
@@ -295,6 +306,7 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             Controls.Add(lblStartDate);
             Controls.Add(lblPeriod);
             Controls.Add(lblTitle);
+            DoubleBuffered = true;
             MinimumSize = new Size(1050, 600);
             Name = "TutorWorkloadAndCompletionRatesForm";
             StartPosition = FormStartPosition.CenterParent;
