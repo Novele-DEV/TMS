@@ -19,7 +19,7 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
             ScreenLayout.CentreContent(this);
 
             // The notice period comes from the one place it is defined.
-            lblRules.Text = CancelBookingValidator.RuleNotice;
+            lblRules.Text = CancelBookingValidator.ShortRuleNotice;
 
             // the delivery modes a session can have
             cmbMode.Items.Clear();
@@ -174,19 +174,19 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
 
         private void ShowError(string message)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblMessage.ForeColor = AppTheme.ErrorText;
             lblMessage.Text = message;
         }
 
         private void ShowSuccess(string message)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
+            lblMessage.ForeColor = AppTheme.SuccessText;
             lblMessage.Text = message + " ✓";
         }
 
         private void ShowNeutral(string message)
         {
-            lblMessage.ForeColor = SystemColors.ControlText;
+            lblMessage.ForeColor = AppTheme.NormalText;
             lblMessage.Text = message;
         }
 

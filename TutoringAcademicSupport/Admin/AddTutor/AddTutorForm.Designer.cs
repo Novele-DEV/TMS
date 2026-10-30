@@ -59,7 +59,7 @@ partial class AddTutorForm
         lblTitle.ForeColor = Color.MediumBlue;
         lblTitle.Location = new Point(28, 11);
         lblTitle.Name = "lblTitle";
-        lblTitle.Size = new Size(245, 49);
+        lblTitle.Size = new Size(155, 41);
         lblTitle.TabIndex = 0;
         lblTitle.Text = "Add Tutor";
         // 
@@ -71,7 +71,7 @@ partial class AddTutorForm
         lblSubtitle.ForeColor = SystemColors.GrayText;
         lblSubtitle.Location = new Point(28, 60);
         lblSubtitle.Name = "lblSubtitle";
-        lblSubtitle.Size = new Size(404, 20);
+        lblSubtitle.Size = new Size(470, 20);
         lblSubtitle.TabIndex = 1;
         lblSubtitle.Text = "Enter the tutor's details. The tutor ID is created when you save.";
         // 
@@ -86,8 +86,7 @@ partial class AddTutorForm
         lblTutorID.Text = "Tutor ID:";
         // 
         // txtTutorID
-        // 
-        txtTutorID.BorderStyle = BorderStyle.FixedSingle;
+        //
         txtTutorID.Location = new Point(210, 105);
         txtTutorID.Name = "txtTutorID";
         txtTutorID.ReadOnly = true;
@@ -107,8 +106,7 @@ partial class AddTutorForm
         lblFirstName.Text = "&First name:";
         // 
         // txtTutorFName
-        // 
-        txtTutorFName.BackColor = SystemColors.ButtonHighlight;
+        //
         txtTutorFName.Location = new Point(210, 151);
         txtTutorFName.MaxLength = 50;
         txtTutorFName.Name = "txtTutorFName";
@@ -126,8 +124,7 @@ partial class AddTutorForm
         lblLastName.Text = "La&st name:";
         // 
         // txtTutorLName
-        // 
-        txtTutorLName.BackColor = SystemColors.ButtonHighlight;
+        //
         txtTutorLName.Location = new Point(210, 197);
         txtTutorLName.MaxLength = 50;
         txtTutorLName.Name = "txtTutorLName";
@@ -145,8 +142,7 @@ partial class AddTutorForm
         lblEmail.Text = "E&mail:";
         // 
         // txtTutorEmail
-        // 
-        txtTutorEmail.BackColor = SystemColors.ButtonHighlight;
+        //
         txtTutorEmail.Location = new Point(210, 243);
         txtTutorEmail.MaxLength = 100;
         txtTutorEmail.Name = "txtTutorEmail";
@@ -165,8 +161,7 @@ partial class AddTutorForm
         lblPhone.Text = "&Phone:";
         // 
         // txtTutorPhoneNo
-        // 
-        txtTutorPhoneNo.BackColor = SystemColors.ButtonHighlight;
+        //
         txtTutorPhoneNo.Location = new Point(210, 289);
         txtTutorPhoneNo.MaxLength = 12;
         txtTutorPhoneNo.Name = "txtTutorPhoneNo";
@@ -185,8 +180,7 @@ partial class AddTutorForm
         lblAverage.Text = "Academic a&verage:";
         // 
         // txtAcademicAverage
-        // 
-        txtAcademicAverage.BackColor = SystemColors.ButtonHighlight;
+        //
         txtAcademicAverage.Location = new Point(210, 335);
         txtAcademicAverage.Name = "txtAcademicAverage";
         txtAcademicAverage.PlaceholderText = "Optional, 0 to 100";
@@ -204,8 +198,7 @@ partial class AddTutorForm
         lblMode.Text = "Preferred m&ode:";
         // 
         // cmbPreferredMode
-        // 
-        cmbPreferredMode.BackColor = SystemColors.ButtonHighlight;
+        //
         cmbPreferredMode.DropDownStyle = ComboBoxStyle.DropDownList;
         cmbPreferredMode.Items.AddRange(new object[] { "Virtual", "In-person", "Both" });
         cmbPreferredMode.Location = new Point(210, 381);
@@ -214,33 +207,27 @@ partial class AddTutorForm
         cmbPreferredMode.TabIndex = 15;
         // 
         // lblStatus
-        // 
-        lblStatus.BackColor = Color.Transparent;
+        //
         lblStatus.Location = new Point(28, 425);
         lblStatus.Name = "lblStatus";
         lblStatus.Size = new Size(582, 48);
         lblStatus.TabIndex = 16;
         // 
         // btnAdd
-        // 
-        btnAdd.BackColor = Color.MediumBlue;
-        btnAdd.FlatStyle = FlatStyle.Popup;
-        btnAdd.Font = new Font("Berlin Sans FB Demi", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        btnAdd.ForeColor = SystemColors.ButtonHighlight;
-        btnAdd.Location = new Point(12, 486);
+        //
+        btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+        btnAdd.Location = new Point(28, 486);
         btnAdd.Name = "btnAdd";
-        btnAdd.Size = new Size(151, 48);
+        btnAdd.Size = new Size(170, 48);
         btnAdd.TabIndex = 17;
         btnAdd.Text = "&Add Tutor";
         btnAdd.UseVisualStyleBackColor = false;
         btnAdd.Click += btnAdd_Click;
         // 
         // btnClear
-        // 
-        btnClear.BackColor = SystemColors.ButtonFace;
-        btnClear.FlatStyle = FlatStyle.Popup;
+        //
         btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnClear.Location = new Point(169, 486);
+        btnClear.Location = new Point(210, 486);
         btnClear.Name = "btnClear";
         btnClear.Size = new Size(151, 48);
         btnClear.TabIndex = 18;
@@ -251,8 +238,7 @@ partial class AddTutorForm
         // btnReturn
         // 
         btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-        btnReturn.Location = new Point(459, 486);
+        btnReturn.Location = new Point(440, 486);
         btnReturn.Name = "btnReturn";
         btnReturn.Size = new Size(151, 48);
         btnReturn.TabIndex = 19;

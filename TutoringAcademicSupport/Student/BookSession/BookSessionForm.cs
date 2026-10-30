@@ -43,7 +43,7 @@ namespace TutoringAcademicSupport.Student.BookSession
             loading = true;
             try
             {
-                lblRules.Text = CancelBookingValidator.RuleNotice;
+                lblRules.Text = CancelBookingValidator.ShortRuleNotice;
 
                 cmbMode.Items.Clear();
                 cmbMode.Items.AddRange(BookSessionValidator.Modes);
@@ -332,19 +332,19 @@ namespace TutoringAcademicSupport.Student.BookSession
 
         private void ShowError(string text)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblMessage.ForeColor = AppTheme.ErrorText;
             lblMessage.Text = text;
         }
 
         private void ShowSuccess(string text)
         {
-            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
+            lblMessage.ForeColor = AppTheme.SuccessText;
             lblMessage.Text = text;
         }
 
         private void ShowNeutral(string text)
         {
-            lblMessage.ForeColor = SystemColors.ControlText;
+            lblMessage.ForeColor = AppTheme.NormalText;
             lblMessage.Text = text;
         }
 

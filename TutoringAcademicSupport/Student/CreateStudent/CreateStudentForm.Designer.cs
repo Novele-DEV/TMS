@@ -78,7 +78,7 @@
             // txtStudentID
             // 
             txtStudentID.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtStudentID.Location = new Point(12, 147);
+            txtStudentID.Location = new Point(12, 117);
             txtStudentID.Name = "txtStudentID";
             txtStudentID.Size = new Size(258, 29);
             txtStudentID.TabIndex = 1;
@@ -86,7 +86,7 @@
             // dtpDoB
             // 
             dtpDoB.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpDoB.Location = new Point(618, 212);
+            dtpDoB.Location = new Point(12, 185);
             dtpDoB.Name = "dtpDoB";
             dtpDoB.Size = new Size(258, 29);
             dtpDoB.TabIndex = 2;
@@ -94,7 +94,7 @@
             // txtFirstName
             // 
             txtFirstName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFirstName.Location = new Point(12, 212);
+            txtFirstName.Location = new Point(790, 117);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(258, 29);
             txtFirstName.TabIndex = 3;
@@ -102,8 +102,9 @@
             // txtEmail
             // 
             txtEmail.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtEmail.Location = new Point(12, 324);
+            txtEmail.Location = new Point(17, 313);
             txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "name@example.com";
             txtEmail.Size = new Size(258, 29);
             txtEmail.TabIndex = 4;
             // 
@@ -111,7 +112,7 @@
             // 
             cboFaculty.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboFaculty.FormattingEnabled = true;
-            cboFaculty.Location = new Point(12, 432);
+            cboFaculty.Location = new Point(12, 443);
             cboFaculty.Name = "cboFaculty";
             cboFaculty.Size = new Size(258, 29);
             cboFaculty.TabIndex = 5;
@@ -120,7 +121,7 @@
             // txtLastName
             // 
             txtLastName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtLastName.Location = new Point(317, 212);
+            txtLastName.Location = new Point(400, 117);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(258, 29);
             txtLastName.TabIndex = 6;
@@ -128,8 +129,9 @@
             // txtPhone
             // 
             txtPhone.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPhone.Location = new Point(392, 324);
+            txtPhone.Location = new Point(397, 313);
             txtPhone.Name = "txtPhone";
+            txtPhone.PlaceholderText = "+27821234567";
             txtPhone.Size = new Size(258, 29);
             txtPhone.TabIndex = 7;
             // 
@@ -137,7 +139,7 @@
             // 
             cboProgramme.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboProgramme.FormattingEnabled = true;
-            cboProgramme.Location = new Point(392, 432);
+            cboProgramme.Location = new Point(392, 443);
             cboProgramme.Name = "cboProgramme";
             cboProgramme.Size = new Size(258, 29);
             cboProgramme.TabIndex = 8;
@@ -146,23 +148,23 @@
             // 
             btnBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.FromArgb(64, 64, 64);
-            btnBack.Location = new Point(732, 683);
+            btnBack.Location = new Point(904, 841);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(144, 44);
             btnBack.TabIndex = 11;
-            btnBack.Text = "Back to Login";
+            btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
             // btnCreate
             // 
-            btnCreate.BackColor = Color.DarkBlue;
-            btnCreate.FlatStyle = FlatStyle.Popup;
+            btnCreate.BackColor = Color.FromArgb(31, 56, 100);
+            btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(15, 683);
+            btnCreate.Location = new Point(17, 841);
             btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(144, 44);
+            btnCreate.Size = new Size(153, 52);
             btnCreate.TabIndex = 12;
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = false;
@@ -172,7 +174,7 @@
             // 
             lblStudentNo.AutoSize = true;
             lblStudentNo.BackColor = Color.Transparent;
-            lblStudentNo.Location = new Point(15, 128);
+            lblStudentNo.Location = new Point(12, 95);
             lblStudentNo.Name = "lblStudentNo";
             lblStudentNo.Size = new Size(119, 19);
             lblStudentNo.TabIndex = 13;
@@ -182,7 +184,7 @@
             // 
             lblDoB.AutoSize = true;
             lblDoB.BackColor = Color.Transparent;
-            lblDoB.Location = new Point(618, 193);
+            lblDoB.Location = new Point(12, 166);
             lblDoB.Name = "lblDoB";
             lblDoB.Size = new Size(97, 19);
             lblDoB.TabIndex = 14;
@@ -192,7 +194,7 @@
             // 
             lblFName.AutoSize = true;
             lblFName.BackColor = Color.Transparent;
-            lblFName.Location = new Point(12, 193);
+            lblFName.Location = new Point(790, 98);
             lblFName.Name = "lblFName";
             lblFName.Size = new Size(83, 19);
             lblFName.TabIndex = 15;
@@ -202,7 +204,7 @@
             // 
             lblLName.AutoSize = true;
             lblLName.BackColor = Color.Transparent;
-            lblLName.Location = new Point(317, 193);
+            lblLName.Location = new Point(400, 98);
             lblLName.Name = "lblLName";
             lblLName.Size = new Size(82, 19);
             lblLName.TabIndex = 16;
@@ -212,7 +214,7 @@
             // 
             lblEmail.AutoSize = true;
             lblEmail.BackColor = Color.Transparent;
-            lblEmail.Location = new Point(12, 305);
+            lblEmail.Location = new Point(17, 294);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(51, 19);
             lblEmail.TabIndex = 17;
@@ -221,8 +223,7 @@
             // lblPhone
             // 
             lblPhone.AutoSize = true;
-            lblPhone.BackColor = Color.Transparent;
-            lblPhone.Location = new Point(392, 305);
+            lblPhone.Location = new Point(397, 294);
             lblPhone.Name = "lblPhone";
             lblPhone.Size = new Size(58, 19);
             lblPhone.TabIndex = 18;
@@ -232,7 +233,7 @@
             // 
             lblFaculty.AutoSize = true;
             lblFaculty.BackColor = Color.Transparent;
-            lblFaculty.Location = new Point(12, 413);
+            lblFaculty.Location = new Point(12, 424);
             lblFaculty.Name = "lblFaculty";
             lblFaculty.Size = new Size(62, 19);
             lblFaculty.TabIndex = 19;
@@ -242,7 +243,7 @@
             // 
             lblProgramme.AutoSize = true;
             lblProgramme.BackColor = Color.Transparent;
-            lblProgramme.Location = new Point(392, 413);
+            lblProgramme.Location = new Point(392, 424);
             lblProgramme.Name = "lblProgramme";
             lblProgramme.Size = new Size(145, 19);
             lblProgramme.TabIndex = 20;
@@ -255,7 +256,7 @@
             // txtPassword
             // 
             txtPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtPassword.Location = new Point(12, 560);
+            txtPassword.Location = new Point(12, 558);
             txtPassword.Name = "txtPassword";
             txtPassword.Size = new Size(258, 29);
             txtPassword.TabIndex = 21;
@@ -263,7 +264,7 @@
             // txtConfirmPassword
             // 
             txtConfirmPassword.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtConfirmPassword.Location = new Point(392, 557);
+            txtConfirmPassword.Location = new Point(12, 618);
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.Size = new Size(258, 29);
             txtConfirmPassword.TabIndex = 22;
@@ -272,7 +273,7 @@
             // 
             lblPassword.AutoSize = true;
             lblPassword.BackColor = Color.Transparent;
-            lblPassword.Location = new Point(12, 541);
+            lblPassword.Location = new Point(12, 539);
             lblPassword.Name = "lblPassword";
             lblPassword.Size = new Size(77, 19);
             lblPassword.TabIndex = 24;
@@ -282,29 +283,31 @@
             // 
             lblConfirmPassword.AutoSize = true;
             lblConfirmPassword.BackColor = Color.Transparent;
-            lblConfirmPassword.Location = new Point(392, 541);
+            lblConfirmPassword.Location = new Point(12, 599);
             lblConfirmPassword.Name = "lblConfirmPassword";
             lblConfirmPassword.Size = new Size(130, 19);
             lblConfirmPassword.TabIndex = 25;
-            lblConfirmPassword.Text = "Confirm Password *";
+            lblConfirmPassword.Text = "Confirm password *";
             // 
             // lblMessage
             // 
             lblMessage.BackColor = Color.Transparent;
             lblMessage.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblMessage.Location = new Point(17, 636);
+            lblMessage.Location = new Point(12, 755);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(893, 44);
             lblMessage.TabIndex = 10;
+            lblMessage.Text = "label1";
             // 
             // lblRequired
             // 
             lblRequired.BackColor = Color.Transparent;
             lblRequired.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblRequired.Location = new Point(17, 571);
+            lblRequired.Location = new Point(12, 690);
             lblRequired.Name = "lblRequired";
             lblRequired.Size = new Size(893, 37);
             lblRequired.TabIndex = 9;
+            lblRequired.Text = "label1";
             // 
             // label1
             // 
@@ -323,7 +326,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 8F, FontStyle.Italic);
             label2.ForeColor = SystemColors.ActiveCaption;
-            label2.Location = new Point(12, 97);
+            label2.Location = new Point(12, 76);
             label2.Name = "label2";
             label2.Size = new Size(141, 19);
             label2.TabIndex = 27;
@@ -360,7 +363,7 @@
             BackColor = SystemColors.ButtonHighlight;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(922, 756);
+            ClientSize = new Size(1088, 905);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);

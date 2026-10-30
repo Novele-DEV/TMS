@@ -195,13 +195,13 @@ namespace TutoringAcademicSupport.Admin.EditTutor
 
         private void ShowError(string text)
         {
-            lblStatus.ForeColor = ColorTranslator.FromHtml("#C62828");
+            lblStatus.ForeColor = AppTheme.ErrorText;
             lblStatus.Text = text;
         }
 
         private void ShowNeutral(string text)
         {
-            lblStatus.ForeColor = SystemColors.ControlText;
+            lblStatus.ForeColor = AppTheme.NormalText;
             lblStatus.Text = text;
         }
     }

@@ -100,9 +100,9 @@
             // 
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(542, 436);
+            btnReturn.Location = new Point(659, 445);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(144, 44);
+            btnReturn.Size = new Size(74, 44);
             btnReturn.TabIndex = 5;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;

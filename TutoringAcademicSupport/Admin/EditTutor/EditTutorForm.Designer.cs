@@ -220,9 +220,9 @@
             btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAdd.ForeColor = SystemColors.ButtonHighlight;
-            btnAdd.Location = new Point(28, 486);
+            btnAdd.Location = new Point(28, 514);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(170, 48);
+            btnAdd.Size = new Size(168, 48);
             btnAdd.TabIndex = 17;
             btnAdd.Text = "&Save Changes";
             btnAdd.UseVisualStyleBackColor = false;
@@ -233,7 +233,7 @@
             btnClear.FlatStyle = FlatStyle.Popup;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.ForeColor = Color.DarkBlue;
-            btnClear.Location = new Point(210, 486);
+            btnClear.Location = new Point(202, 514);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 48);
             btnClear.TabIndex = 18;
@@ -245,9 +245,9 @@
             // 
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(440, 486);
+            btnReturn.Location = new Point(533, 514);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(170, 48);
+            btnReturn.Size = new Size(77, 48);
             btnReturn.TabIndex = 19;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
@@ -262,7 +262,7 @@
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnReturn;
-            ClientSize = new Size(640, 560);
+            ClientSize = new Size(640, 639);
             Controls.Add(btnReturn);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);

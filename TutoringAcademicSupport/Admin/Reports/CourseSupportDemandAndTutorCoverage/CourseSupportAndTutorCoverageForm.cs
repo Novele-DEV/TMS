@@ -111,7 +111,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
                 (result.CoursesFlaggedRecruit.ToString(), "Courses flagged Recruit tutors")
             };
 
-            lblFilter.ForeColor = SystemColors.GrayText;
+            lblFilter.ForeColor = AppTheme.MutedText;
             lblPeriod.Text = periodLine;
             lblFilter.Text = $"Filters: Faculty: {ReportOutput.FilterText(cmbFaculty)}";
             ReportOutput.ShowKpis(pnlKpis, kpis);
