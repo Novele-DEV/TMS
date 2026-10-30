@@ -239,7 +239,7 @@ partial class AddTutorForm
         //
         // lblStatus
         //
-        lblStatus.Location = new Point(28, 425);
+        lblStatus.Location = new Point(28, 458);
         lblStatus.Name = "lblStatus";
         lblStatus.Size = new Size(582, 48);
         lblStatus.TabIndex = 19;
@@ -247,7 +247,7 @@ partial class AddTutorForm
         // btnAdd
         //
         btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnAdd.Location = new Point(28, 486);
+        btnAdd.Location = new Point(440, 515);
         btnAdd.Name = "btnAdd";
         btnAdd.Size = new Size(170, 48);
         btnAdd.TabIndex = 17;
@@ -258,7 +258,7 @@ partial class AddTutorForm
         // btnClear
         //
         btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnClear.Location = new Point(210, 486);
+        btnClear.Location = new Point(210, 515);
         btnClear.Name = "btnClear";
         btnClear.Size = new Size(151, 48);
         btnClear.TabIndex = 18;
@@ -269,7 +269,7 @@ partial class AddTutorForm
         // btnReturn
         // 
         btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnReturn.Location = new Point(440, 486);
+        btnReturn.Location = new Point(28, 515);
         btnReturn.Name = "btnReturn";
         btnReturn.Size = new Size(151, 48);
         btnReturn.TabIndex = 19;
@@ -286,7 +286,7 @@ partial class AddTutorForm
         BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
         BackgroundImageLayout = ImageLayout.Stretch;
         CancelButton = btnReturn;
-        ClientSize = new Size(629, 545);
+        ClientSize = new Size(629, 575);
         Controls.Add(btnReturn);
         Controls.Add(btnClear);
         Controls.Add(btnAdd);

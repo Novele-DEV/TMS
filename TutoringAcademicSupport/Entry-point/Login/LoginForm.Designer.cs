@@ -132,7 +132,6 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             btnExit.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnExit.ForeColor = Color.FromArgb(64, 64, 64);
             btnExit.Location = new Point(513, 478);
-            btnExit.Location = new Point(20, 397);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(140, 44);
             btnExit.TabIndex = 12;

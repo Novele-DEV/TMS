@@ -153,9 +153,9 @@
             // 
             // lblMessage
             // 
-            lblMessage.Location = new Point(40, 494);
+            lblMessage.Location = new Point(40, 440);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(440, 80);
+            lblMessage.Size = new Size(649, 60);
             lblMessage.TabIndex = 18;
             // 
             // txtStudentID
@@ -240,7 +240,6 @@
             btnClear.BackColor = SystemColors.ButtonFace;
             btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClear.Location = new Point(199, 512);
-            btnClear.Location = new Point(151, 512);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(144, 44);
             btnClear.TabIndex = 17;

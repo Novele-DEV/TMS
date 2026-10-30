@@ -255,8 +255,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnReturn.FlatAppearance.BorderColor = Color.Silver;
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(812, 532);
-            btnReturn.Location = new Point(28, 501);
+            btnReturn.Location = new Point(812, 576);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(160, 48);
             btnReturn.TabIndex = 8;
@@ -271,7 +270,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnReturn;
-            ClientSize = new Size(1000, 600);
+            ClientSize = new Size(1000, 640);
             Controls.Add(btnReturn);
             Controls.Add(lblMessage);
             Controls.Add(grpSlot);
@@ -282,7 +281,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             Controls.Add(lblSubtitle);
             Controls.Add(label1);
             DoubleBuffered = true;
-            MinimumSize = new Size(1018, 560);
+            MinimumSize = new Size(1018, 658);
             Name = "UpdateAvailabilityForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Tutor Availability";

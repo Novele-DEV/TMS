@@ -109,7 +109,6 @@
             btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnBack.ForeColor = Color.FromArgb(64, 64, 64);
             btnBack.Location = new Point(692, 486);
-            btnBack.Location = new Point(28, 482);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(140, 44);
             btnBack.TabIndex = 6;
