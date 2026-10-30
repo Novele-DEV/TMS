@@ -10,6 +10,7 @@ public sealed class AddTutorRequest
     public string Phone { get; }
     public string AcademicAverage { get; }
     public string PreferredMode { get; }
+    public string? CurriculumVitaePath { get; }
 
     public AddTutorRequest(
         string firstName,
@@ -17,7 +18,8 @@ public sealed class AddTutorRequest
         string email,
         string phone,
         string academicAverage,
-        string preferredMode)
+        string preferredMode,
+        string? curriculumVitaePath = null)
     {
         FirstName = firstName;
         LastName = lastName;
@@ -25,5 +27,6 @@ public sealed class AddTutorRequest
         Phone = phone;
         AcademicAverage = academicAverage;
         PreferredMode = preferredMode;
+        CurriculumVitaePath = curriculumVitaePath;
     }
 }

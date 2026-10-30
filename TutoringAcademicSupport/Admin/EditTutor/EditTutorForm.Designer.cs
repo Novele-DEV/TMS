@@ -44,6 +44,10 @@
             txtAcademicAverage = new TextBox();
             lblMode = new Label();
             cmbPreferredMode = new ComboBox();
+            lblCurriculumVitae = new Label();
+            txtCurriculumVitae = new TextBox();
+            btnBrowseCurriculumVitae = new Button();
+            lblCurriculumVitaeStatus = new Label();
             lblStatus = new Label();
             btnAdd = new Button();
             btnClear = new Button();
@@ -152,7 +156,7 @@
             // 
             // txtTutorPhoneNo
             // 
-            txtTutorPhoneNo.Location = new Point(210, 289);
+            txtTutorPhoneNo.Location = new Point(208, 296);
             txtTutorPhoneNo.MaxLength = 12;
             txtTutorPhoneNo.Name = "txtTutorPhoneNo";
             txtTutorPhoneNo.PlaceholderText = "+27821234567";
@@ -194,20 +198,57 @@
             cmbPreferredMode.Size = new Size(200, 28);
             cmbPreferredMode.TabIndex = 15;
             // 
+            // lblCurriculumVitae
+            //
+            lblCurriculumVitae.AutoSize = true;
+            lblCurriculumVitae.Location = new Point(28, 430);
+            lblCurriculumVitae.Name = "lblCurriculumVitae";
+            lblCurriculumVitae.Size = new Size(124, 20);
+            lblCurriculumVitae.TabIndex = 16;
+            lblCurriculumVitae.Text = "&Curriculum Vitae";
+            //
+            // txtCurriculumVitae
+            //
+            txtCurriculumVitae.Location = new Point(210, 427);
+            txtCurriculumVitae.Name = "txtCurriculumVitae";
+            txtCurriculumVitae.ReadOnly = true;
+            txtCurriculumVitae.Size = new Size(300, 27);
+            txtCurriculumVitae.TabIndex = 17;
+            txtCurriculumVitae.TabStop = false;
+            //
+            // btnBrowseCurriculumVitae
+            //
+            btnBrowseCurriculumVitae.Location = new Point(520, 426);
+            btnBrowseCurriculumVitae.Name = "btnBrowseCurriculumVitae";
+            btnBrowseCurriculumVitae.Size = new Size(90, 29);
+            btnBrowseCurriculumVitae.TabIndex = 18;
+            btnBrowseCurriculumVitae.Text = "Browse...";
+            btnBrowseCurriculumVitae.UseVisualStyleBackColor = true;
+            btnBrowseCurriculumVitae.Click += btnBrowseCurriculumVitae_Click;
+            //
+            // lblCurriculumVitaeStatus
+            //
+            lblCurriculumVitaeStatus.AutoSize = true;
+            lblCurriculumVitaeStatus.ForeColor = SystemColors.GrayText;
+            lblCurriculumVitaeStatus.Location = new Point(210, 458);
+            lblCurriculumVitaeStatus.Name = "lblCurriculumVitaeStatus";
+            lblCurriculumVitaeStatus.Size = new Size(0, 20);
+            lblCurriculumVitaeStatus.TabIndex = 19;
+            //
             // lblStatus
             // 
-            lblStatus.Location = new Point(28, 425);
+            lblStatus.Location = new Point(28, 483);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(582, 48);
-            lblStatus.TabIndex = 16;
+            lblStatus.TabIndex = 20;
             // 
             // btnAdd
             // 
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnAdd.Location = new Point(440, 445);
+            btnAdd.Location = new Point(440, 538);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(170, 79);
-            btnAdd.TabIndex = 17;
+            btnAdd.TabIndex = 21;
             btnAdd.Text = "&Save Changes";
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
@@ -215,10 +256,10 @@
             // btnClear
             // 
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnClear.Location = new Point(204, 476);
+            btnClear.Location = new Point(204, 569);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 48);
-            btnClear.TabIndex = 18;
+            btnClear.TabIndex = 22;
             btnClear.Text = "&Undo Changes";
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
@@ -226,10 +267,10 @@
             // btnReturn
             // 
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnReturn.Location = new Point(28, 476);
+            btnReturn.Location = new Point(28, 569);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(170, 48);
-            btnReturn.TabIndex = 19;
+            btnReturn.TabIndex = 23;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
@@ -240,11 +281,15 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnReturn;
-            ClientSize = new Size(640, 560);
+            ClientSize = new Size(640, 640);
             Controls.Add(btnReturn);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);
             Controls.Add(lblStatus);
+            Controls.Add(lblCurriculumVitaeStatus);
+            Controls.Add(btnBrowseCurriculumVitae);
+            Controls.Add(txtCurriculumVitae);
+            Controls.Add(lblCurriculumVitae);
             Controls.Add(cmbPreferredMode);
             Controls.Add(lblMode);
             Controls.Add(txtAcademicAverage);
@@ -288,6 +333,10 @@
         private TextBox txtAcademicAverage;
         private Label lblMode;
         private ComboBox cmbPreferredMode;
+        private Label lblCurriculumVitae;
+        private TextBox txtCurriculumVitae;
+        private Button btnBrowseCurriculumVitae;
+        private Label lblCurriculumVitaeStatus;
         private Label lblStatus;
         private Button btnAdd;
         private Button btnClear;

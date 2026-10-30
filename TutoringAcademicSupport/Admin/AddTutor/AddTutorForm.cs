@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.OleDb;
 using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Common.Branding;
@@ -9,6 +10,8 @@ namespace TutoringAcademicSupport.Admin.AddTutor;
 
 public partial class AddTutorForm : Form
 {
+    private string? selectedCurriculumVitaePath;
+
     // How many tutors were added while the form was open, and the latest new ID,
     // so the dashboard can confirm what happened.
     public int AddedCount { get; private set; }
@@ -29,7 +32,8 @@ public partial class AddTutorForm : Form
             txtTutorEmail.Text.Trim(),
             txtTutorPhoneNo.Text.Trim(),
             txtAcademicAverage.Text.Trim(),
-            cmbPreferredMode.SelectedItem?.ToString() ?? string.Empty);
+            cmbPreferredMode.SelectedItem?.ToString() ?? string.Empty,
+            selectedCurriculumVitaePath);
 
         string problem = AddTutorValidator.Validate(request);
         if (problem.Length > 0)
@@ -69,6 +73,23 @@ public partial class AddTutorForm : Form
         lblStatus.Text = string.Empty;
     }
 
+    private void btnBrowseCurriculumVitae_Click(object sender, EventArgs e)
+    {
+        using OpenFileDialog dialog = new()
+        {
+            Filter = "PDF files (*.pdf)|*.pdf",
+            Title = "Select Curriculum Vitae PDF",
+            CheckFileExists = true,
+            Multiselect = false
+        };
+
+        if (dialog.ShowDialog(this) != DialogResult.OK)
+            return;
+
+        selectedCurriculumVitaePath = dialog.FileName;
+        txtCurriculumVitae.Text = Path.GetFileName(dialog.FileName);
+    }
+
     private void ClearFields()
     {
         txtTutorFName.Clear();
@@ -77,6 +98,8 @@ public partial class AddTutorForm : Form
         txtTutorPhoneNo.Clear();
         txtAcademicAverage.Clear();
         cmbPreferredMode.SelectedIndex = -1;
+        selectedCurriculumVitaePath = null;
+        txtCurriculumVitae.Clear();
         txtTutorFName.Focus();
     }
 

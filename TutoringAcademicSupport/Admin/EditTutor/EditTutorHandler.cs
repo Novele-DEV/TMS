@@ -1,5 +1,7 @@
+using System.IO;
 using System.Data.OleDb;
 using System.Globalization;
+using System.Security;
 using TutoringAcademicSupport.Common.Database;
 
 namespace TutoringAcademicSupport.Admin.EditTutor
@@ -8,6 +10,11 @@ namespace TutoringAcademicSupport.Admin.EditTutor
     {
         public static EditTutorResult Handle(EditTutorRequest request)
         {
+            if (!TryReadCurriculumVitae(request.CurriculumVitaePath, out byte[]? curriculumVitae, out string fileError))
+            {
+                return new EditTutorResult { Message = fileError };
+            }
+
             using OleDbConnection connection = DatabaseConnection.GetConnection();
             connection.Open();
 
@@ -49,6 +56,23 @@ namespace TutoringAcademicSupport.Admin.EditTutor
                 return new EditTutorResult { Message = "The selected tutor could not be found." };
             }
 
+            if (curriculumVitae is not null)
+            {
+                const string updateCurriculumVitae = """
+                    UPDATE [Tutor]
+                    SET [CurriculumVitae] = ?
+                    WHERE [Tutor_ID] = ?
+                    """;
+
+                using OleDbCommand cvCommand = new(updateCurriculumVitae, connection);
+                cvCommand.Parameters.Add("@CurriculumVitae", OleDbType.LongVarBinary).Value = curriculumVitae;
+                cvCommand.Parameters.Add("@Tutor_ID", OleDbType.VarWChar, 8).Value = request.TutorId;
+                if (cvCommand.ExecuteNonQuery() == 0)
+                {
+                    return new EditTutorResult { Message = "The selected tutor could not be found." };
+                }
+            }
+
             return new EditTutorResult
             {
                 Success = true,
@@ -70,6 +94,71 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         {
             if (academicAverage.Length == 0) return DBNull.Value;
             return double.Parse(academicAverage, NumberStyles.Number, CultureInfo.CurrentCulture);
+        }
+
+        private static bool TryReadCurriculumVitae(string? path, out byte[]? bytes, out string error)
+        {
+            bytes = null;
+            error = string.Empty;
+            if (string.IsNullOrWhiteSpace(path))
+                return true;
+
+            try
+            {
+                if (!string.Equals(Path.GetExtension(path), ".pdf", StringComparison.OrdinalIgnoreCase))
+                {
+                    error = "The Curriculum Vitae file must be a PDF.";
+                    return false;
+                }
+
+                FileInfo file = new(path);
+                if (!file.Exists)
+                {
+                    error = "The selected Curriculum Vitae file no longer exists.";
+                    return false;
+                }
+
+                if (file.Length > EditTutorValidator.MaximumCurriculumVitaeSizeBytes)
+                {
+                    error = "The Curriculum Vitae PDF must be 5 MB or smaller.";
+                    return false;
+                }
+
+                bytes = File.ReadAllBytes(path);
+            }
+            catch (FileNotFoundException)
+            {
+                error = "The selected Curriculum Vitae file no longer exists.";
+                return false;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                error = "The selected Curriculum Vitae file no longer exists.";
+                return false;
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or SecurityException or ArgumentException or NotSupportedException)
+            {
+                error = "The selected Curriculum Vitae file could not be read. Check that it is not in use and that you have access.";
+                return false;
+            }
+
+            if (bytes.Length > EditTutorValidator.MaximumCurriculumVitaeSizeBytes)
+            {
+                error = "The Curriculum Vitae PDF must be 5 MB or smaller.";
+                return false;
+            }
+
+            if (bytes.Length < 4 ||
+                bytes[0] != (byte)'%' ||
+                bytes[1] != (byte)'P' ||
+                bytes[2] != (byte)'D' ||
+                bytes[3] != (byte)'F')
+            {
+                error = "The selected file does not have a valid PDF signature.";
+                return false;
+            }
+
+            return true;
         }
     }
 }

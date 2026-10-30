@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Common.Branding;
@@ -16,6 +17,8 @@ namespace TutoringAcademicSupport.Admin.EditTutor
 
         // the values as loaded from the database, used by Undo Changes and the unsaved-changes check
         private string[] savedValues = Array.Empty<string>();
+        private string? selectedCurriculumVitaePath;
+        private bool hasCurriculumVitae;
 
         public EditTutorForm()
         {
@@ -43,6 +46,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
             try
             {
                 tutorTable = DatabaseConnection.LoadTutor(tutorId);
+                hasCurriculumVitae = TutorHasCurriculumVitae();
             }
             catch (Exception ex) when (ex is OleDbException or InvalidOperationException or FileNotFoundException)
             {
@@ -87,7 +91,15 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         {
             //save changes made to the tutor record when the "Save Changes" button is clicked.
             string[] values = CurrentValues();
-            var request = new EditTutorRequest(tutorId, values[0], values[1], values[2], values[3], values[4], values[5]);
+            var request = new EditTutorRequest(
+                tutorId,
+                values[0],
+                values[1],
+                values[2],
+                values[3],
+                values[4],
+                values[5],
+                selectedCurriculumVitaePath);
 
             string problem = EditTutorValidator.Validate(request);
             if (problem.Length > 0)
@@ -131,6 +143,24 @@ namespace TutoringAcademicSupport.Admin.EditTutor
             Close();
         }
 
+        private void btnBrowseCurriculumVitae_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog dialog = new()
+            {
+                Filter = "PDF files (*.pdf)|*.pdf",
+                Title = "Select Curriculum Vitae PDF",
+                CheckFileExists = true,
+                Multiselect = false
+            };
+
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            selectedCurriculumVitaePath = dialog.FileName;
+            txtCurriculumVitae.Text = Path.GetFileName(dialog.FileName);
+            UpdateCurriculumVitaeStatus();
+        }
+
         // Asks before closing when there are changes that have not been saved.
         private void EditTutorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -148,7 +178,8 @@ namespace TutoringAcademicSupport.Admin.EditTutor
 
         private bool HasUnsavedChanges()
         {
-            return savedValues.Length > 0 && !savedValues.SequenceEqual(CurrentValues());
+            return savedValues.Length > 0 &&
+                (!savedValues.SequenceEqual(CurrentValues()) || selectedCurriculumVitaePath is not null);
         }
 
         private string[] CurrentValues()
@@ -166,6 +197,9 @@ namespace TutoringAcademicSupport.Admin.EditTutor
 
         private void ShowValues(string[] values)
         {
+            selectedCurriculumVitaePath = null;
+            txtCurriculumVitae.Clear();
+            UpdateCurriculumVitaeStatus();
             txtTutorFName.Text = values[0];
             txtTutorLName.Text = values[1];
             txtTutorEmail.Text = values[2];
@@ -178,7 +212,29 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         {
             txtTutorFName.Enabled = txtTutorLName.Enabled = txtTutorEmail.Enabled = enabled;
             txtTutorPhoneNo.Enabled = txtAcademicAverage.Enabled = cmbPreferredMode.Enabled = enabled;
-            btnAdd.Enabled = btnClear.Enabled = enabled;
+            btnAdd.Enabled = btnClear.Enabled = btnBrowseCurriculumVitae.Enabled = enabled;
+        }
+
+        private bool TutorHasCurriculumVitae()
+        {
+            const string query = """
+                SELECT COUNT(*)
+                FROM [Tutor]
+                WHERE [Tutor_ID] = ? AND [CurriculumVitae] IS NOT NULL
+                """;
+
+            using OleDbConnection connection = DatabaseConnection.GetConnection();
+            using OleDbCommand command = new(query, connection);
+            command.Parameters.Add("@Tutor_ID", OleDbType.VarWChar, 8).Value = tutorId;
+            connection.Open();
+            return Convert.ToInt32(command.ExecuteScalar()) > 0;
+        }
+
+        private void UpdateCurriculumVitaeStatus()
+        {
+            lblCurriculumVitaeStatus.Text = selectedCurriculumVitaePath is not null
+                ? "New CV selected"
+                : hasCurriculumVitae ? "CV on file" : "No CV uploaded";
         }
 
         // reads a database value as trimmed text; an empty value becomes an empty string

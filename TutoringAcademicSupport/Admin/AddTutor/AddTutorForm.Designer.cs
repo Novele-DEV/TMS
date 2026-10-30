@@ -44,6 +44,9 @@ partial class AddTutorForm
         txtAcademicAverage = new TextBox();
         lblMode = new Label();
         cmbPreferredMode = new ComboBox();
+        lblCurriculumVitae = new Label();
+        txtCurriculumVitae = new TextBox();
+        btnBrowseCurriculumVitae = new Button();
         lblStatus = new Label();
         btnAdd = new Button();
         btnClear = new Button();
@@ -97,7 +100,7 @@ partial class AddTutorForm
         lblFirstName.Name = "lblFirstName";
         lblFirstName.Size = new Size(80, 20);
         lblFirstName.TabIndex = 4;
-        lblFirstName.Text = "&First name:";
+        lblFirstName.Text = "$First name:";
         // 
         // txtTutorFName
         // 
@@ -131,7 +134,7 @@ partial class AddTutorForm
         lblEmail.Name = "lblEmail";
         lblEmail.Size = new Size(49, 20);
         lblEmail.TabIndex = 8;
-        lblEmail.Text = "E&mail:";
+        lblEmail.Text = "E$mail:";
         // 
         // txtTutorEmail
         // 
@@ -195,20 +198,48 @@ partial class AddTutorForm
         cmbPreferredMode.Size = new Size(200, 28);
         cmbPreferredMode.TabIndex = 15;
         // 
+        // lblCurriculumVitae
+        //
+        lblCurriculumVitae.AutoSize = true;
+        lblCurriculumVitae.Location = new Point(28, 430);
+        lblCurriculumVitae.Name = "lblCurriculumVitae";
+        lblCurriculumVitae.Size = new Size(124, 20);
+        lblCurriculumVitae.TabIndex = 16;
+        lblCurriculumVitae.Text = "&Curriculum Vitae";
+        //
+        // txtCurriculumVitae
+        //
+        txtCurriculumVitae.Location = new Point(210, 427);
+        txtCurriculumVitae.Name = "txtCurriculumVitae";
+        txtCurriculumVitae.ReadOnly = true;
+        txtCurriculumVitae.Size = new Size(300, 27);
+        txtCurriculumVitae.TabIndex = 17;
+        txtCurriculumVitae.TabStop = false;
+        //
+        // btnBrowseCurriculumVitae
+        //
+        btnBrowseCurriculumVitae.Location = new Point(520, 426);
+        btnBrowseCurriculumVitae.Name = "btnBrowseCurriculumVitae";
+        btnBrowseCurriculumVitae.Size = new Size(90, 29);
+        btnBrowseCurriculumVitae.TabIndex = 18;
+        btnBrowseCurriculumVitae.Text = "Browse...";
+        btnBrowseCurriculumVitae.UseVisualStyleBackColor = true;
+        btnBrowseCurriculumVitae.Click += btnBrowseCurriculumVitae_Click;
+        //
         // lblStatus
         // 
-        lblStatus.Location = new Point(28, 425);
+        lblStatus.Location = new Point(28, 466);
         lblStatus.Name = "lblStatus";
         lblStatus.Size = new Size(582, 48);
-        lblStatus.TabIndex = 16;
+        lblStatus.TabIndex = 19;
         // 
         // btnAdd
         // 
         btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnAdd.Location = new Point(420, 448);
+        btnAdd.Location = new Point(420, 515);
         btnAdd.Name = "btnAdd";
         btnAdd.Size = new Size(190, 86);
-        btnAdd.TabIndex = 17;
+        btnAdd.TabIndex = 20;
         btnAdd.Text = "&Add Tutor";
         btnAdd.UseVisualStyleBackColor = true;
         btnAdd.Click += btnAdd_Click;
@@ -216,10 +247,10 @@ partial class AddTutorForm
         // btnClear
         // 
         btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnClear.Location = new Point(179, 486);
+        btnClear.Location = new Point(179, 553);
         btnClear.Name = "btnClear";
         btnClear.Size = new Size(170, 48);
-        btnClear.TabIndex = 18;
+        btnClear.TabIndex = 21;
         btnClear.Text = "&Clear";
         btnClear.UseVisualStyleBackColor = true;
         btnClear.Click += btnClear_Click;
@@ -227,10 +258,10 @@ partial class AddTutorForm
         // btnReturn
         // 
         btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnReturn.Location = new Point(3, 486);
+        btnReturn.Location = new Point(3, 553);
         btnReturn.Name = "btnReturn";
         btnReturn.Size = new Size(170, 48);
-        btnReturn.TabIndex = 19;
+        btnReturn.TabIndex = 22;
         btnReturn.Text = "&Back";
         btnReturn.UseVisualStyleBackColor = true;
         btnReturn.Click += btnReturn_Click;
@@ -241,11 +272,14 @@ partial class AddTutorForm
         AutoScaleDimensions = new SizeF(8F, 20F);
         AutoScaleMode = AutoScaleMode.Font;
         CancelButton = btnReturn;
-        ClientSize = new Size(640, 560);
+        ClientSize = new Size(640, 630);
         Controls.Add(btnReturn);
         Controls.Add(btnClear);
         Controls.Add(btnAdd);
         Controls.Add(lblStatus);
+        Controls.Add(btnBrowseCurriculumVitae);
+        Controls.Add(txtCurriculumVitae);
+        Controls.Add(lblCurriculumVitae);
         Controls.Add(cmbPreferredMode);
         Controls.Add(lblMode);
         Controls.Add(txtAcademicAverage);
@@ -287,6 +321,9 @@ partial class AddTutorForm
     private TextBox txtAcademicAverage;
     private Label lblMode;
     private ComboBox cmbPreferredMode;
+    private Label lblCurriculumVitae;
+    private TextBox txtCurriculumVitae;
+    private Button btnBrowseCurriculumVitae;
     private Label lblStatus;
     private Button btnAdd;
     private Button btnClear;
