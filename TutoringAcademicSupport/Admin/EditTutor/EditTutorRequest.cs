@@ -11,6 +11,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         public string Phone { get; }
         public string AcademicAverage { get; }
         public string PreferredMode { get; }
+        public string? CurriculumVitaePath { get; }
 
         public EditTutorRequest(
             string tutorId,
@@ -19,7 +20,8 @@ namespace TutoringAcademicSupport.Admin.EditTutor
             string email,
             string phone,
             string academicAverage,
-            string preferredMode)
+            string preferredMode,
+            string? curriculumVitaePath = null)
         {
             TutorId = tutorId;
             FirstName = firstName;
@@ -28,6 +30,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
             Phone = phone;
             AcademicAverage = academicAverage;
             PreferredMode = preferredMode;
+            CurriculumVitaePath = curriculumVitaePath;
         }
     }
 }

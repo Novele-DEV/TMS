@@ -90,11 +90,21 @@
             dtpDoB.Name = "dtpDoB";
             dtpDoB.Size = new Size(258, 29);
             dtpDoB.TabIndex = 2;
+            dtpDoB.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDoB.Location = new Point(400, 76);
+            dtpDoB.Name = "dtpDoB";
+            dtpDoB.Size = new Size(258, 29);
+            dtpDoB.TabIndex = 2;
             // 
             // txtFirstName
             // 
             txtFirstName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtFirstName.Location = new Point(790, 117);
+            txtFirstName.Name = "txtFirstName";
+            txtFirstName.Size = new Size(258, 29);
+            txtFirstName.TabIndex = 3;
+            txtFirstName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtFirstName.Location = new Point(20, 138);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(258, 29);
             txtFirstName.TabIndex = 3;
@@ -117,11 +127,23 @@
             cboFaculty.Size = new Size(258, 29);
             cboFaculty.TabIndex = 5;
             cboFaculty.SelectedIndexChanged += cboFaculty_SelectedIndexChanged;
+            cboFaculty.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboFaculty.FormattingEnabled = true;
+            cboFaculty.Location = new Point(20, 262);
+            cboFaculty.Name = "cboFaculty";
+            cboFaculty.Size = new Size(258, 29);
+            cboFaculty.TabIndex = 5;
+            cboFaculty.SelectedIndexChanged += cboFaculty_SelectedIndexChanged;
             // 
             // txtLastName
             // 
             txtLastName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtLastName.Location = new Point(400, 117);
+            txtLastName.Name = "txtLastName";
+            txtLastName.Size = new Size(258, 29);
+            txtLastName.TabIndex = 6;
+            txtLastName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtLastName.Location = new Point(400, 138);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(258, 29);
             txtLastName.TabIndex = 6;
@@ -153,6 +175,15 @@
             btnBack.Size = new Size(144, 44);
             btnBack.TabIndex = 11;
             btnBack.Text = "&Back";
+            btnBack.Text = "Back to Login";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            btnBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnBack.Location = new Point(20, 570);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(100, 44);
+            btnBack.TabIndex = 11;
+            btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
             // 
@@ -169,12 +200,29 @@
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = false;
             btnCreate.Click += btnCreate_Click;
+            btnCreate.BackColor = Color.FromArgb(31, 56, 100);
+            btnCreate.FlatStyle = FlatStyle.Flat;
+            btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnCreate.ForeColor = Color.White;
+            btnCreate.Location = new Point(420, 351);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(149, 59);
+            btnCreate.TabIndex = 12;
+            btnCreate.Text = "Create";
+            btnCreate.UseVisualStyleBackColor = false;
+            btnCreate.Click += btnCreate_Click;
             // 
             // lblStudentNo
             // 
             lblStudentNo.AutoSize = true;
             lblStudentNo.BackColor = Color.Transparent;
             lblStudentNo.Location = new Point(12, 95);
+            lblStudentNo.Name = "lblStudentNo";
+            lblStudentNo.Size = new Size(119, 19);
+            lblStudentNo.TabIndex = 13;
+            lblStudentNo.Text = "Student number *";
+            lblStudentNo.AutoSize = true;
+            lblStudentNo.Location = new Point(20, 57);
             lblStudentNo.Name = "lblStudentNo";
             lblStudentNo.Size = new Size(119, 19);
             lblStudentNo.TabIndex = 13;

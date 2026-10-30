@@ -45,6 +45,10 @@
             txtAcademicAverage = new TextBox();
             lblMode = new Label();
             cmbPreferredMode = new ComboBox();
+            lblCurriculumVitae = new Label();
+            txtCurriculumVitae = new TextBox();
+            btnBrowseCurriculumVitae = new Button();
+            lblCurriculumVitaeStatus = new Label();
             lblStatus = new Label();
             btnAdd = new Button();
             btnClear = new Button();
@@ -162,7 +166,7 @@
             // 
             // txtTutorPhoneNo
             // 
-            txtTutorPhoneNo.Location = new Point(210, 289);
+            txtTutorPhoneNo.Location = new Point(208, 296);
             txtTutorPhoneNo.MaxLength = 12;
             txtTutorPhoneNo.Name = "txtTutorPhoneNo";
             txtTutorPhoneNo.PlaceholderText = "+27821234567";
@@ -206,49 +210,91 @@
             cmbPreferredMode.Size = new Size(200, 28);
             cmbPreferredMode.TabIndex = 15;
             // 
+            // lblCurriculumVitae
+            //
+            lblCurriculumVitae.AutoSize = true;
+            lblCurriculumVitae.Location = new Point(28, 430);
+            lblCurriculumVitae.Name = "lblCurriculumVitae";
+            lblCurriculumVitae.Size = new Size(124, 20);
+            lblCurriculumVitae.TabIndex = 16;
+            lblCurriculumVitae.Text = "&Curriculum Vitae";
+            //
+            // txtCurriculumVitae
+            //
+            txtCurriculumVitae.Location = new Point(210, 427);
+            txtCurriculumVitae.Name = "txtCurriculumVitae";
+            txtCurriculumVitae.ReadOnly = true;
+            txtCurriculumVitae.Size = new Size(300, 27);
+            txtCurriculumVitae.TabIndex = 17;
+            txtCurriculumVitae.TabStop = false;
+            //
+            // btnBrowseCurriculumVitae
+            //
+            btnBrowseCurriculumVitae.Location = new Point(520, 426);
+            btnBrowseCurriculumVitae.Name = "btnBrowseCurriculumVitae";
+            btnBrowseCurriculumVitae.Size = new Size(90, 29);
+            btnBrowseCurriculumVitae.TabIndex = 18;
+            btnBrowseCurriculumVitae.Text = "Browse...";
+            btnBrowseCurriculumVitae.UseVisualStyleBackColor = true;
+            btnBrowseCurriculumVitae.Click += btnBrowseCurriculumVitae_Click;
+            //
+            // lblCurriculumVitaeStatus
+            //
+            lblCurriculumVitaeStatus.AutoSize = true;
+            lblCurriculumVitaeStatus.ForeColor = SystemColors.GrayText;
+            lblCurriculumVitaeStatus.Location = new Point(210, 458);
+            lblCurriculumVitaeStatus.Name = "lblCurriculumVitaeStatus";
+            lblCurriculumVitaeStatus.Size = new Size(0, 20);
+            lblCurriculumVitaeStatus.TabIndex = 19;
+            //
             // lblStatus
             // 
             lblStatus.BackColor = Color.Transparent;
             lblStatus.Location = new Point(28, 425);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(582, 48);
-            lblStatus.TabIndex = 16;
+            lblStatus.TabIndex = 20;
             // 
             // btnAdd
             // 
             btnAdd.BackColor = SystemColors.HotTrack;
-            btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnAdd.ForeColor = SystemColors.ButtonHighlight;
+            btnAdd.Location = new Point(440, 445);
+=========
+            btnAdd.BackColor = Color.DarkBlue;
             btnAdd.Location = new Point(28, 514);
-            btnAdd.Name = "btnAdd";
+            btnAdd.Location = new Point(440, 445);
             btnAdd.Size = new Size(168, 48);
+            btnAdd.TabIndex = 17;
+>>>>>>>>> Temporary merge branch 2
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(170, 79);
             btnAdd.TabIndex = 17;
             btnAdd.Text = "&Save Changes";
             btnAdd.UseVisualStyleBackColor = false;
-            btnAdd.Click += btnAdd_Click;
-            // 
-            // btnClear
-            // 
             btnClear.BackColor = SystemColors.ButtonFace;
-            btnClear.FlatStyle = FlatStyle.Popup;
+<<<<<<<<< Temporary merge branch 1
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.ForeColor = SystemColors.HotTrack;
             btnClear.Location = new Point(202, 514);
+            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnClear.ForeColor = Color.DarkBlue;
+            btnClear.Location = new Point(210, 486);
+>>>>>>>>> Temporary merge branch 2
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 48);
-            btnClear.TabIndex = 18;
+            btnClear.TabIndex = 22;
             btnClear.Text = "&Undo Changes";
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
-            // btnReturn
-            // 
-            btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
             btnReturn.Location = new Point(533, 514);
-            btnReturn.Name = "btnReturn";
+            btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.Size = new Size(77, 48);
+            btnReturn.TabIndex = 19;
+>>>>>>>>> Temporary merge branch 2
+            btnReturn.Name = "btnReturn";
+            btnReturn.Size = new Size(170, 48);
             btnReturn.TabIndex = 19;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
@@ -259,15 +305,19 @@
             AcceptButton = btnAdd;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonHighlight;
+            ClientSize = new Size(640, 639);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnReturn;
-            ClientSize = new Size(640, 639);
+            ClientSize = new Size(640, 560);
             Controls.Add(btnReturn);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);
             Controls.Add(lblStatus);
+            Controls.Add(lblCurriculumVitaeStatus);
+            Controls.Add(btnBrowseCurriculumVitae);
+            Controls.Add(txtCurriculumVitae);
+            Controls.Add(lblCurriculumVitae);
             Controls.Add(cmbPreferredMode);
             Controls.Add(lblMode);
             Controls.Add(txtAcademicAverage);
@@ -312,6 +362,10 @@
         private TextBox txtAcademicAverage;
         private Label lblMode;
         private ComboBox cmbPreferredMode;
+        private Label lblCurriculumVitae;
+        private TextBox txtCurriculumVitae;
+        private Button btnBrowseCurriculumVitae;
+        private Label lblCurriculumVitaeStatus;
         private Label lblStatus;
         private Button btnAdd;
         private Button btnClear;

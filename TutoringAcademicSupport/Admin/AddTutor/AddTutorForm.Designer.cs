@@ -45,6 +45,9 @@ partial class AddTutorForm
         txtAcademicAverage = new TextBox();
         lblMode = new Label();
         cmbPreferredMode = new ComboBox();
+        lblCurriculumVitae = new Label();
+        txtCurriculumVitae = new TextBox();
+        btnBrowseCurriculumVitae = new Button();
         lblStatus = new Label();
         btnAdd = new Button();
         btnClear = new Button();
@@ -103,7 +106,7 @@ partial class AddTutorForm
         lblFirstName.Name = "lblFirstName";
         lblFirstName.Size = new Size(80, 20);
         lblFirstName.TabIndex = 4;
-        lblFirstName.Text = "&First name:";
+        lblFirstName.Text = "$First name:";
         // 
         // txtTutorFName
         // 
@@ -139,7 +142,7 @@ partial class AddTutorForm
         lblEmail.Name = "lblEmail";
         lblEmail.Size = new Size(49, 20);
         lblEmail.TabIndex = 8;
-        lblEmail.Text = "E&mail:";
+        lblEmail.Text = "E$mail:";
         // 
         // txtTutorEmail
         // 
@@ -206,12 +209,40 @@ partial class AddTutorForm
         cmbPreferredMode.Size = new Size(200, 28);
         cmbPreferredMode.TabIndex = 15;
         // 
+        // lblCurriculumVitae
+        //
+        lblCurriculumVitae.AutoSize = true;
+        lblCurriculumVitae.Location = new Point(28, 430);
+        lblCurriculumVitae.Name = "lblCurriculumVitae";
+        lblCurriculumVitae.Size = new Size(124, 20);
+        lblCurriculumVitae.TabIndex = 16;
+        lblCurriculumVitae.Text = "&Curriculum Vitae";
+        //
+        // txtCurriculumVitae
+        //
+        txtCurriculumVitae.Location = new Point(210, 427);
+        txtCurriculumVitae.Name = "txtCurriculumVitae";
+        txtCurriculumVitae.ReadOnly = true;
+        txtCurriculumVitae.Size = new Size(300, 27);
+        txtCurriculumVitae.TabIndex = 17;
+        txtCurriculumVitae.TabStop = false;
+        //
+        // btnBrowseCurriculumVitae
+        //
+        btnBrowseCurriculumVitae.Location = new Point(520, 426);
+        btnBrowseCurriculumVitae.Name = "btnBrowseCurriculumVitae";
+        btnBrowseCurriculumVitae.Size = new Size(90, 29);
+        btnBrowseCurriculumVitae.TabIndex = 18;
+        btnBrowseCurriculumVitae.Text = "Browse...";
+        btnBrowseCurriculumVitae.UseVisualStyleBackColor = true;
+        btnBrowseCurriculumVitae.Click += btnBrowseCurriculumVitae_Click;
+        //
         // lblStatus
         // 
         lblStatus.Location = new Point(28, 425);
         lblStatus.Name = "lblStatus";
         lblStatus.Size = new Size(582, 48);
-        lblStatus.TabIndex = 16;
+        lblStatus.TabIndex = 19;
         // 
         // btnAdd
         // 
@@ -264,6 +295,9 @@ partial class AddTutorForm
         Controls.Add(btnClear);
         Controls.Add(btnAdd);
         Controls.Add(lblStatus);
+        Controls.Add(btnBrowseCurriculumVitae);
+        Controls.Add(txtCurriculumVitae);
+        Controls.Add(lblCurriculumVitae);
         Controls.Add(cmbPreferredMode);
         Controls.Add(lblMode);
         Controls.Add(txtAcademicAverage);
@@ -306,6 +340,9 @@ partial class AddTutorForm
     private TextBox txtAcademicAverage;
     private Label lblMode;
     private ComboBox cmbPreferredMode;
+    private Label lblCurriculumVitae;
+    private TextBox txtCurriculumVitae;
+    private Button btnBrowseCurriculumVitae;
     private Label lblStatus;
     private Button btnAdd;
     private Button btnClear;
