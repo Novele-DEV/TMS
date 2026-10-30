@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using TutoringAcademicSupport.Common.Navigation;
 using TutoringAcademicSupport.Common.Branding;
 using TutoringAcademicSupport.Common.Database;
+using TutoringAcademicSupport.Common.Files;
 
 namespace TutoringAcademicSupport.Admin.EditTutor
 {
@@ -20,11 +21,15 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         private string? selectedCurriculumVitaePath;
         private bool hasCurriculumVitae;
 
+        // copies opened with View CV, removed again when the form closes
+        private readonly List<string> temporaryCopies = new();
+
         public EditTutorForm()
         {
             InitializeComponent();
             ByteBetterBrand.AddLogo(this, 80, fitAbove: txtTutorID);
             ScreenLayout.CentreContent(this);
+            FormClosed += (_, _) => DeleteTemporaryCopies();
         }
 
         public EditTutorForm(string tutorId) : this()
@@ -161,6 +166,91 @@ namespace TutoringAcademicSupport.Admin.EditTutor
             UpdateCurriculumVitaeStatus();
         }
 
+        private void btnViewCurriculumVitae_Click(object sender, EventArgs e)
+        {
+            byte[]? curriculumVitae = ReadSavedCurriculumVitae();
+            if (curriculumVitae is null) return;
+
+            try
+            {
+                // the PDF is in the database, so a temporary copy is what opens in the PDF viewer
+                string copy = Path.Combine(Path.GetTempPath(), $"CV-{tutorId}-{Guid.NewGuid():N}.pdf");
+                File.WriteAllBytes(copy, curriculumVitae);
+                temporaryCopies.Add(copy);
+                Process.Start(new ProcessStartInfo(copy) { UseShellExecute = true });
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or InvalidOperationException or System.ComponentModel.Win32Exception)
+            {
+                Debug.WriteLine(ex);
+                ShowError("The CV could not be opened. Use Download CV to save a copy instead.");
+            }
+        }
+
+        private void btnDownloadCurriculumVitae_Click(object sender, EventArgs e)
+        {
+            byte[]? curriculumVitae = ReadSavedCurriculumVitae();
+            if (curriculumVitae is null) return;
+
+            using SaveFileDialog dialog = new()
+            {
+                Filter = "PDF files (*.pdf)|*.pdf",
+                Title = "Save Curriculum Vitae",
+                FileName = $"{tutorId} CV.pdf"
+            };
+
+            if (dialog.ShowDialog(this) != DialogResult.OK)
+                return;
+
+            try
+            {
+                File.WriteAllBytes(dialog.FileName, curriculumVitae);
+                ShowNeutral("The CV was saved.");
+            }
+            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+            {
+                Debug.WriteLine(ex);
+                ShowError("The CV could not be saved. Close the file if it is open, then try again.");
+            }
+        }
+
+        // Reads the stored CV, or says why it cannot be used and returns null.
+        private byte[]? ReadSavedCurriculumVitae()
+        {
+            try
+            {
+                byte[]? curriculumVitae = DatabaseConnection.LoadCurriculumVitae(tutorId);
+                if (curriculumVitae is not null && CurriculumVitaeFile.IsPdf(curriculumVitae))
+                {
+                    return curriculumVitae;
+                }
+
+                ShowError("The saved CV could not be read as a PDF.");
+            }
+            catch (Exception ex) when (ex is OleDbException or InvalidOperationException or FileNotFoundException)
+            {
+                Debug.WriteLine(ex);
+                ShowError("The CV could not be loaded from the database. Please try again.");
+            }
+
+            return null;
+        }
+
+        // A copy that is still open in a PDF viewer cannot be deleted, so it is left for Windows to clear out.
+        private void DeleteTemporaryCopies()
+        {
+            foreach (string copy in temporaryCopies)
+            {
+                try
+                {
+                    File.Delete(copy);
+                }
+                catch (Exception ex) when (ex is IOException or UnauthorizedAccessException)
+                {
+                    Debug.WriteLine(ex);
+                }
+            }
+        }
+
         // Asks before closing when there are changes that have not been saved.
         private void EditTutorForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -235,6 +325,8 @@ namespace TutoringAcademicSupport.Admin.EditTutor
             lblCurriculumVitaeStatus.Text = selectedCurriculumVitaePath is not null
                 ? "New CV selected"
                 : hasCurriculumVitae ? "CV on file" : "No CV uploaded";
+
+            btnViewCurriculumVitae.Enabled = btnDownloadCurriculumVitae.Enabled = hasCurriculumVitae;
         }
 
         // reads a database value as trimmed text; an empty value becomes an empty string

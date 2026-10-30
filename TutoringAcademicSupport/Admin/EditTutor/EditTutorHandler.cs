@@ -1,8 +1,7 @@
-using System.IO;
 using System.Data.OleDb;
 using System.Globalization;
-using System.Security;
 using TutoringAcademicSupport.Common.Database;
+using TutoringAcademicSupport.Common.Files;
 
 namespace TutoringAcademicSupport.Admin.EditTutor
 {
@@ -10,7 +9,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
     {
         public static EditTutorResult Handle(EditTutorRequest request)
         {
-            if (!TryReadCurriculumVitae(request.CurriculumVitaePath, out byte[]? curriculumVitae, out string fileError))
+            if (!CurriculumVitaeFile.TryRead(request.CurriculumVitaePath, out byte[]? curriculumVitae, out string fileError))
             {
                 return new EditTutorResult { Message = fileError };
             }
@@ -30,6 +29,9 @@ namespace TutoringAcademicSupport.Admin.EditTutor
                 return new EditTutorResult { Message = "Another tutor already uses this phone number." };
             }
 
+            // The details and the CV are saved together: if either fails, neither is kept.
+            using OleDbTransaction transaction = connection.BeginTransaction();
+
             const string update = """
                 UPDATE [Tutor]
                 SET [Tutor_FName] = ?,
@@ -42,7 +44,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
                 """;
 
             // OleDb parameters are matched by position, so they must be added in the same order as the query.
-            using OleDbCommand command = new(update, connection);
+            using OleDbCommand command = new(update, connection, transaction);
             command.Parameters.Add("@Tutor_FName", OleDbType.VarWChar, 50).Value = request.FirstName;
             command.Parameters.Add("@Tutor_LName", OleDbType.VarWChar, 50).Value = request.LastName;
             command.Parameters.Add("@Tutor_Email", OleDbType.VarWChar, 100).Value = request.Email;
@@ -64,7 +66,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
                     WHERE [Tutor_ID] = ?
                     """;
 
-                using OleDbCommand cvCommand = new(updateCurriculumVitae, connection);
+                using OleDbCommand cvCommand = new(updateCurriculumVitae, connection, transaction);
                 cvCommand.Parameters.Add("@CurriculumVitae", OleDbType.LongVarBinary).Value = curriculumVitae;
                 cvCommand.Parameters.Add("@Tutor_ID", OleDbType.VarWChar, 8).Value = request.TutorId;
                 if (cvCommand.ExecuteNonQuery() == 0)
@@ -72,6 +74,8 @@ namespace TutoringAcademicSupport.Admin.EditTutor
                     return new EditTutorResult { Message = "The selected tutor could not be found." };
                 }
             }
+
+            transaction.Commit();
 
             return new EditTutorResult
             {
@@ -94,71 +98,6 @@ namespace TutoringAcademicSupport.Admin.EditTutor
         {
             if (academicAverage.Length == 0) return DBNull.Value;
             return double.Parse(academicAverage, NumberStyles.Number, CultureInfo.CurrentCulture);
-        }
-
-        private static bool TryReadCurriculumVitae(string? path, out byte[]? bytes, out string error)
-        {
-            bytes = null;
-            error = string.Empty;
-            if (string.IsNullOrWhiteSpace(path))
-                return true;
-
-            try
-            {
-                if (!string.Equals(Path.GetExtension(path), ".pdf", StringComparison.OrdinalIgnoreCase))
-                {
-                    error = "The Curriculum Vitae file must be a PDF.";
-                    return false;
-                }
-
-                FileInfo file = new(path);
-                if (!file.Exists)
-                {
-                    error = "The selected Curriculum Vitae file no longer exists.";
-                    return false;
-                }
-
-                if (file.Length > EditTutorValidator.MaximumCurriculumVitaeSizeBytes)
-                {
-                    error = "The Curriculum Vitae PDF must be 5 MB or smaller.";
-                    return false;
-                }
-
-                bytes = File.ReadAllBytes(path);
-            }
-            catch (FileNotFoundException)
-            {
-                error = "The selected Curriculum Vitae file no longer exists.";
-                return false;
-            }
-            catch (DirectoryNotFoundException)
-            {
-                error = "The selected Curriculum Vitae file no longer exists.";
-                return false;
-            }
-            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or SecurityException or ArgumentException or NotSupportedException)
-            {
-                error = "The selected Curriculum Vitae file could not be read. Check that it is not in use and that you have access.";
-                return false;
-            }
-
-            if (bytes.Length > EditTutorValidator.MaximumCurriculumVitaeSizeBytes)
-            {
-                error = "The Curriculum Vitae PDF must be 5 MB or smaller.";
-                return false;
-            }
-
-            if (bytes.Length < 4 ||
-                bytes[0] != (byte)'%' ||
-                bytes[1] != (byte)'P' ||
-                bytes[2] != (byte)'D' ||
-                bytes[3] != (byte)'F')
-            {
-                error = "The selected file does not have a valid PDF signature.";
-                return false;
-            }
-
-            return true;
         }
     }
 }

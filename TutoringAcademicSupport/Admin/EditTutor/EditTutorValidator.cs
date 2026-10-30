@@ -1,15 +1,12 @@
-using System.IO;
 using System.Globalization;
 using System.Net.Mail;
-using System.Security;
 using System.Text.RegularExpressions;
+using TutoringAcademicSupport.Common.Files;
 
 namespace TutoringAcademicSupport.Admin.EditTutor
 {
     public static class EditTutorValidator
     {
-        public const int MaximumCurriculumVitaeSizeBytes = 5 * 1024 * 1024;
-
         // These values and lengths match the Tutor table in the database.
         private static readonly string[] PreferredModes = { "Virtual", "In-person", "Both" };
 
@@ -52,56 +49,7 @@ namespace TutoringAcademicSupport.Admin.EditTutor
             if (Array.IndexOf(PreferredModes, request.PreferredMode) < 0)
                 return "The preferred mode must be Virtual, In-person or Both.";
 
-            return ValidateCurriculumVitae(request.CurriculumVitaePath);
-        }
-
-        private static string ValidateCurriculumVitae(string? path)
-        {
-            if (string.IsNullOrWhiteSpace(path))
-                return string.Empty;
-
-            try
-            {
-                if (!string.Equals(Path.GetExtension(path), ".pdf", StringComparison.OrdinalIgnoreCase))
-                    return "The Curriculum Vitae file must be a PDF.";
-
-                using FileStream file = new(path, FileMode.Open, FileAccess.Read, FileShare.Read);
-                if (file.Length > MaximumCurriculumVitaeSizeBytes)
-                    return "The Curriculum Vitae PDF must be 5 MB or smaller.";
-
-                Span<byte> signature = stackalloc byte[4];
-                int bytesRead = 0;
-                while (bytesRead < signature.Length)
-                {
-                    int count = file.Read(signature[bytesRead..]);
-                    if (count == 0)
-                        break;
-                    bytesRead += count;
-                }
-
-                if (bytesRead != 4 ||
-                    signature[0] != (byte)'%' ||
-                    signature[1] != (byte)'P' ||
-                    signature[2] != (byte)'D' ||
-                    signature[3] != (byte)'F')
-                {
-                    return "The selected file does not have a valid PDF signature.";
-                }
-
-                return string.Empty;
-            }
-            catch (FileNotFoundException)
-            {
-                return "The selected Curriculum Vitae file no longer exists.";
-            }
-            catch (DirectoryNotFoundException)
-            {
-                return "The selected Curriculum Vitae file no longer exists.";
-            }
-            catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or SecurityException or ArgumentException or NotSupportedException)
-            {
-                return "The selected Curriculum Vitae file could not be read. Check that it is not in use and that you have access.";
-            }
+            return CurriculumVitaeFile.Validate(request.CurriculumVitaePath);
         }
     }
 }

@@ -75,6 +75,19 @@ namespace TutoringAcademicSupport.Common.Database
             tutorBindingSource.DataSource = tutorTable;
         }
 
+        // The tutor's saved CV, or null when they do not have one.
+        public static byte[]? LoadCurriculumVitae(string tutorId)
+        {
+            const string query = "SELECT [CurriculumVitae] FROM [Tutor] WHERE [Tutor_ID] = ?";
+
+            using OleDbConnection connection = new(ConnectionString);
+            using OleDbCommand command = new(query, connection);
+            command.Parameters.Add("@Tutor_ID", OleDbType.VarWChar, 8).Value = tutorId;
+
+            connection.Open();
+            return command.ExecuteScalar() as byte[];
+        }
+
         public static DataTable LoadTutor(string tutorId)
         {
             const string query = """

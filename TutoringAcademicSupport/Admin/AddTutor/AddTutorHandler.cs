@@ -1,9 +1,8 @@
-using System.IO;
 using System.Data.OleDb;
 using System.Globalization;
-using System.Security;
 using TutoringAcademicSupport.Common.Authentication;
 using TutoringAcademicSupport.Common.Database;
+using TutoringAcademicSupport.Common.Files;
 
 namespace TutoringAcademicSupport.Admin.AddTutor;
 
@@ -13,7 +12,7 @@ public static class AddTutorHandler
 
     public static AddTutorResult Handle(AddTutorRequest request)
     {
-        if (!TryReadCurriculumVitae(request.CurriculumVitaePath, out byte[]? curriculumVitae, out string fileError))
+        if (!CurriculumVitaeFile.TryRead(request.CurriculumVitaePath, out byte[]? curriculumVitae, out string fileError))
         {
             return new AddTutorResult { Message = fileError };
         }
@@ -119,70 +118,5 @@ public static class AddTutorHandler
     {
         if (academicAverage.Length == 0) return DBNull.Value;
         return double.Parse(academicAverage, NumberStyles.Number, CultureInfo.CurrentCulture);
-    }
-
-    private static bool TryReadCurriculumVitae(string? path, out byte[]? bytes, out string error)
-    {
-        bytes = null;
-        error = string.Empty;
-        if (string.IsNullOrWhiteSpace(path))
-            return true;
-
-        try
-        {
-            if (!string.Equals(Path.GetExtension(path), ".pdf", StringComparison.OrdinalIgnoreCase))
-            {
-                error = "The Curriculum Vitae file must be a PDF.";
-                return false;
-            }
-
-            FileInfo file = new(path);
-            if (!file.Exists)
-            {
-                error = "The selected Curriculum Vitae file no longer exists.";
-                return false;
-            }
-
-            if (file.Length > AddTutorValidator.MaximumCurriculumVitaeSizeBytes)
-            {
-                error = "The Curriculum Vitae PDF must be 5 MB or smaller.";
-                return false;
-            }
-
-            bytes = File.ReadAllBytes(path);
-        }
-        catch (FileNotFoundException)
-        {
-            error = "The selected Curriculum Vitae file no longer exists.";
-            return false;
-        }
-        catch (DirectoryNotFoundException)
-        {
-            error = "The selected Curriculum Vitae file no longer exists.";
-            return false;
-        }
-        catch (Exception ex) when (ex is IOException or UnauthorizedAccessException or SecurityException or ArgumentException or NotSupportedException)
-        {
-            error = "The selected Curriculum Vitae file could not be read. Check that it is not in use and that you have access.";
-            return false;
-        }
-
-        if (bytes.Length > AddTutorValidator.MaximumCurriculumVitaeSizeBytes)
-        {
-            error = "The Curriculum Vitae PDF must be 5 MB or smaller.";
-            return false;
-        }
-
-        if (bytes.Length < 4 ||
-            bytes[0] != (byte)'%' ||
-            bytes[1] != (byte)'P' ||
-            bytes[2] != (byte)'D' ||
-            bytes[3] != (byte)'F')
-        {
-            error = "The selected file does not have a valid PDF signature.";
-            return false;
-        }
-
-        return true;
     }
 }

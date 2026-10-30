@@ -49,6 +49,8 @@
             txtCurriculumVitae = new TextBox();
             btnBrowseCurriculumVitae = new Button();
             lblCurriculumVitaeStatus = new Label();
+            btnViewCurriculumVitae = new Button();
+            btnDownloadCurriculumVitae = new Button();
             lblStatus = new Label();
             btnAdd = new Button();
             btnClear = new Button();
@@ -230,9 +232,9 @@
             // 
             // btnBrowseCurriculumVitae
             // 
-            btnBrowseCurriculumVitae.Location = new Point(681, 430);
+            btnBrowseCurriculumVitae.Location = new Point(681, 423);
             btnBrowseCurriculumVitae.Name = "btnBrowseCurriculumVitae";
-            btnBrowseCurriculumVitae.Size = new Size(90, 29);
+            btnBrowseCurriculumVitae.Size = new Size(90, 34);
             btnBrowseCurriculumVitae.TabIndex = 18;
             btnBrowseCurriculumVitae.Text = "Browse...";
             btnBrowseCurriculumVitae.UseVisualStyleBackColor = true;
@@ -247,37 +249,60 @@
             lblCurriculumVitaeStatus.Size = new Size(0, 20);
             lblCurriculumVitaeStatus.TabIndex = 19;
             // 
+            // btnViewCurriculumVitae
+            // 
+            btnViewCurriculumVitae.Enabled = false;
+            btnViewCurriculumVitae.Location = new Point(520, 461);
+            btnViewCurriculumVitae.Name = "btnViewCurriculumVitae";
+            btnViewCurriculumVitae.Size = new Size(120, 34);
+            btnViewCurriculumVitae.TabIndex = 21;
+            btnViewCurriculumVitae.Text = "View CV";
+            btnViewCurriculumVitae.UseVisualStyleBackColor = true;
+            btnViewCurriculumVitae.Click += btnViewCurriculumVitae_Click;
+            // 
+            // btnDownloadCurriculumVitae
+            // 
+            btnDownloadCurriculumVitae.Enabled = false;
+            btnDownloadCurriculumVitae.Location = new Point(651, 461);
+            btnDownloadCurriculumVitae.Name = "btnDownloadCurriculumVitae";
+            btnDownloadCurriculumVitae.Size = new Size(120, 34);
+            btnDownloadCurriculumVitae.TabIndex = 22;
+            btnDownloadCurriculumVitae.Text = "Download CV";
+            btnDownloadCurriculumVitae.UseVisualStyleBackColor = true;
+            btnDownloadCurriculumVitae.Click += btnDownloadCurriculumVitae_Click;
+            // 
             // lblStatus
             // 
             lblStatus.BackColor = Color.Transparent;
-            lblStatus.Location = new Point(28, 484);
+            lblStatus.Location = new Point(28, 480);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(582, 48);
+            lblStatus.Size = new Size(482, 38);
             lblStatus.TabIndex = 20;
             // 
             // btnAdd
             // 
             btnAdd.BackColor = SystemColors.HotTrack;
             btnAdd.FlatStyle = FlatStyle.Popup;
-            btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnAdd.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnAdd.ForeColor = Color.White;
             btnAdd.Location = new Point(433, 518);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(162, 44);
-            btnAdd.TabIndex = 17;
+            btnAdd.TabIndex = 23;
             btnAdd.Text = "&Save Changes";
             btnAdd.UseVisualStyleBackColor = false;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnClear
             // 
             btnClear.BackColor = SystemColors.ButtonFace;
             btnClear.FlatStyle = FlatStyle.Popup;
-            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnClear.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnClear.ForeColor = Color.DarkBlue;
             btnClear.Location = new Point(601, 518);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 44);
-            btnClear.TabIndex = 22;
+            btnClear.TabIndex = 24;
             btnClear.Text = "&Undo Changes";
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
@@ -288,7 +313,7 @@
             btnReturn.Location = new Point(28, 518);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(85, 44);
-            btnReturn.TabIndex = 19;
+            btnReturn.TabIndex = 25;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
@@ -305,6 +330,8 @@
             Controls.Add(btnReturn);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);
+            Controls.Add(btnDownloadCurriculumVitae);
+            Controls.Add(btnViewCurriculumVitae);
             Controls.Add(lblStatus);
             Controls.Add(lblCurriculumVitaeStatus);
             Controls.Add(btnBrowseCurriculumVitae);
@@ -358,6 +385,8 @@
         private TextBox txtCurriculumVitae;
         private Button btnBrowseCurriculumVitae;
         private Label lblCurriculumVitaeStatus;
+        private Button btnViewCurriculumVitae;
+        private Button btnDownloadCurriculumVitae;
         private Label lblStatus;
         private Button btnAdd;
         private Button btnClear;
