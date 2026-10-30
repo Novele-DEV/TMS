@@ -47,7 +47,7 @@
             lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(28, 11);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(412, 49);
+            lblTitle.Size = new Size(400, 49);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Tutor Availability";
             // 

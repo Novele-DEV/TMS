@@ -60,7 +60,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Cooper Black", 25F);
-            label1.ForeColor = Color.DarkBlue;
+            label1.ForeColor = SystemColors.HotTrack;
             label1.Location = new Point(28, 4);
             label1.Name = "label1";
             label1.Size = new Size(246, 49);
@@ -257,39 +257,45 @@
             // 
             // btnAdd
             // 
-            btnAdd.BackColor = Color.DarkBlue;
-            btnAdd.FlatStyle = FlatStyle.Popup;
+            btnAdd.BackColor = SystemColors.HotTrack;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnAdd.ForeColor = SystemColors.ButtonHighlight;
-            btnAdd.Location = new Point(440, 540);
+            btnAdd.Location = new Point(440, 445);
+=========
+            btnAdd.BackColor = Color.DarkBlue;
+            btnAdd.Location = new Point(28, 514);
+            btnAdd.Location = new Point(440, 445);
+            btnAdd.Size = new Size(168, 48);
+            btnAdd.TabIndex = 17;
+>>>>>>>>> Temporary merge branch 2
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(170, 48);
-            btnAdd.TabIndex = 21;
+            btnAdd.Size = new Size(170, 79);
+            btnAdd.TabIndex = 17;
             btnAdd.Text = "&Save Changes";
             btnAdd.UseVisualStyleBackColor = false;
-            btnAdd.Click += btnAdd_Click;
-            // 
-            // btnClear
-            // 
-            btnClear.FlatStyle = FlatStyle.Popup;
+            btnClear.BackColor = SystemColors.ButtonFace;
+<<<<<<<<< Temporary merge branch 1
+            btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnClear.ForeColor = SystemColors.HotTrack;
+            btnClear.Location = new Point(202, 514);
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.ForeColor = Color.DarkBlue;
-            btnClear.Location = new Point(235, 540);
+            btnClear.Location = new Point(210, 486);
+>>>>>>>>> Temporary merge branch 2
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 48);
             btnClear.TabIndex = 22;
             btnClear.Text = "&Undo Changes";
-            btnClear.UseVisualStyleBackColor = true;
+            btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
-            // btnReturn
-            // 
+            btnReturn.Location = new Point(533, 514);
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(28, 540);
+            btnReturn.Size = new Size(77, 48);
+            btnReturn.TabIndex = 19;
+>>>>>>>>> Temporary merge branch 2
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(170, 48);
-            btnReturn.TabIndex = 23;
+            btnReturn.TabIndex = 19;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
@@ -299,11 +305,11 @@
             AcceptButton = btnAdd;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ButtonHighlight;
+            ClientSize = new Size(640, 639);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnReturn;
-            ClientSize = new Size(640, 640);
+            ClientSize = new Size(640, 560);
             Controls.Add(btnReturn);
             Controls.Add(btnClear);
             Controls.Add(btnAdd);

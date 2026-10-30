@@ -58,7 +58,7 @@ namespace TutoringAcademicSupport.Admin.Reports
             // 
             // btnPrint
             // 
-            btnPrint.BackColor = Color.DarkBlue;
+            btnPrint.BackColor = SystemColors.HotTrack;
             btnPrint.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnPrint.ForeColor = Color.White;
             btnPrint.Location = new Point(12, 9);

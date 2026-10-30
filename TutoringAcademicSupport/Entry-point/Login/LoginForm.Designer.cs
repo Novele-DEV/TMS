@@ -131,9 +131,9 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // 
             btnExit.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnExit.ForeColor = Color.FromArgb(64, 64, 64);
-            btnExit.Location = new Point(513, 478);
+            btnExit.Location = new Point(587, 501);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(140, 44);
+            btnExit.Size = new Size(66, 44);
             btnExit.TabIndex = 12;
             btnExit.Text = "Exit";
             btnExit.UseVisualStyleBackColor = true;
@@ -149,9 +149,9 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             btnLogIn.FlatStyle = FlatStyle.Popup;
             btnLogIn.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnLogIn.ForeColor = Color.White;
-            btnLogIn.Location = new Point(319, 376);
+            btnLogIn.Location = new Point(22, 501);
             btnLogIn.Name = "btnLogIn";
-            btnLogIn.Size = new Size(181, 65);
+            btnLogIn.Size = new Size(130, 44);
             btnLogIn.TabIndex = 11;
             btnLogIn.Text = "&Log In";
             btnLogIn.UseVisualStyleBackColor = false;

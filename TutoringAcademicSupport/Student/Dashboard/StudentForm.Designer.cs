@@ -92,7 +92,7 @@ namespace TutoringAcademicSupport.Student.Dashboard
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Dock = DockStyle.Fill;
             lblTitle.Font = new Font("Cooper Black", 25F);
-            lblTitle.ForeColor = Color.Blue;
+            lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(0, 116);
             lblTitle.Margin = new Padding(0);
             lblTitle.Name = "lblTitle";
@@ -153,7 +153,7 @@ namespace TutoringAcademicSupport.Student.Dashboard
             // 
             // btnViewAvailability
             // 
-            btnViewAvailability.BackColor = Color.Blue;
+            btnViewAvailability.BackColor = SystemColors.HotTrack;
             btnViewAvailability.Cursor = Cursors.Hand;
             btnViewAvailability.Dock = DockStyle.Fill;
             btnViewAvailability.FlatAppearance.BorderSize = 0;
@@ -173,7 +173,7 @@ namespace TutoringAcademicSupport.Student.Dashboard
             // 
             // btnBookSession
             // 
-            btnBookSession.BackColor = Color.Blue;
+            btnBookSession.BackColor = SystemColors.HotTrack;
             btnBookSession.Cursor = Cursors.Hand;
             btnBookSession.Dock = DockStyle.Fill;
             btnBookSession.FlatAppearance.BorderSize = 0;
@@ -193,7 +193,7 @@ namespace TutoringAcademicSupport.Student.Dashboard
             // 
             // btnUpdateBooking
             // 
-            btnUpdateBooking.BackColor = Color.Blue;
+            btnUpdateBooking.BackColor = SystemColors.HotTrack;
             btnUpdateBooking.Cursor = Cursors.Hand;
             btnUpdateBooking.Dock = DockStyle.Fill;
             btnUpdateBooking.FlatAppearance.BorderSize = 0;
@@ -213,7 +213,7 @@ namespace TutoringAcademicSupport.Student.Dashboard
             // 
             // btnCancelBooking
             // 
-            btnCancelBooking.BackColor = Color.Blue;
+            btnCancelBooking.BackColor = SystemColors.HotTrack;
             btnCancelBooking.Cursor = Cursors.Hand;
             btnCancelBooking.Dock = DockStyle.Fill;
             btnCancelBooking.FlatAppearance.BorderSize = 0;

@@ -65,7 +65,7 @@
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Cooper Black", 25F);
-            lblTitle.ForeColor = Color.Blue;
+            lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(40, 9);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(524, 49);
@@ -153,9 +153,9 @@
             // 
             // lblMessage
             // 
-            lblMessage.Location = new Point(40, 440);
+            lblMessage.Location = new Point(40, 494);
             lblMessage.Name = "lblMessage";
-            lblMessage.Size = new Size(649, 60);
+            lblMessage.Size = new Size(440, 80);
             lblMessage.TabIndex = 18;
             // 
             // txtStudentID
@@ -224,7 +224,7 @@
             // 
             // btnBookTutorial
             // 
-            btnBookTutorial.BackColor = Color.Blue;
+            btnBookTutorial.BackColor = SystemColors.HotTrack;
             btnBookTutorial.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnBookTutorial.ForeColor = SystemColors.ButtonHighlight;
             btnBookTutorial.Location = new Point(40, 512);
@@ -239,7 +239,8 @@
             // 
             btnClear.BackColor = SystemColors.ButtonFace;
             btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnClear.Location = new Point(199, 512);
+            btnClear.ForeColor = SystemColors.HotTrack;
+            btnClear.Location = new Point(201, 512);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(144, 44);
             btnClear.TabIndex = 17;

@@ -54,7 +54,6 @@
             label7.ForeColor = Color.Blue;
             label7.Location = new Point(28, 11);
             label7.Name = "label7";
-            label7.Size = new Size(272, 41);
             label7.Size = new Size(400, 49);
             label7.TabIndex = 0;
             label7.Text = "Update a Booking";

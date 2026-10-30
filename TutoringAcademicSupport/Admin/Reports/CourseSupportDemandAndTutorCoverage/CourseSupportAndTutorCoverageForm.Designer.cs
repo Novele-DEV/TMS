@@ -61,7 +61,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Cooper Black", 25F);
-            lblTitle.ForeColor = Color.DarkBlue;
+            lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(22, 9);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(974, 49);
@@ -75,7 +75,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             lblPeriod.ForeColor = Color.FromArgb(31, 56, 100);
             lblPeriod.Location = new Point(22, 52);
             lblPeriod.Name = "lblPeriod";
-            lblPeriod.Size = new Size(0, 28);
+            lblPeriod.Size = new Size(0, 25);
             lblPeriod.TabIndex = 16;
             // 
             // lblStartDate
@@ -238,25 +238,27 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             // btnExport
             // 
             btnExport.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnExport.BackColor = SystemColors.ActiveCaption;
             btnExport.FlatStyle = FlatStyle.Popup;
             btnExport.Location = new Point(734, 705);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(140, 40);
             btnExport.TabIndex = 13;
             btnExport.Text = "&Export to CSV";
-            btnExport.UseVisualStyleBackColor = true;
+            btnExport.UseVisualStyleBackColor = false;
             btnExport.Click += btnExport_Click;
             // 
             // btnPreview
             // 
             btnPreview.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnPreview.BackColor = SystemColors.InactiveCaption;
             btnPreview.FlatStyle = FlatStyle.Popup;
             btnPreview.Location = new Point(884, 705);
             btnPreview.Name = "btnPreview";
             btnPreview.Size = new Size(140, 40);
             btnPreview.TabIndex = 14;
             btnPreview.Text = "Print Pre&view";
-            btnPreview.UseVisualStyleBackColor = true;
+            btnPreview.UseVisualStyleBackColor = false;
             btnPreview.Click += btnPreview_Click;
             // 
             // btnReturn

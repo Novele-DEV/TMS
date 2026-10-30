@@ -1,5 +1,4 @@
-﻿using TutoringAcademicSupport.Common.Branding;
-using System.Data;
+﻿using System.Data;
 using System.Data.OleDb;
 using System.Diagnostics;
 
@@ -287,19 +286,19 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
 
         private void ShowError(string message)
         {
-            lblMessage.ForeColor = AppTheme.ErrorText;
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#C62828");
             lblMessage.Text = message;
         }
 
         private void ShowSuccess(string message)
         {
-            lblMessage.ForeColor = AppTheme.SuccessText;
+            lblMessage.ForeColor = ColorTranslator.FromHtml("#2E7D32");
             lblMessage.Text = message;
         }
 
         private void ShowNeutral(string message)
         {
-            lblMessage.ForeColor = AppTheme.NormalText;
+            lblMessage.ForeColor = SystemColors.ControlText;
             lblMessage.Text = message;
         }
     }

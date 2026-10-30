@@ -139,7 +139,7 @@ namespace TutoringAcademicSupport.EntryPoint.MainMenu
             // 
             // btnStudent
             // 
-            btnStudent.BackColor = Color.Blue;
+            btnStudent.BackColor = SystemColors.HotTrack;
             btnStudent.Cursor = Cursors.Hand;
             btnStudent.Dock = DockStyle.Fill;
             btnStudent.FlatAppearance.BorderSize = 0;
@@ -159,7 +159,7 @@ namespace TutoringAcademicSupport.EntryPoint.MainMenu
             // 
             // btnTutor
             // 
-            btnTutor.BackColor = Color.MediumBlue;
+            btnTutor.BackColor = SystemColors.HotTrack;
             btnTutor.Cursor = Cursors.Hand;
             btnTutor.Dock = DockStyle.Fill;
             btnTutor.FlatAppearance.BorderSize = 0;
@@ -179,7 +179,7 @@ namespace TutoringAcademicSupport.EntryPoint.MainMenu
             // 
             // btnAdministrator
             // 
-            btnAdministrator.BackColor = Color.DarkBlue;
+            btnAdministrator.BackColor = SystemColors.HotTrack;
             btnAdministrator.Cursor = Cursors.Hand;
             btnAdministrator.Dock = DockStyle.Fill;
             btnAdministrator.FlatAppearance.BorderSize = 0;

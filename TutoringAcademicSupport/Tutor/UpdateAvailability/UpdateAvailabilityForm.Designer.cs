@@ -56,7 +56,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Cooper Black", 25F);
-            label1.ForeColor = Color.Blue;
+            label1.ForeColor = SystemColors.HotTrack;
             label1.Location = new Point(28, 11);
             label1.Name = "label1";
             label1.Size = new Size(412, 49);
@@ -97,8 +97,6 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // btnLoad
             // 
             btnLoad.BackColor = SystemColors.ActiveCaption;
-            btnLoad.Location = new Point(488, 92);
-            // 
             btnLoad.Location = new Point(262, 96);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(100, 34);
@@ -204,7 +202,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // 
             // btnSave
             // 
-            btnSave.BackColor = Color.Blue;
+            btnSave.BackColor = SystemColors.HotTrack;
             btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(16, 200);
@@ -217,9 +215,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // 
             // btnClear
             // 
-            btnClear.BackColor = Color.White;
+            btnClear.BackColor = SystemColors.ButtonFace;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnClear.ForeColor = Color.Blue;
+            btnClear.ForeColor = SystemColors.HotTrack;
             btnClear.Location = new Point(184, 200);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(160, 48);
@@ -255,9 +253,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnReturn.FlatAppearance.BorderColor = Color.Silver;
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(812, 576);
+            btnReturn.Location = new Point(890, 540);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(160, 48);
+            btnReturn.Size = new Size(82, 48);
             btnReturn.TabIndex = 8;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
@@ -270,7 +268,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnReturn;
-            ClientSize = new Size(1000, 640);
+            ClientSize = new Size(1000, 600);
             Controls.Add(btnReturn);
             Controls.Add(lblMessage);
             Controls.Add(grpSlot);
@@ -281,7 +279,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             Controls.Add(lblSubtitle);
             Controls.Add(label1);
             DoubleBuffered = true;
-            MinimumSize = new Size(1018, 658);
+            MinimumSize = new Size(1018, 560);
             Name = "UpdateAvailabilityForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Tutor Availability";

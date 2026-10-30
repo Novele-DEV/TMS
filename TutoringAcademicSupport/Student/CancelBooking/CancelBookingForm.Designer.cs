@@ -51,7 +51,7 @@
             lblHeading.AutoSize = true;
             lblHeading.BackColor = Color.Transparent;
             lblHeading.Font = new Font("Cooper Black", 25F);
-            lblHeading.ForeColor = Color.Blue;
+            lblHeading.ForeColor = SystemColors.HotTrack;
             lblHeading.Location = new Point(15, 9);
             lblHeading.Margin = new Padding(4, 0, 4, 0);
             lblHeading.Name = "lblHeading";
@@ -126,7 +126,6 @@
             btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.FromArgb(64, 64, 64);
             btnBack.Location = new Point(714, 533);
-            btnBack.Location = new Point(23, 533);
             btnBack.Margin = new Padding(4, 3, 4, 3);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(140, 44);
@@ -137,7 +136,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.BackColor = Color.Blue;
+            btnCancel.BackColor = SystemColors.HotTrack;
             btnCancel.Cursor = Cursors.Hand;
             btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 38, 70);
@@ -145,10 +144,10 @@
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCancel.ForeColor = Color.White;
-            btnCancel.Location = new Point(593, 484);
+            btnCancel.Location = new Point(25, 533);
             btnCancel.Margin = new Padding(4, 3, 4, 3);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(223, 93);
+            btnCancel.Size = new Size(173, 44);
             btnCancel.TabIndex = 5;
             btnCancel.Text = "&Cancel Booking";
             btnCancel.UseVisualStyleBackColor = false;

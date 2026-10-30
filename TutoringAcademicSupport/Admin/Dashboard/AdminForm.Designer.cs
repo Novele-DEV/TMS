@@ -52,7 +52,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Cooper Black", 25F);
-            label1.ForeColor = Color.DarkBlue;
+            label1.ForeColor = SystemColors.HotTrack;
             label1.Location = new Point(28, 9);
             label1.Name = "label1";
             label1.Size = new Size(411, 49);
@@ -152,7 +152,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             // btnUpdateAvailability
             // 
             btnUpdateAvailability.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnUpdateAvailability.BackColor = SystemColors.GradientInactiveCaption;
+            btnUpdateAvailability.BackColor = SystemColors.GradientActiveCaption;
             btnUpdateAvailability.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnUpdateAvailability.Location = new Point(333, 572);
             btnUpdateAvailability.Name = "btnUpdateAvailability";
@@ -165,7 +165,7 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             // btnGenerateReports
             // 
             btnGenerateReports.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            btnGenerateReports.BackColor = SystemColors.GradientActiveCaption;
+            btnGenerateReports.BackColor = SystemColors.GradientInactiveCaption;
             btnGenerateReports.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnGenerateReports.Location = new Point(540, 572);
             btnGenerateReports.Name = "btnGenerateReports";
