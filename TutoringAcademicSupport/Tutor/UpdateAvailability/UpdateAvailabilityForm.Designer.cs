@@ -49,48 +49,48 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             ((System.ComponentModel.ISupportInitialize)availabilityGrid).BeginInit();
             grpSlot.SuspendLayout();
             SuspendLayout();
-            //
+            // 
             // label1
-            //
+            // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             label1.ForeColor = SystemColors.HotTrack;
             label1.Location = new Point(24, 15);
             label1.Name = "label1";
-            label1.Size = new Size(287, 41);
+            label1.Size = new Size(262, 41);
             label1.TabIndex = 0;
             label1.Text = "Tutor Availability";
-            //
+            // 
             // lblSubtitle
-            //
+            // 
             lblSubtitle.AutoSize = true;
             lblSubtitle.ForeColor = SystemColors.GrayText;
             lblSubtitle.Location = new Point(28, 60);
             lblSubtitle.Name = "lblSubtitle";
-            lblSubtitle.Size = new Size(560, 20);
+            lblSubtitle.Size = new Size(539, 20);
             lblSubtitle.TabIndex = 1;
             lblSubtitle.Text = "Weekly time slots when the tutor is available. Select a slot to change or delete it.";
-            //
+            // 
             // lblTutorId
-            //
+            // 
             lblTutorId.AutoSize = true;
             lblTutorId.Location = new Point(28, 103);
             lblTutorId.Name = "lblTutorId";
-            lblTutorId.Size = new Size(69, 20);
+            lblTutorId.Size = new Size(66, 20);
             lblTutorId.TabIndex = 2;
             lblTutorId.Text = "Tutor &ID:";
-            //
+            // 
             // txtTutorId
-            //
+            // 
             txtTutorId.Location = new Point(110, 99);
             txtTutorId.MaxLength = 8;
             txtTutorId.Name = "txtTutorId";
             txtTutorId.PlaceholderText = "TUT00001";
             txtTutorId.Size = new Size(140, 27);
             txtTutorId.TabIndex = 3;
-            //
+            // 
             // btnLoad
-            //
+            // 
             btnLoad.Location = new Point(262, 96);
             btnLoad.Name = "btnLoad";
             btnLoad.Size = new Size(100, 34);
@@ -98,9 +98,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnLoad.Text = "&Load";
             btnLoad.UseVisualStyleBackColor = true;
             btnLoad.Click += btnLoad_Click;
-            //
+            // 
             // availabilityGrid
-            //
+            // 
             availabilityGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             availabilityGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             availabilityGrid.Location = new Point(28, 145);
@@ -110,9 +110,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             availabilityGrid.TabIndex = 5;
             availabilityGrid.CellClick += availabilityGrid_CellClick;
             availabilityGrid.SelectionChanged += availabilityGrid_SelectionChanged;
-            //
+            // 
             // grpSlot
-            //
+            // 
             grpSlot.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             grpSlot.Controls.Add(lblHeading);
             grpSlot.Controls.Add(cmbAvailDay);
@@ -130,9 +130,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             grpSlot.TabIndex = 6;
             grpSlot.TabStop = false;
             grpSlot.Text = "New slot";
-            //
+            // 
             // lblHeading
-            //
+            // 
             lblHeading.AutoSize = true;
             lblHeading.Font = new Font("Segoe UI", 9F);
             lblHeading.Location = new Point(16, 44);
@@ -140,28 +140,28 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             lblHeading.Size = new Size(38, 20);
             lblHeading.TabIndex = 0;
             lblHeading.Text = "Da&y:";
-            //
+            // 
             // cmbAvailDay
-            //
+            // 
             cmbAvailDay.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbAvailDay.Font = new Font("Segoe UI", 9F);
             cmbAvailDay.Location = new Point(130, 40);
             cmbAvailDay.Name = "cmbAvailDay";
             cmbAvailDay.Size = new Size(200, 28);
             cmbAvailDay.TabIndex = 1;
-            //
+            // 
             // label2
-            //
+            // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F);
             label2.Location = new Point(16, 94);
             label2.Name = "label2";
-            label2.Size = new Size(80, 20);
+            label2.Size = new Size(77, 20);
             label2.TabIndex = 2;
             label2.Text = "&Start time:";
-            //
+            // 
             // dtpStartTime
-            //
+            // 
             dtpStartTime.CustomFormat = "HH:mm";
             dtpStartTime.Font = new Font("Segoe UI", 9F);
             dtpStartTime.Format = DateTimePickerFormat.Custom;
@@ -170,19 +170,19 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             dtpStartTime.ShowUpDown = true;
             dtpStartTime.Size = new Size(120, 27);
             dtpStartTime.TabIndex = 3;
-            //
+            // 
             // label3
-            //
+            // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F);
             label3.Location = new Point(16, 144);
             label3.Name = "label3";
-            label3.Size = new Size(74, 20);
+            label3.Size = new Size(71, 20);
             label3.TabIndex = 4;
             label3.Text = "&End time:";
-            //
+            // 
             // dtpEndTime
-            //
+            // 
             dtpEndTime.CustomFormat = "HH:mm";
             dtpEndTime.Font = new Font("Segoe UI", 9F);
             dtpEndTime.Format = DateTimePickerFormat.Custom;
@@ -191,9 +191,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             dtpEndTime.ShowUpDown = true;
             dtpEndTime.Size = new Size(120, 27);
             dtpEndTime.TabIndex = 5;
-            //
+            // 
             // btnSave
-            //
+            // 
             btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnSave.Location = new Point(16, 200);
             btnSave.Name = "btnSave";
@@ -202,9 +202,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnSave.Text = "&Add Slot";
             btnSave.UseVisualStyleBackColor = true;
             btnSave.Click += btnSave_Click;
-            //
+            // 
             // btnClear
-            //
+            // 
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnClear.Location = new Point(184, 200);
             btnClear.Name = "btnClear";
@@ -213,9 +213,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnClear.Text = "&New Slot";
             btnClear.UseVisualStyleBackColor = true;
             btnClear.Click += btnClear_Click;
-            //
+            // 
             // btnDelete
-            //
+            // 
             btnDelete.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnDelete.Location = new Point(16, 262);
             btnDelete.Name = "btnDelete";
@@ -224,29 +224,29 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnDelete.Text = "&Delete Slot";
             btnDelete.UseVisualStyleBackColor = true;
             btnDelete.Click += btnDelete_Click;
-            //
+            // 
             // lblMessage
-            //
+            // 
             lblMessage.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblMessage.Location = new Point(28, 488);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(944, 40);
             lblMessage.TabIndex = 7;
-            //
+            // 
             // btnReturn
-            //
+            // 
             btnReturn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnReturn.Location = new Point(812, 532);
+            btnReturn.Location = new Point(28, 501);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(160, 48);
             btnReturn.TabIndex = 8;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
-            //
+            // 
             // UpdateAvailabilityForm
-            //
+            // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnReturn;

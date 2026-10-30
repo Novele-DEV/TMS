@@ -51,7 +51,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             lblHeading.ForeColor = SystemColors.HotTrack;
             lblHeading.Location = new Point(20, 14);
             lblHeading.Name = "lblHeading";
-            lblHeading.Size = new Size(330, 41);
+            lblHeading.Size = new Size(325, 41);
             lblHeading.TabIndex = 0;
             lblHeading.Text = "Log into your account";
             // 
@@ -120,7 +120,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // btnExit
             // 
             btnExit.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            btnExit.Location = new Point(360, 350);
+            btnExit.Location = new Point(20, 397);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(140, 44);
             btnExit.TabIndex = 12;
@@ -138,9 +138,9 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             btnLogIn.FlatStyle = FlatStyle.Flat;
             btnLogIn.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnLogIn.ForeColor = Color.White;
-            btnLogIn.Location = new Point(20, 350);
+            btnLogIn.Location = new Point(319, 376);
             btnLogIn.Name = "btnLogIn";
-            btnLogIn.Size = new Size(140, 44);
+            btnLogIn.Size = new Size(181, 65);
             btnLogIn.TabIndex = 11;
             btnLogIn.Text = "&Log In";
             btnLogIn.UseVisualStyleBackColor = false;
@@ -162,7 +162,7 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 401);
+            ClientSize = new Size(700, 465);
             Controls.Add(lblIntroduction);
             Controls.Add(btnLogIn);
             Controls.Add(btnExit);
