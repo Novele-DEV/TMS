@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateBookingForm));
             label7 = new Label();
             lblRules = new Label();
             lblBooking = new Label();
@@ -48,25 +49,32 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            label7.ForeColor = SystemColors.HotTrack;
-            label7.Location = new Point(24, 15);
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Cooper Black", 25F);
+            label7.ForeColor = Color.Blue;
+            label7.Location = new Point(28, 11);
             label7.Name = "label7";
             label7.Size = new Size(272, 41);
+            label7.Size = new Size(400, 49);
             label7.TabIndex = 0;
             label7.Text = "Update a Booking";
             // 
             // lblRules
             // 
+            lblRules.BackColor = Color.Transparent;
+            lblRules.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblRules.ForeColor = SystemColors.GrayText;
             lblRules.Location = new Point(28, 60);
             lblRules.Name = "lblRules";
-            lblRules.Size = new Size(500, 24);
+            lblRules.Size = new Size(328, 24);
             lblRules.TabIndex = 1;
+            lblRules.Text = "Update a booking that you have already made.";
+            lblRules.Click += lblRules_Click;
             // 
             // lblBooking
             // 
             lblBooking.AutoSize = true;
+            lblBooking.BackColor = Color.Transparent;
             lblBooking.Location = new Point(28, 108);
             lblBooking.Name = "lblBooking";
             lblBooking.Size = new Size(100, 20);
@@ -85,6 +93,7 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.Location = new Point(28, 156);
             label3.Name = "label3";
             label3.Size = new Size(95, 20);
@@ -102,6 +111,7 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
             label4.Location = new Point(28, 202);
             label4.Name = "label4";
             label4.Size = new Size(77, 20);
@@ -121,6 +131,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.BackColor = Color.Transparent;
             label5.Location = new Point(28, 248);
             label5.Name = "label5";
             label5.Size = new Size(71, 20);
@@ -140,6 +151,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.BackColor = Color.Transparent;
             label6.Location = new Point(28, 294);
             label6.Name = "label6";
             label6.Size = new Size(51, 20);
@@ -156,6 +168,7 @@
             // 
             // lblMessage
             // 
+            lblMessage.BackColor = Color.Transparent;
             lblMessage.Location = new Point(28, 336);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(582, 56);
@@ -163,18 +176,23 @@
             // 
             // btnUpdateSession
             // 
+            btnUpdateSession.BackColor = Color.Blue;
             btnUpdateSession.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnUpdateSession.ForeColor = Color.White;
+            btnUpdateSession.Location = new Point(28, 404);
             btnUpdateSession.Location = new Point(395, 395);
             btnUpdateSession.Name = "btnUpdateSession";
             btnUpdateSession.Size = new Size(203, 63);
             btnUpdateSession.TabIndex = 13;
             btnUpdateSession.Text = "&Update Booking";
-            btnUpdateSession.UseVisualStyleBackColor = true;
+            btnUpdateSession.UseVisualStyleBackColor = false;
             btnUpdateSession.Click += btnUpdateSession_Click;
             // 
             // btnClose
             // 
             btnClose.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            btnClose.ForeColor = Color.FromArgb(64, 64, 64);
+            btnClose.Location = new Point(470, 404);
             btnClose.Location = new Point(24, 414);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(140, 44);
@@ -188,6 +206,8 @@
             AcceptButton = btnUpdateSession;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnClose;
             ClientSize = new Size(640, 470);
             Controls.Add(btnClose);
@@ -205,6 +225,7 @@
             Controls.Add(lblBooking);
             Controls.Add(lblRules);
             Controls.Add(label7);
+            DoubleBuffered = true;
             Name = "UpdateBookingForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Update a Booking";

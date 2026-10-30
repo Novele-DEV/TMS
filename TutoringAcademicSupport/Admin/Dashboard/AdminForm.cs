@@ -290,5 +290,10 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             lblStatus.ForeColor = AppTheme.ErrorText;
             lblStatus.Text = text;
         }
+
+        private void lblWelcome_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

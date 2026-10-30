@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EditTutorForm));
             label1 = new Label();
             lblSubtitle = new Label();
             lblTutorID = new Label();
@@ -57,27 +58,31 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            label1.ForeColor = SystemColors.HotTrack;
-            label1.Location = new Point(24, 15);
+            label1.BackColor = Color.Transparent;
+            label1.Font = new Font("Cooper Black", 25F);
+            label1.ForeColor = Color.DarkBlue;
+            label1.Location = new Point(28, 4);
             label1.Name = "label1";
-            label1.Size = new Size(158, 41);
+            label1.Size = new Size(246, 49);
             label1.TabIndex = 0;
             label1.Text = "Edit Tutor";
             // 
             // lblSubtitle
             // 
             lblSubtitle.AutoSize = true;
+            lblSubtitle.BackColor = Color.Transparent;
+            lblSubtitle.Font = new Font("Segoe UI", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             lblSubtitle.ForeColor = SystemColors.GrayText;
-            lblSubtitle.Location = new Point(28, 60);
+            lblSubtitle.Location = new Point(28, 53);
             lblSubtitle.Name = "lblSubtitle";
-            lblSubtitle.Size = new Size(466, 20);
+            lblSubtitle.Size = new Size(449, 20);
             lblSubtitle.TabIndex = 1;
             lblSubtitle.Text = "Change the details below, then save. The tutor ID cannot be changed.";
             // 
             // lblTutorID
             // 
             lblTutorID.AutoSize = true;
+            lblTutorID.BackColor = Color.Transparent;
             lblTutorID.Location = new Point(28, 108);
             lblTutorID.Name = "lblTutorID";
             lblTutorID.Size = new Size(66, 20);
@@ -86,6 +91,7 @@
             // 
             // txtTutorID
             // 
+            txtTutorID.BorderStyle = BorderStyle.FixedSingle;
             txtTutorID.Location = new Point(210, 105);
             txtTutorID.Name = "txtTutorID";
             txtTutorID.ReadOnly = true;
@@ -96,6 +102,7 @@
             // lblFirstName
             // 
             lblFirstName.AutoSize = true;
+            lblFirstName.BackColor = Color.Transparent;
             lblFirstName.Location = new Point(28, 154);
             lblFirstName.Name = "lblFirstName";
             lblFirstName.Size = new Size(80, 20);
@@ -113,6 +120,7 @@
             // lblLastName
             // 
             lblLastName.AutoSize = true;
+            lblLastName.BackColor = Color.Transparent;
             lblLastName.Location = new Point(28, 200);
             lblLastName.Name = "lblLastName";
             lblLastName.Size = new Size(79, 20);
@@ -130,6 +138,7 @@
             // lblEmail
             // 
             lblEmail.AutoSize = true;
+            lblEmail.BackColor = Color.Transparent;
             lblEmail.Location = new Point(28, 246);
             lblEmail.Name = "lblEmail";
             lblEmail.Size = new Size(49, 20);
@@ -148,6 +157,7 @@
             // lblPhone
             // 
             lblPhone.AutoSize = true;
+            lblPhone.BackColor = Color.Transparent;
             lblPhone.Location = new Point(28, 292);
             lblPhone.Name = "lblPhone";
             lblPhone.Size = new Size(53, 20);
@@ -166,6 +176,7 @@
             // lblAverage
             // 
             lblAverage.AutoSize = true;
+            lblAverage.BackColor = Color.Transparent;
             lblAverage.Location = new Point(28, 338);
             lblAverage.Name = "lblAverage";
             lblAverage.Size = new Size(135, 20);
@@ -183,6 +194,7 @@
             // lblMode
             // 
             lblMode.AutoSize = true;
+            lblMode.BackColor = Color.Transparent;
             lblMode.Location = new Point(28, 384);
             lblMode.Name = "lblMode";
             lblMode.Size = new Size(116, 20);
@@ -237,26 +249,34 @@
             //
             // lblStatus
             // 
-            lblStatus.Location = new Point(28, 483);
+            lblStatus.BackColor = Color.Transparent;
+            lblStatus.Location = new Point(28, 425);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(582, 48);
             lblStatus.TabIndex = 20;
             // 
             // btnAdd
             // 
+            btnAdd.BackColor = Color.DarkBlue;
+            btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnAdd.Location = new Point(440, 538);
+            btnAdd.Location = new Point(440, 445);
+            btnAdd.ForeColor = SystemColors.ButtonHighlight;
+            btnAdd.Location = new Point(28, 486);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(170, 79);
             btnAdd.TabIndex = 21;
             btnAdd.Text = "&Save Changes";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // btnClear
             // 
+            btnClear.FlatStyle = FlatStyle.Popup;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnClear.Location = new Point(204, 569);
+            btnClear.ForeColor = Color.DarkBlue;
+            btnClear.Location = new Point(210, 486);
+            btnClear.Location = new Point(204, 476);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 48);
             btnClear.TabIndex = 22;
@@ -267,7 +287,9 @@
             // btnReturn
             // 
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnReturn.Location = new Point(28, 569);
+            btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
+            btnReturn.Location = new Point(440, 486);
+            btnReturn.Location = new Point(28, 476);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(170, 48);
             btnReturn.TabIndex = 23;
@@ -280,6 +302,9 @@
             AcceptButton = btnAdd;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
             CancelButton = btnReturn;
             ClientSize = new Size(640, 640);
             Controls.Add(btnReturn);
@@ -306,6 +331,7 @@
             Controls.Add(lblTutorID);
             Controls.Add(lblSubtitle);
             Controls.Add(label1);
+            DoubleBuffered = true;
             Name = "EditTutorForm";
             StartPosition = FormStartPosition.CenterParent;
             Text = "Edit Tutor";

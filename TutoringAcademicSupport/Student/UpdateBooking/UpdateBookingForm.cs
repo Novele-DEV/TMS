@@ -189,5 +189,10 @@ namespace TutoringAcademicSupport.Student.UpdateBooking
             lblMessage.ForeColor = AppTheme.NormalText;
             lblMessage.Text = message;
         }
+
+        private void lblRules_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

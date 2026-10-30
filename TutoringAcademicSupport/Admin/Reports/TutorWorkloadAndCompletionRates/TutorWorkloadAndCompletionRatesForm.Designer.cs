@@ -51,21 +51,21 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             btnReturn = new Button();
             tabReport.SuspendLayout();
             tabTable.SuspendLayout();
-            tabChart.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvReport).BeginInit();
+            tabChart.SuspendLayout();
             SuspendLayout();
-            //
+            // 
             // lblTitle
-            //
+            // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblTitle.ForeColor = SystemColors.HotTrack;
+            lblTitle.Font = new Font("Cooper Black", 25F);
+            lblTitle.ForeColor = Color.DarkBlue;
             lblTitle.Location = new Point(20, 10);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(470, 41);
+            lblTitle.Size = new Size(584, 49);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Tutor Workload by Period";
-            //
+            // 
             // lblPeriod
             // 
             lblPeriod.AutoSize = true;
@@ -77,77 +77,79 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             lblPeriod.TabIndex = 16;
             // 
             // lblStartDate
-            //
+            // 
             lblStartDate.AutoSize = true;
             lblStartDate.Location = new Point(24, 89);
             lblStartDate.Name = "lblStartDate";
-            lblStartDate.Size = new Size(43, 20);
+            lblStartDate.Size = new Size(46, 20);
             lblStartDate.TabIndex = 1;
             lblStartDate.Text = "&From:";
-            //
+            // 
             // dtpStartDate
-            //
+            // 
             dtpStartDate.Location = new Point(75, 85);
             dtpStartDate.Name = "dtpStartDate";
             dtpStartDate.Size = new Size(260, 27);
             dtpStartDate.TabIndex = 2;
-            //
+            // 
             // lblEndDate
-            //
+            // 
             lblEndDate.AutoSize = true;
             lblEndDate.Location = new Point(355, 89);
             lblEndDate.Name = "lblEndDate";
             lblEndDate.Size = new Size(28, 20);
             lblEndDate.TabIndex = 3;
             lblEndDate.Text = "T&o:";
-            //
+            // 
             // dtpEndDate
-            //
+            // 
             dtpEndDate.Location = new Point(390, 85);
             dtpEndDate.Name = "dtpEndDate";
             dtpEndDate.Size = new Size(260, 27);
             dtpEndDate.TabIndex = 4;
-            //
+            // 
             // btnGenerate
-            //
+            // 
+            btnGenerate.BackColor = SystemColors.GradientActiveCaption;
             btnGenerate.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnGenerate.Location = new Point(670, 81);
             btnGenerate.Name = "btnGenerate";
             btnGenerate.Size = new Size(140, 35);
             btnGenerate.TabIndex = 5;
             btnGenerate.Text = "&Generate";
-            btnGenerate.UseVisualStyleBackColor = true;
+            btnGenerate.UseVisualStyleBackColor = false;
             btnGenerate.Click += btnGenerate_Click;
-            //
+            // 
             // lblWorkloadFlag
-            //
+            // 
             lblWorkloadFlag.AutoSize = true;
-            lblWorkloadFlag.Location = new Point(24, 131);
+            lblWorkloadFlag.Location = new Point(24, 138);
             lblWorkloadFlag.Name = "lblWorkloadFlag";
-            lblWorkloadFlag.Size = new Size(104, 20);
+            lblWorkloadFlag.Size = new Size(106, 20);
             lblWorkloadFlag.TabIndex = 6;
             lblWorkloadFlag.Text = "&Workload flag:";
-            //
+            // 
             // cmbWorkloadFlag
-            //
+            // 
             cmbWorkloadFlag.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbWorkloadFlag.Location = new Point(135, 127);
+            cmbWorkloadFlag.Location = new Point(135, 135);
             cmbWorkloadFlag.Name = "cmbWorkloadFlag";
             cmbWorkloadFlag.Size = new Size(200, 28);
             cmbWorkloadFlag.TabIndex = 7;
-            //
+            // 
             // btnClearFilters
-            //
-            btnClearFilters.Location = new Point(355, 123);
+            // 
+            btnClearFilters.BackColor = SystemColors.ButtonFace;
+            btnClearFilters.Location = new Point(1030, 123);
             btnClearFilters.Name = "btnClearFilters";
             btnClearFilters.Size = new Size(140, 35);
             btnClearFilters.TabIndex = 8;
             btnClearFilters.Text = "C&lear Filters";
-            btnClearFilters.UseVisualStyleBackColor = true;
+            btnClearFilters.UseVisualStyleBackColor = false;
             btnClearFilters.Click += btnClearFilters_Click;
-            //
+            // 
             // lblFilter
-            //
+            // 
             lblFilter.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblFilter.AutoEllipsis = true;
             lblFilter.ForeColor = SystemColors.GrayText;
@@ -155,24 +157,15 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             lblFilter.Name = "lblFilter";
             lblFilter.Size = new Size(1150, 24);
             lblFilter.TabIndex = 9;
-            //
+            // 
             // pnlKpis
-            //
+            // 
             pnlKpis.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlKpis.Location = new Point(24, 196);
             pnlKpis.Name = "pnlKpis";
-            pnlKpis.Size = new Size(1150, 72);
+            pnlKpis.Size = new Size(1146, 70);
             pnlKpis.TabIndex = 10;
             pnlKpis.WrapContents = false;
-            //
-            // dgvReport
-            //
-            dgvReport.Dock = DockStyle.Fill;
-            dgvReport.Location = new Point(3, 3);
-            dgvReport.Name = "dgvReport";
-            dgvReport.RowHeadersWidth = 51;
-            dgvReport.Size = new Size(1136, 349);
-            dgvReport.TabIndex = 0;
             // 
             // tabReport
             // 
@@ -196,6 +189,17 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             tabTable.Text = "Table";
             tabTable.UseVisualStyleBackColor = true;
             // 
+            // dgvReport
+            // 
+            dgvReport.BackgroundColor = SystemColors.ActiveCaption;
+            dgvReport.ColumnHeadersHeight = 29;
+            dgvReport.Dock = DockStyle.Fill;
+            dgvReport.Location = new Point(3, 3);
+            dgvReport.Name = "dgvReport";
+            dgvReport.RowHeadersWidth = 51;
+            dgvReport.Size = new Size(1136, 349);
+            dgvReport.TabIndex = 0;
+            // 
             // tabChart
             // 
             tabChart.Controls.Add(chartPanel);
@@ -209,14 +213,15 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             // 
             // chartPanel
             // 
+            chartPanel.BackColor = Color.FromArgb(252, 252, 251);
             chartPanel.Dock = DockStyle.Fill;
             chartPanel.Location = new Point(3, 3);
             chartPanel.Name = "chartPanel";
             chartPanel.Size = new Size(1136, 349);
             chartPanel.TabIndex = 0;
-            //
+            // 
             // lblSummary
-            //
+            // 
             lblSummary.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lblSummary.AutoSize = true;
             lblSummary.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -224,45 +229,53 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             lblSummary.Name = "lblSummary";
             lblSummary.Size = new Size(0, 20);
             lblSummary.TabIndex = 12;
-            //
+            // 
             // btnExport
-            //
+            // 
             btnExport.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnExport.BackColor = SystemColors.ActiveCaption;
+            btnExport.FlatStyle = FlatStyle.Popup;
             btnExport.Location = new Point(734, 705);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(140, 40);
             btnExport.TabIndex = 13;
             btnExport.Text = "&Export to CSV";
-            btnExport.UseVisualStyleBackColor = true;
+            btnExport.UseVisualStyleBackColor = false;
             btnExport.Click += btnExport_Click;
-            //
+            // 
             // btnPreview
-            //
+            // 
             btnPreview.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btnPreview.BackColor = SystemColors.InactiveCaption;
+            btnPreview.FlatStyle = FlatStyle.Popup;
             btnPreview.Location = new Point(884, 705);
             btnPreview.Name = "btnPreview";
             btnPreview.Size = new Size(140, 40);
             btnPreview.TabIndex = 14;
             btnPreview.Text = "Print Pre&view";
-            btnPreview.UseVisualStyleBackColor = true;
+            btnPreview.UseVisualStyleBackColor = false;
             btnPreview.Click += btnPreview_Click;
-            //
+            // 
             // btnReturn
-            //
+            // 
             btnReturn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnReturn.Location = new Point(1034, 705);
+            btnReturn.FlatAppearance.BorderColor = Color.Silver;
+            btnReturn.FlatAppearance.BorderSize = 4;
+            btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
+            btnReturn.Location = new Point(1027, 705);
             btnReturn.Name = "btnReturn";
             btnReturn.Size = new Size(140, 40);
             btnReturn.TabIndex = 15;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
             btnReturn.Click += btnReturn_Click;
-            //
+            // 
             // TutorWorkloadAndCompletionRatesForm
-            //
+            // 
             AcceptButton = btnGenerate;
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ButtonHighlight;
             CancelButton = btnReturn;
             ClientSize = new Size(1200, 760);
             Controls.Add(btnReturn);
@@ -285,13 +298,13 @@ namespace TutoringAcademicSupport.Admin.Reports.TutorWorkloadAndCompletionRates
             MinimumSize = new Size(1050, 600);
             Name = "TutorWorkloadAndCompletionRatesForm";
             StartPosition = FormStartPosition.CenterParent;
-            WindowState = FormWindowState.Maximized;
             Text = "Tutor Workload by Period";
+            WindowState = FormWindowState.Maximized;
             Load += TutorWorkloadAndCompletionRatesForm_Load;
+            tabReport.ResumeLayout(false);
+            tabTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvReport).EndInit();
             tabChart.ResumeLayout(false);
-            tabTable.ResumeLayout(false);
-            tabReport.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
