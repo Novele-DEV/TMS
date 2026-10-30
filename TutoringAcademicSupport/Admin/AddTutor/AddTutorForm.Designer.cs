@@ -291,7 +291,7 @@ partial class AddTutorForm
         BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
         BackgroundImageLayout = ImageLayout.Stretch;
         CancelButton = btnReturn;
-        ClientSize = new Size(629, 545);
+        ClientSize = new Size(629, 575);
         Controls.Add(btnReturn);
         Controls.Add(btnClear);
         Controls.Add(btnAdd);

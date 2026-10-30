@@ -114,7 +114,7 @@
             // 
             lblMessage.BackColor = Color.Transparent;
             lblMessage.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblMessage.Location = new Point(25, 455);
+            lblMessage.Location = new Point(25, 430);
             lblMessage.Margin = new Padding(4, 0, 4, 0);
             lblMessage.Name = "lblMessage";
             lblMessage.Size = new Size(817, 48);

@@ -250,7 +250,7 @@
             // lblStatus
             // 
             lblStatus.BackColor = Color.Transparent;
-            lblStatus.Location = new Point(28, 425);
+            lblStatus.Location = new Point(28, 484);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(582, 48);
             lblStatus.TabIndex = 20;
