@@ -87,7 +87,7 @@
             label1.BackColor = Color.Transparent;
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Cooper Black", 25F);
-            label1.ForeColor = Color.MediumBlue;
+            label1.ForeColor = SystemColors.HotTrack;
             label1.Location = new Point(0, 201);
             label1.Margin = new Padding(0);
             label1.Name = "label1";
@@ -127,7 +127,7 @@
             // btnUpdate
             // 
             btnUpdate.Anchor = AnchorStyles.None;
-            btnUpdate.BackColor = Color.MediumBlue;
+            btnUpdate.BackColor = SystemColors.HotTrack;
             btnUpdate.Cursor = Cursors.Hand;
             btnUpdate.FlatAppearance.BorderSize = 0;
             btnUpdate.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 38, 70);

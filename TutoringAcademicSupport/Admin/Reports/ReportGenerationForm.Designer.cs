@@ -42,7 +42,7 @@
             lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Cooper Black", 25F);
-            lblTitle.ForeColor = Color.DarkBlue;
+            lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(192, 29);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(394, 49);
@@ -62,7 +62,7 @@
             // 
             // btnAgedRequests
             // 
-            btnAgedRequests.BackColor = SystemColors.ActiveCaption;
+            btnAgedRequests.BackColor = SystemColors.HotTrack;
             btnAgedRequests.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAgedRequests.Location = new Point(175, 120);
             btnAgedRequests.Name = "btnAgedRequests";
@@ -74,7 +74,7 @@
             // 
             // btnTutorWorkload
             // 
-            btnTutorWorkload.BackColor = SystemColors.ActiveCaption;
+            btnTutorWorkload.BackColor = SystemColors.HotTrack;
             btnTutorWorkload.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnTutorWorkload.Location = new Point(175, 207);
             btnTutorWorkload.Name = "btnTutorWorkload";
@@ -86,7 +86,7 @@
             // 
             // btnCourseDemand
             // 
-            btnCourseDemand.BackColor = SystemColors.ActiveCaption;
+            btnCourseDemand.BackColor = SystemColors.HotTrack;
             btnCourseDemand.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnCourseDemand.Location = new Point(175, 304);
             btnCourseDemand.Name = "btnCourseDemand";

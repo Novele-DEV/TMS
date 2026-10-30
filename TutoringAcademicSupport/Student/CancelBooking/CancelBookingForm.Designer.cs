@@ -51,7 +51,7 @@
             lblHeading.AutoSize = true;
             lblHeading.BackColor = Color.Transparent;
             lblHeading.Font = new Font("Cooper Black", 25F);
-            lblHeading.ForeColor = Color.Blue;
+            lblHeading.ForeColor = SystemColors.HotTrack;
             lblHeading.Location = new Point(15, 9);
             lblHeading.Margin = new Padding(4, 0, 4, 0);
             lblHeading.Name = "lblHeading";
@@ -136,7 +136,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.BackColor = Color.Blue;
+            btnCancel.BackColor = SystemColors.HotTrack;
             btnCancel.Cursor = Cursors.Hand;
             btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.FlatAppearance.MouseDownBackColor = Color.FromArgb(20, 38, 70);

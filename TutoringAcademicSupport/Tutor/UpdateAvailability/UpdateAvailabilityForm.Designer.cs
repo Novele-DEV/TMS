@@ -56,7 +56,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Cooper Black", 25F);
-            label1.ForeColor = Color.Blue;
+            label1.ForeColor = SystemColors.HotTrack;
             label1.Location = new Point(28, 11);
             label1.Name = "label1";
             label1.Size = new Size(412, 49);
@@ -202,7 +202,7 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // 
             // btnSave
             // 
-            btnSave.BackColor = Color.Blue;
+            btnSave.BackColor = SystemColors.HotTrack;
             btnSave.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnSave.ForeColor = Color.White;
             btnSave.Location = new Point(16, 200);
@@ -215,9 +215,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             // 
             // btnClear
             // 
-            btnClear.BackColor = Color.White;
+            btnClear.BackColor = SystemColors.ButtonFace;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnClear.ForeColor = Color.Blue;
+            btnClear.ForeColor = SystemColors.HotTrack;
             btnClear.Location = new Point(184, 200);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(160, 48);

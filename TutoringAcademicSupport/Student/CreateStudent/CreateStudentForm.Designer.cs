@@ -68,7 +68,7 @@
             lblHeading.AutoSize = true;
             lblHeading.BackColor = Color.Transparent;
             lblHeading.Font = new Font("Cooper Black", 25F);
-            lblHeading.ForeColor = Color.DarkBlue;
+            lblHeading.ForeColor = SystemColors.HotTrack;
             lblHeading.Location = new Point(12, 19);
             lblHeading.Name = "lblHeading";
             lblHeading.Size = new Size(473, 49);
@@ -158,8 +158,8 @@
             // 
             // btnCreate
             // 
-            btnCreate.BackColor = Color.FromArgb(31, 56, 100);
-            btnCreate.FlatStyle = FlatStyle.Flat;
+            btnCreate.BackColor = SystemColors.HotTrack;
+            btnCreate.FlatStyle = FlatStyle.Popup;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCreate.ForeColor = Color.White;
             btnCreate.Location = new Point(17, 841);

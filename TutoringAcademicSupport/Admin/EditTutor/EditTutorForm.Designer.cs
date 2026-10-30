@@ -56,7 +56,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Cooper Black", 25F);
-            label1.ForeColor = Color.DarkBlue;
+            label1.ForeColor = SystemColors.HotTrack;
             label1.Location = new Point(28, 4);
             label1.Name = "label1";
             label1.Size = new Size(246, 49);
@@ -216,7 +216,7 @@
             // 
             // btnAdd
             // 
-            btnAdd.BackColor = Color.DarkBlue;
+            btnAdd.BackColor = SystemColors.HotTrack;
             btnAdd.FlatStyle = FlatStyle.Popup;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAdd.ForeColor = SystemColors.ButtonHighlight;
@@ -230,15 +230,16 @@
             // 
             // btnClear
             // 
+            btnClear.BackColor = SystemColors.ButtonFace;
             btnClear.FlatStyle = FlatStyle.Popup;
             btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnClear.ForeColor = Color.DarkBlue;
+            btnClear.ForeColor = SystemColors.HotTrack;
             btnClear.Location = new Point(202, 514);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(170, 48);
             btnClear.TabIndex = 18;
             btnClear.Text = "&Undo Changes";
-            btnClear.UseVisualStyleBackColor = true;
+            btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
             // btnReturn

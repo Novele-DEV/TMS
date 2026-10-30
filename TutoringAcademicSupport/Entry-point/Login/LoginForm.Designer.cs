@@ -149,9 +149,9 @@ namespace TutoringAcademicSupport.EntryPoint.Login
             btnLogIn.FlatStyle = FlatStyle.Popup;
             btnLogIn.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnLogIn.ForeColor = Color.White;
-            btnLogIn.Location = new Point(22, 480);
+            btnLogIn.Location = new Point(22, 501);
             btnLogIn.Name = "btnLogIn";
-            btnLogIn.Size = new Size(181, 65);
+            btnLogIn.Size = new Size(130, 44);
             btnLogIn.TabIndex = 11;
             btnLogIn.Text = "&Log In";
             btnLogIn.UseVisualStyleBackColor = false;
