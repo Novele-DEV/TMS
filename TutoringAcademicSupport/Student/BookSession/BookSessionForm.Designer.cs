@@ -227,7 +227,7 @@
             btnBookTutorial.BackColor = SystemColors.HotTrack;
             btnBookTutorial.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnBookTutorial.ForeColor = SystemColors.ButtonHighlight;
-            btnBookTutorial.Location = new Point(40, 512);
+            btnBookTutorial.Location = new Point(365, 512);
             btnBookTutorial.Name = "btnBookTutorial";
             btnBookTutorial.Size = new Size(144, 44);
             btnBookTutorial.TabIndex = 16;
@@ -240,7 +240,7 @@
             btnClear.BackColor = SystemColors.ButtonFace;
             btnClear.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnClear.ForeColor = SystemColors.HotTrack;
-            btnClear.Location = new Point(201, 512);
+            btnClear.Location = new Point(525, 512);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(144, 44);
             btnClear.TabIndex = 17;
@@ -252,9 +252,9 @@
             // 
             btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnBack.ForeColor = Color.FromArgb(64, 64, 64);
-            btnBack.Location = new Point(525, 512);
+            btnBack.Location = new Point(40, 512);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(144, 44);
+            btnBack.Size = new Size(85, 44);
             btnBack.TabIndex = 19;
             btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;

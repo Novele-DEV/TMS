@@ -260,7 +260,7 @@
             btnAdd.BackColor = SystemColors.HotTrack;
             btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnAdd.Location = new Point(440, 445);
-            btnAdd.BackColor = Color.HotTrack;
+            btnAdd.BackColor = Color.Blue;
             btnAdd.Location = new Point(28, 514);
             btnAdd.Location = new Point(440, 445);
             btnAdd.Size = new Size(168, 48);

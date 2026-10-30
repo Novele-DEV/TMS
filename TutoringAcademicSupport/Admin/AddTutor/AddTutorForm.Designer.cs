@@ -104,7 +104,7 @@ partial class AddTutorForm
         lblFirstName.BackColor = Color.Transparent;
         lblFirstName.Location = new Point(28, 154);
         lblFirstName.Name = "lblFirstName";
-        lblFirstName.Size = new Size(80, 20);
+        lblFirstName.Size = new Size(88, 20);
         lblFirstName.TabIndex = 4;
         lblFirstName.Text = "$First name:";
         // 
@@ -140,7 +140,7 @@ partial class AddTutorForm
         lblEmail.BackColor = Color.Transparent;
         lblEmail.Location = new Point(28, 246);
         lblEmail.Name = "lblEmail";
-        lblEmail.Size = new Size(49, 20);
+        lblEmail.Size = new Size(57, 20);
         lblEmail.TabIndex = 8;
         lblEmail.Text = "E$mail:";
         // 
@@ -210,25 +210,25 @@ partial class AddTutorForm
         cmbPreferredMode.TabIndex = 15;
         // 
         // lblCurriculumVitae
-        //
+        // 
         lblCurriculumVitae.AutoSize = true;
         lblCurriculumVitae.Location = new Point(28, 430);
         lblCurriculumVitae.Name = "lblCurriculumVitae";
-        lblCurriculumVitae.Size = new Size(124, 20);
+        lblCurriculumVitae.Size = new Size(118, 20);
         lblCurriculumVitae.TabIndex = 16;
         lblCurriculumVitae.Text = "&Curriculum Vitae";
-        //
+        // 
         // txtCurriculumVitae
-        //
+        // 
         txtCurriculumVitae.Location = new Point(210, 427);
         txtCurriculumVitae.Name = "txtCurriculumVitae";
         txtCurriculumVitae.ReadOnly = true;
         txtCurriculumVitae.Size = new Size(300, 27);
         txtCurriculumVitae.TabIndex = 17;
         txtCurriculumVitae.TabStop = false;
-        //
+        // 
         // btnBrowseCurriculumVitae
-        //
+        // 
         btnBrowseCurriculumVitae.Location = new Point(520, 426);
         btnBrowseCurriculumVitae.Name = "btnBrowseCurriculumVitae";
         btnBrowseCurriculumVitae.Size = new Size(90, 29);
@@ -236,9 +236,10 @@ partial class AddTutorForm
         btnBrowseCurriculumVitae.Text = "Browse...";
         btnBrowseCurriculumVitae.UseVisualStyleBackColor = true;
         btnBrowseCurriculumVitae.Click += btnBrowseCurriculumVitae_Click;
-        //
+        // 
         // lblStatus
         // 
+        lblStatus.BackColor = Color.Transparent;
         lblStatus.Location = new Point(28, 425);
         lblStatus.Name = "lblStatus";
         lblStatus.Size = new Size(582, 48);
@@ -249,7 +250,7 @@ partial class AddTutorForm
         btnAdd.BackColor = SystemColors.HotTrack;
         btnAdd.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         btnAdd.ForeColor = Color.White;
-        btnAdd.Location = new Point(28, 486);
+        btnAdd.Location = new Point(262, 486);
         btnAdd.Name = "btnAdd";
         btnAdd.Size = new Size(170, 48);
         btnAdd.TabIndex = 17;
@@ -262,7 +263,7 @@ partial class AddTutorForm
         btnClear.BackColor = SystemColors.ButtonFace;
         btnClear.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
         btnClear.ForeColor = SystemColors.HotTrack;
-        btnClear.Location = new Point(210, 486);
+        btnClear.Location = new Point(459, 486);
         btnClear.Name = "btnClear";
         btnClear.Size = new Size(151, 48);
         btnClear.TabIndex = 18;
@@ -273,9 +274,9 @@ partial class AddTutorForm
         // btnReturn
         // 
         btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-        btnReturn.Location = new Point(440, 486);
+        btnReturn.Location = new Point(28, 485);
         btnReturn.Name = "btnReturn";
-        btnReturn.Size = new Size(151, 48);
+        btnReturn.Size = new Size(85, 44);
         btnReturn.TabIndex = 19;
         btnReturn.Text = "&Back";
         btnReturn.UseVisualStyleBackColor = true;

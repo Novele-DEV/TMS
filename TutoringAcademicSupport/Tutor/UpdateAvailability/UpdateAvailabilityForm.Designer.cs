@@ -253,9 +253,9 @@ namespace TutoringAcademicSupport.Tutor.UpdateAvailability
             btnReturn.FlatAppearance.BorderColor = Color.Silver;
             btnReturn.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(890, 540);
+            btnReturn.Location = new Point(28, 544);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(82, 48);
+            btnReturn.Size = new Size(85, 44);
             btnReturn.TabIndex = 8;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;

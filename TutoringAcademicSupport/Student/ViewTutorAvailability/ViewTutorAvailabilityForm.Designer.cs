@@ -47,7 +47,7 @@
             lblTitle.ForeColor = SystemColors.HotTrack;
             lblTitle.Location = new Point(28, 11);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(400, 49);
+            lblTitle.Size = new Size(412, 49);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Tutor Availability";
             // 
@@ -108,10 +108,9 @@
             btnBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnBack.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             btnBack.ForeColor = Color.FromArgb(64, 64, 64);
-            btnBack.Location = new Point(692, 486);
-            btnBack.Location = new Point(28, 482);
+            btnBack.Location = new Point(28, 494);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(140, 44);
+            btnBack.Size = new Size(85, 44);
             btnBack.TabIndex = 6;
             btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;

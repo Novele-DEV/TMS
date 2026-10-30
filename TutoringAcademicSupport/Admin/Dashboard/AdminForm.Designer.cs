@@ -180,9 +180,9 @@ namespace TutoringAcademicSupport.Admin.Dashboard
             btnLogOut.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnLogOut.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnLogOut.ForeColor = Color.FromArgb(64, 64, 64);
-            btnLogOut.Location = new Point(812, 572);
+            btnLogOut.Location = new Point(867, 572);
             btnLogOut.Name = "btnLogOut";
-            btnLogOut.Size = new Size(160, 48);
+            btnLogOut.Size = new Size(105, 48);
             btnLogOut.TabIndex = 11;
             btnLogOut.Text = "&Log Out";
             btnLogOut.UseVisualStyleBackColor = true;

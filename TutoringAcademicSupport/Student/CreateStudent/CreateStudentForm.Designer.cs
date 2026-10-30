@@ -69,7 +69,7 @@
             lblHeading.BackColor = Color.Transparent;
             lblHeading.Font = new Font("Cooper Black", 25F);
             lblHeading.ForeColor = SystemColors.HotTrack;
-            lblHeading.Location = new Point(12, 19);
+            lblHeading.Location = new Point(8, 9);
             lblHeading.Name = "lblHeading";
             lblHeading.Size = new Size(473, 49);
             lblHeading.TabIndex = 0;
@@ -78,7 +78,7 @@
             // txtStudentID
             // 
             txtStudentID.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtStudentID.Location = new Point(12, 117);
+            txtStudentID.Location = new Point(8, 134);
             txtStudentID.Name = "txtStudentID";
             txtStudentID.Size = new Size(258, 29);
             txtStudentID.TabIndex = 1;
@@ -86,12 +86,7 @@
             // dtpDoB
             // 
             dtpDoB.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpDoB.Location = new Point(12, 185);
-            dtpDoB.Name = "dtpDoB";
-            dtpDoB.Size = new Size(258, 29);
-            dtpDoB.TabIndex = 2;
-            dtpDoB.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpDoB.Location = new Point(400, 76);
+            dtpDoB.Location = new Point(12, 200);
             dtpDoB.Name = "dtpDoB";
             dtpDoB.Size = new Size(258, 29);
             dtpDoB.TabIndex = 2;
@@ -99,12 +94,7 @@
             // txtFirstName
             // 
             txtFirstName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFirstName.Location = new Point(790, 117);
-            txtFirstName.Name = "txtFirstName";
-            txtFirstName.Size = new Size(258, 29);
-            txtFirstName.TabIndex = 3;
-            txtFirstName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtFirstName.Location = new Point(20, 138);
+            txtFirstName.Location = new Point(400, 134);
             txtFirstName.Name = "txtFirstName";
             txtFirstName.Size = new Size(258, 29);
             txtFirstName.TabIndex = 3;
@@ -122,14 +112,7 @@
             // 
             cboFaculty.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cboFaculty.FormattingEnabled = true;
-            cboFaculty.Location = new Point(12, 443);
-            cboFaculty.Name = "cboFaculty";
-            cboFaculty.Size = new Size(258, 29);
-            cboFaculty.TabIndex = 5;
-            cboFaculty.SelectedIndexChanged += cboFaculty_SelectedIndexChanged;
-            cboFaculty.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            cboFaculty.FormattingEnabled = true;
-            cboFaculty.Location = new Point(20, 262);
+            cboFaculty.Location = new Point(12, 446);
             cboFaculty.Name = "cboFaculty";
             cboFaculty.Size = new Size(258, 29);
             cboFaculty.TabIndex = 5;
@@ -138,12 +121,7 @@
             // txtLastName
             // 
             txtLastName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtLastName.Location = new Point(400, 117);
-            txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(258, 29);
-            txtLastName.TabIndex = 6;
-            txtLastName.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtLastName.Location = new Point(400, 138);
+            txtLastName.Location = new Point(777, 134);
             txtLastName.Name = "txtLastName";
             txtLastName.Size = new Size(258, 29);
             txtLastName.TabIndex = 6;
@@ -170,18 +148,9 @@
             // 
             btnBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnBack.ForeColor = Color.FromArgb(64, 64, 64);
-            btnBack.Location = new Point(904, 841);
+            btnBack.Location = new Point(17, 842);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(144, 44);
-            btnBack.TabIndex = 11;
-            btnBack.Text = "&Back";
-            btnBack.Text = "Back to Login";
-            btnBack.UseVisualStyleBackColor = true;
-            btnBack.Click += btnBack_Click;
-            btnBack.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnBack.Location = new Point(20, 570);
-            btnBack.Name = "btnBack";
-            btnBack.Size = new Size(100, 44);
+            btnBack.Size = new Size(85, 44);
             btnBack.TabIndex = 11;
             btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -189,24 +158,13 @@
             // 
             // btnCreate
             // 
-            btnCreate.BackColor = SystemColors.HotTrack;
-            btnCreate.FlatStyle = FlatStyle.Popup;
-            btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(17, 841);
-            btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(153, 52);
-            btnCreate.TabIndex = 12;
-            btnCreate.Text = "Create";
-            btnCreate.UseVisualStyleBackColor = false;
-            btnCreate.Click += btnCreate_Click;
             btnCreate.BackColor = Color.FromArgb(31, 56, 100);
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnCreate.ForeColor = Color.White;
-            btnCreate.Location = new Point(420, 351);
+            btnCreate.Location = new Point(896, 842);
             btnCreate.Name = "btnCreate";
-            btnCreate.Size = new Size(149, 59);
+            btnCreate.Size = new Size(139, 44);
             btnCreate.TabIndex = 12;
             btnCreate.Text = "Create";
             btnCreate.UseVisualStyleBackColor = false;
@@ -216,13 +174,7 @@
             // 
             lblStudentNo.AutoSize = true;
             lblStudentNo.BackColor = Color.Transparent;
-            lblStudentNo.Location = new Point(12, 95);
-            lblStudentNo.Name = "lblStudentNo";
-            lblStudentNo.Size = new Size(119, 19);
-            lblStudentNo.TabIndex = 13;
-            lblStudentNo.Text = "Student number *";
-            lblStudentNo.AutoSize = true;
-            lblStudentNo.Location = new Point(20, 57);
+            lblStudentNo.Location = new Point(8, 98);
             lblStudentNo.Name = "lblStudentNo";
             lblStudentNo.Size = new Size(119, 19);
             lblStudentNo.TabIndex = 13;
@@ -242,7 +194,7 @@
             // 
             lblFName.AutoSize = true;
             lblFName.BackColor = Color.Transparent;
-            lblFName.Location = new Point(790, 98);
+            lblFName.Location = new Point(402, 98);
             lblFName.Name = "lblFName";
             lblFName.Size = new Size(83, 19);
             lblFName.TabIndex = 15;
@@ -252,7 +204,7 @@
             // 
             lblLName.AutoSize = true;
             lblLName.BackColor = Color.Transparent;
-            lblLName.Location = new Point(400, 98);
+            lblLName.Location = new Point(777, 98);
             lblLName.Name = "lblLName";
             lblLName.Size = new Size(82, 19);
             lblLName.TabIndex = 16;
@@ -374,7 +326,7 @@
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 8F, FontStyle.Italic);
             label2.ForeColor = SystemColors.ActiveCaption;
-            label2.Location = new Point(12, 76);
+            label2.Location = new Point(8, 68);
             label2.Name = "label2";
             label2.Size = new Size(141, 19);
             label2.TabIndex = 27;

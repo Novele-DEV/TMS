@@ -70,7 +70,7 @@
             lblPeriod.ForeColor = Color.FromArgb(31, 56, 100);
             lblPeriod.Location = new Point(22, 52);
             lblPeriod.Name = "lblPeriod";
-            lblPeriod.Size = new Size(0, 28);
+            lblPeriod.Size = new Size(0, 25);
             lblPeriod.TabIndex = 18;
             // 
             // lblRunDate
@@ -215,7 +215,7 @@
             btnExport.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnExport.BackColor = SystemColors.ActiveCaption;
             btnExport.FlatStyle = FlatStyle.Popup;
-            btnExport.Location = new Point(741, 632);
+            btnExport.Location = new Point(871, 632);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(140, 40);
             btnExport.TabIndex = 15;
@@ -228,7 +228,7 @@
             btnPreview.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnPreview.BackColor = SystemColors.InactiveCaption;
             btnPreview.FlatStyle = FlatStyle.Popup;
-            btnPreview.Location = new Point(891, 632);
+            btnPreview.Location = new Point(1034, 632);
             btnPreview.Name = "btnPreview";
             btnPreview.Size = new Size(140, 40);
             btnPreview.TabIndex = 16;
@@ -240,9 +240,9 @@
             // 
             btnReturn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(1041, 632);
+            btnReturn.Location = new Point(24, 635);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(140, 40);
+            btnReturn.Size = new Size(85, 44);
             btnReturn.TabIndex = 17;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;

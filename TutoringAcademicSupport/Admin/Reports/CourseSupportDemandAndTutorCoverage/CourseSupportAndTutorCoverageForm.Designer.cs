@@ -240,7 +240,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             btnExport.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnExport.BackColor = SystemColors.ActiveCaption;
             btnExport.FlatStyle = FlatStyle.Popup;
-            btnExport.Location = new Point(734, 705);
+            btnExport.Location = new Point(856, 708);
             btnExport.Name = "btnExport";
             btnExport.Size = new Size(140, 40);
             btnExport.TabIndex = 13;
@@ -253,7 +253,7 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             btnPreview.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnPreview.BackColor = SystemColors.InactiveCaption;
             btnPreview.FlatStyle = FlatStyle.Popup;
-            btnPreview.Location = new Point(884, 705);
+            btnPreview.Location = new Point(1034, 708);
             btnPreview.Name = "btnPreview";
             btnPreview.Size = new Size(140, 40);
             btnPreview.TabIndex = 14;
@@ -265,9 +265,9 @@ namespace TutoringAcademicSupport.Admin.Reports.CourseSupportDemandAndTutorCover
             // 
             btnReturn.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnReturn.ForeColor = Color.FromArgb(64, 64, 64);
-            btnReturn.Location = new Point(1034, 705);
+            btnReturn.Location = new Point(22, 708);
             btnReturn.Name = "btnReturn";
-            btnReturn.Size = new Size(140, 40);
+            btnReturn.Size = new Size(85, 44);
             btnReturn.TabIndex = 15;
             btnReturn.Text = "&Back";
             btnReturn.UseVisualStyleBackColor = true;
